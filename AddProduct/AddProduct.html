@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่มสินค้า</title>
+    <link rel="stylesheet" href="AddProduct.css">
+</head>
+<body>
+    <div class="container">
+        <h1>เพิ่มสินค้า</h1>
+        <form id="productForm">
+            <div class="form-group">
+                <label for="image">ภาพสินค้า:</label>
+                <input type="file" id="image" accept="image/*" required>
+            </div>
+            <div class="form-group">
+                <label for="productName">ชื่อสินค้า:</label>
+                <input type="text" id="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="category">หมวดหมู่:</label>
+                <input type="text" id="category" required>
+            </div>
+            <div class="form-group">
+                <label for="description">รายละเอียดสินค้า:</label>
+                <textarea id="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">ราคา:</label>
+                <input type="number" id="price" required>
+            </div>
+            <div class="form-group">
+                <label for="stock">คลัง:</label>
+                <input type="number" id="stock" required>
+            </div>
+            <button type="submit">บันทึกและเผยแพร่</button>
+        </form>
+        <div id="productList"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

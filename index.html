@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login and Sign-in System</title>
-    <link rel="stylesheet" href="style.css">
+    <title>KMITL Store Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1 id="title">Login</h1>
-        
-        <form id="loginForm">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" required>
+    <div class="login-container">
+        <h1>KMITL STORE</h1>
+        <form>
+            <label for="username">USER NAME</label>
+            <input type="text" id="username" placeholder="Enter Username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter Password">
+
+            <button type="submit" class="login-btn">Log In</button>
+
+            <div class="separator">
+                <span>or</span>
             </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit">Login</button>
+
+            <button type="button" class="social-btn phone-btn">
+                <img src="icons/phone-icon.png" alt="Phone"> SIGN IN with Phone Number
+            </button>
+
+            <button type="button" class="social-btn facebook-btn">
+                <img src="icons/facebook-icon.png" alt="Facebook"> SIGN IN with Facebook
+            </button>
+            <button type="button" class="social-btn google-btn">
+                <img src="icons/google-icon.png" alt="Google"> SIGN IN with Google
+            </button>            
         </form>
-
-        <button id="switchToSignin">Create Account</button>
-        <button id="logout" style="display: none;">Logout</button>
     </div>
-
-    <script src="app.js"></script>
 </body>
 </html>

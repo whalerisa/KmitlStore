@@ -1,0 +1,223 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.store-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E35205;
+    padding: 10px 20px;
+    color: white;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.back-button img {
+    width: 60px;
+}
+
+header .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* ทำให้โลโก้เป็นทรงกลม */
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    padding: 10px;
+    width: 600px;
+    border: none;
+    border-radius: 45px;
+    padding-right: 40px; /* เพิ่มพื้นที่ขวาเพื่อใส่ไอคอนค้นหา */
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; /* วางไอคอนที่ขอบขวาของแถบค้นหา */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon img {
+    width: 50px; /* ขนาดของไอคอนค้นหา */
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links button {
+    background-color: #E35205;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-links .nav-icon {
+    width: 40px; /* ขนาดไอคอน */
+    margin-bottom: 5px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+/* คำถามที่พบบ่อย - หัวข้อ */
+.faq-section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* จัดหัวข้อให้อยู่ตรงซ้ายแทน */
+    position: relative; /* ให้มีการจัดวางแบบ relative */
+    margin-top: 30px; /* เพิ่มระยะห่างจาก navbar หรือหัวข้ออื่นๆ */
+}
+
+.faq-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px; /* ระยะห่างระหว่างหัวข้อกับปุ่ม */
+    margin-left: 340px; /* ขยับหัวข้อไปทางขวา */
+}
+
+/* ปุ่มแสดงปัญหาการใช้งาน */
+.faq-item {
+    display: flex;
+    justify-content: center; /* จัดปุ่มให้อยู่ตรงกลาง */
+    width: 100%; /* ให้ปุ่มอยู่ตรงกลางของพื้นที่หน้าจอ */
+    margin-bottom: 5px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+
+.faq-item button {
+    background-color: #f7f7f7;
+    color: #333;
+    padding: 15px; /* เพิ่ม padding เพื่อให้ปุ่มสูงขึ้น */
+    height: 50px; /* กำหนดความสูงของปุ่ม */
+    width: 55%; /* กำหนดความกว้างของปุ่ม */
+    border: 4px solid #E35205; /* เส้นขอบสีส้ม */
+    border-radius: 15px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px; /* ปรับขนาดตัวอักษรที่นี่ */
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-bottom: 0; /* ลด margin ภายในปุ่ม */
+}
+
+
+.faq-item button:hover {
+    background-color: #E35205; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+    color: white; /* เปลี่ยนสีตัวหนังสือเมื่อ hover */
+    border-color: #E35205; /* เส้นขอบยังคงเป็นสีส้ม */
+}
+
+.faq-item button:active {
+    background-color: #cc4404; /* สีพื้นหลังเมื่อกดปุ่ม */
+    color: white; /* สีตัวหนังสือเมื่อกดปุ่ม */
+}
+
+
+
+/* ข้อมูลการติดต่อ Admin */
+.contact-admin {
+    display: flex;
+    align-items: center;
+    margin-top: 40px; /* เพิ่มระยะห่างระหว่าง ติดต่อ Admin กับ navbar ด้านล่าง */
+}
+
+.message-icon {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.admin-info h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.admin-info p {
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 20px; /* เพิ่มระยะห่างจากด้านล่าง */
+}
+
+
+
+
+/* บาร์ด้านล่าง */
+footer {
+    background-color: #E35205;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-links, .social-links {
+    flex: 1;
+    margin: 0;
+    padding-right: 10px;
+}
+
+
+.footer-links h2, .social-links h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+.footer-links ul, .social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li, .social-links li {
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

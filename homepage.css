@@ -184,7 +184,7 @@ footer {
 }
 
 .footer-links h2, .social-links h2 {
-    font-size: 24px;
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
@@ -195,7 +195,7 @@ footer {
 }
 
 .footer-links li, .social-links li {
-    font-size: 16px;
+    font-size: 12px;
     margin: 3px 0;
 }
 

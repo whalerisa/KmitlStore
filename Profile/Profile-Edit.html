@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMITL Store - Order Form</title>
+    <link rel="stylesheet" href="Profile-Edit.css">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="back-arrow.png" alt="Back" class="back-arrow">
+        <h1>แก้ไขข้อมูลส่วนตัว</h1>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile">
+        <img src="profile-pic.png" alt="Profile Picture" class="profile-pic">
+        <h2>RiSa2020</h2>
+    </div>
+
+    <!-- Editable Information Section -->
+    <div class="info-card">
+        <div class="info-item">
+            <label>ชื่อ:</label>
+            <input type="text" id="name" value="นางสาวXXXXXX XXXXXXX" disabled>
+            <button onclick="enableEdit('name')">Edit</button>
+        </div>
+        <div class="info-item">
+            <label>เบอร์โทรศัพท์:</label>
+            <input type="text" id="phone" value="OXX-XXX-XXXX" disabled>
+            <button onclick="enableEdit('phone')">Edit</button>
+        </div>
+        <div class="info-item">
+            <label>Email:</label>
+            <input type="email" id="email" value="XXXXXXXXXX@gmail.com" disabled>
+            <button onclick="enableEdit('email')">Edit</button>
+        </div>
+    </div>
+
+    <script>
+        function enableEdit(fieldId) {
+            var inputField = document.getElementById(fieldId);
+            inputField.disabled = !inputField.disabled; // toggle enable/disable
+
+            if (!inputField.disabled) {
+                inputField.focus();
+            }
+        }
+    </script>
+
+<footer>
+    <div class="footer-links">
+        <h2>Customer Service</h2>
+        <ul>
+            <li>Help Center</li>
+            <li>How To Buy</li>
+            <li>How To Sell</li>
+            <li>Payment Methods</li>
+            <li>Contact Us</li>
+        </ul>
+    </div>
+
+    <div class="social-links">
+        <h2>Follow Us</h2>
+        <ul>
+            <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
+            <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
+            <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>      
+
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>

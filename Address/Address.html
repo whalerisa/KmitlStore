@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="Address.css">
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <style>
         /* กำหนดขนาดไอคอน */
@@ -76,69 +76,21 @@
             </div>
         </header>
 
-        <!-- Category Section -->
-        <section class="categories">
-            <h2>หมวดหมู่</h2>
-            <div class="category-grid">
-                <div class="category-item">
-                    <img src="icons/men-clothing.png" alt="Men's Clothing">
-                    <p>Men's clothing</p>
-                </div>
-                <div class="category-item">
-                    <img src="icons/women-clothing.png" alt="Women's Clothing">
-                    <p>Women's clothing</p>
-                </div>
-                <div class="category-item">
-                    <img src="icons/school-supplies.png" alt="School Supplies">
-                    <p>School supplies</p>
-                </div>
-                <div class="category-item">
-                    <img src="icons/lease-agreement.png" alt="Lease Agreement">
-                    <p>Lease Agreement</p>
-                </div>
-                <div class="category-item">
-                    <img src="icons/vehicle.png" alt="Vehicle">
-                    <p>Vehicle</p>
-                </div>
-                <div class="category-item">
-                    <img src="icons/other.png" alt="Other">
-                    <p>Other</p>
-                </div>
-            </div>
-        </section>
 
-        <!-- Product Recommendation Section -->
-        <section class="products">
-            <h2>DIARY DISCOVERY</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="products/pants.jpg" alt="กระโปรงนักศึกษา">
-                    <h3>กระโปรงนักศึกษา</h3>
-                    <ul>
-                        <li>ไซส์ M</li>
-                        <li>ยาว 32</li>
-                        <li>ยังไม่เคยใส่เลย...</li>
-                    </ul>
-                    <div class="product-price">
-                        <span>250 บาท</span>
-                    </div>
-                </div>
+        <section class="order-form-section">
+            <h1>Order Details</h1>
+            <form>
+                <label for="address">ที่อยู่สำหรับจัดส่ง:</label>
+                <textarea id="address" placeholder="กรอกที่อยู่สำหรับจัดส่ง..." required></textarea>
 
-                <div class="product-card">
-                    <img src="products/calculator.jpg" alt="เครื่องคิดเลข">
-                    <h3>เครื่องคิดเลข super-fx-plus</h3>
-                    <ul>
-                        <li>ไม่มีตำหนิ</li>
-                        <li>ใช้งานง่าย</li>
-                        <li>รับประกันยังอยู่</li>
-                    </ul>
-                    <div class="product-price">
-                        <span>1,060 บาท</span>
-                    </div>
-                </div>
+                <label for="product-details">รายละเอียดสินค้า:</label>
+                <textarea id="product-details" placeholder="กรอกรายละเอียดสินค้า..." required></textarea>
 
-                <!-- Add more product cards as needed -->
-            </div>
+                <label for="total-amount">ยอดชำระทั้งหมด:</label>
+                <input type="number" id="total-amount" placeholder="จำนวนเงิน" required>
+
+                <button type="submit" class="place-order-button">Place Order</button>
+            </form>
         </section>
 
         <footer>

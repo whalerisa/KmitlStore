@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
-    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="chat.css">
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <style>
         /* กำหนดขนาดไอคอน */
@@ -76,60 +76,36 @@
             </div>
         </header>
 
-        <!-- ปุ่มแสดงปัญหาการใช้งาน -->
-        <section class="faq-section">
-            <h1 class="faq-title">คำถามที่พบบ่อย</h1> <!-- หัวข้อคำถามที่พบบ่อย -->
-            
-            <div class="faq-item">
-                <button>สามารถแก้ไขข้อมูลโปรไฟล์ได้อย่างไรบ้าง</button>
-            </div>
-            <div class="faq-item">
-                <button>ฉันสามารถยืนยันเบอร์โทรศัพท์ได้ยังไงบ้าง</button>
-            </div>
-            <div class="faq-item">
-                <button>ต้องการยกเลิกการสั่งซื้อเนื่องจากร้านปิด/ไม่สามารถสั่งของที่ต้องการได้</button>
-            </div>
-            <div class="faq-item">
-                <button>ทำไมถึงไม่สามารถเปลี่ยน Email ได้</button>
-            </div>
-        </section>
-       
+        <body>
+            <div class="chat-wrapper">
+                <div class="chat-container">
+                    <!-- Header for Chat Page -->
+                    <div class="chat-header">
+                        <h2>Chat with Name</h2>
+                    </div>
 
-        <!-- ข้อมูลการติดต่อ Admin -->
-        <div class="contact-admin">
-            <img src="icons/message-icon.png" alt="Message Icon" class="message-icon">
-            <div class="admin-info">
-                <h3>ติดต่อ Admin</h3>
-                <p>บริการ 8.00-22.00</p>
+                    <!-- Chat window to display messages -->
+                    <div class="chat-window">
+                        <!-- Chat bubbles for messages -->
+                        <div class="message received">
+                            สวัสดีครับ! คุณทำอะไรอยู่ตอนนี้?
+                        </div>
+                        <div class="message sent">
+                            สวัสดีครับ! ตอนนี้กำลังเขียนหน้าแชทอยู่
+                        </div>
+                        <div class="message received">
+                            โอ้ เยี่ยมเลยครับ!
+                        </div>
+                    </div>
+
+                    <!-- Input box to send a message -->
+                    <div class="chat-input">
+                        <input type="text" placeholder="พิมพ์ข้อความ..." id="messageInput">
+                        <button id="sendButton">ส่ง</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-        
-        
 
-    <footer>
-        <div class="footer-links">
-            <h2>Customer Service</h2>
-            <ul>
-                <li>Help Center</li>
-                <li>How To Buy</li>
-                <li>How To Sell</li>
-                <li>Payment Methods</li>
-                <li>Contact Us</li>
-            </ul>
-        </div>
+        </body>
 
-        <div class="social-links">
-            <h2>Follow Us</h2>
-            <ul>
-                <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
-                <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
-                <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>      
-
-            </ul>
-        </div>
-    </footer>
-    </div>
-
-</body>
 </html>

@@ -1,0 +1,239 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.store-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E35205;
+    padding: 10px 20px;
+    color: white;
+    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่าง header และส่วนตรงกลาง */
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.back-button img {
+    width: 60px;
+}
+
+header .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* ทำให้โลโก้เป็นทรงกลม */
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    padding: 10px;
+    width: 600px;
+    border: none;
+    border-radius: 45px;
+    padding-right: 40px; /* เพิ่มพื้นที่ขวาเพื่อใส่ไอคอนค้นหา */
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; /* วางไอคอนที่ขอบขวาของแถบค้นหา */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon img {
+    width: 50px; /* ขนาดของไอคอนค้นหา */
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links button {
+    background-color: #E35205;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-links .nav-icon {
+    width: 40px; /* ขนาดไอคอน */
+    margin-bottom: 5px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+h1 {
+    text-align: left;
+    color: #E35205;
+    margin: 20px;
+}
+
+.purchase-history {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Grid setup for products */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Individual product card */
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    flex: 1 1 100%;
+}
+
+.product-image img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.product-details {
+    margin-left: 20px;
+    flex: 1;
+}
+
+.product-details h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+.price {
+    color: #E35205;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product-description p {
+    margin: 5px 0;
+}
+
+.quantity-info {
+    margin-top: 20px;
+    font-size: 14px;
+    color: gray;
+}
+
+.seller-info {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.seller-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.seller-info p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.view-shop {
+    background-color: #E35205;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.view-shop:hover {
+    background-color: #c94003;
+}
+
+/* Footer */
+footer {
+    background-color: #E35205;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 110px; /* เพิ่มระยะห่างระหว่างส่วนตรงกลางกับ footer */
+}
+
+.footer-links, .social-links {
+    flex: 1;
+    margin: 0;
+    padding-right: 10px;
+}
+
+/* ข้อความใน footer */
+.footer-links h2, .social-links h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff; /* สีขาว */
+}
+
+.footer-links ul, .social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li, .social-links li {
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

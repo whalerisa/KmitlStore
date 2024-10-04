@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
-    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="Purchase-history.css">
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <style>
         /* กำหนดขนาดไอคอน */
@@ -76,60 +76,62 @@
             </div>
         </header>
 
-        <!-- ปุ่มแสดงปัญหาการใช้งาน -->
-        <section class="faq-section">
-            <h1 class="faq-title">คำถามที่พบบ่อย</h1> <!-- หัวข้อคำถามที่พบบ่อย -->
-            
-            <div class="faq-item">
-                <button>สามารถแก้ไขข้อมูลโปรไฟล์ได้อย่างไรบ้าง</button>
-            </div>
-            <div class="faq-item">
-                <button>ฉันสามารถยืนยันเบอร์โทรศัพท์ได้ยังไงบ้าง</button>
-            </div>
-            <div class="faq-item">
-                <button>ต้องการยกเลิกการสั่งซื้อเนื่องจากร้านปิด/ไม่สามารถสั่งของที่ต้องการได้</button>
-            </div>
-            <div class="faq-item">
-                <button>ทำไมถึงไม่สามารถเปลี่ยน Email ได้</button>
-            </div>
-        </section>
-       
+        <body>
+            <div class="purchase-history">
+                <h1>ประวัติการซื้อ</h1>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="path/to/skirt-image.jpg" alt="กระโปรงพลีท">
+                        </div>
+                        <div class="product-details">
+                            <h2>กระโปรงพลีท</h2>
+                            <p class="price">160 บาท</p>
+                            <div class="product-description">
+                                <p>• ฟรีไซส์</p>
+                                <p>• ยาว 24</p>
+                                <p>• ใส่แค่ครั้งเดียว</p>
+                            </div>
+                            <div class="quantity-info">
+                                <p>Quantity <span>1</span></p>
+                                <p>1 pieces available</p>
+                            </div>
+                            <div class="seller-info">
+                                <img src="path/to/seller-profile.jpg" alt="น้า ขายของ">
+                                <p>น้า ขายของ</p>
+                                <button class="view-shop">View Shop</button>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- ข้อมูลการติดต่อ Admin -->
-        <div class="contact-admin">
-            <img src="icons/message-icon.png" alt="Message Icon" class="message-icon">
-            <div class="admin-info">
-                <h3>ติดต่อ Admin</h3>
-                <p>บริการ 8.00-22.00</p>
+                    <!-- สามารถทำการ copy product-card อีก 2 ครั้งเพื่อลองเรียงกันเป็นแถวตอนลึก -->
+                </div>
             </div>
-        </div>
-    </section>
-        
-        
+            <footer>
+                <div class="footer-links">
+                    <h2>Customer Service</h2>
+                    <ul>
+                        <li>Help Center</li>
+                        <li>How To Buy</li>
+                        <li>How To Sell</li>
+                        <li>Payment Methods</li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
 
-    <footer>
-        <div class="footer-links">
-            <h2>Customer Service</h2>
-            <ul>
-                <li>Help Center</li>
-                <li>How To Buy</li>
-                <li>How To Sell</li>
-                <li>Payment Methods</li>
-                <li>Contact Us</li>
-            </ul>
-        </div>
+                <div class="social-links">
+                    <h2>Follow Us</h2>
+                    <ul>
+                        <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
+                        <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
+                        <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>
 
-        <div class="social-links">
-            <h2>Follow Us</h2>
-            <ul>
-                <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
-                <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
-                <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>      
+                    </ul>
+                </div>
+            </footer>
 
-            </ul>
-        </div>
-    </footer>
-    </div>
 
-</body>
+
+        </body>
+
 </html>

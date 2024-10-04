@@ -9,30 +9,41 @@
 <body>
     <div class="login-container">
         <h1>KMITL STORE</h1>
-        <form>
+        <!-- ฟอร์มกำหนด action ให้ส่งไปยังหน้า profile -->
+        <form action="profile/profile.html" method="get">
             <label for="username">USER NAME</label>
             <input type="text" id="username" placeholder="Enter Username">
 
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter Password">
 
+            <!-- ปุ่ม Log In จะเปลี่ยนเส้นทางไปยังหน้า profile -->
             <button type="submit" class="login-btn">Log In</button>
-
-            <div class="separator">
-                <span>or</span>
-            </div>
-
-            <button type="button" class="social-btn phone-btn">
-                <img src="icons/phone-icon.png" alt="Phone"> SIGN IN with Phone Number
-            </button>
-
-            <button type="button" class="social-btn facebook-btn">
-                <img src="icons/facebook-icon.png" alt="Facebook"> SIGN IN with Facebook
-            </button>
-            <button type="button" class="social-btn google-btn">
-                <img src="icons/google-icon.png" alt="Google"> SIGN IN with Google
-            </button>            
         </form>
+
+        <div class="separator">
+            <span>or</span>
+        </div>
+
+        <!-- ปุ่ม Social Sign In -->
+        <button type="button" class="social-btn phone-btn" onclick="redirectToProfile()">
+            <img src="icons/phone-icon.png" alt="Phone"> SIGN IN with Phone Number
+        </button>
+
+        <button type="button" class="social-btn facebook-btn" onclick="redirectToProfile()">
+            <img src="icons/facebook-icon.png" alt="Facebook"> SIGN IN with Facebook
+        </button>
+
+        <button type="button" class="social-btn google-btn" onclick="redirectToProfile()">
+            <img src="icons/google-icon.png" alt="Google"> SIGN IN with Google
+        </button>
     </div>
+
+    <!-- JavaScript สำหรับการ redirect -->
+    <script>
+        function redirectToProfile() {
+            window.location.href = 'profile/profile.html';
+        }
+    </script>
 </body>
 </html>

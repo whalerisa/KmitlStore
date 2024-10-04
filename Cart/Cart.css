@@ -1,0 +1,233 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.store-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E35205;
+    padding: 10px 20px;
+    color: white;
+    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่าง header และส่วนตรงกลาง */
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.back-button img {
+    width: 60px;
+}
+
+header .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* ทำให้โลโก้เป็นทรงกลม */
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    padding: 10px;
+    width: 600px;
+    border: none;
+    border-radius: 45px;
+    padding-right: 40px; /* เพิ่มพื้นที่ขวาเพื่อใส่ไอคอนค้นหา */
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; /* วางไอคอนที่ขอบขวาของแถบค้นหา */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon img {
+    width: 50px; /* ขนาดของไอคอนค้นหา */
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links button {
+    background-color: #E35205;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-links .nav-icon {
+    width: 40px; /* ขนาดไอคอน */
+    margin-bottom: 5px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+.cart-container {
+    width: 400px; /* กว้างของกล่อง */
+    margin: 20px auto; /* จัดกลาง */
+    padding: 20px; /* ระยะห่างภายใน */
+    background-color: white; /* พื้นหลังของกล่อง */ 
+    border-radius: 10px; /* มุมมน */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */
+}
+
+h1 {
+    text-align: center; /* จัดกลางหัวข้อ */
+    color: #000000; /* สีหัวข้อ */
+}
+
+/* Cart Item Styling */
+.cart-items {
+    background-color: #D9D9D9; /* สีพื้นหลังของรายการสินค้า */
+    padding: 10px; /* ระยะห่างภายใน */
+    border-radius: 5px; /* มุมมน */
+}
+
+.cart-item {
+    display: flex; /* ใช้ flexbox สำหรับการจัดเรียง */
+    align-items: center; /* จัดแนวแนวตั้ง */
+    margin: 10px 0; /* ระยะห่างระหว่างรายการ */
+}
+
+.item-checkbox {
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+}
+
+.item-label {
+    display: flex; /* ใช้ flexbox สำหรับการจัดเรียง */
+    align-items: center; /* จัดแนวแนวตั้ง */
+    background-color: #f7f7f7; /* สีพื้นหลังของรายการ */
+    padding: 10px; /* ระยะห่างภายใน */
+    border-radius: 15px; /* มุมมน */
+    flex-grow: 1; /* ให้ออกไปเต็มพื้นที่ */
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+}
+
+.item-label:hover {
+    background-color: #e1e1e1; /* เปลี่ยนสีพื้นเมื่อ hover */
+}
+
+.item-label img {
+    width: 50px; /* ขนาดของภาพ */
+    height: 50px; /* ขนาดของภาพ */
+    margin-right: 10px; /* ระยะห่างจากข้อความ */
+}
+
+.item-price {
+    margin-left: auto; /* ย้ายไปด้านขวาสุด */
+    color: #E35205; /* สีราคาสินค้า */
+}
+
+/* Total and Checkout Button Styling */
+.total-container {
+    display: flex; /* ใช้ flexbox */
+    justify-content: space-between; /* จัดเรียงให้ห่างกัน */
+    margin-top: 20px; /* ระยะห่างด้านบน */
+}
+
+.total-price {
+    font-size: 18px; /* ขนาดตัวอักษร */
+    color: #E35205; /* สีราคาสุทธิ */
+    background-color: #E35205; /* สีพื้นหลังปุ่ม */
+    color: white; /* สีข้อความ */
+    border: none; /* ไม่ให้มีเส้นขอบ */
+    padding: 10px 20px; /* ระยะห่างภายใน */
+    border-radius: 5px; /* มุมมน */
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+}
+
+.total-price:hover {
+    background-color: #d14303; /* เปลี่ยนสีเมื่อ hover */
+}
+
+.checkout-button {
+    background-color: #E35205; /* สีพื้นหลังปุ่ม */
+    color: white; /* สีข้อความ */
+    border: none; /* ไม่ให้มีเส้นขอบ */
+    padding: 10px 20px; /* ระยะห่างภายใน */
+    border-radius: 5px; /* มุมมน */
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+}
+
+.checkout-button:hover {
+    background-color: #d14303; /* เปลี่ยนสีเมื่อ hover */
+}
+
+/* Footer */
+footer {
+    background-color: #E35205;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 110px; /* เพิ่มระยะห่างระหว่างส่วนตรงกลางกับ footer */
+}
+
+.footer-links, .social-links {
+    flex: 1;
+    margin: 0;
+    padding-right: 10px;
+}
+
+/* ข้อความใน footer */
+.footer-links h2, .social-links h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff; /* สีขาว */
+}
+
+.footer-links ul, .social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li, .social-links li {
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

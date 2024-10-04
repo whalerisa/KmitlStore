@@ -1,0 +1,250 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.store-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E35205;
+    padding: 10px 20px;
+    color: white;
+    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่าง header และส่วนตรงกลาง */
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.back-button img {
+    width: 60px;
+}
+
+header .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* ทำให้โลโก้เป็นทรงกลม */
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    padding: 10px;
+    width: 600px;
+    border: none;
+    border-radius: 45px;
+    padding-right: 40px; /* เพิ่มพื้นที่ขวาเพื่อใส่ไอคอนค้นหา */
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; /* วางไอคอนที่ขอบขวาของแถบค้นหา */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon img {
+    width: 50px; /* ขนาดของไอคอนค้นหา */
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links button {
+    background-color: #E35205;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-links .nav-icon {
+    width: 40px; /* ขนาดไอคอน */
+    margin-bottom: 5px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+.profile-container {
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #E35205;
+    font-size: 24px;
+}
+
+.edit-icon {
+    font-size: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.profile-info {
+    background-color: #E35205;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+button.seller-centre-button {
+    display: block;
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #E35205;
+    border: 2px solid #E35205;
+    padding: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+button.seller-centre-button:hover {
+    background-color: #e0e0e0;
+}
+
+.transaction-history {
+    margin-top: 20px;
+}
+
+.transaction-history h2 {
+    text-align: center;
+    color: #E35205;
+    margin-bottom: 15px;
+}
+
+.transactions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.transaction-section {
+    width: 48%;
+}
+
+.transaction-section h3 {
+    background-color: #E35205;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.transaction-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.transaction-section li {
+    background-color: #f7f7f7;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.status {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Footer */
+footer {
+    background-color: #E35205;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 110px; /* เพิ่มระยะห่างระหว่างส่วนตรงกลางกับ footer */
+}
+
+.footer-links, .social-links {
+    flex: 1;
+    margin: 0;
+    padding-right: 10px;
+}
+
+/* ข้อความใน footer */
+.footer-links h2, .social-links h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff; /* สีขาว */
+}
+
+.footer-links ul, .social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li, .social-links li {
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,186 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+.store-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E35205;
+    padding: 10px 20px;
+    color: white;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.back-button img {
+    width: 60px;
+}
+
+header .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* ทำให้โลโก้เป็นทรงกลม */
+}
+
+/* Search Bar Styling */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input {
+    padding: 10px;
+    width: 600px;
+    border: none;
+    border-radius: 45px;
+    padding-right: 40px; /* เพิ่มพื้นที่ขวาเพื่อใส่ไอคอนค้นหา */
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px; /* วางไอคอนที่ขอบขวาของแถบค้นหา */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-icon img {
+    width: 50px; /* ขนาดของไอคอนค้นหา */
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links button {
+    background-color: #E35205;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-links .nav-icon {
+    width: 40px; /* ขนาดไอคอน */
+    margin-bottom: 5px; /* ระยะห่างระหว่างไอคอนและข้อความ */
+}
+
+/* ส่วนของเนื้อหา */
+.profile-edit-section {
+    max-width: 800px; /* ความกว้างสูงสุดของเนื้อหา */
+    margin-left: auto; /* จัดให้อยู่ตรงกลางแนวนอน */
+    margin-right: auto; /* จัดให้อยู่ตรงกลางแนวนอน */
+    padding-left: 10px; /* ระยะห่างจากขอบซ้าย */
+    padding-right: 550px; /* ระยะห่างจากขอบขวา */
+    color: #E35205; /* สีตัวอักษร */
+    font-size: 18px; /* ขนาดฟอนต์ */
+    line-height: 1.6; /* ระยะห่างระหว่างบรรทัด */
+}
+
+/* หัวข้อ */
+.faq-title {
+    font-size: 28px; /* ขนาดฟอนต์ของหัวข้อ */
+    font-weight: bold; /* ตัวหนา */
+    margin-bottom: 20px; /* ระยะห่างระหว่างหัวข้อกับเนื้อหา */
+    color: #E35205; /* สีของหัวข้อ */
+}
+
+/* ส่วนของหมายเหตุ */
+.note-header {
+    font-size: 18px; /* ขนาดฟอนต์ของหัวข้อหมายเหตุ */
+    font-weight: bold; /* ตัวหนา */
+    color: #E35205; /* สีของหัวข้อหมายเหตุ */
+    margin-top: 20px; /* ระยะห่างจากเนื้อหาก่อนหน้า */
+}
+
+.note {
+    font-size: 16px; /* ขนาดฟอนต์ของข้อความหมายเหตุ */
+    color: #E35205; /* สีของข้อความหมายเหตุ */
+    margin-top: 10px; /* ระยะห่างจากหัวข้อหมายเหตุ */
+}
+
+/* จัดการกับรายการ (ol และ ul) */
+ol, ul {
+    padding-left: 40px; /* ขยับให้รายการห่างจากขอบซ้าย */
+    margin-bottom: 20px; /* ระยะห่างระหว่างเนื้อหาล่าง */
+}
+
+li {
+    margin-bottom: 10px; /* ระยะห่างระหว่างรายการ */
+}
+
+
+/* บาร์ด้านล่าง */
+footer {
+    background-color: #E35205;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-links, .social-links {
+    flex: 1;
+    margin: 0;
+    padding-right: 10px;
+}
+
+
+.footer-links h2, .social-links h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+.footer-links ul, .social-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li, .social-links li {
+    font-size: 12px;
+    margin: 3px 0;
+}
+
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

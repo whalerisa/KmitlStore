@@ -6,19 +6,25 @@ body {
 }
 
 .header {
-    background-color: #F05A1A;
+    
     padding: 10px;
-    color: white;
-    text-align: left;
+    color: black;
     display: flex;
     align-items: center;
+    justify-content: center; /* จัดให้ข้อความอยู่กลาง */
 }
 
 .header img.back-arrow {
-    width: 30px;
-    height: 30px;
-    margin-right: 20px;
+    width: 120px;
+    height: 120px;
+    position: absolute; /* ทำให้ภาพย้ายไปอยู่ด้านซ้าย */
+    left: 20px; /* ระยะห่างจากซ้าย */
     cursor: pointer;
+}
+
+.header-title {
+    text-align: center; /* จัดให้อยู่ตรงกลาง */
+    flex-grow: 1; /* ขยายให้ครอบคลุมพื้นที่ */
 }
 
 .profile {

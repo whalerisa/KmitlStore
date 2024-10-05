@@ -10,7 +10,7 @@
     <div class="login-container">
         <h1>KMITL STORE</h1>
         <!-- ฟอร์มกำหนด action ให้ส่งไปยังหน้า profile -->
-        <form action="profile/profile.html" method="get">
+        <form action="../profile/profile.html" method="get">
             <label for="username">USER NAME</label>
             <input type="text" id="username" placeholder="Enter Username">
 
@@ -27,23 +27,25 @@
 
         <!-- ปุ่ม Social Sign In -->
         <button type="button" class="social-btn phone-btn" onclick="redirectToProfile()">
-            <img src="icons/phone-icon.png" alt="Phone"> SIGN IN with Phone Number
+            <img src="../icons/phone-icon.png" alt="Phone"> SIGN IN with Phone Number
         </button>
 
         <button type="button" class="social-btn facebook-btn" onclick="redirectToProfile()">
-            <img src="icons/facebook-icon.png" alt="Facebook"> SIGN IN with Facebook
+            <img src="../icons/facebook-icon.png" alt="Facebook"> SIGN IN with Facebook
         </button>
 
         <button type="button" class="social-btn google-btn" onclick="redirectToProfile()">
-            <img src="icons/google-icon.png" alt="Google"> SIGN IN with Google
+            <img src="../icons/google-icon.png" alt="Google"> SIGN IN with Google
         </button>
-    </div>
+    
 
     <!-- JavaScript สำหรับการ redirect -->
     <script>
         function redirectToProfile() {
-            window.location.href = 'profile/profile.html';
+            window.location.href = '../Profile/Profile.html';
         }
     </script>
+
+</div>
 </body>
 </html>

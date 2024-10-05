@@ -90,9 +90,9 @@ header .logo {
     width: 400px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: transparent; /* ทำให้พื้นหลังโปร่งใส */
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
 }
 
 .profile-header {
@@ -113,39 +113,24 @@ h1 {
 }
 
 .edit-icon {
-    font-size: 16px;
-    margin-left: 5px;
-    cursor: pointer;
+    text-decoration: none; /* ลบเส้นใต้ */
+    color: inherit; /* ใช้สีเดียวกับข้อความ */
+    margin-left: 5px; /* เพิ่มระยะห่างจากชื่อ */
+}
+
+.edit-icon:hover {
+    color: #F05A1A; /* เปลี่ยนสีเมื่อ hover */
 }
 
 .profile-info {
-    background-color: #E35205;
+    background-color: #E35205; /* สีส้ม */
     color: white;
     padding: 15px;
     border-radius: 10px;
     text-align: left;
-    margin-bottom: 20px;
-}
-
-.profile-info p {
-    margin: 5px 0;
-}
-
-button.seller-centre-button {
-    display: block;
-    width: 100%;
-    background-color: #FFFFFF;
-    color: #E35205;
-    border: 2px solid #E35205;
-    padding: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-button.seller-centre-button:hover {
-    background-color: #e0e0e0;
+    margin: 0 auto 20px; /* จัดกลางด้านซ้าย-ขวา และมีระยะห่างด้านล่าง */
+    width: 80%; /* ปรับความกว้างให้ลดลง */
+    max-width: 800px; /* ระบุความกว้างสูงสุด */
 }
 
 .transaction-history {
@@ -160,15 +145,16 @@ button.seller-centre-button:hover {
 
 .transactions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* จัดกึ่งกลาง */
 }
 
 .transaction-section {
-    width: 48%;
+    width: 30%; /* ลดความกว้างของสี่เหลี่ยมให้เล็กลง */
+    margin: 0 10px; /* เพิ่มระยะห่างระหว่างสี่เหลี่ยม */
 }
 
 .transaction-section h3 {
-    background-color: #E35205;
+    background-color: #E35205; /* สีพื้นหลัง */
     color: white;
     padding: 10px;
     border-radius: 5px;

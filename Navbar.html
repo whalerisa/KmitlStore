@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Iconify</title>
+    <link rel="stylesheet" href="Cart.css">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script>
+        class Navbar extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' }); // attach shadow DOM
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            background-color: #E35205;
+                            padding: 10px 20px;
+                            color: white;
+                        }
+
+                        .left-section {
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .back-button {
+                            background-color: transparent;
+                            border: none;
+                            cursor: pointer;
+                            margin-right: 10px;
+                        }
+
+                        .back-button img {
+                            width: 40px;
+                        }
+
+                        .logo {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                        }
+
+                        .search-container {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .search-container input {
+                            padding: 10px;
+                            width: 300px;
+                            border-radius: 20px;
+                            border: none;
+                            outline: none;
+                        }
+
+                        .search-icon {
+                            position: absolute;
+                            right: 10px;
+                            background-color: transparent;
+                            border: none;
+                            cursor: pointer;
+                        }
+
+                        .search-icon img {
+                            width: 20px;
+                        }
+
+                        .nav-links {
+                            display: flex;
+                        }
+
+                        .nav-links a {
+                            margin-left: 10px;
+                            text-decoration: none;
+                        }
+
+                        .nav-links button {
+                            background-color: transparent;
+                            color: white;
+                            border: none;
+                            cursor: pointer;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            font-size: 14px;
+                        }
+
+                        .nav-links .iconify {
+                            width: 30px;
+                            height: 30px;
+                            margin-bottom: 5px;
+                        }
+                    </style>
+
+                    <header>
+                        <div class="left-section">
+                            <a href="../Productdetails/Product-details.html">
+                                <button class="back-button">
+                                    <img src="../icons/back-icon.png" alt="Back Icon">
+                                </button>
+                            </a>
+                            <a href="../Home/homepage.html">
+                                <img src="../icons/logo.png" alt="KMITL Logo" class="logo">
+                            </a>
+                        </div>
+
+                        <div class="search-container">
+                            <input type="text" placeholder="Search...">
+                            <button class="search-icon">
+                                <img src="../icons/search-icon.png" alt="Search Icon">
+                            </button>
+                        </div>
+
+                        <div class="nav-links">
+                            <a href="../chat/chat.html">
+                                <button>
+                                    <span class="iconify" data-icon="icon-park-outline:message"></span>
+                                    Chat
+                                </button>
+                            </a>
+                            <a href="../Help/help.html">
+                                <button>
+                                    <span class="iconify" data-icon="mdi:help-circle"></span>
+                                    Help
+                                </button>
+                            </a>
+                            <a href="../cart/cart.html">
+                                <button>
+                                    <span class="iconify" data-icon="mdi:cart"></span>
+                                    Cart
+                                </button>
+                            </a>
+                            <a href="../profile/profile.html">
+                                <button>
+                                    <span class="iconify" data-icon="mdi:account"></span>
+                                    Profile
+                                </button>
+                            </a>
+                        </div>
+                    </header>
+                `;
+            }
+        }
+
+        customElements.define('my-navbar', Navbar); 
+    </script>
+</head>
+<body>
+
+    <!-- ใช้ Web Component -->
+    <my-navbar></my-navbar>
+
+</body>
+</html>

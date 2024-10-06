@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="login-container">
         <h1>KMITL STORE</h1>
@@ -17,7 +19,7 @@
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter Password">
 
-            <!-- ปุ่ม Log In จะเปลี่ยนเส้นทางไปยังหน้า profile -->
+            <!-- ปุ่ม Log In  -->
             <button type="submit" class="login-btn">Log In</button>
         </form>
 
@@ -25,8 +27,10 @@
             <span>or</span>
         </div>
 
+
+
         <!-- ปุ่ม Social Sign In -->
-        <button type="button" class="social-btn phone-btn" onclick="redirectToProfile()">
+        <button type="button" class="social-btn phone-btn" onclick="redirectToRegister()">
             <img src="../icons/phone-icon.png" alt="Phone"> SIGN IN with Phone Number
         </button>
 
@@ -37,15 +41,20 @@
         <button type="button" class="social-btn google-btn" onclick="redirectToProfile()">
             <img src="../icons/google-icon.png" alt="Google"> SIGN IN with Google
         </button>
-    
 
-    <!-- JavaScript สำหรับการ redirect -->
-    <script>
-        function redirectToProfile() {
-            window.location.href = '../Profile/Profile.html';
-        }
-    </script>
+        <script>
+            function redirectToRegister() {
+                // เปลี่ยนเส้นทางไปยังหน้า register
+                window.location.href = "../register/register.html"; 
+            }
 
-</div>
+            function redirectToProfile() {
+                // เปลี่ยนเส้นทางไปยังหน้า profile
+                window.location.href = "../profile/profile.html"; 
+            }
+        </script>
+
+    </div>
 </body>
+
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="Seller-Centre.css">
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/Sidebar.js" defer></script>
+    <script src="../Componant/Footer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navbar Web Component อยู่ด้านบนสุด -->
+    <my-navbar></my-navbar>
+
+    <!-- Wrapper สำหรับ Sidebar, Main Content และ Right Sidebar -->
+    <div class="content-wrapper">
+        <!-- Sidebar ซ้าย -->
+        <my-sidebar></my-sidebar>
+
+        <!-- Main Content ตรงกลาง -->
+        <div class="main-content">
+            <h1>ที่ต้องทำ</h1>
+            <div class="task-cards">
+                <div class="task-card">
+                    <p id="toShip">0</p>
+                    <h2>ที่ต้องจัดส่ง</h2>
+                </div>
+                <div class="task-card">
+                    <p id="inTransit">0</p>
+                    <h2>กำลังจัดส่ง</h2>
+                </div>
+                <div class="task-card">
+                    <p id="completed">0</p>
+                    <h2>สำเร็จ</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Web Component อยู่ด้านล่างสุด -->
+    <my-footer></my-footer>
+
+</body>
+</html>

@@ -6,97 +6,18 @@ body {
     background-color: #f7f7f7;
 }
 
-.store-container header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #E35205;
-    padding: 10px 20px;
-    color: white;
-    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่าง header และส่วนตรงกลาง */
-}
-
-.left-section {
-    display: flex;
-    align-items: center;
-}
-
-.back-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-.back-button img {
-    width: 60px;
-}
-
-header .logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; /* ทำให้โลโก้เป็นทรงกลม */
-}
-
-/* Search Bar Styling */
-.search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-container input {
-    padding: 10px;
-    width: 600px;
-    border: none;
-    border-radius: 45px;
-    padding-right: 40px; /* เพิ่มพื้นที่ขวาเพื่อใส่ไอคอนค้นหา */
-}
-
-.search-icon {
-    position: absolute;
-    right: 10px; /* วางไอคอนที่ขอบขวาของแถบค้นหา */
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.search-icon img {
-    width: 50px; /* ขนาดของไอคอนค้นหา */
-}
-
-.nav-links {
-    display: flex;
-}
-
-.nav-links button {
-    background-color: #E35205;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.nav-links .nav-icon {
-    width: 40px; /* ขนาดไอคอน */
-    margin-bottom: 5px; /* ระยะห่างระหว่างไอคอนและข้อความ */
-}
-
 /* Chat Wrapper */
 .chat-wrapper {
     display: flex;
     justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
     align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
     flex: 1; /* ทำให้ใช้พื้นที่ที่เหลือ */
+    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
 }
 
 /* Chat Container */
 .chat-container {
-    width: 400px;
+    width: 600px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);

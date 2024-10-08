@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* จัดแนวให้อยู่ด้านบน */
+    padding: 40px;
+    margin: 0 auto; /* ทำให้ container อยู่กลางในแนวนอน */
+    width: 100%;
+    max-width: 1200px; /* กำหนดความกว้างสูงสุด */
+    min-height: 100vh; /* ใช้ความสูงเท่าหน้าจอ (viewport) */
+}
+
+.product-form {
+    display: flex; /* ทำให้เป็นแนวนอน */
+    background-color: white; /* พื้นหลังเดียวกัน */
+    border: 1px solid #ccc; /* กรอบ */
+    border-radius: 10px; /* ทำให้ขอบโค้งมน */
+    padding: 20px; /* ขอบใน */
+    box-sizing: border-box;
+    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+}
+
+.image-upload {
+    width: 300px; /* กำหนดความกว้างของภาพ */
+    margin-right: 20px; /* ระยะห่างระหว่างภาพกับฟอร์ม */
+    text-align: center; /* จัดเนื้อหากลาง */
+}
+
+.placeholder-img {
+    width: 100%;
+    height: auto; /* ทำให้ความสูงเป็นอัตโนมัติ */
+    border: 1px solid #E35205;
+    border-radius: 10px; 
+    object-fit: cover; /* เพื่อให้ภาพครอบพื้นที่ */
+}
+
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.form-section {
+    flex: 1; /* ทำให้ฟอร์มใช้พื้นที่เหลือ */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-size: 1.2em;
+}
+
+input, textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #E35205;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+select {
+    width: 100%; /* ปรับความกว้างเป็น 100% ของคอนเทนเนอร์ */
+    height: 40px; /* ปรับความสูงของ dropdown */
+    padding: 10px;
+    border: 1px solid #E35205;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: white; /* กำหนดพื้นหลัง */
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #E35205; /* เปลี่ยนสีเส้นขอบเมื่อ dropdown ถูกเลือก */
+    outline: none; /* ลบเส้นกรอบอัตโนมัติ */
+}
+
+textarea#description {
+    width: 100%; /* ปรับให้กว้างเต็มพื้นที่ */
+    height: 150px; /* ปรับความสูง */
+    padding: 10px;
+    border: 1px solid #E35205;
+    border-radius: 5px;
+    font-size: 1em;
+    resize: vertical; /* อนุญาตให้ผู้ใช้สามารถปรับขนาดความสูงได้ */
+}
+
+.price-stock-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* ระยะห่างระหว่างสองฟิลด์ */
+    width: 100%;
+}
+
+.price-field, .stock-field {
+    display: flex;
+    align-items: center;
+    flex: 1; /* แบ่งพื้นที่คนละครึ่ง */
+    gap: 10px; /* ระยะห่างระหว่างข้อความกับ input */
+}
+
+input[type="number"] {
+    width: 100%; /* ให้ input มีขนาดเต็ม */
+    padding: 10px;
+    border: 1px solid #E35205;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button {
+    padding: 15px 30px; /* เพิ่ม padding เพื่อให้ปุ่มสูงขึ้นและกว้างขึ้น */
+    background-color: #E35205;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin: 20px auto; /* ทำให้ปุ่มอยู่ตรงกลาง */
+    display: block; /* เพื่อใช้ margin auto */
+}
+
+button:hover {
+    background-color: #d14004; /* เปลี่ยนสีเมื่อ hover */
+}

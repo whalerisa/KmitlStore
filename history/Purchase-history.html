@@ -6,175 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
     <link rel="stylesheet" href="history.css">
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <style>
-        /* กำหนดขนาดไอคอน */
-        .nav-links .nav-icon {
-            width: 30px;
-            /* ปรับขนาดตามต้องการ */
-            height: 30px;
-            /* ปรับขนาดตามต้องการ */
-            margin-bottom: 5px;
-            /* ระยะห่างระหว่างไอคอนและข้อความ */
-        }
-    </style>
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/product-container.js" defer></script> <!-- เรียกไฟล์ Web Component -->
+    <script src="../Componant/Footer.js" defer></script>
 </head>
 
 <body>
+    <!-- ใช้ Web Component ของ Navbar -->
+    <my-navbar></my-navbar>
 
-    <div class="store-container">
-        <header>
-            <div class="left-section">
-                <!-- ลิงก์ไปยังหน้า homepage -->
-                <a href="../Profile/Profile.html">
-                    <button class="back-button">
-                        <img src="../icons/back-icon.png" alt="Back Icon">
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า homepage เมื่อคลิกที่โลโก้ -->
-                <a href="../Home/homepage.html">
-                    <img src="../icons/logo.png" alt="KMITL Logo" class="logo">
-                </a>
-            </div>
+    <div class="purchase-history">
+        <h1>ประวัติการซื้อ</h1>
 
-            <div class="search-container">
-                <input type="text" placeholder="Search...">
-                <button class="search-icon">
-                    <img src="../icons/search-icon.png" alt="Search Icon">
-                </button>
-            </div>
+        <!-- ใช้ Web Component ของ product-container -->
+        <product-container 
+            image="../image/pleated-skirt-1.jpg" 
+            name="กระโปรงพลีท" 
+            price="160" 
+            description="- กระโปรงพลีท<br>- ฟรีไซด์<br>- ยาว 24<br>- ใส่แค่ครั้งเดียว" 
+            shop-name="น้ำ ขายของ"
+            shop-link="../Profile/Profile-shop.html">
+        </product-container>
 
-            <div class="nav-links">
-                <!-- ลิงก์ไปยังหน้าแชท -->
-                <a href="../chat/chat.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="icon-park-outline:message"></span>
-                        Chat
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า Help -->
-                <a href="../Help/help.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:help-circle"></span>
-                        Help
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า Cart -->
-                <a href="../cart/cart.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:cart"></span>
-                        Cart
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้าโปรไฟล์ -->
-                <a href="../profile/profile.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:account"></span>
-                        Profile
-                    </button>
-                </a>
-            </div>
-        </header>
+        <product-container 
+            image="../image/Malestudentpants-1.jpg" 
+            name="กางเกงนักศึกษาชาย" 
+            price="200" 
+            description="- กางเกงนักศึกษาชาย<br>- ไซต์ L<br>- ไม่มีตำหนิ<br>- นัดรับได้" 
+            shop-name="น้ำ ขายของ"
+            shop-link="../Profile/Profile-shop.html">
+        </product-container>
 
-        <body>
-            <div class="purchase-history">
-                <h1>ประวัติการซื้อ</h1>
-            
-                <!-- Product 1 -->
-                <div class="product-container">
-                    <div class="product-image-container">
-                        <img src="../image/pleated-skirt-1.jpg" alt="Product Image" class="product-image">
-                        <div class="shop-info">
-                            <img src="../icons/Profile.jpg" alt="Shop Owner">
-                            <p>น้ำ ขายของ</p>
-                            <a href="../Profile/Profile-shop.html">
-                            <button class="view-shop">View Shop</button>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <h2>กระโปรงพลีท</h2>
-                        <p class="price">160 บาท</p>
-                        <p>กระโปรงพลีท<br>ฟรีไซด์<br>ยาว 24<br>ใส่แค่ครั้งเดียว</p>
-                        <div class="quantity">
-                            <p>Quantity <span class="orange-text">1</span></p>
-                            <p>1 pieces available</p>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Product 2 -->
-                <div class="product-container">
-                    <div class="product-image-container">
-                        <img src="../image/Malestudentpants-1.jpg" alt="Product Image" class="product-image">
-                        <div class="shop-info">
-                            <img src="../icons/Profile.jpg" alt="Shop Owner">
-                            <p>น้ำ ขายของ</p>
-                            <a href="../Profile/Profile-shop.html">
-                            <button class="view-shop">View Shop</button>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <h2>กางเกงนักศึกษาชาย</h2>
-                        <p class="price">200 บาท</p>
-                        <p>กางเกงนักศึกษาชาย<br>ไซต์ L<br>ไม่มีตำหนิ<br>นัดรับได้</p>
-                        <div class="quantity">
-                            <p>Quantity <span class="orange-text">1</span></p>
-                            <p>1 pieces available</p>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Product 3 -->
-                <div class="product-container">
-                    <div class="product-image-container">
-                        <img src="../image/Women-shirt1.jpg" alt="Product Image" class="product-image">
-                        <div class="shop-info">
-                            <img src="../icons/Profile.jpg" alt="Shop Owner">
-                            <p>น้ำ ขายของ</p>
-                            <a href="../Profile/Profile-shop.html">
-                            <button class="view-shop">View Shop</button>
-                        </a>
-                        </div>
-                    </div>
-                    <div class="product-details">
-                        <h2>เสื้อนักศึกษาหญิง</h2>
-                        <p class="price">250 บาท</p>
-                        <p>อก32-ยาว34<br>แขนสามเหลี่ยม สาบหลังตัววี สีขาวสว่าง<br>เนื้อผ้าคอมทวิล<br>ใส่ครั้งเดียว</p>
-                        <div class="quantity">
-                            <p>Quantity <span class="orange-text">1</span></p>
-                            <p>1 pieces available</p>
-                        </div>
-                    </div>
-                </div>
-            
-            </div>
-            
-            </div>
-            <footer>
-                <div class="footer-links">
-                    <h2>Customer Service</h2>
-                    <ul>
-                        <li>Help Center</li>
-                        <li>How To Buy</li>
-                        <li>How To Sell</li>
-                        <li>Payment Methods</li>
-                        <li>Contact Us</li>
-                    </ul>
-                </div>
+        <product-container 
+            image="../image/Women-shirt1.jpg" 
+            name="เสื้อนักศึกษาหญิง" 
+            price="250" 
+            description="- อก32-ยาว34<br>- แขนสามเหลี่ยม<br>- สาบหลังตัววี<br>- สีขาวสว่าง<br>- เนื้อผ้าคอมทวิล<br>- ใส่ครั้งเดียว" 
+            shop-name="น้ำ ขายของ"
+            shop-link="../Profile/Profile-shop.html">
+        </product-container>
+    </div>
 
-                <div class="social-links">
-                    <h2>Follow Us</h2>
-                    <ul>
-                        <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
-                        <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
-                        <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>
+    <!-- Use Web Component of Footer -->
+    <my-footer></my-footer>
 
-                    </ul>
-                </div>
-            </footer>
-
-        </body>
+</body>
 
 </html>

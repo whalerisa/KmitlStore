@@ -1,0 +1,60 @@
+/* General Styles */
+body {
+    display: flex;
+    flex-direction: column; /* จัด Navbar ให้อยู่บนสุด ส่วนที่เหลืออยู่ล่าง */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100vh; /* ให้ body ขยายเต็มความสูงของหน้าเว็บ */
+}
+
+/* Navbar */
+my-navbar {
+    flex: 0 0 auto; /* ให้ Navbar ไม่ยืดออก */
+}
+
+
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    flex: 1;
+    background-color: #fff;  /* พื้นหลังเหมือนบาร์ */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* เพิ่มเงาเหมือนบาร์ */
+    max-width: 800px;  /* กำหนดความกว้างสูงสุดของเนื้อหา */
+    margin: 20px auto;  /* ทำให้แถบอยู่ตรงกลาง */
+    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.task-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;  /* ระยะห่างระหว่างไอเท็ม */
+}
+
+.task-card {
+    background-color: #fff;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 18px;
+}
+
+p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+
+
+

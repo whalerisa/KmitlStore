@@ -6,273 +6,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
     <link rel="stylesheet" href="Profile-shop.css">
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <style>
-        /* กำหนดขนาดไอคอน */
-        .nav-links .nav-icon {
-            width: 30px;
-            /* ปรับขนาดตามต้องการ */
-            height: 30px;
-            /* ปรับขนาดตามต้องการ */
-            margin-bottom: 5px;
-            /* ระยะห่างระหว่างไอคอนและข้อความ */
-        }
-    </style>
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/ProductCard.js" defer></script>
+    <script src="../Componant/Footer.js" defer></script>
+
 </head>
 
 <body>
 
-    <div class="store-container">
-        <header>
-            <div class="left-section">
-                <!-- ลิงก์ไปยังหน้า homepage -->
-                <a href="../Home/homepage.html">
-                    <button class="back-button">
-                        <img src="../icons/back-icon.png" alt="Back Icon">
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า homepage เมื่อคลิกที่โลโก้ -->
-                <a href="../Home/homepage.html">
-                    <img src="../icons/logo.png" alt="KMITL Logo" class="logo">
-                </a>
-            </div>
+    <!-- ใช้ Web Component ของ Navbar -->
+    <my-navbar></my-navbar>
 
-            <div class="search-container">
-                <input type="text" placeholder="Search...">
-                <button class="search-icon">
-                    <img src="../icons/search-icon.png" alt="Search Icon">
-                </button>
-            </div>
 
-            <div class="nav-links">
-                <!-- ลิงก์ไปยังหน้าแชท -->
-                <a href="../chat/chat.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="icon-park-outline:message"></span>
-                        Chat
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า Help -->
-                <a href="../Help/help.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:help-circle"></span>
-                        Help
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า Cart -->
-                <a href="../cart/cart.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:cart"></span>
-                        Cart
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้าโปรไฟล์ -->
-                <a href="../profile/profile.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:account"></span>
-                        Profile
-                    </button>
-                </a>
-                </div>
-                
-                </header>
-
-                <div class="logout-icon">
-                    <a href="../Login/index.html">
-                        <span class="iconify" data-icon="mdi:logout"></span>
-                    </a>
-                </div>
-                
-                <body>
-                    <div class="profile-container">
-                        <div class="profile-header">
-                            <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-picture">
-                            <h1>
-                                น้ำ ขายของ
-                            </h1>
-                        </div>
-                    </div>
-
-            <div class="profile-info">
-                <p>ชื่อ นางสาว yanothai</p>
-            </div>
-
-            <div class="transaction-history">
-                <h2>ประวัติการขาย</h2>
-                <div class="transactions">
-
-                    <div class="transaction-section">
-                        <h3>ประวัติการขาย</h3>
-                        <ul>
-                            <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
-                            <li>ชุดนอนสะดวก... <span class="status">สำเร็จ</span></li>
-                            <li>เสื้อผ้าคุณภาพ... <span class="status">สำเร็จ</span></li>
-                            <li>เสื้อรุ่นคุณภาพ... <span class="status">สำเร็จ</span></li>
-                            <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <div class="logout-icon">
+        <a href="../Login/index.html">
+            <img src="../icons/logout-icon.png" alt="Profile Picture" class="profile-picture">
+        </a>
     </div>
 
-            <!-- Product Recommendation Section -->
-            <section class="products">
-                <h2>Product stock</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <img src="../image/pleated-skirt-1.jpg" alt="กระโปรงนักศึกษา">
-                        <h3>กระโปรงนักศึกษา</h3>
-                        <ul>
-                            <li>ไซส์ M</li>
-                            <li>ยาว 32</li>
-                            <li>ยังไม่เคยใส่เลย...</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>250 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/calculator1.jpg" alt="เครื่องคิดเลข">
-                        <h3>เครื่องคิดเลข super-fx-plus</h3>
-                        <ul>
-                            <li>ไม่มีตำหนิ</li>
-                            <li>ใช้งานง่าย</li>
-                            <li>รับประกันยังอยู่</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>1,060 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/Women-shirt1.jpg" alt="เสื้อเชิ้ต">
-                        <h3>เสื้อเชิ้ต</h3>
-                        <ul>
-                            <li>ไซส์ L</li>
-                            <li>ใช้ครั้งเดียว</li>
-                            <li>สีขาวสว่าง</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>200 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/shoes1.jpg" alt="รองเท้า">
-                        <h3>รองเท้า</h3>
-                        <ul>
-                            <li>ไซส์ 40</li>
-                            <li>มีกล่องให้ครบ</li>
-                            <li>มีตำหนินิดหน่อย</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>1,800 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/bag1.jpg" alt="กระเป๋าเป้">
-                        <h3>กระเป๋าเป้</h3>
-                        <ul>
-                            <li>ยังไม่เคยใช้เลย</li>
-                            <li>สีซีดกว่าในรูปนิดหน่อย</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>300 บาท</span>
-                        </div>
-                    </div>
-    
-                    <!-- Row 2 -->
-                    <div class="product-card">
-                        <img src="../image/Laptop1.jpg" alt="สมุดบันทึก">
-                        <h3>โน๊ตบุ๊ค asus</h3>
-                        <ul>
-                            <li>ryzen 5 ram 16</li>
-                            <li>การ์ดจอแยก</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>15,150 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/ipad1.jpg" alt="ดินสอ">
-                        <h3>ipad air5</h3>
-                        <ul>
-                            <li>ความจำ 254 G</li>
-                            <li>ประกัน 1 ปี</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>25,500 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/Laptop2.jpg" alt="ยางลบ">
-                        <h3>ACER โน๊ตบุ๊ค Nitro V 16</h3>
-                        <ul>
-                            <li>AMD Ryzen 7</li>
-                            <li>Memory16GB</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>29,930 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/shoes2.jpg" alt="มาร์กเกอร์">
-                        <h3>รองเท้าผ้าใบ</h3>
-                        <ul>
-                            <li>ไซต์ 39</li>
-                            <li>ใส่แค่ครั้งเดียว</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>670 บาท</span>
-                        </div>
-                    </div>
-    
-                    <div class="product-card">
-                        <img src="../image/workshop-shirt1.jpg" alt="ที่เย็บกระดาษ">
-                        <h3>เสื้อช็อปคณะวิศวะ</h3>
-                        <ul>
-                            <li>ไซต์ M</li>
-                            <li>ไม่มีตำหนิ</li>
-                        </ul>
-                        <div class="product-price">
-                            <span>275 บาท</span>
-                        </div>
-                    </div>    
-                                                                
+    <body>
+        <div class="profile-container">
+            <div class="profile-header">
+                <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-picture">
+                <h1>
+                    น้ำ ขายของ
+                </h1>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <p>ชื่อ นางสาว yanothai</p>
+        </div>
+
+        <div class="transaction-history">
+            <h2>ประวัติการขาย</h2>
+            <div class="transactions">
+
+                <div class="transaction-section">
+                    <h3><a href="../history/Sales-history.html">ประวัติการขาย</a></h3>
+                    <ul>
+                        <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
+                        <li>ชุดนอนสะดวก... <span class="status">สำเร็จ</span></li>
+                        <li>เสื้อผ้าคุณภาพ... <span class="status">สำเร็จ</span></li>
+                        <li>เสื้อรุ่นคุณภาพ... <span class="status">สำเร็จ</span></li>
+                        <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
+                    </ul>
                 </div>
-            </section>
-
-
-
-
-    <footer>
-        <div class="footer-links">
-            <h2>Customer Service</h2>
-            <ul>
-                <li>Help Center</li>
-                <li>How To Buy</li>
-                <li>How To Sell</li>
-                <li>Payment Methods</li>
-                <li>Contact Us</li>
-            </ul>
+            </div>
+        </div>
         </div>
 
-        <div class="social-links">
-            <h2>Follow Us</h2>
-            <ul>
-                <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
-                <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
-                <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>
+        <!-- Product Recommendation Section -->
+        <section class="products">
+            <h2>Product stock</h2>
+            <div class="product-grid">            
+                <div class="product-grid">
+                    <product-card 
+                        image="../image/pleated-skirt-1.jpg"
+                        title="กระโปรงนักศึกษา"
+                        size="ไซส์ M"
+                        price="250"
+                        description="ยาว 32, ยังไม่เคยใส่เลย..."
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/calculator1.jpg"
+                        title="เครื่องคิดเลข super-fx-plus"
+                        size="ไม่มีตำหนิ"
+                        price="1,060"
+                        description="ใช้งานง่าย, รับประกันยังอยู่"
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/Women-shirt1.jpg"
+                        title="เสื้อเชิ้ต"
+                        size="ไซส์ L"
+                        price="200"
+                        description="ใช้ครั้งเดียว, สีขาวสว่าง"
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/shoes1.jpg"
+                        title="รองเท้า"
+                        size="ไซส์ 40"
+                        price="1,800"
+                        description="มีกล่องให้ครบ, มีตำหนินิดหน่อย"
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/bag1.jpg"
+                        title="กระเป๋าเป้"
+                        size="ยังไม่เคยใช้เลย"
+                        price="300"
+                        description="สีซีดกว่าในรูปนิดหน่อย"
+                    ></product-card>
+        
+                    <!-- Row 2 -->
+                    <product-card 
+                        image="../image/Laptop1.jpg"
+                        title="โน๊ตบุ๊ค asus"
+                        size="ryzen 5 ram 16"
+                        price="15,150"
+                        description="การ์ดจอแยก"
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/ipad1.jpg"
+                        title="ipad air5"
+                        size="ความจำ 254 G"
+                        price="25,500"
+                        description="ประกัน 1 ปี"
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/Laptop2.jpg"
+                        title="ACER โน๊ตบุ๊ค Nitro V 16"
+                        size="AMD Ryzen 7"
+                        price="29,930"
+                        description="Memory16GB"
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/shoes2.jpg"
+                        title="รองเท้าผ้าใบ"
+                        size="ไซต์ 39"
+                        price="670"
+                        description="ใส่แค่ครั้งเดียว"
+                    ></product-card>
+        
+                    <product-card 
+                        image="../image/workshop-shirt1.jpg"
+                        title="เสื้อช็อปคณะวิศวะ"
+                        size="ไซต์ M"
+                        price="275"
+                        description="ไม่มีตำหนิ"
+                    ></product-card>
+        </section>
 
-            </ul>
-        </div>
-    </footer>
+        <!-- Use Web Component of Footer -->
+        <my-footer></my-footer>
 
-</body>
+    </body>
 
 </html>

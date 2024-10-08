@@ -6,75 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
     <link rel="stylesheet" href="help.css">
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <style>
-        /* กำหนดขนาดไอคอน */
-        .nav-links .nav-icon {
-            width: 30px;
-            /* ปรับขนาดตามต้องการ */
-            height: 30px;
-            /* ปรับขนาดตามต้องการ */
-            margin-bottom: 5px;
-            /* ระยะห่างระหว่างไอคอนและข้อความ */
-        }
-    </style>
+    <script src="../Componant/Navbar.js" defer></script> 
+    <script src="../Componant/Footer.js" defer></script> 
+
 </head>
 
 <body>
 
-    <div class="store-container">
-        <header>
-            <div class="left-section">
-                <!-- ลิงก์ไปยังหน้า homepage -->
-                <a href="../Home/homepage.html">
-                    <button class="back-button">
-                        <img src="../icons/back-icon.png" alt="Back Icon">
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า homepage เมื่อคลิกที่โลโก้ -->
-                <a href="../Home/homepage.html">
-                    <img src="../icons/logo.png" alt="KMITL Logo" class="logo">
-                </a>
-            </div>
-
-            <div class="search-container">
-                <input type="text" placeholder="Search...">
-                <button class="search-icon">
-                    <img src="../icons/search-icon.png" alt="Search Icon">
-                </button>
-            </div>
-
-            <div class="nav-links">
-                <!-- ลิงก์ไปยังหน้าแชท -->
-                <a href="../chat/chat.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="icon-park-outline:message"></span>
-                        Chat
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า Help -->
-                <a href="../Help/help.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:help-circle"></span>
-                        Help
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้า Cart -->
-                <a href="../cart/cart.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:cart"></span>
-                        Cart
-                    </button>
-                </a>
-                <!-- ลิงก์ไปยังหน้าโปรไฟล์ -->
-                <a href="../profile/profile.html">
-                    <button>
-                        <span class="iconify nav-icon" data-icon="mdi:account"></span>
-                        Profile
-                    </button>
-                </a>
-            </div>
-        </header>
+      <!-- ใช้ Web Component ของ Navbar -->
+      <my-navbar></my-navbar>
 
         <!-- ปุ่มแสดงปัญหาการใช้งาน -->
         <section class="faq-section">
@@ -106,31 +46,8 @@
         </div>
         </section>
 
-
-
-        <footer>
-            <div class="footer-links">
-                <h2>Customer Service</h2>
-                <ul>
-                    <li>Help Center</li>
-                    <li>How To Buy</li>
-                    <li>How To Sell</li>
-                    <li>Payment Methods</li>
-                    <li>Contact Us</li>
-                </ul>
-            </div>
-
-            <div class="social-links">
-                <h2>Follow Us</h2>
-                <ul>
-                    <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
-                    <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
-                    <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>
-
-                </ul>
-            </div>
-        </footer>
-    </div>
+    <!-- Use Web Component of Footer -->
+    <my-footer></my-footer>
 
 </body>
 

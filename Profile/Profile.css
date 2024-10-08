@@ -6,100 +6,22 @@ body {
     background-color: #f7f7f7;
 }
 
-.store-container header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #E35205;
-    padding: 10px 20px;
-    color: white;
-    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่าง header และส่วนตรงกลาง */
-}
-
-.left-section {
-    display: flex;
-    align-items: center;
-}
-
-.back-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-.back-button img {
-    width: 60px;
-}
-
-header .logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; /* ทำให้โลโก้เป็นทรงกลม */
-}
-
-/* Search Bar Styling */
-.search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-container input {
-    padding: 10px;
-    width: 600px;
-    border: none;
-    border-radius: 45px;
-    padding-right: 40px; /* เพิ่มพื้นที่ขวาเพื่อใส่ไอคอนค้นหา */
-}
-
-.search-icon {
-    position: absolute;
-    right: 10px; /* วางไอคอนที่ขอบขวาของแถบค้นหา */
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.search-icon img {
-    width: 50px; /* ขนาดของไอคอนค้นหา */
-}
-
-.nav-links {
-    display: flex;
-}
-
-.nav-links button {
-    background-color: #E35205;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.nav-links .nav-icon {
-    width: 40px; /* ขนาดไอคอน */
-    margin-bottom: 5px; /* ระยะห่างระหว่างไอคอนและข้อความ */
-}
-
 .logout-icon {
     display: flex;
     justify-content: flex-end; /* ขยับไอคอนไปทางขวา */
-    padding: 5px 10px; /* เพิ่มพื้นที่รอบไอคอน */
+    padding: 0px 5px; /* เพิ่มพื้นที่รอบไอคอน */
+    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
 }
 
-.logout-icon .iconify {
-    font-size: 36px; /* ปรับขนาดไอคอนตามต้องการ */
+.logout-icon .profile-picture {
+    width: 50px; /* ปรับขนาดไอคอนตามต้องการ */
+    height: 50px; /* ทำให้มีความสูงเท่ากัน */
     cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
-    color: #E35205;
+    transition: transform 0.2s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
 }
 
-.logout-icon .iconify:hover {
-    color: #F05A1A; /* เปลี่ยนสีเมื่อ hover */
+.logout-icon .profile-picture:hover {
+    transform: scale(1.1); /* ขยายไอคอนเมื่อ hover */
 }
 
 .profile-container {
@@ -232,39 +154,3 @@ footer {
     padding-right: 10px;
 }
 
-/* ข้อความใน footer */
-.footer-links h2, .social-links h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #fff; /* สีขาว */
-}
-
-.footer-links ul, .social-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-links li, .social-links li {
-    font-size: 12px;
-    margin: 3px 0;
-}
-
-.social-links li {
-    display: flex;
-    align-items: center;
-}
-
-.social-links img {
-    width: 20px;
-    margin-right: 10px;
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}

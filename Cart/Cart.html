@@ -6,62 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
     <link rel="stylesheet" href="Cart.css">
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <style>
-        /* กำหนดขนาดไอคอน */
-        .nav-links .nav-icon {
-            width: 30px;
-            /* ปรับขนาดตามต้องการ */
-            height: 30px;
-            /* ปรับขนาดตามต้องการ */
-            margin-bottom: 5px;
-            /* ระยะห่างระหว่างไอคอนและข้อความ */
-        }
-    </style>
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/Footer.js" defer></script>
+
 </head>
 
 <body>
 
+    <!-- ใช้ Web Component ของ Navbar -->
+    <my-navbar></my-navbar>
+    
     <div class="store-container">
-        <navbar></navbar>
-        <header>
-            <my-navbar></my-navbar>
-        </header>
-
         <div class="cart-container">
-            <h1>CART</h1> 
-            <div class="cart-items"></div>
+            <h1>CART</h1>
+            <div class="cart-items">
                 <div class="cart-item">
-                <input type="checkbox" id="item1" class="item-checkbox">
-                <label for="item1" class="item-label">
-                    <img src="../image/Women-shirt1.jpg" alt="Item 1">
-                    เสื้อนักศึกษาหญิง...
-                    <span class="item-price">160 บาท</span>
-                </label>
-            </div>
-            <div class="cart-item">
-                <input type="checkbox" id="item2" class="item-checkbox">
-                <label for="item2" class="item-label">
-                    <img src="../image/Men-shirt1.jpg" alt="Item 2">
-                    เสื้อนักศึกษาชาย...
-                    <span class="item-price">160 บาท</span>
-                </label>
-            </div>
-            <div class="cart-item">
-                <input type="checkbox" id="item3" class="item-checkbox">
-                <label for="item3" class="item-label">
-                    <img src="../image/Women-shirt2.jpg" alt="Item 3">
-                    เสื้อนักศึกษาหญิง...
-                    <span class="item-price">160 บาท</span>
-                </label>
-            </div>
-            <div class="cart-item">
-                <input type="checkbox" id="item4" class="item-checkbox">
-                <label for="item4" class="item-label">
-                    <img src="../image/Men-shirt2.jpg" alt="Item 4">
-                    เสื้อนักศึกษาชาย...
-                    <span class="item-price">160 บาท</span>
-                </label>
+                    <input type="checkbox" id="item1" class="item-checkbox">
+                    <label for="item1" class="item-label">
+                        <img src="../image/Women-shirt1.jpg" alt="Item 1">
+                        เสื้อนักศึกษาหญิง...
+                        <span class="item-price">160 บาท</span>
+                    </label>
+                </div>
+                <div class="cart-item">
+                    <input type="checkbox" id="item2" class="item-checkbox">
+                    <label for="item2" class="item-label">
+                        <img src="../image/Men-shirt1.jpg" alt="Item 2">
+                        เสื้อนักศึกษาชาย...
+                        <span class="item-price">160 บาท</span>
+                    </label>
+                </div>
+                <div class="cart-item">
+                    <input type="checkbox" id="item3" class="item-checkbox">
+                    <label for="item3" class="item-label">
+                        <img src="../image/Women-shirt2.jpg" alt="Item 3">
+                        เสื้อนักศึกษาหญิง...
+                        <span class="item-price">160 บาท</span>
+                    </label>
+                </div>
+                <div class="cart-item">
+                    <input type="checkbox" id="item4" class="item-checkbox">
+                    <label for="item4" class="item-label">
+                        <img src="../image/Men-shirt2.jpg" alt="Item 4">
+                        เสื้อนักศึกษาชาย...
+                        <span class="item-price">160 บาท</span>
+                    </label>
+                </div>
             </div>
 
             <div class="total-container">
@@ -69,28 +59,10 @@
                 <button class="checkout-button">Check Out</button>
             </div>
         </div>
-    
-        <footer>
-            <div class="footer-links">
-                <h2>Customer Service</h2>
-                <ul>
-                    <li>Help Center</li>
-                    <li>How To Buy</li>
-                    <li>How To Sell</li>
-                    <li>Payment Methods</li>
-                    <li>Contact Us</li>
-                </ul>
-            </div>
+    </div>
 
-            <div class="social-links">
-                <h2>Follow Us</h2>
-                <ul>
-                    <li><span class="iconify" data-icon="mdi:instagram"></span> Instagram</li>
-                    <li><span class="iconify" data-icon="mdi:facebook"></span> Facebook</li>
-                    <li><span class="iconify" data-icon="mdi:chat"></span> Line</li>      
+    <!-- Use Web Component of Footer -->
+    <my-footer></my-footer>
+</body>
 
-                </ul>
-            </div>
-        </footer>
-    </body>
-    </html>
+</html>

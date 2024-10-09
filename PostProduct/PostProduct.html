@@ -67,16 +67,48 @@
                 </div>
             </div>
         </div>
-        
 
     <script>
+        document.getElementById('product-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('product-name').value;
+            const price = document.getElementById('price').value;
+            const status = 'available'; // ตัวอย่างสถานะ
+            const categories = document.getElementById('category').value;
+            const detail = document.getElementById('description').value;
+            const stock = document.getElementById('stock').value;
+
+            const productData = { name, price, status, categories, detail, stock };
+
+            try {
+                const response = await fetch('http://localhost:3000/addProduct', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(productData)
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('สินค้าเพิ่มสำเร็จ รหัสสินค้า: ' + result.id);
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');
+            }
+        });
+
         function loadImage(event) {
             const output = document.getElementById('preview');
             output.src = URL.createObjectURL(event.target.files[0]);
         }
     </script>
 
-    <!-- Footer Web Component อยู่ด้านล่างสุด -->
+    <!-- Footer Web Component -->
     <my-footer></my-footer>
 
 </body>

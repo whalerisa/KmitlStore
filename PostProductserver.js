@@ -12,7 +12,12 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'PostProduct')));
 
 // เชื่อมต่อกับฐานข้อมูล SQLite
-const db = new sqlite3.Database('products.db');
+const db = new sqlite3.Database('./products.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+    if (err) {
+        console.error(err.message);
+    }
+    console.log('Connected to the products database.');  
+});
 
 // สร้างตารางสินค้า ถ้ายังไม่มี
 db.serialize(() => {
@@ -41,7 +46,7 @@ app.post('/addProduct', (req, res) => {
         function(err) {
             if (err) {
                 console.log(err)
-                return  res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มสินค้า' }); 
+                return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มสินค้า' });
             }
             res.json({ message: 'เพิ่มสินค้าสำเร็จ', id: this.lastID });
         });

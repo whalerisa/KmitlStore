@@ -175,6 +175,33 @@
             ></product-card>
         </div>
     </section>
+    <script>
+        async function fetchProducts() {
+            try {
+                const response = await fetch('http://localhost:3000/products');
+                const products = await response.json();
+    
+                const productGrid = document.querySelector('.product-grid');
+                productGrid.innerHTML = ''; // ล้าง grid ก่อนเพิ่มข้อมูลใหม่
+    
+                products.forEach(product => {
+                    const productCard = document.createElement('product-card');
+                    productCard.setAttribute('image', product.image);
+                    productCard.setAttribute('title', product.title);
+                    productCard.setAttribute('size', product.size);
+                    productCard.setAttribute('price', product.price);
+                    productCard.setAttribute('description', product.description);
+                    productGrid.appendChild(productCard);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+    
+        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้า
+        window.onload = fetchProducts;
+    </script>
+    
 
     <!-- Use Web Component of Footer -->
     <my-footer></my-footer>

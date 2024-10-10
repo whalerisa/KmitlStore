@@ -51,7 +51,8 @@
                 const result = await response.json();
                 // ถ้าการส่งสำเร็จ (response.ok หมายถึง HTTP status code 2xx)
                 if (response.ok) {
-                    alert('ลงทะเบียนสำเร็จ: ' + result.id);  // แจ้งว่าการเพิ่มสินค้าสำเร็จ
+                    redirectToLogin();  // เรียกใช้ฟังก์ชันเมื่อการลงทะเบียนสำเร็จ
+                    alert('ลงทะเบียนสำเร็จ: ' + result.id);  // แจ้งว่าลงทะเบียนสำเร็จ
                 } else {
                     alert('เกิดข้อผิดพลาด: ' + result.message);  // แจ้งข้อผิดพลาดที่เกิดจากเซิร์ฟเวอร์
                 }
@@ -65,6 +66,9 @@
         function loadImage(event) {
             const output = document.getElementById('preview');  // หา element สำหรับแสดงภาพตัวอย่าง
             output.src = URL.createObjectURL(event.target.files[0]);  // แสดงไฟล์ที่ถูกเลือก (แปลงไฟล์ให้เป็น URL)
+        }
+        function redirectToLogin(){
+            window.location.href = "login.html";
         }
 
 

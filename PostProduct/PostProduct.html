@@ -78,16 +78,24 @@
             const categories = document.getElementById('category').value;
             const detail = document.getElementById('description').value;
             const stock = document.getElementById('stock').value;
+            const imageFile = document.getElementById('image-input').files[0]; // ดึงไฟล์ภาพ
 
-            const productData = { name, price, status, categories, detail, stock };
+              // สร้าง FormData สำหรับส่งข้อมูล
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('price', price);
+            formData.append('status', status);
+            formData.append('categories', categories);
+            formData.append('detail', detail);
+            formData.append('stock', stock);
+            formData.append('image', imageFile); // เพิ่มไฟล์ภาพลงใน FormData
+
+            const productData = { name, price, status, categories, detail, stock,imageFile };
 
             try {
                 const response = await fetch('http://localhost:3000/addProduct', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(productData)
+                    body: formData // ใช้ FormData แทนการแปลงเป็น JSON 
                 });
 
                 const result = await response.json();

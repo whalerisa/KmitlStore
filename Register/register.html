@@ -5,25 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store Login</title>
     <link rel="stylesheet" href="register.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <div class="login-container">
         <h1>KMITL STORE</h1>
-        <form action="../profile/profile.html" method="get">
+        <form id="register-form" method="POST">
             <label for="username">USER NAME</label>
-            <input type="text" id="username" placeholder="Enter Username">
+            <input type="text" id="username" name="username" placeholder="Enter Username">
 
             <label for="Email">Email</label>
-            <input type="email" id="email" placeholder="Enter Email">
+            <input type="email" id="email" name="email" placeholder="Enter Email">
 
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter Password">
+            <input type="password" id="password" name="password" placeholder="Enter Password">
 
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="Enter Phone Number">
+            <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number">
 
             <button type="submit" class="Register-btn">Register</button>
         </form>
     </div>
+    <script>
+        document.getElementById('register-form').addEventListener('submit',async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value //username
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+            const phone = document.getElementById('phone').value
+            
+            const usersData = {username,email,password,phone}//สร้างObjectที่จะส่งไปserver
+
+             // ใช้ fetch เพื่อส่ง request แบบ POST ไปยังเซิร์ฟเวอร์
+             try {
+                const response = await fetch('/register', {
+                    method: 'POST',  // ใช้ POST method เพื่อส่งข้อมูล
+                    headers: {
+                        'Content-Type': 'application/json'  // กำหนดว่า body จะเป็นข้อมูล JSON
+                    },
+                    body: JSON.stringify(usersData)  // แปลง object usersData เป็น JSON ก่อนส่ง
+                });
+
+                // รอให้ response กลับมาแล้วแปลงเป็น JSON
+                const result = await response.json();
+                // ถ้าการส่งสำเร็จ (response.ok หมายถึง HTTP status code 2xx)
+                if (response.ok) {
+                    redirectToLogin();  // เรียกใช้ฟังก์ชันเมื่อการลงทะเบียนสำเร็จ
+                    alert('ลงทะเบียนสำเร็จ: ' + result.id);  // แจ้งว่าลงทะเบียนสำเร็จ
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.message);  // แจ้งข้อผิดพลาดที่เกิดจากเซิร์ฟเวอร์
+                }
+            } catch (error) {
+                console.error('Error:', error);  // แสดง error ใน console ถ้าเกิดปัญหา
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');  // แจ้งว่ามีปัญหาการเชื่อมต่อ
+            }
+        });
+
+        // ฟังก์ชันสำหรับการแสดงตัวอย่างภาพที่ผู้ใช้เลือกในฟอร์ม
+        function loadImage(event) {
+            const output = document.getElementById('preview');  // หา element สำหรับแสดงภาพตัวอย่าง
+            output.src = URL.createObjectURL(event.target.files[0]);  // แสดงไฟล์ที่ถูกเลือก (แปลงไฟล์ให้เป็น URL)
+        }
+        function redirectToLogin(){
+            window.location.href = "login.html";
+        }
+
+
+        
+    </script>
+    
 </body>
 </html>

@@ -37,12 +37,12 @@
                         <label for="category">หมวดหมู่</label>
                         <select id="category" required>
                             <option value="" disabled selected>เลือกหมวดหมู่</option>
-                            <option value="electronics">Men's clothing</option>
-                            <option value="fashion">Women's clothing</option>
-                            <option value="home">School supplies</option>
-                            <option value="beauty">Lease Agreement</option>
-                            <option value="sports">vehicle</option>
-                            <option value="sports">other</option>
+                            <option value="Men's clothing">Men's clothing</option>
+                            <option value="Women's clothing">Women's clothing</option>
+                            <option value="School supplies">School supplies</option>
+                            <option value="Lease Agreement">Lease Agreement</option>
+                            <option value="vehicle">vehicle</option>
+                            <option value="other">other</option>
                         </select>
                 
                         <label for="description">รายละเอียดสินค้า</label>
@@ -67,16 +67,56 @@
                 </div>
             </div>
         </div>
-        
 
     <script>
+        document.getElementById('product-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('product-name').value;
+            const price = document.getElementById('price').value;
+            const status = 'available'; // ตัวอย่างสถานะ
+            const categories = document.getElementById('category').value;
+            const detail = document.getElementById('description').value;
+            const stock = document.getElementById('stock').value;
+            const imageFile = document.getElementById('image-input').files[0]; // ดึงไฟล์ภาพ
+
+              // สร้าง FormData สำหรับส่งข้อมูล
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('price', price);
+            formData.append('status', status);
+            formData.append('categories', categories);
+            formData.append('detail', detail);
+            formData.append('stock', stock);
+            formData.append('image', imageFile); // เพิ่มไฟล์ภาพลงใน FormData
+
+            const productData = { name, price, status, categories, detail, stock,imageFile };
+
+            try {
+                const response = await fetch('http://localhost:3000/addProduct', {
+                    method: 'POST',
+                    body: formData // ใช้ FormData แทนการแปลงเป็น JSON 
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('สินค้าเพิ่มสำเร็จ รหัสสินค้า: ' + result.id);
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');
+            }
+        });
+
         function loadImage(event) {
             const output = document.getElementById('preview');
             output.src = URL.createObjectURL(event.target.files[0]);
         }
     </script>
 
-    <!-- Footer Web Component อยู่ด้านล่างสุด -->
+    <!-- Footer Web Component -->
     <my-footer></my-footer>
 
 </body>

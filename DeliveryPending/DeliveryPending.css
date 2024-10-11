@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 40px; /* เพิ่ม padding เพื่อขยายขนาด */
+    padding-bottom: 80px; /* เพิ่มพื้นที่ว่างด้านล่าง */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 120px; /* เพิ่มระยะห่างจากด้านบน */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex; /* ใช้ flexbox เพื่อจัดเรียง */
+    margin-bottom: 20px;
+}
+
+.tablink {
+    padding: 10px 20px; /* เพิ่ม padding เพื่อให้ข้อความมีพื้นที่ */
+    cursor: pointer; /* เปลี่ยนให้สามารถคลิกได้ */
+    margin-right: 20px; /* เพิ่มระยะห่างระหว่าง tab */
+    color: #333; /* สีของข้อความ (สีดำ) */
+    background-color: transparent; /* ทำให้พื้นหลังเป็นโปร่งใส */
+    border: none; /* ลบเส้นขอบ */
+    border-radius: 4px; /* ทำมุมให้กลม */
+    transition: color 0.3s; /* เพิ่มการเปลี่ยนสีเมื่อเม้าชี้ */
+}
+
+.tablink:hover {
+    background-color: #e0e0e0; /* เปลี่ยนสีเมื่อเม้าชี้ */
+}
+
+.tablink.active {
+    color: #ff6600; /* เปลี่ยนสีข้อความของแท็บที่ active (สีส้ม) */
+    font-weight: bold; /* ทำให้ตัวหนา */
+}
+
+.tablink.inactive {
+    color: black; /* สีข้อความของแท็บที่ไม่ได้ active */
+    background-color: transparent; /* ทำให้พื้นหลังเป็นโปร่งใส */
+}
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+    border-radius: 5px; /* มุมมน */
+}
+
+.item-container:hover {
+    background-color: #f0f0f0;
+}
+
+.item-container div {
+    flex-basis: 25%;
+    text-align: left;
+}
+
+.status {
+    color: #ff6600; /* กำหนดสีสำหรับสถานะทั่วไป */
+}
+
+
+.highlight {
+    color: #ff6600; /* กำหนดสีส้ม */
+}

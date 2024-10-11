@@ -6,48 +6,89 @@ body {
     background-color: #f7f7f7;
 }
 
-
 /* Order Form Section */
 .order-form-section {
-    max-width: 800px; /* ความกว้างสูงสุดของเนื้อหา */
-    margin: 20px auto; /* จัดให้อยู่ตรงกลางแนวนอน */
-    padding: 20px; /* ระยะห่างจากขอบ */
-    background-color: white; /* พื้นหลังของส่วนฟอร์ม */
-    border-radius: 10px; /* มุมมน */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
 }
 
-h1 {
-    color: #E35205; /* สีหัวข้อ */
+/* Input Box Styling */
+.input-box, .product-box, .total-box {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Input Fields */
+/* Label Styling */
 label {
     display: block;
-    margin: 10px 0 5px; /* ระยะห่างระหว่าง label และ input */
-    color: #E35205; /* สีของ label */
+    margin-bottom: 10px;
+    color: #E35205;
+    font-weight: bold;
 }
 
-textarea, input[type="number"] {
-    width: 100%; /* กว้างเต็ม */
-    padding: 10px; /* ระยะห่างภายใน */
-    border: 1px solid #ccc; /* เส้นขอบ */
-    border-radius: 5px; /* มุมมน */
-    margin-bottom: 15px; /* ระยะห่างด้านล่าง */
-}
-
-.place-order-button {
-    background-color: #E35205;
-    color: white;
-    border: none;
+/* Textarea Styling */
+textarea {
+    width: 100%;
     padding: 10px;
-    border-radius: 5px; /* มุมมน */
-    cursor: pointer; /* เปลี่ยนเป็นมือเมื่อเอาเม้าไปวาง */
-    width: 100%; /* ให้ปุ่มกว้างเต็ม */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+}
+
+/* Product Details Styling */
+.product-box p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Total Price Box */
+.total-box {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    height: 20px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total-box p {
+    font-size: 18px;
+    color: #E35205;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Place Order Button */
+.place-order-button {
+    background-color: #f5f5f5;
+    color: #E35205;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
 }
 
 .place-order-button:hover {
-    background-color: #d14303; /* เปลี่ยนสีเมื่อวางเม้า */
+    background-color: #e2e2e1;
 }
 
+/* Icon Styling */
+label i {
+    color: #E35205;
+    margin-right: 10px;
+}

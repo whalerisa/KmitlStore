@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สถานะสินค้าพร้อมส่งมอบ</title>
+    <link rel="stylesheet" href="DeliveryPending.css">
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/Sidebar.js" defer></script> 
+    <script src="../Componant/Footer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ใช้ Web Component ของ Navbar -->
+    <my-navbar></my-navbar>
+
+    <!-- Wrapper สำหรับ Sidebar, Main Content และ Right Sidebar -->
+    <div class="content-wrapper">
+    <!-- Sidebar ซ้าย -->
+    <my-sidebar></my-sidebar>
+
+    <div class="container">
+        <h1>พัสดุเตรียมส่งมอบ</h1>
+        <div class="tabs">
+            <span class="tablink active" onclick="showTab(event, 'current')">นัดรับสินค้าปัจจุบัน</span>
+            <span class="tablink" onclick="showTab(event, 'completed')">นัดรับสินค้าที่สำเร็จแล้ว</span>
+        </div>
+    
+        <!-- ข้อมูลปัจจุบัน -->
+        <div id="current" class="tabcontent" style="display: block;">
+            <div class="item-container">
+                <div>รหัสสินค้า</div>
+                <div>ชื่อสินค้า</div>
+                <div>ยอดชำระเงิน</div>
+                <div>สถานะ</div>
+            </div>
+            <div class="item-container">
+                <div class="highlight">00000000</div>
+                <div class="highlight">เสื้อนักศึกษา</div>
+                <div class="highlight">160 บาท</div>
+                <div class="status">กำลังจัดส่ง</div>
+            </div>
+        </div>
+
+        <!-- ข้อมูลที่สำเร็จแล้ว -->
+        <div id="completed" class="tabcontent" style="display: none;"> <!-- ซ่อนแท็บนี้เริ่มแรก -->
+            <div class="item-container">
+                <div>รหัสสินค้า</div>
+                <div>ชื่อสินค้า</div>
+                <div>ยอดชำระเงิน</div>
+                <div>สถานะ</div>
+            </div>
+            <div class="item-container">
+                <div class="highlight">00000001</div>
+                <div class="highlight">หนังสือเรียน</div>
+                <div class="highlight">200 บาท</div>
+                <div class="highlight">จัดส่งสำเร็จ</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="DeliveryPending.js"></script>
+
+     <!-- Use Web Component of Footer -->
+     <my-footer></my-footer>
+
+</body>
+</html>

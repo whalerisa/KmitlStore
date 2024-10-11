@@ -5,7 +5,7 @@ class ProductCard extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['image', 'title', 'size', 'price', 'description'];
+        return ['image', 'detail', 'price'];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -20,10 +20,11 @@ class ProductCard extends HTMLElement {
 
     render() {
         const image = this.getAttribute('image');
-        const title = this.getAttribute('title');
-        const size = this.getAttribute('size');
+        const detail = this.getAttribute('detail');
         const price = this.getAttribute('price');
-        const description = this.getAttribute('description');
+
+        // แยกรายละเอียดออกเป็นบรรทัดต่างๆ
+        const detailLines = detail.split('<br>');
 
         this.shadowRoot.innerHTML = `
             <style>
@@ -68,11 +69,10 @@ class ProductCard extends HTMLElement {
                 }
             </style>
             <div class="product-card">
-                <img src="${image}" alt="${title}">
-                <h3>${title}</h3>
+                <img src="${image}" alt="${detailLines[0]}">
+                <h3>${detailLines[0]}</h3>
                 <ul>
-                    <li>${size}</li>
-                    <li>${description}</li>
+                    ${detailLines.slice(1).map(line => `<li>${line}</li>`).join('')}
                 </ul>
                 <div class="product-price">
                     <span>${price} บาท</span>

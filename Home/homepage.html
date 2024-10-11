@@ -7,9 +7,8 @@
     <title>KMITL Store - Order Form</title>
     <link rel="stylesheet" href="homepage.css">
     <script src="../Componant/Navbar.js" defer></script>
-    <script src="../Componant/ProductCard.js" defer></script> 
+    <script src="../Componant/ProductCard.js" defer></script>
     <script src="../Componant/Footer.js" defer></script>
-    
 </head>
 
 <body>
@@ -51,133 +50,102 @@
     <!-- Product Recommendation Section -->
     <section class="products">
         <h2>DIARY DISCOVERY</h2>
-        <div class="product-grid">
-            <product-card 
-                image="../image/pleated-skirt-1.jpg"
-                title="กระโปรงนักศึกษา"
-                size="ไซส์ M"
-                price="250"
-                description="ยาว 32, ยังไม่เคยใส่เลย..."
-            ></product-card>
-
-            <product-card 
-                image="../image/calculator1.jpg"
-                title="เครื่องคิดเลข super-fx-plus"
-                size="ไม่มีตำหนิ"
-                price="1,060"
-                description="ใช้งานง่าย, รับประกันยังอยู่"
-            ></product-card>
-
-            <product-card 
-                image="../image/Women-shirt1.jpg"
-                title="เสื้อเชิ้ต"
-                size="ไซส์ L"
-                price="200"
-                description="ใช้ครั้งเดียว, สีขาวสว่าง"
-            ></product-card>
-
-            <product-card 
-                image="../image/shoes1.jpg"
-                title="รองเท้า"
-                size="ไซส์ 40"
-                price="1,800"
-                description="มีกล่องให้ครบ, มีตำหนินิดหน่อย"
-            ></product-card>
-
-            <product-card 
-                image="../image/bag1.jpg"
-                title="กระเป๋าเป้"
-                size="ยังไม่เคยใช้เลย"
-                price="300"
-                description="สีซีดกว่าในรูปนิดหน่อย"
-            ></product-card>
-
-            <!-- Row 2 -->
-            <product-card 
-                image="../image/Laptop1.jpg"
-                title="โน๊ตบุ๊ค asus"
-                size="ryzen 5 ram 16"
-                price="15,150"
-                description="การ์ดจอแยก"
-            ></product-card>
-
-            <product-card 
-                image="../image/ipad1.jpg"
-                title="ipad air5"
-                size="ความจำ 254 G"
-                price="25,500"
-                description="ประกัน 1 ปี"
-            ></product-card>
-
-            <product-card 
-                image="../image/Laptop2.jpg"
-                title="ACER โน๊ตบุ๊ค Nitro V 16"
-                size="AMD Ryzen 7"
-                price="29,930"
-                description="Memory16GB"
-            ></product-card>
-
-            <product-card 
-                image="../image/shoes2.jpg"
-                title="รองเท้าผ้าใบ"
-                size="ไซต์ 39"
-                price="670"
-                description="ใส่แค่ครั้งเดียว"
-            ></product-card>
-
-            <product-card 
-                image="../image/workshop-shirt1.jpg"
-                title="เสื้อช็อปคณะวิศวะ"
-                size="ไซต์ M"
-                price="275"
-                description="ไม่มีตำหนิ"
-            ></product-card>
-
-            <!-- Row 3 -->
-            <product-card 
-                image="../image/workshop-shirt2.jpg"
-                title="เสื้อช็อปคณะวิทยาศาสตร์"
-                size="ไซต์ L"
-                price="280"
-                description="ไม่ใช่ของคณะขาย"
-            ></product-card>
-
-            <product-card 
-                image="../image/Men-shirt2.jpg"
-                title="เสื้อนักศึกษาชาย"
-                size="ไซต์ M"
-                price="160"
-                description="ไม่เคยใส่เลย"
-            ></product-card>
-
-            <product-card 
-                image="../image/Malestudentpants-1.jpg"
-                title="กางเกงนักศึกษาชาย"
-                size="เอว 35"
-                price="200"
-                description="ใส่แค่ครั้งเดียว"
-            ></product-card>
-
-            <product-card 
-                image="../image/Men-shirt1.jpg"
-                title="เสื้อเชิ้ตผู้ชาย"
-                size="ไซส์ M"
-                price="100"
-                description="สีขาวนวล, ไม่เปื้อนเลย"
-            ></product-card>
-
-            <product-card 
-                image="../image/Women-shirt2.jpg"
-                title="เสื้อนักศึกษาหญิง"
-                size="ไซส์ L"
-                price="160"
-                description="ใช้ครั้งเดียว, แขนสามเหลี่ยม"
-            ></product-card>
-        </div>
+        <div class="product-grid" id="product-grid"></div>
     </section>
 
     <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
+
+    <script>
+        const products = [
+            {
+                image: "../image/calculator1.jpg",
+                detail: "เครื่องคิดเลข super-fx-plus<br>ไม่มีตำหนิ<br>ใช้งานง่าย<br>รับประกันยังอยู่",
+                price: "1,060"
+            },
+            {
+                image: "../image/Women-shirt1.jpg",
+                detail: "เสื้อเชิ้ต<br>ไซส์ L<br>ใช้ครั้งเดียว<br>สีขาวสว่าง",
+                price: "200"
+            },
+            {
+                image: "../image/shoes1.jpg",
+                detail: "รองเท้า<br>ไซส์ 40<br>มีกล่องให้ครบ<br>มีตำหนินิดหน่อย",
+                price: "1,800"
+            },
+            {
+                image: "../image/bag1.jpg",
+                detail: "กระเป๋าเป้<br>ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
+                price: "300"
+            },
+            {
+                image: "../image/Laptop1.jpg",
+                detail: "โน๊ตบุ๊ค asus<br>Ryzen 5 RAM 16<br>การ์ดจอแยก",
+                price: "15,150"
+            },
+            {
+                image: "../image/ipad1.jpg",
+                detail: "iPad Air5<br>ความจำ 254 GB<br>ประกัน 1 ปี",
+                price: "25,500"
+            },
+            {
+                image: "../image/Laptop2.jpg",
+                detail: "ACER โน๊ตบุ๊ค Nitro V 16<br>AMD Ryzen 7<br>Memory 16GB",
+                price: "29,930"
+            },
+            {
+                image: "../image/shoes2.jpg",
+                detail: "รองเท้าผ้าใบ<br>ไซต์ 39<br>ใส่แค่ครั้งเดียว",
+                price: "670"
+            },
+            {
+                image: "../image/workshop-shirt1.jpg",
+                detail: "เสื้อช็อปคณะวิศวะ<br>ไซต์ M<br>ไม่มีตำหนิ",
+                price: "275"
+            },
+            {
+                image: "../image/workshop-shirt2.jpg",
+                detail: "เสื้อช็อปคณะวิทยาศาสตร์<br>ไซต์ L<br>ไม่ใช่ของคณะขาย",
+                price: "280"
+            },
+            {
+                image: "../image/Men-shirt2.jpg",
+                detail: "เสื้อนักศึกษาชาย<br>ไซต์ M<br>ไม่เคยใส่เลย",
+                price: "160"
+            },
+            {
+                image: "../image/Malestudentpants-1.jpg",
+                detail: "กางเกงนักศึกษาชาย<br>เอว 35<br>ใส่แค่ครั้งเดียว",
+                price: "200"
+            },
+            {
+                image: "../image/Men-shirt1.jpg",
+                detail: "เสื้อเชิ้ตผู้ชาย<br>ไซส์ M<br>สีขาวนวล, ไม่เปื้อนเลย",
+                price: "100"
+            },
+            {
+                image: "../image/Women-shirt2.jpg",
+                detail: "เสื้อนักศึกษาหญิง<br>ไซส์ L<br>ใช้ครั้งเดียว, แขนสามเหลี่ยม",
+                price: "160"
+            },
+            {
+                image: "../image/bag1.jpg",
+                detail: "กระเป๋าเป้<br>ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
+                price: "300"
+            },
+        ];
+
+        const productGrid = document.getElementById('product-grid');
+        
+
+        products.forEach(product => {
+            const productCard = document.createElement('product-card');
+            productCard.setAttribute('image', product.image);
+            productCard.setAttribute('detail', product.detail);
+            productCard.setAttribute('price', product.price);
+            productGrid.appendChild(productCard);
+        });
+    </script>
 
 </body>
 

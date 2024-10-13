@@ -23,7 +23,6 @@ h1 {
 
 /* Cart Item Styling */
 .cart-items {
-    /*background-color: #D9D9D9; /* สีพื้นหลังของรายการสินค้า */
     padding: 10px; /* ระยะห่างภายใน */
     border-radius: 5px; /* มุมมน */
 }
@@ -35,7 +34,32 @@ h1 {
 }
 
 .item-checkbox {
+    width: 25px; /* กำหนดความกว้างของ checkbox */
+    height: 25px; /* กำหนดความสูงของ checkbox */
+    appearance: none; /* เอาสไตล์พื้นฐานของเบราว์เซอร์ออก */
+    border: 2px solid #E35205; /* เส้นขอบสีส้ม */
+    border-radius: 5px; /* มุมมนเล็กน้อย */
     cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+    position: relative; /* ให้สามารถปรับแต่ง pseudo-element ได้ */
+}
+
+.item-checkbox:checked {
+    background-color: #E35205; /* สีพื้นหลังเมื่อถูกเลือก */
+    border-color: #E35205; /* เปลี่ยนสีขอบเมื่อถูกเลือก */
+}
+
+.item-checkbox:checked::before {
+    content: '✔'; /* เครื่องหมายถูก */
+    color: white; /* สีของเครื่องหมายถูก */
+    font-size: 16px; /* ขนาดของเครื่องหมายถูก */
+    position: absolute; /* กำหนดตำแหน่งของเครื่องหมาย */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* จัดตำแหน่งให้อยู่กลาง */
+}
+
+.item-checkbox:hover {
+    border-color: #d14303; /* เปลี่ยนสีขอบเมื่อ hover */
 }
 
 .item-label {

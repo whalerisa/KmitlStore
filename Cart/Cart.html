@@ -8,12 +8,56 @@
     <link rel="stylesheet" href="Cart.css">
     <script src="../Componant/Navbar.js" defer></script>
     <script src="../Componant/Footer.js" defer></script>
+    <script>
+        function updateTotal() {
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+            let total = 0;
+            const checkboxStates = {};
 
+            checkboxes.forEach(checkbox => {
+                const itemId = checkbox.id;
+                checkboxStates[itemId] = checkbox.checked; // Save checkbox state
+
+                if (checkbox.checked) {
+                    const price = parseInt(checkbox.nextElementSibling.querySelector('.item-price').textContent);
+                    total += price;
+                }
+            });
+
+            // Update total price display
+            const totalButton = document.querySelector('.total-price');
+            totalButton.textContent = total + ' บาท';
+
+            // Save total and checkbox states to localStorage
+            localStorage.setItem('cartTotal', total);
+            localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates)); // Save as a JSON string
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+            const savedTotal = localStorage.getItem('cartTotal');
+            const savedCheckboxStates = JSON.parse(localStorage.getItem('checkboxStates')) || {};
+
+            // Restore checkbox states and recalculate the total
+            checkboxes.forEach(checkbox => {
+                const itemId = checkbox.id;
+
+                if (savedCheckboxStates[itemId]) {
+                    checkbox.checked = true; // Restore the checked state
+                }
+
+                checkbox.addEventListener('change', updateTotal); // Add event listener for changes
+            });
+
+            // Restore the total price
+            const totalButton = document.querySelector('.total-price');
+            totalButton.textContent = (savedTotal ? savedTotal : 0) + ' บาท';
+        });
+    </script>
 </head>
 
 <body>
 
-    <!-- ใช้ Web Component ของ Navbar -->
     <my-navbar></my-navbar>
     
     <div class="store-container">
@@ -22,40 +66,40 @@
             <div class="cart-items">
                 <div class="cart-item">
                     <input type="checkbox" id="item1" class="item-checkbox">
-                    <label for="item1" class="item-label">
+                    <label for="item1" class="item-label" data-price="160">
                         <img src="../image/Women-shirt1.jpg" alt="Item 1">
                         เสื้อนักศึกษาหญิง...
-                        <span class="item-price">160 บาท</span>
+                        <span class="item-price">160</span> บาท
                     </label>
                 </div>
                 <div class="cart-item">
                     <input type="checkbox" id="item2" class="item-checkbox">
-                    <label for="item2" class="item-label">
+                    <label for="item2" class="item-label" data-price="160">
                         <img src="../image/Men-shirt1.jpg" alt="Item 2">
                         เสื้อนักศึกษาชาย...
-                        <span class="item-price">160 บาท</span>
+                        <span class="item-price">160</span> บาท
                     </label>
                 </div>
                 <div class="cart-item">
                     <input type="checkbox" id="item3" class="item-checkbox">
-                    <label for="item3" class="item-label">
+                    <label for="item3" class="item-label" data-price="160">
                         <img src="../image/Women-shirt2.jpg" alt="Item 3">
                         เสื้อนักศึกษาหญิง...
-                        <span class="item-price">160 บาท</span>
+                        <span class="item-price">160</span> บาท
                     </label>
                 </div>
                 <div class="cart-item">
                     <input type="checkbox" id="item4" class="item-checkbox">
-                    <label for="item4" class="item-label">
+                    <label for="item4" class="item-label" data-price="160">
                         <img src="../image/Men-shirt2.jpg" alt="Item 4">
                         เสื้อนักศึกษาชาย...
-                        <span class="item-price">160 บาท</span>
+                        <span class="item-price">160</span> บาท
                     </label>
                 </div>
             </div>
 
             <div class="total-container">
-                <button class="total-price">160 บาท</button> <!-- เปลี่ยนเป็นปุ่ม -->
+                <button class="total-price">0 บาท</button> <!-- เปลี่ยนเป็นปุ่ม -->
                 <a href="../Address/Address.html">
                     <button class="checkout-button">Check Out</button>
                 </a>
@@ -63,7 +107,6 @@
         </div>
     </div>
 
-    <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
 </body>
 

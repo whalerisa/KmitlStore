@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="Address.css">
     <script src="../Componant/Navbar.js" defer></script>
     <script src="../Componant/Footer.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get total from localStorage
+            const cartTotal = localStorage.getItem('cartTotal');
+            const totalBox = document.querySelector('.total-box p');
+    
+            if (cartTotal) {
+                totalBox.textContent = 'ยอดชำระทั้งหมด ' + cartTotal + ' บาท';
+            }
+        });
+    </script>
 </head>
 
 <body>

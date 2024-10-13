@@ -47,3 +47,13 @@ body {
     gap: 20px;
 }
 
+.product-link {
+    text-decoration: none; /* ลบเส้นใต้ */
+    color: inherit; /* รักษาสีของข้อความใน product card */
+}
+
+.product-link:hover {
+    /* ถ้าต้องการ: เพิ่มเอฟเฟ็กต์เมื่อเลื่อนเมาส์ */
+    transform: scale(1.05); /* ขยายการ์ดเล็กน้อยเมื่อเลื่อนเมาส์ */
+    transition: transform 0.2s; /* การเปลี่ยนแปลงอย่างราบรื่น */
+}

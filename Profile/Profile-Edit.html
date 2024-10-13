@@ -7,17 +7,16 @@
     <title>KMITL Store - Order Form</title>
     <link rel="stylesheet" href="Profile-Edit.css">
     <script src="../Componant/Footer.js" defer></script>
-
 </head>
 
 <body>
 
     <!-- Header Section -->
     <div class="header">
-        <a href="../Profile/Profile.html"> <!-- เพิ่มลิงค์ไปที่หน้า profile -->
+        <button class="back-button">
             <img src="../icons/back-icon-2.png" alt="Back" class="back-arrow">
-        </a>
-        <h1 class="header-title">แก้ไขข้อมูลส่วนตัว</h1> <!-- เพิ่ม class เพื่อจัดตำแหน่ง -->
+        </button>
+        <h1 class="header-title">แก้ไขข้อมูลส่วนตัว</h1>
     </div>
 
     <!-- Profile Section -->
@@ -46,6 +45,7 @@
     </div>
 
     <script>
+        // Function to enable and disable editing of profile fields
         function enableEdit(fieldId) {
             var inputField = document.getElementById(fieldId);
             inputField.disabled = !inputField.disabled; // toggle enable/disable
@@ -54,12 +54,15 @@
                 inputField.focus();
             }
         }
+
+        // Add event listener to the back button
+        document.querySelector('.back-button').addEventListener('click', () => {
+            history.back(); // Go back to the previous page
+        });
     </script>
 
     <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
-
-
 
 </body>
 

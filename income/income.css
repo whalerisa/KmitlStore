@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h2, h3 {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Summary Section */
+.summary-section {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 20px auto;
+    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    transform: translateX(70px); /* ขยับไปทางขวา 20px */
+}
+
+.summary-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+
+.detail {
+    flex: 1;
+    padding: 10px;
+    text-align: left; /* เปลี่ยนจาก center เป็น left */
+    border-right: 1px solid #ddd;
+}
+
+.detail h3, .detail p:last-child {
+    font-size: 1.2em; /* ขนาดตัวอักษรใหญ่ขึ้น */
+    font-weight: bold; /* ทำให้ตัวหนา */
+}
+
+.detail p {
+    font-size: 1.2em; /* ขยายขนาดตัวอักษรสำหรับข้อความทั่วไป */
+}
+
+
+/* Details Section */
+.details-section {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(70px); /* ขยับไปทางขวา 20px */
+    min-height: 500px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #f0f0f0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.status-success {
+    color: orange;
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease; 
+}

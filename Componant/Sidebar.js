@@ -33,7 +33,7 @@ class MySidebar extends HTMLElement {
 
                 .dropdown-content {
                     display: none;
-                    background-color: #f1f1f1;
+                    background-color: #ffffff;
                     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                     position: relative;
                     z-index: 1;
@@ -67,7 +67,7 @@ class MySidebar extends HTMLElement {
                     top: 100px;
                     height: 400px;
                     width: 80px;
-                    background-color: #f8f8f8;
+                    background-color: #ffffff;
                     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
                     display: flex;
                     flex-direction: column;
@@ -92,8 +92,7 @@ class MySidebar extends HTMLElement {
                         <img src="../icons/down-fill-icon.png" alt="คำสั่งซื้อ Icon" class="icon">
                     </button>
                     <div class="dropdown-content">
-                        <a href="orders.html">คำสั่งซื้อสินค้าของฉัน</a>
-                        <a href="packages.html">พัสดุเตรียมส่งมอบ</a>
+                        <a href="../My_order/my_order.html">คำสั่งซื้อสินค้าของฉัน</a>
                     </div>
                 </div>
 
@@ -103,8 +102,8 @@ class MySidebar extends HTMLElement {
                         <img src="../icons/down-fill-icon.png" alt="สินค้า Icon" class="icon">
                     </button>
                     <div class="dropdown-content">
-                        <a href="my-products.html">สินค้าของฉัน</a>
-                        <a href="add-product.html">เพิ่มสินค้าใหม่</a>
+                        <a href="../My_products/my_products.html">สินค้าของฉัน</a>
+                        <a href="../Postproduct/Postproduct.html">เพิ่มสินค้าใหม่</a>
                     </div>
                 </div>
 
@@ -114,16 +113,16 @@ class MySidebar extends HTMLElement {
                         <img src="../icons/down-fill-icon.png" alt="การเงิน Icon" class="icon">
                     </button>
                     <div class="dropdown-content">
-                        <a href="income.html">รายรับของฉัน</a>
+                        <a href="../income/income.html">รายรับของฉัน</a>
                     </div>
                 </div>
             </div>
 
             <div class="icon-bar">
-                <a href="notifications.html" class="icon-notify">
+                <a href="../Notification/notification.html" class="icon-notify">
                     <img src="../icons/sidebar-icon1.png" alt="Notifications">
                 </a>
-                <a href="messages.html" class="icon-message">
+                <a href="../chat/chat.html" class="icon-message">
                     <img src="../icons/sidebar-icon2.png" alt="Messages">
                 </a>
             </div>

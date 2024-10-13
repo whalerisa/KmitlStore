@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMITL Store - Notification</title>
+    <link rel="stylesheet" href="notification.css">
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/Sidebar.js" defer></script>
+    <script src="../Componant/Footer.js" defer></script>
+    <script src="../Componant/NotificationItem.js" defer></script>
+</head>
+<body>
+
+    <my-navbar></my-navbar>
+
+    <div class="content-wrapper">
+        <my-sidebar></my-sidebar>
+
+        <section class="faq-section">
+            <!-- ใช้ Web Component notification-item -->
+            <notification-item message="คุณมีคำสั่งซื้อใหม่ รหัสคำสั่งซื้อ: #12345" time="เวลา: 12:30 น. วันที่: 12/10/2567"></notification-item>
+            <notification-item message="คำสั่งซื้อ #12346 ชำระเงินสำเร็จแล้ว" time="เวลา: 14:45 น. วันที่: 12/10/2567"></notification-item>
+            <notification-item message="คำสั่งซื้อ #12347 รอการยืนยันการจัดส่ง" time="เวลา: 15:20 น. วันที่: 12/10/2567"></notification-item>
+            <notification-item message="สินค้า 'เสื้อสีขาว' กำลังจะหมดสต็อก" time="เวลา: 16:00 น. วันที่: 12/10/2567"></notification-item>
+            <notification-item message="คำสั่งซื้อ #12348 ถูกยกเลิก" time="เวลา: 17:10 น. วันที่: 12/10/2567"></notification-item>
+            <notification-item message="ลูกค้าติดต่อสอบถามเกี่ยวกับคำสั่งซื้อ #12349" time="เวลา: 18:00 น. วันที่: 12/10/2567"></notification-item>
+            <notification-item message="สินค้า 'เสื้อสีดำ' หมดสต็อกแล้ว" time="เวลา: 19:30 น. วันที่: 12/10/2567"></notification-item>
+        </section>
+        
+        <my-footer></my-footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภาพรวมรายรับของฉัน</title>
+    <link rel="stylesheet" href="income.css">
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/Sidebar.js" defer></script>
+    <script src="../Componant/Footer.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navbar Web Component อยู่ด้านบนสุด -->
+    <my-navbar></my-navbar>
+
+    <!-- Wrapper สำหรับ Sidebar, Main Content และ Right Sidebar -->
+    <div class="content-wrapper">
+        <!-- Sidebar ซ้าย -->
+        <my-sidebar></my-sidebar>
+
+
+        <!-- Container for income summary -->
+        <div class="summary-section">
+            <div class="summary-box">
+                <h2>ภาพรวมรายรับของฉัน</h2>
+                <div class="summary-details">
+                    <div class="detail">
+                        <h3>รอดำเนินการ</h3>
+                        <p>รวม</p>
+                        <p>฿ 0</p>
+                    </div>
+                    <div class="detail">
+                        <h3>โอนเงินแล้ว</h3>
+                        <p>รวม</p>
+                        <p>฿ 0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container for detailed income list -->
+        <div class="details-section">
+            <h2>รายละเอียดรายรับของฉัน</h2>
+            <h3>เสร็จสิ้นแล้ว</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>คำสั่งซื้อ</th>
+                        <th>ได้รับเงินเมื่อ</th>
+                        <th>สถานะ</th>
+                        <th>ช่องทางการชำระเงิน</th>
+                        <th>ยอดที่โอน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>00000000 <span style="margin-left: 20px;">เสื้อนักศึกษา</span></td>
+                        <td>12/10/2567</td>
+                        <td class="status-success">สำเร็จ</td>
+                        <td>เงินสด</td>
+                        <td>160 บาท</td>
+                    </tr>
+                    <tr>
+                        <td>00000000 <span style="margin-left: 20px;">เสื้อนักศึกษา</span></td>
+                        <td>12/10/2567</td>
+                        <td class="status-success">สำเร็จ</td>
+                        <td>โอนจ่าย</td>
+                        <td>160 บาท</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer Web Component อยู่ด้านล่างสุด -->
+        <my-footer></my-footer>
+
+</body>
+
+</html>

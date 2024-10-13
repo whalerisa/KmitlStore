@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำสั่งซื้อของฉัน</title>
+    <link rel="stylesheet" href="my_order.css">
+    <script src="../Componant/Navbar.js" defer></script>
+    <script src="../Componant/Sidebar.js" defer></script> 
+    <script src="../Componant/Footer.js" defer></script>
+
+</head>
+
+<body>
+
+    <my-navbar></my-navbar>
+
+    <div class="content-wrapper">
+        <my-sidebar></my-sidebar>
+
+        <div class="container">
+            <h1>คำสั่งซื้อของฉัน</h1>
+            <div class="tabs">
+                <span class="tablink active" onclick="showTab(event, 'current')">ทั้งหมด</span>
+                <span class="tablink" onclick="showTab(event, 'unpaid')">ยังไม่ชำระ</span>
+                <span class="tablink" onclick="showTab(event, 'toship')">ที่ต้องจัดส่ง</span>
+                <span class="tablink" onclick="showTab(event, 'shipping')">กำลังจัดส่ง</span>
+                <span class="tablink" onclick="showTab(event, 'completed')">สำเร็จ</span>
+            </div>
+
+            <div class="order-status">
+                <strong>0 คำสั่งซื้อ</strong>
+            </div>
+
+            <div class="item-container header">
+                <div>สินค้าทั้งหมด</div>
+                <div>ยอดชำระเงิน</div>
+                <div>สถานะ</div>
+                <div>ดำเนินการ</div>
+            </div>
+
+            <!-- ส่วนนี้จะสร้างรายการคำสั่งซื้อผ่าน JavaScript -->
+            <div id="current" class="tabcontent" style="display: block;"></div>
+            <div id="unpaid" class="tabcontent" style="display: none;"></div>
+            <div id="toship" class="tabcontent" style="display: none;"></div>
+            <div id="shipping" class="tabcontent" style="display: none;"></div>
+            <div id="completed" class="tabcontent" style="display: none;"></div>
+
+        </div>
+    </div>
+
+    <script>
+        const orders = {
+            current: [
+                { name: 'เสื้อนักศึกษา', price: '160 บาท', status: 'กำลังจัดส่ง', carryout:'กำลังดำเนินการ' }
+            ],
+            unpaid: [
+                { name: 'อุปกรณ์กีฬา', price: '500 บาท', status: 'ยังไม่ชำระ', carryout:'กำลังดำเนินการ' }
+            ],
+            toship: [
+                { name: 'เครื่องเขียน', price: '100 บาท', status: 'ที่ต้องจัดส่ง', carryout:'กำลังดำเนินการ'}
+            ],
+            shipping: [
+                { name: 'เครื่องครัว', price: '300 บาท', status: 'กำลังจัดส่ง', carryout:'กำลังดำเนินการ' }
+            ],
+            completed: [
+                { name: 'หนังสือเรียน', price: '200 บาท', status: 'จัดส่งสำเร็จ', carryout:'กำลังดำเนินการ'}
+            ]
+        };
+
+        // ฟังก์ชันเพื่อแสดงคำสั่งซื้อในแต่ละแท็บ
+        function renderOrders(tabName) {
+            const container = document.getElementById(tabName);
+            container.innerHTML = '';  // ล้างข้อมูลเดิม
+            orders[tabName].forEach(order => {
+                const orderDiv = document.createElement('div');
+                orderDiv.classList.add('item-container');
+                orderDiv.innerHTML = `
+                    <input type="checkbox" class="order-checkbox">
+                    <div class="highlight">${order.name}</div>
+                    <div class="highlight">${order.price}</div>
+                    <div class="status">${order.status}</div>
+                    <div class="highlight">${order.carryout}</div>
+                `;
+                container.appendChild(orderDiv);
+            });
+        }
+
+        // เรียกฟังก์ชันเพื่อแสดงคำสั่งซื้อในทุกแท็บ
+        Object.keys(orders).forEach(renderOrders);
+
+        // ฟังก์ชันสำหรับการเปลี่ยนแท็บ
+        function showTab(evt, tabName) {
+            const tabcontent = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            const tablinks = document.getElementsByClassName("tablink");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+    <my-footer></my-footer>
+
+</body>
+</html>

@@ -8,6 +8,7 @@ const login = require('./login'); // นำเข้า login
 const postproduct = require('./postproduct'); // นำเข้า login
 const homepage = require('./homepage'); // นำเข้า login
 
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
@@ -17,7 +18,7 @@ app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดส�
 app.use(express.static(path.join(__dirname, 'Login')));
 app.use(express.static(path.join(__dirname, 'register')));
 app.use(express.static(path.join(__dirname, 'PostProduct')));
-app.use(express.static(path.join(__dirname, 'homepage')));
+app.use(express.static(path.join(__dirname, 'Home')));
 
 // สร้างตารางถ้ายังไม่มี
 const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);

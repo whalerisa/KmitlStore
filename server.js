@@ -3,10 +3,12 @@ const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const register = require('./register'); // นำเข้า register
+const register = require('./register'); 
 const login = require('./login'); // นำเข้า login
-const postproduct = require('./postproduct'); // นำเข้า login
-const homepage = require('./homepage'); // นำเข้า login
+const postproduct = require('./postproduct'); 
+const homepage = require('./homepage'); 
+const LeaseAgreement = require('./leaseagreement');
+
 
 
 const app = express();
@@ -15,10 +17,11 @@ app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดส�
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-app.use(express.static(path.join(__dirname, 'Login')));
-app.use(express.static(path.join(__dirname, 'register')));
-app.use(express.static(path.join(__dirname, 'PostProduct')));
-app.use(express.static(path.join(__dirname, 'Home')));
+const staticFolders = ['Login','register','PostProduct','Home','Catagories'];
+staticFolders.forEach(folder => {
+    app.use(express.static(path.join(__dirname,folder)));
+});
+
 
 // สร้างตารางถ้ายังไม่มี
 const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
@@ -39,6 +42,8 @@ register(app);
 login(app);
 postproduct(app);
 homepage(app);
+LeaseAgreement(app);
+
 
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;

@@ -37,7 +37,7 @@ db.serialize(() => {
     `);
 });
 
-// นำเข้าระบบ Register และ Login
+// นำเข้าระบบ 
 register(app);
 login(app);
 postproduct(app);

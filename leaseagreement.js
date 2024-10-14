@@ -12,12 +12,12 @@ app.use(bodyParser.json());
 const db = new sqlite3.Database('./Data.db');
 
 // Route สำหรับดึงข้อมูลสินค้า
-function LeaseAgreement(app){
-    app.get('/products', (req, res) => {
-        const sql = 'SELECT * FROM products WHERE categories = ?'; // ดึงข้อมูลทั้งหมดเป็นค่าเริ่มต้น
-        const params = ['Lease Agreement'];
+function LeaseAgreement(app) {
+    app.get('categories/Lease Agreement', (req, res) => {
+        const category = req.query.category || 'Lease Agreement'; // รับหมวดหมู่จาก query string หรือใช้ค่าเริ่มต้น
+        const sql = 'SELECT * FROM products WHERE categories = ?'; // SQL Query
 
-        db.all(sql, params, (err, rows) => {
+        db.all(sql, [category], (err, rows) => { // ใช้พารามิเตอร์ที่กำหนด
             if (err) {
                 res.status(500).send(err.message);
                 return;
@@ -28,3 +28,4 @@ function LeaseAgreement(app){
 }
 
 module.exports = LeaseAgreement;
+ 

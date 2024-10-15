@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
     <link rel="stylesheet" href="homepage.css">
-    <script src="../Componant/Navbar.js" defer></script>
-    <script src="../Componant/ProductCard.js" defer></script>
-    <script src="../Componant/Footer.js" defer></script>
+    <script src="../Components/Navbar.js" defer></script>
+    <script src="../Components/ProductCard.js" defer></script>
+    <script src="../Components/Footer.js" defer></script>
 </head>
 
 <body>
@@ -20,31 +20,30 @@
     <section class="categories">
         <h2>หมวดหมู่</h2>
         <div class="category-grid">
-            <a href="../Catagories/Men’sClothing.html" class="category-item"> <!-- ลิงก์ไปยังหน้าใหม่ -->
+            <a href="../Categories/MensClothing.html" class="category-item">
                 <img src="../icons/shirt-icon.png" alt="Men's Clothing">
                 <p>Men's clothing</p>
             </a>
-            <a href="../Catagories/Women'sclothing.html" class="category-item"> <!-- ลิงก์ไปยังหน้าใหม่ -->
+            <a href="../Categories/Women'sclothing.html" class="category-item">
                 <img src="../icons/dress-icon.png" alt="Women's Clothing">
                 <p>Women's clothing</p>
             </a>
-            <a href="../Catagories/Schoolsupplies.html" class="category-item"> <!-- ลิงก์ไปยังหน้าใหม่ -->
+            <a href="../Categories/Schoolsupplies.html" class="category-item">
                 <img src="../icons/calculator-icon.png" alt="School Supplies">
                 <p>School Supplies</p>
             </a>
-            <a href="../Catagories/LeaseAgreement.html" class="category-item"> <!-- ลิงก์ไปยังหน้าใหม่ -->
+            <a href="../Categories/LeaseAgreement.html" class="category-item">
                 <img src="../icons/LeaseAgreement-icon.png" alt="Lease Agreement">
                 <p>Lease Agreement</p>
             </a>
-            <a href="../Catagories/Vehicle.html" class="category-item"> <!-- ลิงก์ไปยังหน้าใหม่ -->
+            <a href="../Categories/Vehicle.html" class="category-item">
                 <img src="../icons/Vehicle-icon.jpg" alt="Vehicle">
                 <p>Vehicle</p>
             </a>
-            <a href="../Catagories/Other.html" class="category-item"> <!-- ลิงก์ไปยังหน้าใหม่ -->
+            <a href="../Categories/Other.html" class="category-item">
                 <img src="../icons/Other-icon.png" alt="Other">
                 <p>Other</p>
             </a>
-           
         </div>
     </section>
 
@@ -55,9 +54,9 @@
     </section>
 
     <script>
-        // ข้อมูลสินค้าที่แนะนำ
+        // ข้อมูลสินค้าที่แนะนำ (ตัวอย่าง)
         const recommendedProducts = [
-            {
+        {
                 image: "../image/calculator1.jpg",
                 detail: "เครื่องคิดเลข super-fx-plus<br>ไม่มีตำหนิ<br>ใช้งานง่าย<br>รับประกันยังอยู่",
                 price: "1,060"
@@ -134,60 +133,16 @@
             },
         ];
 
+        // แสดงการ์ดสินค้า
         const productGrid = document.getElementById('product-grid');
-
-        // สร้างการ์ดสินค้าแนะนำ
-        // สร้างการ์ดสินค้าแนะนำ
-fetch('http://localhost:3000/products')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(products => {
-        const productGrid = document.getElementById('product-grid');
-        // ตรวจสอบว่ามีสินค้าหรือไม่
-        if (products.length === 0) {
-            productGrid.innerHTML = '<p>ไม่มีสินค้าสำหรับแสดง</p>';
-            return;
-        }
-        
-        products.forEach(product => {
-            // ตรวจสอบว่ามี property ที่ต้องการอยู่ใน object หรือไม่
-            if (product.image_url && product.detail && product.price) {
-                const productLink = document.createElement('a');
-                productLink.href = `../Productdetails/Product-details.html?image=${encodeURIComponent(product.image_url)}&detail=${encodeURIComponent(product.detail)}&price=${product.price}`;
-                productLink.classList.add('product-link');
-
-                const productCard = document.createElement('div');
-                productCard.classList.add('product-card'); // เพิ่ม class สำหรับการจัดสไตล์
-
-                const image = document.createElement('img');
-                image.src = product.image_url;
-                image.alt = product.name || 'Product Image'; // หากชื่อไม่มีให้ใช้ค่า default
-                image.classList.add('product-image');
-
-                const detail = document.createElement('p');
-                detail.innerHTML = product.detail;
-                detail.classList.add('product-detail');
-
-                const price = document.createElement('p');
-                price.innerHTML = `${product.price} บาท`;
-                price.classList.add('product-price');
-
-                productCard.appendChild(image);
-                productCard.appendChild(detail);
-                productCard.appendChild(price);
-                productLink.appendChild(productCard);
-                productGrid.appendChild(productLink);
-            }
+        recommendedProducts.forEach(product => {
+            const productCard = document.createElement('product-card');
+            productCard.setAttribute('image', product.image);
+            productCard.setAttribute('detail', product.detail);
+            productCard.setAttribute('price', product.price);
+            productGrid.appendChild(productCard);
         });
-    })
-    .catch(error => console.error('Error fetching products:', error));
-
     </script>
-
 
     <!-- Use Web Component of Footer -->
     <my-footer></my-footer>

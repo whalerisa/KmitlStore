@@ -4,16 +4,28 @@ class Footer extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
+                /* ตั้งค่าให้ body ครอบคลุมเต็มหน้าและใช้งาน flexbox */
+                :host {
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 70vh; /* ความสูงขั้นต่ำให้เต็มหน้าจอ */
+                }
+
+                /* Content wrapper */
+                .content {
+                    flex: 1;
+                    padding-bottom: 10px; /* ลด padding-bottom เพื่อลดระยะห่างจาก footer */
+                }
+
                 /* Footer */
                 footer {
                     background-color: #E35205;
                     color: white;
-                    padding: 40px 20px;
+                    padding: 20px 20px; /* ลด padding ของ footer ให้เล็กลง */
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-start;
                     flex-wrap: wrap;
-                    margin-top: 110px; /* เพิ่มระยะห่างระหว่างส่วนตรงกลางกับ footer */
                 }
 
                 .footer-links, .social-links {
@@ -22,11 +34,10 @@ class Footer extends HTMLElement {
                     padding-right: 10px;
                 }
 
-                /* ข้อความใน footer */
                 .footer-links h2, .social-links h2 {
                     font-size: 16px;
                     margin-bottom: 10px;
-                    color: #fff; /* สีขาว */
+                    color: #fff;
                 }
 
                 .footer-links ul, .social-links ul {
@@ -60,6 +71,11 @@ class Footer extends HTMLElement {
                 }
             </style>
 
+            <div class="content">
+                <!-- ส่วนของเนื้อหาหลักในหน้านี้ -->
+                <slot></slot> <!-- ใช้ slot เพื่อใส่เนื้อหาจากภายนอก -->
+            </div>
+
             <footer>
                 <div class="footer-links">
                     <h2>Customer Service</h2>
@@ -78,6 +94,7 @@ class Footer extends HTMLElement {
                         <li><img src="../icons/ig-icon.png" alt="Instagram Icon"> Instagram</li>
                         <li><img src="../icons/faceB-icon.png" alt="Facebook Icon"> Facebook</li>
                         <li><img src="../icons/linee-icon.png" alt="Line Icon"> Line</li>
+                    </ul>
                 </div>
             </footer>
         `;

@@ -13,7 +13,7 @@ const db = new sqlite3.Database('./Data.db');
 
 // Route สำหรับดึงข้อมูลสินค้า
 function LeaseAgreement(app) {
-    app.get('categories/Lease Agreement', (req, res) => {
+    app.get('/lease-agreement', (req, res) => {
         const category = req.query.category || 'Lease Agreement'; // รับหมวดหมู่จาก query string หรือใช้ค่าเริ่มต้น
         const sql = 'SELECT * FROM products WHERE categories = ?'; // SQL Query
 

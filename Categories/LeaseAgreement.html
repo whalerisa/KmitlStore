@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
-    <link rel="stylesheet" href="Catagories.css">
-    <script src="../Componant/Navbar.js" defer></script>
-    <script src="../Componant/ProductCard.js" defer></script>
-    <script src="../Componant/Footer.js" defer></script>
+    <link rel="stylesheet" href="Categories.css">
+    <script src="../Components/Navbar.js" defer></script>
+    <script src="../Components/ProductCard.js" defer></script>
+    <script src="../Components/Footer.js" defer></script>
 </head>
 
 <body>
@@ -108,7 +108,7 @@
     // สร้างการ์ดสินค้า
 // สร้างการ์ดสินค้า
 const category = "Lease Agreement"; // หมวดหมู่ที่ต้องการ
-fetch(`http://localhost:3000/products?category=${encodeURIComponent(category)}`)
+fetch('http://localhost:3000/lease-agreement?category=Lease%20Agreement')
 .then(response => {
     if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -118,17 +118,14 @@ fetch(`http://localhost:3000/products?category=${encodeURIComponent(category)}`)
 .then(products => {
     console.log("Fetched products:", products); // Log ข้อมูลที่ดึงมาได้
     const productGrid = document.getElementById('product-grid');
-
-
-    // กรองสินค้าตามหมวดหมู่
-    const filteredProducts = products.filter(product => product.categories === category); 
+    
     // ตรวจสอบว่ามีสินค้าหรือไม่
-    if (filteredProducts.length === 0) {
+    if (products.length === 0) {
         productGrid.innerHTML = '<p>ไม่มีสินค้าสำหรับแสดง</p>';
         return;
     }
     
-    filteredProducts.forEach(product => {
+    products.forEach(product => {
         // ตรวจสอบว่ามี property ที่ต้องการอยู่ใน object หรือไม่
         if (product.image_url && product.detail && product.price) {
             const productLink = document.createElement('a');

@@ -11,13 +11,14 @@ const LeaseAgreement = require('./leaseagreement');
 
 
 
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-const staticFolders = ['Login','register','PostProduct','Home','Catagories'];
+const staticFolders = ['Login','register','PostProduct','Home','Categories','Components'];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
 });

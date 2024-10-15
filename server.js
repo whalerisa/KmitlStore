@@ -15,10 +15,14 @@ const LeaseAgreement = require('./leaseagreement');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
+app.use('/icons', express.static(path.join(__dirname, 'icons')));
+app.use('/Components', express.static(path.join(__dirname, 'Components')));
+app.use('/image', express.static(path.join(__dirname, 'image')));
+app.use('/ImageOfProducts', express.static(path.join(__dirname, 'ImageOfProducts')));
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-const staticFolders = ['Login','register','PostProduct','Home','Categories','Components'];
+const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons'];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
 });
@@ -44,7 +48,6 @@ login(app);
 postproduct(app);
 homepage(app);
 LeaseAgreement(app);
-
 
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;

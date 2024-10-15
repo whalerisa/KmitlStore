@@ -1,4 +1,5 @@
-class Navbar extends HTMLElement {
+class Navbar extends HTMLElement  {
+
     constructor() {
         super();
         this.attachShadow({ mode: 'open' }); // attach shadow DOM

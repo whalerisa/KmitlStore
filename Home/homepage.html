@@ -54,94 +54,35 @@
     </section>
 
     <script>
-        // ข้อมูลสินค้าที่แนะนำ (ตัวอย่าง)
-        const recommendedProducts = [
-        {
-                image: "../image/calculator1.jpg",
-                detail: "เครื่องคิดเลข super-fx-plus<br>ไม่มีตำหนิ<br>ใช้งานง่าย<br>รับประกันยังอยู่",
-                price: "1,060"
-            },
-            {
-                image: "../image/Women-shirt1.jpg",
-                detail: "เสื้อเชิ้ต<br>ไซส์ L<br>ใช้ครั้งเดียว<br>สีขาวสว่าง",
-                price: "200"
-            },
-            {
-                image: "../image/shoes1.jpg",
-                detail: "รองเท้า<br>ไซส์ 40<br>มีกล่องให้ครบ<br>มีตำหนินิดหน่อย",
-                price: "1,800"
-            },
-            {
-                image: "../image/bag1.jpg",
-                detail: "กระเป๋าเป้<br>ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
-                price: "300"
-            },
-            {
-                image: "../image/Laptop1.jpg",
-                detail: "โน๊ตบุ๊ค asus<br>Ryzen 5 RAM 16<br>การ์ดจอแยก",
-                price: "15,150"
-            },
-            {
-                image: "../image/ipad1.jpg",
-                detail: "iPad Air5<br>ความจำ 254 GB<br>ประกัน 1 ปี",
-                price: "25,500"
-            },
-            {
-                image: "../image/Laptop2.jpg",
-                detail: "ACER โน๊ตบุ๊ค Nitro V 16<br>AMD Ryzen 7<br>Memory 16GB",
-                price: "29,930"
-            },
-            {
-                image: "../image/shoes2.jpg",
-                detail: "รองเท้าผ้าใบ<br>ไซต์ 39<br>ใส่แค่ครั้งเดียว",
-                price: "670"
-            },
-            {
-                image: "../image/workshop-shirt1.jpg",
-                detail: "เสื้อช็อปคณะวิศวะ<br>ไซต์ M<br>ไม่มีตำหนิ",
-                price: "275"
-            },
-            {
-                image: "../image/workshop-shirt2.jpg",
-                detail: "เสื้อช็อปคณะวิทยาศาสตร์<br>ไซต์ L<br>ไม่ใช่ของคณะขาย",
-                price: "280"
-            },
-            {
-                image: "../image/Men-shirt2.jpg",
-                detail: "เสื้อนักศึกษาชาย<br>ไซต์ M<br>ไม่เคยใส่เลย",
-                price: "160"
-            },
-            {
-                image: "../image/Malestudentpants-1.jpg",
-                detail: "กางเกงนักศึกษาชาย<br>เอว 35<br>ใส่แค่ครั้งเดียว",
-                price: "200"
-            },
-            {
-                image: "../image/Men-shirt1.jpg",
-                detail: "เสื้อเชิ้ตผู้ชาย<br>ไซส์ M<br>สีขาวนวล, ไม่เปื้อนเลย",
-                price: "100"
-            },
-            {
-                image: "../image/Women-shirt2.jpg",
-                detail: "เสื้อนักศึกษาหญิง<br>ไซส์ L<br>ใช้ครั้งเดียว, แขนสามเหลี่ยม",
-                price: "160"
-            },
-            {
-                image: "../image/bag1.jpg",
-                detail: "กระเป๋าเป้<br>ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
-                price: "300"
-            },
-        ];
-
         // แสดงการ์ดสินค้า
         const productGrid = document.getElementById('product-grid');
-        recommendedProducts.forEach(product => {
-            const productCard = document.createElement('product-card');
-            productCard.setAttribute('image', product.image);
-            productCard.setAttribute('detail', product.detail);
-            productCard.setAttribute('price', product.price);
-            productGrid.appendChild(productCard);
-        });
+
+        // ฟังก์ชันสำหรับดึงข้อมูลสินค้าจาก API
+        async function fetchProducts() {
+            try {
+                const response = await fetch('/products');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const products = await response.json();
+
+                // แสดงการ์ดสินค้าจากข้อมูลที่ได้
+                products.forEach(product => {
+                    const productCard = document.createElement('product-card');
+                    productCard.setAttribute('image', product.image_url); // ใช้ image_url จากฐานข้อมูล
+                    productCard.setAttribute('name',product.name);
+                    productCard.setAttribute('detail', product.detail);
+                    productCard.setAttribute('price', product.price);
+                    productGrid.appendChild(productCard);
+                });
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้า
+        window.onload = fetchProducts;
+
     </script>
 
     <!-- Use Web Component of Footer -->

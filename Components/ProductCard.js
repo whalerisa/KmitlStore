@@ -5,7 +5,7 @@ class ProductCard extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['image', 'detail', 'price'];
+        return ['name','image', 'detail', 'price'];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -20,6 +20,7 @@ class ProductCard extends HTMLElement {
 
     render() {
         const image = this.getAttribute('image');
+        const name = this.getAttribute('name');
         const detail = this.getAttribute('detail');
         const price = this.getAttribute('price');
 
@@ -70,6 +71,7 @@ class ProductCard extends HTMLElement {
             </style>
             <div class="product-card">
                 <img src="${image}" alt="${detailLines[0]}">
+                <h3>${name[0]}</h3>
                 <h3>${detailLines[0]}</h3>
                 <ul>
                     ${detailLines.slice(1).map(line => `<li>${line}</li>`).join('')}

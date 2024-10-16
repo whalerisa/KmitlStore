@@ -19,7 +19,7 @@
     <div class="Productdetails">
         <div class="product-container">
             <div class="product-image-container">
-                <img id="product-image" src="../image/default.jpg" alt="Product Image" class="product-image">
+                <img id="product-image" src="../ImageOfProducts/1728572308338.JPG" alt="Product Image" class="product-image">
                 <div class="shop-info">
                     <img src="../icons/Profile.jpg" alt="Shop Owner">
                     <p>น้ำ ขายของ</p>
@@ -40,7 +40,7 @@
                         <span id="quantity">0</span>
                         <button id="increase" class="iconify" data-icon="mdi:plus" onclick="changeQuantity(1)"></button>
                     </div>
-                    <p>1 pieces available</p>
+                    <p id="product-stock">1 pieces available</p>
                 </div>
 
                 <div class="buttons">
@@ -54,97 +54,90 @@
     <!-- สินค้าที่แนะนำ -->
     <section class="products">
         <h2>YOU MAY ALSO LIKE</h2>
-        <div class="product-grid" id="recommend-grid"></div> <!-- แก้ไขจาก product-grid เป็น recommend-grid -->
+        <div class="product-grid" id="recommend-grid"></div>
     </section>
 
     <script>
+        // ฟังก์ชันดึง query parameters จาก URL
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
             return {
-                image: params.get('image'),
-                detail: params.get('detail'),
-                price: params.get('price'),
+                id: params.get('id'),  // ใช้ id แทนการใช้ image, detail, price
             };
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const { image, detail, price } = getQueryParams();
+            const { id } = getQueryParams();
 
-            // แสดงข้อมูลสินค้าในหน้ารายละเอียด
-            document.getElementById('product-image').src = image;
-            document.getElementById('product-price').innerText = `${price} บาท`;
-            document.getElementById('product-description').innerHTML = detail;
+            // ตรวจสอบว่ามี id หรือไม่
+            if (id) {
+                // ดึงข้อมูลสินค้าจาก API
+                fetch(`api/products/${id}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(product => {
+                        console.log(product); // เพิ่มบรรทัดนี้เพื่อตรวจสอบข้อมูลที่ได้รับ
+                        // แสดงข้อมูลสินค้าในหน้า
+                        document.getElementById('product-image').src = product.image_url;
+                        document.getElementById('product-title').innerText = product.name; // เพิ่ม title
+                        document.getElementById('product-price').innerText = `${product.price} บาท`;
+                        document.getElementById('product-description').innerHTML = product.detail;
+                        document.getElementById('product-stock').innerHTML = product.stock
+                    })
+                    .catch(error => {
+                        console.error('Error fetching product details:', error);
+                    });
+            }
+            let quantity = 0;
 
-            // สินค้าที่แนะนำ
-            const recommendedProducts = [
-                {
-                    image: "../image/Laptop2.jpg",
-                    detail: "ACER โน๊ตบุ๊ค Nitro V 16<br>AMD Ryzen 7<br>Memory 16GB",
-                    price: "29,930"
-                },
-                {
-                    image: "../image/shoes2.jpg",
-                    detail: "รองเท้าผ้าใบ<br>ไซต์ 39<br>ใส่แค่ครั้งเดียว",
-                    price: "670"
-                },
-                {
-                    image: "../image/workshop-shirt1.jpg",
-                    detail: "เสื้อช็อปคณะวิศวะ<br>ไซต์ M<br>ไม่มีตำหนิ",
-                    price: "275"
-                },
-                {
-                    image: "../image/workshop-shirt2.jpg",
-                    detail: "เสื้อช็อปคณะวิทยาศาสตร์<br>ไซต์ L<br>ไม่ใช่ของคณะขาย",
-                    price: "280"
-                },
-                {
-                    image: "../image/Men-shirt2.jpg",
-                    detail: "เสื้อนักศึกษาชาย<br>ไซต์ M<br>ไม่เคยใส่เลย",
-                    price: "160"
-                },
-                {
-                    image: "../image/Malestudentpants-1.jpg",
-                    detail: "กางเกงนักศึกษาชาย<br>เอว 35<br>ใส่แค่ครั้งเดียว",
-                    price: "200"
-                },
-                {
-                    image: "../image/Men-shirt1.jpg",
-                    detail: "เสื้อเชิ้ตผู้ชาย<br>ไซส์ M<br>สีขาวนวล, ไม่เปื้อนเลย",
-                    price: "100"
-                },
-                {
-                    image: "../image/Women-shirt2.jpg",
-                    detail: "เสื้อนักศึกษาหญิง<br>ไซส์ L<br>ใช้ครั้งเดียว, แขนสามเหลี่ยม",
-                    price: "160"
-                },
-                {
-                    image: "../image/bag1.jpg",
-                    detail: "กระเป๋าเป้<br>ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
-                    price: "300"
-                },
-            ];
+            function changeQuantity(change) {
+                quantity += change;
+                if (quantity < 0) quantity = 0; // ไม่ให้ต่ำกว่า 0
+                document.getElementById('quantity').innerText = quantity; // แสดงจำนวน
+            }
 
-            // แสดงสินค้าที่แนะนำ
             const recommendGrid = document.getElementById('recommend-grid');
-            recommendedProducts.forEach(product => {
-                const recommendCard = document.createElement('product-card');
-                recommendCard.setAttribute('image', product.image);
-                recommendCard.setAttribute('detail', product.detail);
-                recommendCard.setAttribute('price', product.price);
-                recommendGrid.appendChild(recommendCard);
-            });
+            // แสดงสินค้าที่แนะนำ
+            async function fetchProducts() {
+                try {
+                    const response = await fetch('/products');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const products = await response.json();
+
+                    // แสดงการ์ดสินค้าจากข้อมูลที่ได้
+                    products.forEach(product => {
+                        const productLink = document.createElement('a');
+                        productLink.href = `Product-details.html?id=${product.id}`; // ส่ง id
+                        productLink.classList.add('product-link');
+
+                        const recommendCard = document.createElement('product-card');
+                        recommendCard.setAttribute('image', product.image_url);
+                        recommendCard.setAttribute('name', product.name);
+                        recommendCard.setAttribute('detail', product.detail);
+                        recommendCard.setAttribute('price', product.price);
+
+                        productLink.appendChild(recommendCard);
+                        recommendGrid.appendChild(productLink);
+                    });
+                } catch (error) {
+                    console.error('Error fetching products:', error);
+                }
+            }
+
+            fetchProducts(); // เรียกใช้ฟังก์ชันเพื่อดึงสินค้าที่แนะนำ
+
+           
         });
 
-        let quantity = 0;
-
-        function changeQuantity(change) {
-            quantity += change;
-            if (quantity < 0) quantity = 0; // ไม่ให้ต่ำกว่า 0
-            document.getElementById('quantity').innerText = quantity; // แสดงจำนวน
-        }
     </script>
 
-    <!-- Use Web Component of Footer -->
+    <!-- ใช้ Web Component ของ Footer -->
     <my-footer></my-footer>
 
 </body>

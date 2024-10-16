@@ -19,6 +19,7 @@ class ProductCard extends HTMLElement {
     }
 
     render() {
+        
         const image = this.getAttribute('image');
         const name = this.getAttribute('name');
         const detail = this.getAttribute('detail');

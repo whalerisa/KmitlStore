@@ -207,3 +207,12 @@ body {
     padding: 30px; /* เพิ่ม padding เพื่อเว้นระยะ */
 }
 
+.product-link:hover {
+    transform: scale(1.05); /* ขยายการ์ดเล็กน้อยเมื่อเลื่อนเมาส์ */
+    transition: transform 0.2s; /* การเปลี่ยนแปลงอย่างราบรื่น */
+}
+
+.product-grid a {
+    text-decoration: none; /* ลบขีดเส้นใต้ลิงก์ */
+    color: inherit; /* ให้สีของข้อความไม่เปลี่ยน */
+}

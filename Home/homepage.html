@@ -68,12 +68,19 @@
 
                 // แสดงการ์ดสินค้าจากข้อมูลที่ได้
                 products.forEach(product => {
+                    const productLink = document.createElement('a');
+                    productLink.href = `../Productdetails/Product-details.html?image=${encodeURIComponent(product.image)}&detail=${encodeURIComponent(product.detail)}&price=${product.price}`;
+                    productLink.classList.add('product-link');
+
                     const productCard = document.createElement('product-card');
                     productCard.setAttribute('image', product.image_url); // ใช้ image_url จากฐานข้อมูล
                     productCard.setAttribute('name',product.name);
                     productCard.setAttribute('detail', product.detail);
                     productCard.setAttribute('price', product.price);
                     productGrid.appendChild(productCard);
+
+                    productLink.appendChild(productCard);
+                    productGrid.appendChild(productLink);
                 });
             } catch (error) {
                 console.error('Error fetching products:', error);

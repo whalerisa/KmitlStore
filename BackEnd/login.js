@@ -45,3 +45,19 @@ function login(app){
 }
 module.exports = login;  // ส่งออกฟังก์ชัน login
 
+// ในไฟล์ BackEnd/login.js หรือที่ที่คุณจัดการเกี่ยวกับการเข้าสู่ระบบ
+app.get('/checkLogin', (req, res) => {
+    const token = req.headers['authorization'];
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    
+    jwt.verify(token, 'secret_key', (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        res.status(200).json({ message: 'Authorized', userId: decoded.id });
+    });
+});
+
+

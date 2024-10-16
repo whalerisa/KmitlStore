@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const jwt = require('jsonwebtoken');
-const register = require('./BackEnd/register'); 
-const login = require('./BackEnd/login'); // นำเข้า login
+const register = require('./BackEnd/register'); // นำเข้า register
+const login = require('./BackEnd/login'); 
 const postproduct = require('./BackEnd/postproduct'); 
 const homepage = require('./BackEnd/homepage'); 
 const LeaseAgreement = require('./BackEnd/leaseagreement');
@@ -15,6 +15,7 @@ const SchoolSupplies = require('./BackEnd/schoolsupplies');
 const Vehicle = require('./BackEnd/vehicle');
 const WomensClothing = require('./BackEnd/womenclothing');
 const Profile = require('./BackEnd/Profile');
+const ProductDetail = require('./BackEnd/productdetail');
 
 
 
@@ -27,7 +28,7 @@ app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุก
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd','Profile'];
+const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd','Profile','Productdetails','ImageOfProducts'];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
 }); 
@@ -59,7 +60,7 @@ SchoolSupplies(app);
 Vehicle(app);
 WomensClothing(app)
 Profile(app);
-
+ProductDetail(app);
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

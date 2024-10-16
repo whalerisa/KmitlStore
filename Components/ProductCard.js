@@ -71,7 +71,7 @@ class ProductCard extends HTMLElement {
             </style>
             <div class="product-card">
                 <img src="${image}" alt="${detailLines[0]}">
-                <h3>${name[0]}</h3>
+                <h3>${name}</h3>
                 <h3>${detailLines[0]}</h3>
                 <ul>
                     ${detailLines.slice(1).map(line => `<li>${line}</li>`).join('')}

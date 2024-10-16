@@ -15,10 +15,8 @@ const LeaseAgreement = require('./leaseagreement');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
-app.use('/icons', express.static(path.join(__dirname, 'icons')));
-app.use('/Components', express.static(path.join(__dirname, 'Components')));
-app.use('/image', express.static(path.join(__dirname, 'image')));
-app.use('/ImageOfProducts', express.static(path.join(__dirname, 'ImageOfProducts')));
+app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุกโฟลเดอร์ที่อยู่ในroot ให้เป็นstatic files
+
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS

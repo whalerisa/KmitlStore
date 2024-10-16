@@ -3,31 +3,30 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const path = require('path');
-const multer = require('multer'); // ใช้สำหรับการอัปโหลดไฟล์
+const multer = require('multer');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
+// ตั้งค่าโฟลเดอร์ static
 app.use(express.static(path.join(__dirname, 'PostProduct')));
-app.use('/ImageOfProducts', express.static(path.join(__dirname, 'uploads'))); // เพิ่มเส้นทางสำหรับไฟล์รูปภาพ
+app.use('/ImageOfProducts', express.static(path.join(__dirname, 'uploads')));
 
-// ตั้งค่า multer สำหรับอัปโหลดไฟล์
+// ตั้งค่า multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './ImageOfProducts'); // กำหนดโฟลเดอร์ที่เก็บไฟล์
+        cb(null, './ImageOfProducts');
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // ตั้งชื่อไฟล์เป็นเวลาเพื่อไม่ให้ซ้ำกัน
+        cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 } // ตั้งขนาดสูงสุดของไฟล์เป็น 10MB
+    limits: { fileSize: 10 * 1024 * 1024 }
 });
-
 
 // เชื่อมต่อกับฐานข้อมูล SQLite
 const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
@@ -41,29 +40,37 @@ const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE | sqlite3.OP
 db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS products (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        userId INTEGER NOT NULL,
         name TEXT NOT NULL,
         price REAL NOT NULL,
         status TEXT NOT NULL,
         categories TEXT NOT NULL,
         detail TEXT NOT NULL,
         stock INTEGER NOT NULL,
-        image_url TEXT
+        image_url TEXT,
+        FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
     )`);
 });
 
 // API สำหรับเพิ่มสินค้า พร้อมอัปโหลดรูปภาพ
 function postproduct(app) {
     app.post('/addProduct', upload.single('image'), (req, res) => {
-        const { name, price, status, categories, detail, stock } = req.body;
-        const image_url = req.file ? `/ImageOfProducts/${req.file.filename}` : null; // เก็บ URL ของรูปภาพ
+        // ตรวจสอบว่าผู้ใช้ได้เข้าสู่ระบบแล้วหรือไม่
+        const userId = req.user ? req.user.id : null; // รับ userId จาก req.user (ต้องมี middleware ที่ตั้งค่า req.user)
 
-        // ตรวจสอบข้อมูลเพิ่มเติมก่อนทำการบันทึก
+        if (!userId) {
+            return res.redirect('/Login.html'); // ส่งต่อไปยังหน้า login
+        }
+
+        const { name, price, status, categories, detail, stock } = req.body;
+        const image_url = req.file ? `/ImageOfProducts/${req.file.filename}` : null;
+
         if (!name || !price || !status || !categories || !detail || !stock) {
             return res.status(400).json({ message: 'ข้อมูลไม่ครบถ้วน' });
         }
 
-        db.run(`INSERT INTO products (name, price, status, categories, detail, stock, image_url) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-            [name, price, status, categories, detail, stock, image_url],
+        db.run(`INSERT INTO products (userId, name, price, status, categories, detail, stock, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [userId, name, price, status, categories, detail, stock, image_url],
             function (err) {
                 if (err) {
                     console.log(err);
@@ -73,6 +80,7 @@ function postproduct(app) {
             });
     });
 }
+
 module.exports = postproduct;
 
 // API ดึงข้อมูลสินค้าทั้งหมด
@@ -84,4 +92,3 @@ app.get('/products', (req, res) => {
         res.json(rows);
     });
 });
-

@@ -11,7 +11,6 @@
 
 </head>
 
-<body>
 
     <!-- ใช้ Web Component ของ Navbar -->
     <my-navbar></my-navbar>
@@ -71,7 +70,43 @@
             </div>
         </div>
         </div>
+        <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token'); // สมมุติว่าเก็บ token ใน localStorage
+        console.log('Token:', token);
+        if (!token) {
+            alert('กรุณาเข้าสู่ระบบก่อน');
+            window.location.href = '../Login/Login.html'; // เปลี่ยนไปที่หน้าเข้าสู่ระบบ
+            return;
+        }
+    
+        try {
+            const response = await fetch('http://localhost:3000/users', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}` // ส่ง token ไปกับ request ในรูปแบบ Bearer
+        }
+        });
+        if (!response.ok) {
+            if (response.status === 401) {
+                alert('Token ไม่ถูกต้อง กรุณาเข้าสู่ระบบใหม่');
+                window.location.href = '../Login/Login.html';
+            }
+            throw new Error('ไม่สามารถดึงข้อมูลผู้ใช้ได้');
+        }
+        const userData = await response.json();
+        // ใส่ข้อมูลที่ดึงมาใน HTML
+        document.querySelector('.profile-header h1').textContent = userData.username;
+        document.querySelector('.profile-info p:nth-child(1)').textContent = `ชื่อ ${userData.username}`;
+        document.querySelector('.profile-info p:nth-child(2)').textContent = `เบอร์โทรศัพท์ ${userData.phone}`;
+        document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${userData.email}`;
+    } catch (error) {
+        console.error('Error:', error);
+        alert('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้');
+    }
+});
 
+</script>
         <!-- Use Web Component of Footer -->
         <my-footer></my-footer>
 

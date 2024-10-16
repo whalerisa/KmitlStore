@@ -69,8 +69,19 @@
         </div>
 
     <script>
+        // ส่วนนี้เพิ่มการตรวจสอบสถานะการเข้าสู่ระบบ
+        async function checkLogin() {
+            const response = await fetch('http://localhost:3000/checkLogin'); // สร้าง API สำหรับตรวจสอบการเข้าสู่ระบบ
+            return response.ok;
+        }
         document.getElementById('product-form').addEventListener('submit', async function(event) {
             event.preventDefault();
+
+            const isLoggedIn = await checkLogin();
+            if (!isLoggedIn) {
+                window.location.href = '/Login.html'; // เปลี่ยนเส้นทางไปยังหน้า login
+                return;
+            }
 
             const name = document.getElementById('product-name').value;
             const price = document.getElementById('price').value;

@@ -18,7 +18,7 @@
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter Password" required>
 
-            <button type="submit" class="login-btn" onclick="redirectToHomepage">Log In</button>
+            <button type="submit" class="login-btn">Log In</button>
         </form>
 
         <div class="separator">
@@ -54,6 +54,8 @@
                     const result = await response.json();
 
                     if (response.ok) {
+                        // เก็บ token ที่ได้รับใน localStorage
+                        localStorage.setItem('token', result.token);
                         alert(result.message); // แจ้งผลการเข้าสู่ระบบ
                         // เปลี่ยนเส้นทางไปยังหน้าโปรไฟล์หรือตรงตามที่คุณต้องการ
                         window.location.href = "../profile/profile.html"; 
@@ -76,6 +78,7 @@
         </script>
 
     </div>
+  
 </body>
 
 </html>

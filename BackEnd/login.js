@@ -3,6 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -33,7 +34,9 @@ function login(app){
                 return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการตรวจสอบข้อมูล' });
             }
             if (row) {
-                return res.json({ message: 'เข้าสู่ระบบสำเร็จ', user: row });
+               // สร้าง token
+               const token = jwt.sign({ id: row.id }, 'your_secret_key', { expiresIn: '1h' });
+               return res.json({ message: 'เข้าสู่ระบบสำเร็จ', token }); // ส่ง token กลับไป
             } else {
                 return res.status(401).json({ message: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง' });
             }

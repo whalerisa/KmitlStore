@@ -3,11 +3,16 @@ const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const register = require('./register'); 
-const login = require('./login'); // นำเข้า login
+const register = require('./BackEnd/register'); 
+const login = require('./BackEnd/login'); // นำเข้า login
 const postproduct = require('./postproduct'); 
-const homepage = require('./homepage'); 
-const LeaseAgreement = require('./leaseagreement');
+const homepage = require('./BackEnd/homepage'); 
+const LeaseAgreement = require('./BackEnd/leaseagreement');
+const MensClothing = require('./BackEnd/menclothing');
+const Other = require('./BackEnd/other');
+const SchoolSupplies = require('./BackEnd/schoolsupplies');
+const Vehicle = require('./BackEnd/vehicle');
+const WomensClothing = require('./BackEnd/womenclothing');
 
 
 
@@ -20,10 +25,10 @@ app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุก
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons'];
+const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd'];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
-});
+}); 
 
 
 // สร้างตารางถ้ายังไม่มี
@@ -46,6 +51,11 @@ login(app);
 postproduct(app);
 homepage(app);
 LeaseAgreement(app);
+MensClothing(app);
+Other(app);
+SchoolSupplies(app);
+Vehicle(app);
+WomensClothing(app)
 
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;

@@ -109,7 +109,6 @@ LeaseAgreement.html
     // สร้างการ์ดสินค้า
     // สร้างการ์ดสินค้า
 // สร้างการ์ดสินค้า
-const category = "Lease Agreement"; // หมวดหมู่ที่ต้องการ
 fetch('http://localhost:3000/lease-agreement?category=Lease%20Agreement')
 .then(response => {
     if (!response.ok) {
@@ -129,34 +128,14 @@ fetch('http://localhost:3000/lease-agreement?category=Lease%20Agreement')
     
     products.forEach(product => {
         // ตรวจสอบว่ามี property ที่ต้องการอยู่ใน object หรือไม่
-        if (product.image_url && product.detail && product.price) {
-            const productLink = document.createElement('a');
-            productLink.href = `../Productdetails/Product-details.html?image=${encodeURIComponent(product.image_url)}&detail=${encodeURIComponent(product.detail)}&price=${product.price}`;
-            productLink.classList.add('product-link');
-
-            const productCard = document.createElement('div');
-            productCard.classList.add('product-card'); // เพิ่ม class สำหรับการจัดสไตล์
-
-            const image = document.createElement('img');
-            image.src = product.image_url;
-            image.alt = product.name || 'Product Image'; // หากชื่อไม่มีให้ใช้ค่า default
-            image.classList.add('product-image');
-
-            const detail = document.createElement('p');
-            detail.innerHTML = product.detail;
-            detail.classList.add('product-detail');
-
-            const price = document.createElement('p');
-            price.innerHTML = `${product.price} บาท`;
-            price.classList.add('product-price');
-
-            productCard.appendChild(image);
-            productCard.appendChild(detail);
-            productCard.appendChild(price);
-            productLink.appendChild(productCard);
-            productGrid.appendChild(productLink);
+        const productCard = document.createElement('product-card');
+                    productCard.setAttribute('image', product.image_url); // ใช้ image_url จากฐานข้อมูล
+                    productCard.setAttribute('name',product.name);
+                    productCard.setAttribute('detail', product.detail);
+                    productCard.setAttribute('price', product.price);
+                    productGrid.appendChild(productCard);
         }
-    });
+    );
 })
 .catch(error => console.error('Error fetching products:', error));
 

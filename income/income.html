@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ภาพรวมรายรับของฉัน</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="income.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Sidebar.js" defer></script>
@@ -25,16 +26,16 @@
         <!-- Container for income summary -->
         <div class="summary-section">
             <div class="summary-box">
-                <h2>ภาพรวมรายรับของฉัน</h2>
+                <h2>My Income Overview</h2>
                 <div class="summary-details">
                     <div class="detail">
-                        <h3>รอดำเนินการ</h3>
-                        <p>รวม</p>
+                        <h3>Pending</h3>
+                        <p>Total</p>
                         <p>฿ 0</p>
-                    </div>
+                    </div> 
                     <div class="detail">
-                        <h3>โอนเงินแล้ว</h3>
-                        <p>รวม</p>
+                        <h3>Transferred</h3>
+                        <p>Total</p>
                         <p>฿ 0</p>
                     </div>
                 </div>
@@ -43,32 +44,32 @@
 
         <!-- Container for detailed income list -->
         <div class="details-section">
-            <h2>รายละเอียดรายรับของฉัน</h2>
-            <h3>เสร็จสิ้นแล้ว</h3>
+            <h2>My Income Details</h2>
+            <h3>Completed</h3>
             <table>
                 <thead>
                     <tr>
-                        <th>คำสั่งซื้อ</th>
-                        <th>ได้รับเงินเมื่อ</th>
-                        <th>สถานะ</th>
-                        <th>ช่องทางการชำระเงิน</th>
-                        <th>ยอดที่โอน</th>
+                        <th>Order</th>
+                        <th>Received On</th>
+                        <th>Status</th>
+                        <th>Payment Method</th>
+                        <th>Amount Transferred</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>00000000 <span style="margin-left: 20px;">เสื้อนักศึกษา</span></td>
                         <td>12/10/2567</td>
-                        <td class="status-success">สำเร็จ</td>
-                        <td>เงินสด</td>
-                        <td>160 บาท</td>
+                        <td class="status-success">Completed</td>
+                        <td>Cash</td>
+                        <td>160 ฿</td>
                     </tr>
                     <tr>
                         <td>00000000 <span style="margin-left: 20px;">เสื้อนักศึกษา</span></td>
                         <td>12/10/2567</td>
-                        <td class="status-success">สำเร็จ</td>
-                        <td>โอนจ่าย</td>
-                        <td>160 บาท</td>
+                        <td class="status-success">Completed</td>
+                        <td>Bank Transfer</td>
+                        <td>160 ฿</td>
                     </tr>
                 </tbody>
             </table>

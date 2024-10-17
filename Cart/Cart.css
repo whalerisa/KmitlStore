@@ -1,6 +1,6 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', 'Noto Sans Thai', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f7f7f7;
@@ -10,8 +10,8 @@ body {
     width: 400px; /* กว้างของกล่อง */
     margin: 20px auto; /* จัดกลาง */
     padding: 20px; /* ระยะห่างภายใน */
-    background-color: white; /* พื้นหลังของกล่อง */ 
-    border-radius: 10px; /* มุมมน */
+    background-color: #D9D9D9; /* พื้นหลังของกล่อง */ 
+    border-radius: 15px; /* มุมมน */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */
     margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
 }
@@ -22,15 +22,20 @@ h1 {
 }
 
 /* Cart Item Styling */
+
+
 .cart-items {
     padding: 10px; /* ระยะห่างภายใน */
-    border-radius: 5px; /* มุมมน */
+    border-radius: 15px; /* มุมมน */
 }
 
 .cart-item {
     display: flex; /* ใช้ flexbox สำหรับการจัดเรียง */
     align-items: center; /* จัดแนวแนวตั้ง */
     margin: 10px 0; /* ระยะห่างระหว่างรายการ */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* เพิ่มเงา */
+    background-color: #fff; /* เพิ่มสีพื้นหลังให้ชัดเจนขึ้น */
+    border-radius: 15px; 
 }
 
 .item-checkbox {
@@ -65,7 +70,7 @@ h1 {
 .item-label {
     display: flex; /* ใช้ flexbox สำหรับการจัดเรียง */
     align-items: center; /* จัดแนวแนวตั้ง */
-    background-color: #f7f7f7; /* สีพื้นหลังของรายการ */
+    background-color: #fff; /* สีพื้นหลังของรายการ */
     padding: 10px; /* ระยะห่างภายใน */
     border-radius: 15px; /* มุมมน */
     flex-grow: 1; /* ให้ออกไปเต็มพื้นที่ */
@@ -111,6 +116,7 @@ h1 {
 
 .checkout-button {
     background-color: #E35205; /* สีพื้นหลังปุ่ม */
+    font-size: 18px; /* ขนาดตัวอักษร */
     color: white; /* สีข้อความ */
     border: none; /* ไม่ให้มีเส้นขอบ */
     padding: 10px 20px; /* ระยะห่างภายใน */

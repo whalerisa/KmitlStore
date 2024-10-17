@@ -4,11 +4,15 @@ class Footer extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
+                /* ลิงก์ไปยังฟอนต์ Inter */
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
                 /* ตั้งค่าให้ body ครอบคลุมเต็มหน้าและใช้งาน flexbox */
                 :host {
                     display: flex;
                     flex-direction: column;
                     min-height: 70vh; /* ความสูงขั้นต่ำให้เต็มหน้าจอ */
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 /* Content wrapper */
@@ -26,6 +30,7 @@ class Footer extends HTMLElement {
                     justify-content: space-between;
                     align-items: flex-start;
                     flex-wrap: wrap;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .footer-links, .social-links {
@@ -38,6 +43,7 @@ class Footer extends HTMLElement {
                     font-size: 16px;
                     margin-bottom: 10px;
                     color: #fff;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .footer-links ul, .social-links ul {
@@ -49,6 +55,7 @@ class Footer extends HTMLElement {
                 .footer-links li, .social-links li {
                     font-size: 12px;
                     margin: 3px 0;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .social-links li {
@@ -64,6 +71,7 @@ class Footer extends HTMLElement {
                 footer a {
                     color: white;
                     text-decoration: none;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 footer a:hover {

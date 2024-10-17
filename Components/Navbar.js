@@ -1,22 +1,25 @@
-class Navbar extends HTMLElement  {
-
+class Navbar extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' }); // attach shadow DOM
         this.shadowRoot.innerHTML = `
             <style>
+                /* ลิงก์ไปยังฟอนต์ Inter */
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+                
                 header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background-color: #E35205;
-                padding: 10px 20px;
-                color: white;
-                position: fixed;
-                top: 0; 
-                left: 0; 
-                right: 0; 
-                z-index: 1000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: #E35205;
+                    padding: 10px 20px;
+                    color: white;
+                    position: fixed;
+                    top: 0; 
+                    left: 0; 
+                    right: 0; 
+                    z-index: 1000;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
                 .left-section {
                     display: flex;
@@ -30,6 +33,7 @@ class Navbar extends HTMLElement  {
                 }
                 .back-button img {
                     width: 60px;
+                    transition: all 0.3s;
                 }
                 .logo {
                     width: 60px;
@@ -47,6 +51,7 @@ class Navbar extends HTMLElement  {
                     border: none;
                     border-radius: 45px;
                     padding-right: 40px;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
                 .search-icon {
                     position: absolute;
@@ -74,20 +79,28 @@ class Navbar extends HTMLElement  {
                     flex-direction: column;
                     align-items: center;
                     font-size: 14px;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
                 .nav-links img {
                     width: 40px;
                     height: 40px;
                 }
+
                 .nav-links img[alt="Profile Icon"] {
                     border-radius: 50%;
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .nav-links button:hover {
+                    color: #AA4109;
                 }
             </style>
 
             <header>
                 <div class="left-section">
-                    <button class="back-button">
-                        <img src="../icons/back-icon.png" alt="Back Icon">
+                    <button class="back-button" id="backButton">
+                        <img src="../icons/back-icon.png" alt="Back Icon" id="backIcon">
                     </button>
                     <a href="../Home/homepage.html">
                         <img src="../icons/logo.png" alt="KMITL Logo" class="logo">
@@ -103,20 +116,20 @@ class Navbar extends HTMLElement  {
 
                 <div class="nav-links">
                     <a href="../chat/chat.html">
-                        <button>
-                           <img src="../icons/chat-icon.png" alt="Chat Icon"> 
+                        <button class="chat-button" id="chatButton">
+                            <img src="../icons/chat-icon-1.png" alt="Chat Icon" id="chatIcon"> 
                             Chat
                         </button>
                     </a>
                     <a href="../Help/help.html">
-                        <button>
-                            <img src="../icons/help-icon.png" alt="Help Icon">
+                        <button class="help-button" id="helpButton">
+                            <img src="../icons/help-icon.png" alt="Help Icon" id="helpIcon">
                             Help
                         </button>
                     </a>
                     <a href="../cart/cart.html">
-                        <button>
-                            <img src="../icons/cart-icon.png" alt="Cart Icon">
+                        <button class="cart-button" id="cartButton">
+                            <img src="../icons/cart-icon.png" alt="Cart Icon" id="cartIcon">
                             Cart
                         </button>
                     </a>
@@ -130,10 +143,55 @@ class Navbar extends HTMLElement  {
             </header>
         `;
 
-        // เพิ่ม event listener ให้กับปุ่ม back-button
-        this.shadowRoot.querySelector('.back-button').addEventListener('click', () => {
-            history.back(); // ใช้ history.back() เพื่อย้อนกลับไปหน้าที่แล้ว
+        // Event listeners สำหรับปุ่มต่างๆ
+        const backButton = this.shadowRoot.querySelector('#backButton');
+        const backIcon = this.shadowRoot.querySelector('#backIcon');
+
+        backButton.addEventListener('mouseover', () => {
+            backIcon.src = '../icons/back-icon-3.png';
+        });
+
+        backButton.addEventListener('mouseout', () => {
+            backIcon.src = '../icons/back-icon.png';
+        });
+
+        backButton.addEventListener('click', () => {
+            history.back();
+        });
+
+        const chatButton = this.shadowRoot.querySelector('#chatButton');
+        const chatIcon = this.shadowRoot.querySelector('#chatIcon');
+
+        chatButton.addEventListener('mouseover', () => {
+            chatIcon.src = '../icons/chat-icon-3.png';
+        });
+
+        chatButton.addEventListener('mouseout', () => {
+            chatIcon.src = '../icons/chat-icon-1.png';
+        });
+
+        const helpButton = this.shadowRoot.querySelector('#helpButton');
+        const helpIcon = this.shadowRoot.querySelector('#helpIcon');
+
+        helpButton.addEventListener('mouseover', () => {
+            helpIcon.src = '../icons/help-icon-2.png';
+        });
+
+        helpButton.addEventListener('mouseout', () => {
+            helpIcon.src = '../icons/help-icon.png';
+        });
+
+        const cartButton = this.shadowRoot.querySelector('#cartButton');
+        const cartIcon = this.shadowRoot.querySelector('#cartIcon');
+
+        cartButton.addEventListener('mouseover', () => {
+            cartIcon.src = '../icons/cart-icon-2.png';
+        });
+
+        cartButton.addEventListener('mouseout', () => {
+            cartIcon.src = '../icons/cart-icon.png';
         });
     }
 }
+
 customElements.define('my-navbar', Navbar);

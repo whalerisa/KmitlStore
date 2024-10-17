@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>สถานะสินค้าพร้อมส่งมอบ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="my_products.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Sidebar.js" defer></script> 
@@ -21,48 +23,61 @@
     <my-sidebar></my-sidebar>
 
     <div class="container">
-        <h1>สินค้าของฉัน</h1>
+        <h1>My Products</h1>
         <div class="tabs">
-            <span class="tablink active" onclick="showTab(event, 'current')">ทั้งหมด</span>
+            <span class="tablink active" onclick="showTab(event, 'current')">All</span>
         </div>
     
-        <!-- ข้อมูลปัจจุบัน -->
+        <!-- Current Data -->
         <div id="current" class="tabcontent" style="display: block;">
-            <div class="item-container">
-                <div>รหัสสินค้า</div>
-                <div>ชื่อสินค้า</div>
-                <div>ยอดชำระเงิน</div>
-                <div>สถานะ</div>
+            <div class="item-container header">
+                <div class="header-title">Product ID</div>
+                <div class="header-title">Product Name</div>
+                <div class="header-title">Total Payment</div>
+                <div class="header-title">Status</div>
+                <div></div> <!-- คอลัมน์สำหรับปุ่ม Delete -->
             </div>
             <div class="item-container">
                 <div class="highlight">00000000</div>
-                <div class="highlight">เสื้อนักศึกษา</div>
-                <div class="highlight">160 บาท</div>
-                <div class="status">กำลังจัดส่ง</div>
+                <div class="highlight">เสื้อนักศึกษาหญิง</div>
+                <div class="highlight">160 ฿</div>
+                <div class="status">Shipping</div>
+                <div><button class="delete-btn" onclick="deleteItem(this)">Delete</button></div>
             </div>
         </div>
 
         <!-- ข้อมูลที่สำเร็จแล้ว -->
         <div id="completed" class="tabcontent" style="display: none;"> <!-- ซ่อนแท็บนี้เริ่มแรก -->
-            <div class="item-container">
-                <div>รหัสสินค้า</div>
-                <div>ชื่อสินค้า</div>
-                <div>ยอดชำระเงิน</div>
-                <div>สถานะ</div>
+            <div class="item-container header">
+                <div class="header-title">Product ID</div>
+                <div class="header-title">Product Name</div>
+                <div class="header-title">Total Payment</div>
+                <div class="header-title">Status</div>
+                <div></div> <!-- คอลัมน์สำหรับปุ่ม Delete -->
             </div>
             <div class="item-container">
                 <div class="highlight">00000001</div>
                 <div class="highlight">หนังสือเรียน</div>
-                <div class="highlight">200 บาท</div>
-                <div class="highlight">จัดส่งสำเร็จ</div>
+                <div class="highlight">200 ฿</div>
+                <div class="highlight">Completed</div>
+                <div><button class="delete-btn" onclick="deleteItem(this)">Delete</button></div>
             </div>
         </div>
     </div>
 
     <script src="DeliveryPending.js"></script>
 
-     <!-- Use Web Component of Footer -->
+     <!-- ใช้ Web Component ของ Footer -->
      <my-footer></my-footer>
 
+    <script>
+        // ฟังก์ชันสำหรับลบแถวสินค้า
+        function deleteItem(button) {
+            const itemContainer = button.closest('.item-container');
+            itemContainer.remove();
+        }
+    </script>
+
 </body>
+
 </html>

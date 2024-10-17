@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column; /* จัด Navbar ให้อยู่บนสุด ส่วนที่เหลืออยู่ล่าง */
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', 'Noto Sans Thai', sans-serif;
     background-color: #f0f0f0;
     min-height: 100vh; /* ให้ body ขยายเต็มความสูงของหน้าเว็บ */
 }

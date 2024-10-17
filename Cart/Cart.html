@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Cart.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
@@ -26,7 +27,7 @@
 
             // Update total price display
             const totalButton = document.querySelector('.total-price');
-            totalButton.textContent = total + ' บาท';
+            totalButton.textContent = total + ' ฿';
 
             // Save total and checkbox states to localStorage
             localStorage.setItem('cartTotal', total);
@@ -51,7 +52,7 @@
 
             // Restore the total price
             const totalButton = document.querySelector('.total-price');
-            totalButton.textContent = (savedTotal ? savedTotal : 0) + ' บาท';
+            totalButton.textContent = (savedTotal ? savedTotal : 0) + ' ฿';
         });
     </script>
 </head>
@@ -69,7 +70,7 @@
                     <label for="item1" class="item-label" data-price="160">
                         <img src="../image/Women-shirt1.jpg" alt="Item 1">
                         เสื้อนักศึกษาหญิง...
-                        <span class="item-price">160</span> บาท
+                        <span class="item-price">160</span> ฿
                     </label>
                 </div>
                 <div class="cart-item">
@@ -77,7 +78,7 @@
                     <label for="item2" class="item-label" data-price="160">
                         <img src="../image/Men-shirt1.jpg" alt="Item 2">
                         เสื้อนักศึกษาชาย...
-                        <span class="item-price">160</span> บาท
+                        <span class="item-price">160</span> ฿
                     </label>
                 </div>
                 <div class="cart-item">
@@ -85,7 +86,7 @@
                     <label for="item3" class="item-label" data-price="160">
                         <img src="../image/Women-shirt2.jpg" alt="Item 3">
                         เสื้อนักศึกษาหญิง...
-                        <span class="item-price">160</span> บาท
+                        <span class="item-price">160</span> ฿
                     </label>
                 </div>
                 <div class="cart-item">
@@ -93,13 +94,13 @@
                     <label for="item4" class="item-label" data-price="160">
                         <img src="../image/Men-shirt2.jpg" alt="Item 4">
                         เสื้อนักศึกษาชาย...
-                        <span class="item-price">160</span> บาท
+                        <span class="item-price">160</span> ฿
                     </label>
                 </div>
             </div>
 
             <div class="total-container">
-                <button class="total-price">0 บาท</button> <!-- เปลี่ยนเป็นปุ่ม -->
+                <button class="total-price">0 ฿</button> <!-- เปลี่ยนเป็นปุ่ม -->
                 <a href="../Address/Address.html">
                     <button class="checkout-button">Check Out</button>
                 </a>

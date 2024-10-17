@@ -26,6 +26,9 @@ class NotificationItem extends HTMLElement {
         // แนบ CSS เข้ากับ shadow DOM
         const style = document.createElement('style');
         style.textContent = `
+            /* ลิงก์ไปยังฟอนต์ Inter */
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
             .notification-item {
                 display: flex;
                 justify-content: center;
@@ -46,6 +49,7 @@ class NotificationItem extends HTMLElement {
                 flex-direction: column;
                 justify-content: center;
                 transition: background-color 0.3s, box-shadow 0.3s;
+                font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
             }
 
             .notification-content:hover {
@@ -60,6 +64,12 @@ class NotificationItem extends HTMLElement {
                 position: absolute;
                 bottom: 5px;
                 right: 10px;
+                font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+            }
+
+            p {
+                margin: 0;
+                font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
             }
         `;
         shadow.appendChild(style);

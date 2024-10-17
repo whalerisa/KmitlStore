@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Categories.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/ProductCard.js" defer></script> <!-- เรียกใช้ไฟล์ ProductCard.js -->
@@ -18,7 +19,7 @@
 
     <!-- Product Recommendation Section -->
     <section class="products">
-        <h2 class="heading">other</h2>
+        <h2 class="heading">Other</h2>
         <div class="product-grid" id="product-grid"></div>
     </section>
 
@@ -27,76 +28,91 @@
         const recommendedProducts = [
         {
                 image: "../image/calculator1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "เครื่องคิดเลข super-fx-plus<br>ไม่มีตำหนิ<br>ใช้งานง่าย<br>รับประกันยังอยู่",
                 price: "1,060"
             },
             {
                 image: "../image/Women-shirt1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "เสื้อเชิ้ต<br>ไซส์ L<br>ใช้ครั้งเดียว<br>สีขาวสว่าง",
                 price: "200"
             },
             {
                 image: "../image/shoes1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "รองเท้า<br>ไซส์ 40<br>มีกล่องให้ครบ<br>มีตำหนินิดหน่อย",
                 price: "1,800"
             },
             {
                 image: "../image/bag1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "กระเป๋าเป้<br>ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
                 price: "300"
             },
             {
                 image: "../image/Laptop1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "โน๊ตบุ๊ค asus<br>Ryzen 5 RAM 16<br>การ์ดจอแยก",
                 price: "15,150"
             },
             {
                 image: "../image/ipad1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "iPad Air5<br>ความจำ 254 GB<br>ประกัน 1 ปี",
                 price: "25,500"
             },
             {
                 image: "../image/Laptop2.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "ACER โน๊ตบุ๊ค Nitro V 16<br>AMD Ryzen 7<br>Memory 16GB",
                 price: "29,930"
             },
             {
                 image: "../image/shoes2.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "รองเท้าผ้าใบ<br>ไซต์ 39<br>ใส่แค่ครั้งเดียว",
                 price: "670"
             },
             {
                 image: "../image/workshop-shirt1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "เสื้อช็อปคณะวิศวะ<br>ไซต์ M<br>ไม่มีตำหนิ",
                 price: "275"
             },
             {
                 image: "../image/workshop-shirt2.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "เสื้อช็อปคณะวิทยาศาสตร์<br>ไซต์ L<br>ไม่ใช่ของคณะขาย",
                 price: "280"
             },
             {
                 image: "../image/Men-shirt2.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "เสื้อนักศึกษาชาย<br>ไซต์ M<br>ไม่เคยใส่เลย",
                 price: "160"
             },
             {
                 image: "../image/Malestudentpants-1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "กางเกงนักศึกษาชาย<br>เอว 35<br>ใส่แค่ครั้งเดียว",
                 price: "200"
             },
             {
                 image: "../image/Men-shirt1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "เสื้อเชิ้ตผู้ชาย<br>ไซส์ M<br>สีขาวนวล, ไม่เปื้อนเลย",
                 price: "100"
             },
             {
                 image: "../image/Women-shirt2.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "เสื้อนักศึกษาหญิง<br>ไซส์ L<br>ใช้ครั้งเดียว, แขนสามเหลี่ยม",
                 price: "160"
             },
             {
                 image: "../image/bag1.jpg",
+                name : "เสื้อนักศึกษาหญิง",
                 detail: "กระเป๋าเป้<br>ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
                 price: "300"
             },

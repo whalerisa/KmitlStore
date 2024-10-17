@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Profile-Edit.css">
     <script src="../Components/Footer.js" defer></script>
 </head>
@@ -16,7 +17,7 @@
         <button class="back-button">
             <img src="../icons/back-icon-2.png" alt="Back" class="back-arrow">
         </button>
-        <h1 class="header-title">แก้ไขข้อมูลส่วนตัว</h1>
+        <h1 class="header-title">Edit Profile</h1>
     </div>
 
     <!-- Profile Section -->
@@ -28,12 +29,12 @@
     <!-- Editable Information Section -->
     <div class="info-card">
         <div class="info-item">
-            <label>ชื่อ:</label>
-            <input type="text" id="name" value="นางสาวXXXXXX XXXXXXX" disabled>
+            <label>Name:</label>
+            <input type="text" id="name" value="XXXXXX XXXXXXX" disabled>
             <button onclick="enableEdit('name')">Edit</button>
         </div>
         <div class="info-item">
-            <label>เบอร์โทรศัพท์:</label>
+            <label>Phone number:</label>
             <input type="text" id="phone" value="OXX-XXX-XXXX" disabled>
             <button onclick="enableEdit('phone')">Edit</button>
         </div>

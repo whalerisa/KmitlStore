@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Profile.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
@@ -34,8 +35,8 @@
         </div>
 
         <div class="profile-info">
-            <p>ชื่อ นางสาว yanothai</p>
-            <p>เบอร์โทรศัพท์ 0XX-XXX-XXXX</p>
+            <p>Name: Yanothai</p>
+            <p>Phone number: 0XX-XXX-XXXX</p>
             <p>Email: XXXXXXXXXXXX@gmail.com</p>
             <a href="../SellerCentre/Seller-Centre.html">
                 <button class="seller-centre-button">+ Seller Centre</button>
@@ -43,28 +44,28 @@
         </div>
 
         <div class="transaction-history">
-            <h2>ประวัติการซื้อ-ขาย</h2>
+            <h2>Transaction History</h2>
             <div class="transactions">
                 <!-- ประวัติการซื้อ -->
                 <div class="transaction-section">
-                    <h3><a href="../history/Purchase-history.html">ประวัติการซื้อ</a></h3>
+                    <h3><a href="../history/Purchase-history.html">Purchase History</a></h3>
                     <ul>
-                        <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
-                        <li>กางเกงสแล็ค... <span class="status">สำเร็จ</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">สำเร็จ</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">สำเร็จ</span></li>
-                        <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
+                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
+                        <li>กางเกงสแล็ค... <span class="status">Completed</span></li>
+                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
+                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
+                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
                     </ul>
                 </div>
                 <!-- ประวัติการขาย -->
                 <div class="transaction-section">
-                    <h3><a href="../history/Sales-history.html">ประวัติการขาย</a></h3>
+                    <h3><a href="../history/Sales-history.html">Sales history</a></h3>
                     <ul>
-                        <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
-                        <li>กางเกงสแล็ค... <span class="status">สำเร็จ</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">สำเร็จ</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">สำเร็จ</span></li>
-                        <li>กระโปรงพลิ้ว... <span class="status">สำเร็จ</span></li>
+                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
+                        <li>กางเกงสแล็ค... <span class="status">Completed</span></li>
+                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
+                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
+                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
                     </ul>
                 </div>
             </div>
@@ -75,7 +76,7 @@
         const token = localStorage.getItem('token'); // สมมุติว่าเก็บ token ใน localStorage
         console.log('Token:', token);
         if (!token) {
-            alert('กรุณาเข้าสู่ระบบก่อน');
+            alert('Please log in first.');
             window.location.href = '../Login/Login.html'; // เปลี่ยนไปที่หน้าเข้าสู่ระบบ
             return;
         }
@@ -89,20 +90,20 @@
         });
         if (!response.ok) {
             if (response.status === 401) {
-                alert('Token ไม่ถูกต้อง กรุณาเข้าสู่ระบบใหม่');
+                alert('Invalid token. Please log in again.');
                 window.location.href = '../Login/Login.html';
             }
-            throw new Error('ไม่สามารถดึงข้อมูลผู้ใช้ได้');
+            throw new Error('Unable to retrieve user information.');
         }
         const userData = await response.json();
         // ใส่ข้อมูลที่ดึงมาใน HTML
         document.querySelector('.profile-header h1').textContent = userData.username;
-        document.querySelector('.profile-info p:nth-child(1)').textContent = `ชื่อ ${userData.username}`;
-        document.querySelector('.profile-info p:nth-child(2)').textContent = `เบอร์โทรศัพท์ ${userData.phone}`;
+        document.querySelector('.profile-info p:nth-child(1)').textContent = `Name ${userData.username}`;
+        document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number ${userData.phone}`;
         document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${userData.email}`;
     } catch (error) {
         console.error('Error:', error);
-        alert('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้');
+        alert('An error occurred while retrieving user information.');
     }
 });
 

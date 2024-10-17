@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>เพิ่มสินค้าใหม่</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="PostProduct.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Sidebar.js" defer></script>
@@ -22,47 +23,47 @@
         <div class="container">
             <div class="product-form">
                 <div class="image-upload">
-                    <h2>ภาพสินค้า</h2>
+                    <h2>Product Image</h2>
                     <label for="image-input">
-                        <img id="preview" src="../icons/default-image.png" alt="ภาพสินค้าเริ่มต้น" class="placeholder-img">
+                        <img id="preview" src="../icons/default-image.png" alt="Default Product Image" class="placeholder-img">
                     </label>
                     <input type="file" id="image-input" accept="image/*" onchange="loadImage(event)" style="display:none;">
                 </div>
         
                 <div class="form-section">
                     <form id="product-form">
-                        <label for="product-name">ชื่อสินค้า</label>
-                        <input type="text" id="product-name" placeholder="กรอกชื่อสินค้า" required>
-                
-                        <label for="category">หมวดหมู่</label>
+                        <label for="product-name">Product Name</label>
+                        <input type="text" id="product-name" placeholder="Enter product name" required>
+        
+                        <label for="category">Category</label>
                         <select id="category" required>
-                            <option value="" disabled selected>เลือกหมวดหมู่</option>
+                            <option value="" disabled selected>Select a category</option>
                             <option value="Men's clothing">Men's clothing</option>
                             <option value="Women's clothing">Women's clothing</option>
                             <option value="School supplies">School supplies</option>
                             <option value="Lease Agreement">Lease Agreement</option>
-                            <option value="vehicle">vehicle</option>
-                            <option value="other">other</option>
+                            <option value="vehicle">Vehicle</option>
+                            <option value="other">Other</option>
                         </select>
-                
-                        <label for="description">รายละเอียดสินค้า</label>
-                        <textarea id="description" class="description" placeholder="กรอกรายละเอียดสินค้า" required></textarea>
+        
+                        <label for="description">Product Description</label>
+                        <textarea id="description" class="description" placeholder="Enter product description" required></textarea>
         
                         <div class="price-stock-container">
                             <div class="price-field">
-                                <span>ราคา</span>
-                                <input type="number" id="price" placeholder="กรอกราคา" step="0.01" min="0" required>
-                                <span>บาท</span>
+                                <span>Price</span>
+                                <input type="number" id="price" placeholder="Enter price" step="0.01" min="0" required>
+                                <span>Baht</span>
                             </div>
-                        
+        
                             <div class="stock-field">
-                                <span>คลัง</span>
-                                <input type="number" id="stock" placeholder="จำนวนสินค้าในคลัง" required>
-                                <span>ชิ้น</span>
+                                <span>Stock</span>
+                                <input type="number" id="stock" placeholder="Enter stock quantity" required>
+                                <span>Items</span>
                             </div>
                         </div>
-                
-                        <button type="submit">บันทึกและเผยแพร่</button>
+        
+                        <button type="submit">Save and Publish</button>
                     </form>
                 </div>
             </div>

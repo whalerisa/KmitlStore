@@ -1,6 +1,6 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', 'Noto Sans Thai', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f7f7f7;
@@ -22,15 +22,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fff; /* สีพื้นหลังขาว */
-}
-
-
 .Productdetails {
     padding: 20px;
     max-width: 1200px; /* กำหนดความกว้างสูงสุดของ container */
@@ -44,8 +35,6 @@ body {
     margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
 }
 
-
-
 .product-container {
     display: flex;
     justify-content: center; /* จัดให้สินค้าอยู่กลาง */
@@ -54,7 +43,6 @@ body {
     border-bottom: 1px solid #e0e0e0; /* เส้นแบ่งบางระหว่างแต่ละสินค้า */
     padding-bottom: 20px;
 }
-
 
 .product-image {
     width: 300px; /* กำหนดความกว้างใหม่ */
@@ -142,30 +130,38 @@ body {
     background-color: #D43D05;
 }
 
-.quantity-controls {
+/* Quantity Control Styling */
+.quantity {
     display: flex;
-    align-items: center;
-    margin: 20px 0;
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
 }
 
-.quantity-controls button {
-    background-color: #E35205; /* สีพื้นหลังของปุ่ม */
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 15px; /* เพิ่ม padding เพื่อทำให้ปุ่มใหญ่ขึ้น */
-    cursor: pointer;
-    font-size: 20px; /* ขนาดของข้อความในปุ่ม */
-    transition: background-color 0.3s;
+.quantity-controls {
+    display: flex; /* ใช้ flexbox เพื่อจัดเรียง */
+    align-items: center; /* จัดให้อยู่แนวเดียวกัน */
+    background-color: #E35205; /* พื้นหลังสีส้ม */
+    border-radius: 35px; /* มุมมน */
+    padding: 5px; /* เพิ่ม padding เพื่อให้ดูดี */
 }
 
-.quantity-controls button:hover {
-    background-color: #F05A1A; /* สีเมื่อ hover */
+.circle-button {
+    width: 25px; /* กำหนดความกว้าง */
+    height: 25px; /* กำหนดความสูง */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    background-color: white; /* สีพื้นหลังเป็นสีขาว */
+    color: #E35205; /* สีข้อความเป็นสีส้ม */
+    border: none; /* ไม่ให้มีเส้นขอบ */
+    font-size: 20px; /* ขนาดตัวอักษร */
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+    display: flex; /* ใช้ flexbox */
+    align-items: center; /* จัดแนวกลางแนวตั้ง */
+    justify-content: center; /* จัดแนวกลางแนวนอน */
 }
 
-.quantity-controls span {
-    margin: 0 15px;
-    font-size: 24px;
+.quantity-display {
+    color: #fff; /* เปลี่ยนสีข้อความให้เป็นสีส้ม */
+    padding: 7px 20px; /* ระยะห่างภายใน */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
 }
 
 .buttons {
@@ -194,7 +190,6 @@ body {
     padding: 30px;
     color: #847e7e;
 }
-
 
 .product-grid {
     display: grid;

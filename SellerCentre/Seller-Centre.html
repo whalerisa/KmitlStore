@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Centre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Seller-Centre.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Sidebar.js" defer></script>
@@ -20,24 +21,24 @@
         <!-- Sidebar ซ้าย -->
         <my-sidebar></my-sidebar>
 
-        <!-- Main Content ตรงกลาง -->
-        <div class="main-content">
-            <h1>ที่ต้องทำ</h1>
-            <div class="task-cards">
-                <div class="task-card">
-                    <p id="toShip">0</p>
-                    <h2>ที่ต้องจัดส่ง</h2>
-                </div>
-                <div class="task-card">
-                    <p id="inTransit">0</p>
-                    <h2>กำลังจัดส่ง</h2>
-                </div>
-                <div class="task-card">
-                    <p id="completed">0</p>
-                    <h2>สำเร็จ</h2>
+            <!-- Main Content -->
+            <div class="main-content">
+                <h1>To Do</h1>
+                <div class="task-cards">
+                    <div class="task-card">
+                        <p id="toShip">0</p>
+                        <h2>To Ship</h2>
+                    </div>
+                    <div class="task-card">
+                        <p id="inTransit">0</p>
+                        <h2>Shipping</h2>
+                    </div>
+                    <div class="task-card">
+                        <p id="completed">0</p>
+                        <h2>Completed</h2>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <!-- Footer Web Component อยู่ด้านล่างสุด -->

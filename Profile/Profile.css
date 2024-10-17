@@ -1,6 +1,6 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', 'Noto Sans Thai', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f7f7f7;
@@ -134,6 +134,11 @@ h1 {
 .status {
     font-weight: bold;
     color: #4CAF50; /* สีเขียวสำหรับสถานะสำเร็จ */
+}
+
+.transaction-section li:hover {
+    background-color: #AA4109; /* เปลี่ยนสีพื้นหลังเป็นส้มเมื่อ hover */
+    color: white; /* เปลี่ยนสีตัวอักษรเป็นสีขาวเมื่อ hover */
 }
 
 /* Footer */

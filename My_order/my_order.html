@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>คำสั่งซื้อของฉัน</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="my_order.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Sidebar.js" defer></script> 
@@ -19,24 +20,24 @@
         <my-sidebar></my-sidebar>
 
         <div class="container">
-            <h1>คำสั่งซื้อของฉัน</h1>
+            <h1>My Orders</h1>
             <div class="tabs">
-                <span class="tablink active" onclick="showTab(event, 'current')">ทั้งหมด</span>
-                <span class="tablink" onclick="showTab(event, 'unpaid')">ยังไม่ชำระ</span>
-                <span class="tablink" onclick="showTab(event, 'toship')">ที่ต้องจัดส่ง</span>
-                <span class="tablink" onclick="showTab(event, 'shipping')">กำลังจัดส่ง</span>
-                <span class="tablink" onclick="showTab(event, 'completed')">สำเร็จ</span>
+                <span class="tablink active" onclick="showTab(event, 'current')">All</span>
+                <span class="tablink" onclick="showTab(event, 'unpaid')">Unpaid</span>
+                <span class="tablink" onclick="showTab(event, 'toship')">To Ship</span>
+                <span class="tablink" onclick="showTab(event, 'shipping')">Shipping</span>
+                <span class="tablink" onclick="showTab(event, 'completed')">Completed</span>
             </div>
-
+        
             <div class="order-status">
-                <strong>0 คำสั่งซื้อ</strong>
+                <strong>0 Orders</strong>
             </div>
-
+        
             <div class="item-container header">
-                <div>สินค้าทั้งหมด</div>
-                <div>ยอดชำระเงิน</div>
-                <div>สถานะ</div>
-                <div>ดำเนินการ</div>
+                <div>All Products</div>
+                <div>Total Payment</div>
+                <div>Status</div>
+                <div>Action</div>
             </div>
 
             <!-- ส่วนนี้จะสร้างรายการคำสั่งซื้อผ่าน JavaScript -->
@@ -52,19 +53,19 @@
     <script>
         const orders = {
             current: [
-                { name: 'เสื้อนักศึกษา', price: '160 บาท', status: 'กำลังจัดส่ง', carryout:'กำลังดำเนินการ' }
+                { name: 'เสื้อนักศึกษา', price: '160 ฿', status: 'Shipping', carryout:'Processing' }
             ],
             unpaid: [
-                { name: 'อุปกรณ์กีฬา', price: '500 บาท', status: 'ยังไม่ชำระ', carryout:'กำลังดำเนินการ' }
+                { name: 'อุปกรณ์กีฬา', price: '500 ฿', status: 'Unpaid', carryout:'Processing' }
             ],
             toship: [
-                { name: 'เครื่องเขียน', price: '100 บาท', status: 'ที่ต้องจัดส่ง', carryout:'กำลังดำเนินการ'}
+                { name: 'เครื่องเขียน', price: '100 ฿', status: 'To Ship', carryout:'Processing'}
             ],
             shipping: [
-                { name: 'เครื่องครัว', price: '300 บาท', status: 'กำลังจัดส่ง', carryout:'กำลังดำเนินการ' }
+                { name: 'เครื่องครัว', price: '300 ฿', status: 'Shipping', carryout:'Processing' }
             ],
             completed: [
-                { name: 'หนังสือเรียน', price: '200 บาท', status: 'จัดส่งสำเร็จ', carryout:'กำลังดำเนินการ'}
+                { name: 'หนังสือเรียน', price: '200 ฿', status: 'Completed', carryout:'Processing'}
             ]
         };
 

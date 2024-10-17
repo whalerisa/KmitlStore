@@ -9,6 +9,9 @@ class ProductContainer extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <style>
+                /* ลิงก์ไปยังฟอนต์ Inter */
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
                 .product-container {
                     display: flex;
                     justify-content: center;
@@ -16,6 +19,7 @@ class ProductContainer extends HTMLElement {
                     margin-bottom: 40px;
                     border-bottom: 1px solid #e0e0e0;
                     padding-bottom: 20px;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .product-image {
@@ -33,6 +37,7 @@ class ProductContainer extends HTMLElement {
                     font-size: 24px;
                     color: #333;
                     margin-bottom: 10px;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .product-details .price {
@@ -43,11 +48,13 @@ class ProductContainer extends HTMLElement {
                     font-size: 18px;
                     display: inline-block;
                     margin-bottom: 15px;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .quantity {
                     font-size: 14px;
                     color: #999;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .quantity .orange-text {
@@ -75,6 +82,7 @@ class ProductContainer extends HTMLElement {
                     cursor: pointer;
                     border-radius: 5px;
                     margin-left: 10px;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .view-shop:hover {
@@ -112,7 +120,7 @@ class ProductContainer extends HTMLElement {
         const description = this.getAttribute('description').replace(/\n/g, '<br>');
         this.shadowRoot.querySelector('.product-image').src = this.getAttribute('image');
         this.shadowRoot.querySelector('.product-name').textContent = this.getAttribute('name');
-        this.shadowRoot.querySelector('.price').textContent = `${this.getAttribute('price')} บาท`;
+        this.shadowRoot.querySelector('.price').textContent = `${this.getAttribute('price')} ฿`;
         this.shadowRoot.querySelector('.description').innerHTML = description; // ใช้ innerHTML เพื่อแสดง <br>
         this.shadowRoot.querySelector('.shop-name').textContent = this.getAttribute('shop-name');
         this.shadowRoot.querySelector('.shop-link').href = this.getAttribute('shop-link');

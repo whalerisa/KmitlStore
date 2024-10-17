@@ -7,6 +7,9 @@ class MySidebar extends HTMLElement {
     connectedCallback() {
         this.shadowRoot.innerHTML = `
             <style>
+                /* ลิงก์ไปยังฟอนต์ Inter */
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+                
                 .sidebar {
                     position: fixed;
                     top: 100px; /* ตำแหน่งด้านบน */
@@ -15,6 +18,7 @@ class MySidebar extends HTMLElement {
                     background-color: #f8f8f8;
                     padding: 15px;
                     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .dropbtn {
@@ -29,6 +33,7 @@ class MySidebar extends HTMLElement {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .dropdown-content {
@@ -37,6 +42,7 @@ class MySidebar extends HTMLElement {
                     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                     position: relative;
                     z-index: 1;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .dropdown:hover .dropdown-content {
@@ -48,6 +54,7 @@ class MySidebar extends HTMLElement {
                     text-decoration: none;
                     display: block;
                     color: black;
+                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .dropdown-content a:hover {
@@ -88,32 +95,32 @@ class MySidebar extends HTMLElement {
             <div class="sidebar">
                 <div class="dropdown">
                     <button class="dropbtn">
-                        คำสั่งซื้อ
-                        <img src="../icons/down-fill-icon.png" alt="คำสั่งซื้อ Icon" class="icon">
+                        Orders
+                        <img src="../icons/down-fill-icon.png" alt="Orders Icon" class="icon">
                     </button>
                     <div class="dropdown-content">
-                        <a href="../My_order/my_order.html">คำสั่งซื้อสินค้าของฉัน</a>
+                        <a href="../My_order/my_order.html">My Orders</a>
                     </div>
                 </div>
 
                 <div class="dropdown">
                     <button class="dropbtn">
-                        สินค้า
-                        <img src="../icons/down-fill-icon.png" alt="สินค้า Icon" class="icon">
+                        Products 
+                        <img src="../icons/down-fill-icon.png" alt="Products  Icon" class="icon">
                     </button>
                     <div class="dropdown-content">
-                        <a href="../My_products/my_products.html">สินค้าของฉัน</a>
-                        <a href="../Postproduct/Postproduct.html">เพิ่มสินค้าใหม่</a>
+                        <a href="../My_products/my_products.html">My Products</a>
+                        <a href="../Postproduct/Postproduct.html">Add New Product</a>
                     </div>
                 </div>
 
                 <div class="dropdown">
                     <button class="dropbtn">
-                        การเงิน
-                        <img src="../icons/down-fill-icon.png" alt="การเงิน Icon" class="icon">
+                        Finance
+                        <img src="../icons/down-fill-icon.png" alt="Finance Icon" class="icon">
                     </button>
                     <div class="dropdown-content">
-                        <a href="../income/income.html">รายรับของฉัน</a>
+                        <a href="../income/income.html">My Income</a>
                     </div>
                 </div>
             </div>

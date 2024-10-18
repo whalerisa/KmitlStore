@@ -16,6 +16,7 @@ const Vehicle = require('./BackEnd/vehicle');
 const WomensClothing = require('./BackEnd/womenclothing');
 const Profile = require('./BackEnd/Profile');
 const ProductDetail = require('./BackEnd/productdetail');
+const My_Products = require('./BackEnd/my_products');
 
 
 
@@ -28,22 +29,17 @@ app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุก
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd','Profile','Productdetails','ImageOfProducts'];
+const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd','Profile','Productdetails','ImageOfProducts',
+    'My_Products'
+];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
 }); 
 
 
 // สร้างตารางถ้ายังไม่มี
-const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
+const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE );
 db.serialize(() => {
-    db.run(`CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL UNIQUE,
-        email TEXT NOT NULL,
-        password TEXT NOT NULL,
-        phone TEXT NOT NULL
-    )`);
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,6 +64,7 @@ Vehicle(app);
 WomensClothing(app)
 Profile(app);
 ProductDetail(app);
+My_Products(app);
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

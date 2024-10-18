@@ -19,65 +19,105 @@
 
     <!-- Wrapper สำหรับ Sidebar, Main Content และ Right Sidebar -->
     <div class="content-wrapper">
-    <!-- Sidebar ซ้าย -->
-    <my-sidebar></my-sidebar>
+        <!-- Sidebar ซ้าย -->
+        <my-sidebar></my-sidebar>
 
-    <div class="container">
-        <h1>My Products</h1>
-        <div class="tabs">
-            <span class="tablink active" onclick="showTab(event, 'current')">All</span>
-        </div>
-    
-        <!-- Current Data -->
-        <div id="current" class="tabcontent" style="display: block;">
-            <div class="item-container header">
-                <div class="header-title">Product ID</div>
-                <div class="header-title">Product Name</div>
-                <div class="header-title">Total Payment</div>
-                <div class="header-title">Status</div>
-                <div></div> <!-- คอลัมน์สำหรับปุ่ม Delete -->
+        <div class="container">
+            <h1>My Products</h1>
+            <div class="tabs">
+                <span class="tablink active" onclick="showTab(event, 'current')">All</span>
             </div>
-            <div class="item-container">
-                <div class="highlight">00000000</div>
-                <div class="highlight">เสื้อนักศึกษาหญิง</div>
-                <div class="highlight">160 ฿</div>
-                <div class="status">Shipping</div>
-                <div><button class="delete-btn" onclick="deleteItem(this)">Delete</button></div>
+        
+            <!-- Current Data -->
+            <div id="current" class="tabcontent" style="display: block;">
+                <div class="item-container header">
+                    <div class="header-title">Product ID</div>
+                    <div class="header-title">Product Name</div>
+                    <div class="header-title">Total Payment</div>
+                    <div class="header-title">Status</div>
+                    <div></div> <!-- คอลัมน์สำหรับปุ่ม Delete -->
+                </div>
+                <div id="product-list"></div>
             </div>
         </div>
 
-        <!-- ข้อมูลที่สำเร็จแล้ว -->
-        <div id="completed" class="tabcontent" style="display: none;"> <!-- ซ่อนแท็บนี้เริ่มแรก -->
-            <div class="item-container header">
-                <div class="header-title">Product ID</div>
-                <div class="header-title">Product Name</div>
-                <div class="header-title">Total Payment</div>
-                <div class="header-title">Status</div>
-                <div></div> <!-- คอลัมน์สำหรับปุ่ม Delete -->
-            </div>
-            <div class="item-container">
-                <div class="highlight">00000001</div>
-                <div class="highlight">หนังสือเรียน</div>
-                <div class="highlight">200 ฿</div>
-                <div class="highlight">Completed</div>
-                <div><button class="delete-btn" onclick="deleteItem(this)">Delete</button></div>
-            </div>
-        </div>
-    </div>
+        <!-- ใช้ Web Component ของ Footer -->
+        <my-footer></my-footer>
 
-    <script src="DeliveryPending.js"></script>
+        <!-- JavaScript Functions -->
+        <script>
+            // ฟังก์ชันสำหรับแสดงแท็บ
+            function showTab(evt, tabName) {
+                var tabcontent = document.getElementsByClassName("tabcontent");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
 
-     <!-- ใช้ Web Component ของ Footer -->
-     <my-footer></my-footer>
+                var tablinks = document.getElementsByClassName("tablink");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
 
-    <script>
-        // ฟังก์ชันสำหรับลบแถวสินค้า
-        function deleteItem(button) {
-            const itemContainer = button.closest('.item-container');
-            itemContainer.remove();
-        }
-    </script>
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
 
-</body>
+            // ฟังก์ชันสำหรับดึงข้อมูลสินค้า
+            function loadProducts() {
+                fetch('/api/products', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const productList = document.getElementById('product-list');
+                    productList.innerHTML = ''; // เคลียร์รายการเก่า
+
+                    if (Array.isArray(data)) {
+                        data.forEach(product => {
+                            const item = document.createElement('div');
+                            item.className = 'item-container';
+                            item.innerHTML = `
+                                <div class="highlight">${product.id}</div>
+                                <div class="highlight">${product.name}</div>
+                                <div class="highlight">${product.price} ฿</div>
+                                <div class="status">${product.status}</div>
+                                <div><button class="delete-btn" onclick="deleteItem(${product.id}, this)">Delete</button></div>
+                            `;
+                            productList.appendChild(item);
+                        });
+                    } else if (data.error) {
+                        console.error('Error:', data.error);
+                    }
+                })
+                .catch(error => console.error('Error fetching products:', error));
+            }
+
+            // ฟังก์ชันสำหรับลบสินค้า
+            function deleteItem(productId, button) {
+                fetch(`/api/products/${productId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        const itemContainer = button.closest('.item-container');
+                        itemContainer.remove(); // ลบ item ออกจาก DOM
+                    } else {
+                        console.error('Failed to delete product');
+                    }
+                })
+                .catch(error => console.error('Error deleting product:', error));
+            }
+
+            // เรียกใช้งานฟังก์ชัน loadProducts เมื่อ DOM โหลดเสร็จ
+            document.addEventListener('DOMContentLoaded', loadProducts);
+
+        </script>
+
+    </body>
 
 </html>

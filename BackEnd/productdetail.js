@@ -11,15 +11,21 @@ app.use(bodyParser.json());
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
 app.use(express.static(path.join(__dirname, 'Product-details')));
 
-// เปิดการเชื่อมต่อกับฐานข้อมูล SQLite
-const db = new sqlite3.Database(path.join(__dirname, './Data.db'));
+// เชื่อมต่อกับฐานข้อมูล SQLite
+const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE, (err) => {
+    if (err) {
+        console.error('Failed to connect to the database:', err.message);
+    } else {
+        console.log('Connected to the DB.');
+    }
+});
 
 // API Endpoint สำหรับดึงข้อมูลสินค้า
 function ProductDetail(app){
     // API สำหรับดึงข้อมูลสินค้าตาม ID
     app.get('/api/products/:id', (req, res) => {
-        console.log('Fetching product with ID:', id);
         const { id } = req.params;
+        console.log('Fetching product with ID:', id);
         // ดึงข้อมูลสินค้าและชื่อผู้ขายจากการ JOIN ตาราง products และ users
         const sql = `
             SELECT products.image_url, products.name, products.detail, products.price, products.stock, users.username 
@@ -31,6 +37,7 @@ function ProductDetail(app){
         
         db.get(sql, [id], (err, row) => {
             if (err) {
+                console.error('Error executing SQL query:', err.message); // แสดงข้อความข้อผิดพลาดใน Console
                 res.status(500).json({ error: err.message });
                 return;
             }

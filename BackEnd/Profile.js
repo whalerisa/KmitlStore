@@ -1,4 +1,4 @@
-// เชื่อมต่อกับฐานข้อมูล SQLite
+ // เชื่อมต่อกับฐานข้อมูล SQLite
 const sqlite3 = require('sqlite3').verbose();
 const express = require('express');
 const cors = require('cors');
@@ -17,7 +17,8 @@ const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE | sqlite3.OP
 });
 
 // API สำหรับดึงข้อมูลผู้ใช้
-function Profile(app){
+// API สำหรับดึงข้อมูลผู้ใช้และประวัติการซื้อขาย
+function Profile(app) {
     app.get('/users', (req, res) => {
         const authHeader = req.headers['authorization'];
         const token = authHeader && authHeader.split(' ')[1]; // ดึง token จาก Authorization header
@@ -25,29 +26,49 @@ function Profile(app){
         if (!token) {
             return res.status(401).json({ message: 'ไม่ได้รับ token' });
         }
-    
+
         // ตรวจสอบ token และถอดรหัส
         jwt.verify(token, 'your_secret_key', (err, decoded) => {
             if (err) {
                 return res.status(403).json({ message: 'Token ไม่ถูกต้อง' });
             }
-    
+
             const userId = decoded.id; // ดึง id จาก token ที่ถอดรหัสได้ (ในตาราง users คือ id)
-    
-            // ใช้ `id` แทนการใช้ `userId`
-            db.get(`SELECT username, phone, email FROM users WHERE id = ?`, [userId], (err, row) => {
+
+            // ดึงข้อมูลผู้ใช้
+            db.get(`SELECT username, phone, email FROM users WHERE id = ?`, [userId], (err, userRow) => {
                 if (err) {
                     return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้' });
                 }
-                if (!row) {
+                if (!userRow) {
                     return res.status(404).json({ message: 'ไม่พบผู้ใช้' });
                 }
-                res.json(row); // ส่งข้อมูลผู้ใช้กลับไปยัง frontend
+
+                // ดึงประวัติการซื้อ
+                db.all(`SELECT * FROM purchase_history WHERE user_id = ?`, [userId], (err, purchaseRows) => {
+                    if (err) {
+                        return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการดึงประวัติการซื้อ' });
+                    }
+
+                    // ดึงประวัติการขาย
+                    db.all(`SELECT * FROM sales_history WHERE user_id = ?`, [userId], (err, salesRows) => {
+                        if (err) {
+                            return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการดึงประวัติการขาย' });
+                        }
+
+                        // ส่งข้อมูลผู้ใช้และประวัติการซื้อขายกลับไปยัง frontend
+                        res.json({
+                            user: userRow,
+                            purchaseHistory: purchaseRows,
+                            salesHistory: salesRows
+                        });
+                    });
+                });
             });
         });
     });
-    
 }
+
 module.exports = Profile;
 
 

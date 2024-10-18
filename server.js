@@ -37,6 +37,13 @@ staticFolders.forEach(folder => {
 // สร้างตารางถ้ายังไม่มี
 const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
 db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        phone TEXT NOT NULL
+    )`);
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

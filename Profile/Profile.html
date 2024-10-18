@@ -49,7 +49,7 @@
                 <!-- ประวัติการซื้อ -->
                 <div class="transaction-section">
                     <h3><a href="../history/Purchase-history.html">Purchase History</a></h3>
-                    <ul>
+                    <ul id="purchase-history">
                         <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
                         <li>กางเกงสแล็ค... <span class="status">Completed</span></li>
                         <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
@@ -60,7 +60,7 @@
                 <!-- ประวัติการขาย -->
                 <div class="transaction-section">
                     <h3><a href="../history/Sales-history.html">Sales history</a></h3>
-                    <ul>
+                    <ul id="sales-history">
                         <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
                         <li>กางเกงสแล็ค... <span class="status">Completed</span></li>
                         <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
@@ -73,21 +73,22 @@
         </div>
         <script>
     document.addEventListener('DOMContentLoaded', async () => {
-        const token = localStorage.getItem('token'); // สมมุติว่าเก็บ token ใน localStorage
-        console.log('Token:', token);
-        if (!token) {
-            alert('Please log in first.');
-            window.location.href = '../Login/Login.html'; // เปลี่ยนไปที่หน้าเข้าสู่ระบบ
-            return;
-        }
-    
-        try {
-            const response = await fetch('http://localhost:3000/users', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}` // ส่ง token ไปกับ request ในรูปแบบ Bearer
-        }
+    const token = localStorage.getItem('token');
+    console.log('Token:', token);
+    if (!token) {
+        alert('Please log in first.');
+        window.location.href = '../Login/Login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/users', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
+
         if (!response.ok) {
             if (response.status === 401) {
                 alert('Invalid token. Please log in again.');
@@ -95,17 +96,36 @@
             }
             throw new Error('Unable to retrieve user information.');
         }
+
         const userData = await response.json();
         // ใส่ข้อมูลที่ดึงมาใน HTML
-        document.querySelector('.profile-header h1').textContent = userData.username;
-        document.querySelector('.profile-info p:nth-child(1)').textContent = `Name ${userData.username}`;
-        document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number ${userData.phone}`;
-        document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${userData.email}`;
+        document.querySelector('.profile-header h1').textContent = userData.user.username;
+        document.querySelector('.profile-info p:nth-child(1)').textContent = `Name: ${userData.user.username}`;
+        document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number: ${userData.user.phone}`;
+        document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${userData.user.email}`;
+
+        // แสดงประวัติการซื้อ
+        const purchaseHistoryList = document.getElementById('purchase-history');
+        userData.purchaseHistory.forEach(purchase => {
+            const li = document.createElement('li');
+            li.textContent = `${purchase.product_name} ... ${purchase.status}`;
+            purchaseHistoryList.appendChild(li);
+        });
+
+        // แสดงประวัติการขาย
+        const salesHistoryList = document.getElementById('sales-history');
+        userData.salesHistory.forEach(sale => {
+            const li = document.createElement('li');
+            li.textContent = `${sale.product_name} ... ${sale.status}`;
+            salesHistoryList.appendChild(li);
+        });
+
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred while retrieving user information.');
     }
 });
+
 
 </script>
         <!-- Use Web Component of Footer -->

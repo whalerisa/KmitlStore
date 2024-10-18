@@ -22,7 +22,7 @@
                 <img id="product-image" src="../ImageOfProducts/1728572308338.JPG" alt="Product Image" class="product-image">
                 <div class="shop-info">
                     <img src="../icons/Profile.jpg" alt="Shop Owner">
-                    <p>น้ำ ขายของ</p>
+                    <p id="shop-owner">น้ำ ขายของ</p>
                     <a href="../Profile/Profile-shop.html">
                         <button class="view-shop">View Shop</button>
                     </a>
@@ -87,8 +87,8 @@
                         document.getElementById('product-image').src = product.image_url;
                         document.getElementById('product-title').innerText = product.name;
                         document.getElementById('product-price').innerText = `${product.price} บาท`;
-                        document.getElementById('product-description').innerHTML = product.detail;
-                        document.getElementById('product-stock').innerHTML = product.stock;
+                        document.getElementById('product-description').innerText = product.detail;
+                        document.getElementById('product-stock').innerText = `${product.stock} pieces available`;
                     })
                     .catch(error => {
                         console.error('Error fetching product details:', error);

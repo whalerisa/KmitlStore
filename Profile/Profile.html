@@ -12,10 +12,9 @@
 
 </head>
 
-
+<body>
     <!-- ใช้ Web Component ของ Navbar -->
     <my-navbar></my-navbar>
-
 
     <div class="logout-icon">
         <a href="../Login/Login.html">
@@ -23,94 +22,121 @@
         </a>
     </div>
 
-    <body>
-        <div class="profile-container">
-            <div class="profile-header">
-                <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-picture">
-                <h1>
-                    RiSa2020
-                    <a href="Profile-Edit.html" class="edit-icon">✏️</a> <!-- เพิ่มลิงค์ไปที่หน้า Edit Profile -->
-                </h1>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-picture">
+            <h1>
+                RiSa2020
+                <a href="Profile-Edit.html" class="edit-icon">✏️</a> <!-- เพิ่มลิงค์ไปที่หน้า Edit Profile -->
+            </h1>
+        </div>
+    </div>
+
+    <div class="profile-info">
+        <p>Name: Yanothai</p>
+        <p>Phone number: 0XX-XXX-XXXX</p>
+        <p>Email: XXXXXXXXXXXX@gmail.com</p>
+        <a href="../SellerCentre/Seller-Centre.html">
+            <button class="seller-centre-button">+ Seller Centre</button>
+        </a>
+    </div>
+
+    <div class="transaction-history">
+        <h2>Transaction History</h2>
+        <div class="transactions">
+            <!-- ประวัติการซื้อ -->
+            <div class="transaction-section">
+                <h3><a href="../history/Purchase-history.html">Purchase History</a></h3>
+                <ul id="purchase-history"></ul>
+            </div>
+            <!-- ประวัติการขาย -->
+            <div class="transaction-section">
+                <h3><a href="../history/Sales-history.html">Sales History</a></h3>
+                <ul id="sales-history"></ul>
             </div>
         </div>
+    </div>
 
-        <div class="profile-info">
-            <p>Name: Yanothai</p>
-            <p>Phone number: 0XX-XXX-XXXX</p>
-            <p>Email: XXXXXXXXXXXX@gmail.com</p>
-            <a href="../SellerCentre/Seller-Centre.html">
-                <button class="seller-centre-button">+ Seller Centre</button>
-            </a>
-        </div>
-
-        <div class="transaction-history">
-            <h2>Transaction History</h2>
-            <div class="transactions">
-                <!-- ประวัติการซื้อ -->
-                <div class="transaction-section">
-                    <h3><a href="../history/Purchase-history.html">Purchase History</a></h3>
-                    <ul>
-                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
-                        <li>กางเกงสแล็ค... <span class="status">Completed</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
-                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
-                    </ul>
-                </div>
-                <!-- ประวัติการขาย -->
-                <div class="transaction-section">
-                    <h3><a href="../history/Sales-history.html">Sales history</a></h3>
-                    <ul>
-                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
-                        <li>กางเกงสแล็ค... <span class="status">Completed</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
-                        <li>เสื้อรุ่นคณะวิท... <span class="status">Completed</span></li>
-                        <li>กระโปรงพลิ้ว... <span class="status">Completed</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </div>
-        <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const token = localStorage.getItem('token'); // สมมุติว่าเก็บ token ใน localStorage
-        console.log('Token:', token);
-        if (!token) {
-            alert('Please log in first.');
-            window.location.href = '../Login/Login.html'; // เปลี่ยนไปที่หน้าเข้าสู่ระบบ
-            return;
-        }
-    
-        try {
-            const response = await fetch('http://localhost:3000/users', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}` // ส่ง token ไปกับ request ในรูปแบบ Bearer
-        }
-        });
-        if (!response.ok) {
-            if (response.status === 401) {
-                alert('Invalid token. Please log in again.');
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            console.log('Token:', token);
+            if (!token) {
+                alert('Please log in first.');
                 window.location.href = '../Login/Login.html';
+                return;
             }
-            throw new Error('Unable to retrieve user information.');
-        }
-        const userData = await response.json();
-        // ใส่ข้อมูลที่ดึงมาใน HTML
-        document.querySelector('.profile-header h1').textContent = userData.username;
-        document.querySelector('.profile-info p:nth-child(1)').textContent = `Name ${userData.username}`;
-        document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number ${userData.phone}`;
-        document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${userData.email}`;
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while retrieving user information.');
-    }
-});
 
-</script>
-        <!-- Use Web Component of Footer -->
-        <my-footer></my-footer>
+            try {
+                const response = await fetch('http://localhost:3000/users', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
 
-    </body>
+                console.log('Response Status:', response.status); // Log status
+                const responseData = await response.json(); // Get response data
+                console.log('Response Data:', responseData); // Log data
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        alert('Invalid token. Please log in again.');
+                        window.location.href = '../Login/Login.html';
+                    }
+                    throw new Error('Unable to retrieve user information.');
+                }
+
+                // ใส่ข้อมูลที่ดึงมาใน HTML
+                document.querySelector('.profile-header h1').textContent = responseData.user.username;
+                document.querySelector('.profile-info p:nth-child(1)').textContent = `Name: ${responseData.user.username}`;
+                document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number: ${responseData.user.phone}`;
+                document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${responseData.user.email}`;
+
+                // ประกาศตัวแปรก่อนใช้งาน
+                const purchaseHistorySection = document.querySelector('.transaction-history .transaction-section:nth-child(1) ul');
+                const salesHistorySection = document.querySelector('.transaction-history .transaction-section:nth-child(2) ul');
+
+                // ถ้าไม่มีประวัติการซื้อ
+                if (responseData.purchaseHistory.length === 0) {
+                    const li = document.createElement('li');
+                    li.textContent = 'No purchase history.';
+                    purchaseHistorySection.appendChild(li);
+                } else {
+                    // เพิ่มส่วนของประวัติการซื้อ
+                    responseData.purchaseHistory.forEach(purchase => {
+                        const li = document.createElement('li');
+                        li.textContent = `${purchase.product_name}... `;
+                        li.innerHTML += `<span class="status">${purchase.status}</span>`;
+                        purchaseHistorySection.appendChild(li);
+                    });
+                }
+
+                // ถ้าไม่มีประวัติการขาย
+                if (responseData.salesHistory.length === 0) {
+                    const li = document.createElement('li');
+                    li.textContent = 'No sales history.';
+                    salesHistorySection.appendChild(li);
+                } else {
+                    // เพิ่มส่วนของประวัติการขาย
+                    responseData.salesHistory.forEach(sale => {
+                        const li = document.createElement('li');
+                        li.textContent = `${sale.product_name}... `;
+                        li.innerHTML += `<span class="status">${sale.status}</span>`;
+                        salesHistorySection.appendChild(li);
+                    });
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while retrieving user information.');
+            }
+        });
+    </script>
+
+    <!-- Use Web Component of Footer -->
+    <my-footer></my-footer>
+
+</body>
 
 </html>

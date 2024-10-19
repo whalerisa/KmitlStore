@@ -23,7 +23,7 @@ const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE, (err) => {
 // เส้นทาง API สำหรับดึงข้อมูลจากตาราง products
 function homepage (app){
     app.get('/products', (req, res) => {
-        const sql = "SELECT image_url, name, detail, price FROM products";
+        const sql = "SELECT id,image_url, name, detail, price FROM products";
         
         db.all(sql, [], (err, rows) => {
             if (err) {

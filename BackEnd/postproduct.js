@@ -4,6 +4,7 @@ const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer'); // ใช้สำหรับการอัปโหลดไฟล์
+const jwt = require('jsonwebtoken'); // เพิ่ม jwt เพื่อใช้ตรวจสอบ token
 
 const app = express();
 app.use(cors());
@@ -54,23 +55,45 @@ db.serialize(() => {
 // API สำหรับเพิ่มสินค้า พร้อมอัปโหลดรูปภาพ
 function postproduct(app) {
     app.post('/addProduct', upload.single('image'), (req, res) => {
-        const { name, price, status, categories, detail, stock } = req.body;
-        const image_url = req.file ? `/ImageOfProducts/${req.file.filename}` : null; // เก็บ URL ของรูปภาพ
-
-        // ตรวจสอบข้อมูลเพิ่มเติมก่อนทำการบันทึก
-        if (!name || !price || !status || !categories || !detail || !stock) {
-            return res.status(400).json({ message: 'ข้อมูลไม่ครบถ้วน' });
+        const token = req.headers['authorization'];
+        if (!token) {
+            return res.status(401).json({ message: 'Unauthorized: Please login first' });
         }
 
-        db.run(`INSERT INTO products (name, price, status, categories, detail, stock, image_url) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-            [name, price, status, categories, detail, stock, image_url],
-            function (err) {
-                if (err) {
-                    console.log(err);
-                    return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการเพิ่มสินค้า' });
-                }
-                res.json({ message: 'เพิ่มสินค้าสำเร็จ', id: this.lastID });
-            });
+        jwt.verify(token, 'your_secret_key', (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: 'Invalid token' });
+            }
+
+            const { name, price, status, categories, detail, stock } = req.body;
+            const image_url = req.file ? `/ImageOfProducts/${req.file.filename}` : null;
+            const userId = decoded.id;
+
+            if (!name || !price || !status || !categories || !detail || !stock) {
+                return res.status(400).json({ message: 'Incomplete information' });
+            }
+
+            // บันทึกข้อมูลสินค้าในฐานข้อมูล
+            db.run(`INSERT INTO products (name, price, status, categories, detail, stock, image_url, userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+                [name, price, status, categories, detail, stock, image_url, userId],
+                function (err) {
+                    if (err) {
+                        console.error('Database error:', err.message);
+                        return res.status(500).json({ message: 'Error adding product' });
+                    }
+
+                    // เพิ่มประวัติการขาย
+                    const saleQuery = `INSERT INTO sales_history (user_id, product_name, status) VALUES (?, ?, ?)`;
+                    const saleStatus = "Listed"; // สถานะการขายเริ่มต้น
+                    db.run(saleQuery, [userId, name, saleStatus], function (err) {
+                        if (err) {
+                            return res.status(500).json({ message: 'Error adding sale history' });
+                        }
+
+                        res.json({ message: 'Product added successfully', id: this.lastID });
+                    });
+                });
+        });
     });
 }
 module.exports = postproduct;

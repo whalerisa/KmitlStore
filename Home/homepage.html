@@ -70,7 +70,7 @@
                 // แสดงการ์ดสินค้าจากข้อมูลที่ได้
                 products.forEach(product => {
                     const productLink = document.createElement('a');
-                    productLink.href = `../Productdetails/Product-details.html?image=${encodeURIComponent(product.image)}&detail=${encodeURIComponent(product.detail)}&price=${product.price}`;
+                    productLink.href = `../Productdetails/Product-details.html?price=${product.id}&image=${encodeURIComponent(product.image)}&detail=${encodeURIComponent(product.detail)}&price=${product.price}`;
                     productLink.classList.add('product-link');
 
                     const productCard = document.createElement('product-card');

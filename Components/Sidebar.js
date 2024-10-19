@@ -8,7 +8,7 @@ class MySidebar extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 /* ลิงก์ไปยังฟอนต์ Inter */
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap');
                 
                 .sidebar {
                     position: fixed;
@@ -18,7 +18,7 @@ class MySidebar extends HTMLElement {
                     background-color: #f8f8f8;
                     padding: 15px;
                     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .dropbtn {
@@ -33,7 +33,7 @@ class MySidebar extends HTMLElement {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .dropdown-content {
@@ -42,7 +42,7 @@ class MySidebar extends HTMLElement {
                     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                     position: relative;
                     z-index: 1;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .dropdown:hover .dropdown-content {
@@ -54,7 +54,7 @@ class MySidebar extends HTMLElement {
                     text-decoration: none;
                     display: block;
                     color: black;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .dropdown-content a:hover {

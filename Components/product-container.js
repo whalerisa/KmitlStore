@@ -10,7 +10,7 @@ class ProductContainer extends HTMLElement {
         template.innerHTML = `
             <style>
                 /* ลิงก์ไปยังฟอนต์ Inter */
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap');
 
                 .product-container {
                     display: flex;
@@ -19,7 +19,7 @@ class ProductContainer extends HTMLElement {
                     margin-bottom: 40px;
                     border-bottom: 1px solid #e0e0e0;
                     padding-bottom: 20px;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .product-image {
@@ -37,7 +37,7 @@ class ProductContainer extends HTMLElement {
                     font-size: 24px;
                     color: #333;
                     margin-bottom: 10px;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .product-details .price {
@@ -48,13 +48,13 @@ class ProductContainer extends HTMLElement {
                     font-size: 18px;
                     display: inline-block;
                     margin-bottom: 15px;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .quantity {
                     font-size: 14px;
                     color: #999;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .quantity .orange-text {
@@ -82,7 +82,7 @@ class ProductContainer extends HTMLElement {
                     cursor: pointer;
                     border-radius: 5px;
                     margin-left: 10px;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 .view-shop:hover {

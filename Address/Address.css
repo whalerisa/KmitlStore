@@ -1,6 +1,6 @@
- /* General Styling */
- body {
-    font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+/* General Styling */
+body {
+    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f7f7f7;
@@ -8,22 +8,21 @@
 
 /* Order Form Section */
 .order-form-section {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
+    max-width: 800px; /* ขนาดสูงสุด */
+    margin: 20px auto; /* จัดให้อยู่ตรงกลาง */
+    padding: 20px; /* ขอบภายใน */
     background-color: #f7f7f7;
     border-radius: 15px;
-    
-    margin-top: 100px;
+    margin-top: 100px; /* ระยะห่างด้านบน */
 }
 
 /* Input Box Styling */
 .input-box, .product-box, .total-box {
     background-color: #f5f5f5;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ปรับเงาให้เข้มขึ้น */
+    padding: 20px; /* ขอบภายใน */
+    margin-bottom: 20px; /* ระยะห่างระหว่างกล่อง */
+    border-radius: 15px; /* มุมกลม */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เงา */
 }
 
 /* Label Styling */
@@ -31,44 +30,43 @@ label {
     display: block;
     margin-bottom: 10px;
     color: #E35205;
-    font-weight: bold;
+    font-weight: 800; /* ตัวหนา */
 }
 
 /* Textarea Styling */
 textarea {
-    width: 100%;
+    width: 100%; /* กว้างเต็ม */
     padding: 10px;
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
+    border-radius: 15px; /* มุมกลม */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงา */
+    font-size: 16px; /* ขนาดตัวอักษร */
 }
 
 /* Product Details Styling */
 .product-box p {
     margin: 0;
-    font-size: 16px;
-    color: #333;
+    font-size: 16px; /* ขนาดตัวอักษร */
+    color: #333; /* สีตัวอักษร */
 }
 
 /* Total Price Box */
 .total-box {
     background-color: #f5f5f5;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ปรับเงาให้เข้มขึ้น */
-    height: 20px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0px; /* ขอบภายใน */
+    margin-bottom: 20px; /* ระยะห่าง */
+    border-radius: 15px; /* มุมกลม */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เงา */
+    display: flex; /* ใช้ Flexbox สำหรับจัดเรียง */
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
 }
 
 .total-box p {
-    font-size: 18px;
-    color: #E35205;
-    font-weight: bold;
-    text-align: center;
+    font-size: 18px; /* ขนาดตัวอักษร */
+    color: #E35205; /* สีตัวอักษร */
+    font-weight: 800; /* ตัวหนา */
+    text-align: center; /* จัดให้ตัวอักษรอยู่กลาง */
 }
 
 /* Place Order Button */
@@ -76,22 +74,43 @@ textarea {
     background-color: #f5f5f5;
     color: #E35205;
     border: none;
-    padding: 15px;
-    border-radius: 15px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 24px; /* ขนาดตัวอักษรที่ปรับใหญ่ขึ้น */
-    font-weight: 800; /* ทำให้ตัวหนาแบบ Extra Bold */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้กับปุ่ม */
+    padding: 15px; /* ขอบภายใน */
+    border-radius: 15px; /* มุมกลม */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์ */
+    width: 100%; /* กว้างเต็ม */
+    font-size: 24px; /* ขนาดตัวอักษร */
+    font-weight: 800; /* ตัวหนา */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เงา */
 }
 
 .place-order-button:hover {
-    background-color: #e2e2e1;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* ปรับเงาขึ้นเมื่อเมาส์อยู่เหนือปุ่ม */
+    background-color: #e2e2e1; /* สีเมื่อเลื่อนเมาส์ */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* เงาเมื่อเลื่อนเมาส์ */
 }
 
 /* Icon Styling */
 label i {
-    color: #E35205;
-    margin-right: 10px;
+    color: #E35205; /* สีของไอคอน */
+    margin-right: 10px; /* ระยะห่างด้านขวาของไอคอน */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* ลดการ padding สำหรับมือถือ */
+    }
+
+    .order-form-section {
+        padding: 15px; /* ลดการ padding สำหรับมือถือ */
+    }
+
+    .place-order-button {
+        width: 100%; /* ทำให้ปุ่มเต็มความกว้าง */
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .order-form-section {
+        padding: 20px; /* เพิ่มการ padding สำหรับแท็บเล็ต */
+    }
 }

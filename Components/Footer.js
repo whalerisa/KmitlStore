@@ -5,32 +5,32 @@ class Footer extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 /* ลิงก์ไปยังฟอนต์ Inter */
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap');
 
-                /* ตั้งค่าให้ body ครอบคลุมเต็มหน้าและใช้งาน flexbox */
+                /* ทำให้ตัว host ครอบคลุมเต็มความสูงของหน้าจอ */
                 :host {
                     display: flex;
                     flex-direction: column;
-                    min-height: 70vh; /* ความสูงขั้นต่ำให้เต็มหน้าจอ */
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    min-height: 50vh; /* ความสูงของทั้งหน้าเพจต้องครอบคลุมทั้งหน้าจอ */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
                 /* Content wrapper */
                 .content {
                     flex: 1;
-                    padding-bottom: 10px; /* ลด padding-bottom เพื่อลดระยะห่างจาก footer */
                 }
 
                 /* Footer */
                 footer {
                     background-color: #E35205;
                     color: white;
-                    padding: 20px 20px; /* ลด padding ของ footer ให้เล็กลง */
+                    padding: 10px 20px;
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-start;
                     flex-wrap: wrap;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    width: 100%; /* กำหนดให้ footer กว้างเต็มจอ */
+                    box-sizing: border-box; /* ทำให้ padding รวมอยู่ในการคำนวณขนาด */
                 }
 
                 .footer-links, .social-links {
@@ -43,7 +43,6 @@ class Footer extends HTMLElement {
                     font-size: 16px;
                     margin-bottom: 10px;
                     color: #fff;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .footer-links ul, .social-links ul {
@@ -55,7 +54,6 @@ class Footer extends HTMLElement {
                 .footer-links li, .social-links li {
                     font-size: 12px;
                     margin: 3px 0;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 .social-links li {
@@ -71,7 +69,6 @@ class Footer extends HTMLElement {
                 footer a {
                     color: white;
                     text-decoration: none;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
                 }
 
                 footer a:hover {

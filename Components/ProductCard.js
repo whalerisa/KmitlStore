@@ -30,7 +30,7 @@ class ProductCard extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 /* ลิงก์ไปยังฟอนต์ Inter */
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap');
                 
                 .product-card {
                     background-color: white;
@@ -44,7 +44,7 @@ class ProductCard extends HTMLElement {
                     flex-direction: column;
                     justify-content: flex-start;
                     text-align: center;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
     
                 .product-card img {
@@ -60,7 +60,7 @@ class ProductCard extends HTMLElement {
                     font-size: 14px;
                     color: #333;
                     list-style-type: disc;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
     
                 .product-price {
@@ -72,7 +72,7 @@ class ProductCard extends HTMLElement {
                     padding: 5px 10px;
                     border-radius: 5px;
                     font-size: 16px;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
             </style>
             <div class="product-card">

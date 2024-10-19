@@ -5,7 +5,7 @@ class Navbar extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 /* ลิงก์ไปยังฟอนต์ Inter */
-                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap');
                 
                 header {
                     display: flex;
@@ -19,7 +19,7 @@ class Navbar extends HTMLElement {
                     left: 0; 
                     right: 0; 
                     z-index: 1000;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
                 .left-section {
                     display: flex;
@@ -51,7 +51,7 @@ class Navbar extends HTMLElement {
                     border: none;
                     border-radius: 45px;
                     padding-right: 40px;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
                 .search-icon {
                     position: absolute;
@@ -79,7 +79,7 @@ class Navbar extends HTMLElement {
                     flex-direction: column;
                     align-items: center;
                     font-size: 14px;
-                    font-family: 'Inter', sans-serif; /* ใช้ฟอนต์ Inter */
+                    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
                 .nav-links img {
                     width: 40px;
@@ -95,6 +95,8 @@ class Navbar extends HTMLElement {
                 .nav-links button:hover {
                     color: #AA4109;
                 }
+
+                
             </style>
 
             <header>

@@ -1,0 +1,74 @@
+/* Default styling for larger screens (desktop) */
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    max-width: 1200px; /* Fix width for desktop */
+    margin: 0 auto; /* Center the content */
+}
+
+/* Full column span for larger screens */
+.col-12 {
+    grid-column: span 12;
+}
+
+.col-6 {
+    grid-column: span 6;
+}
+
+.col-3 {
+    grid-column: span 3;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(12, 1fr); /* Same grid system but smaller gaps */
+        gap: 15px;
+    }
+
+    /* Span full width for smaller screens */
+    .col-s-12 {
+        grid-column: span 12;
+    }
+
+    .col-s-6 {
+        grid-column: span 12;
+    }
+
+    .col-s-3 {
+        grid-column: span 12;
+    }
+}
+
+/* Order Form Section and Input Boxes */
+.order-form-section, .input-box, .total-box {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #f7f7f7;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.place-order-button {
+    background-color: #f5f5f5;
+    color: #E35205;
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    font-size: 24px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+}
+
+.place-order-button:hover {
+    background-color: #e2e2e1;
+}
+
+/* Make form wider for desktop */
+.order-form-section {
+    max-width: 800px;
+    margin: 100px auto; /* Centering with top margin */
+}
+

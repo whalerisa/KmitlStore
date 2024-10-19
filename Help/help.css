@@ -1,10 +1,15 @@
-/* General Styling */
-body {
-    font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+ /* General Styling */
+ body {
+    font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
+    background-color: #fff;
 }
+
+main {
+    flex: 1; /* ทำให้เนื้อหาส่วนกลางขยายได้ */
+}
+
 
 /* คำถามที่พบบ่อย - หัวข้อ */
 .faq-section {
@@ -34,7 +39,7 @@ body {
 
 .faq-button {
     display: inline-block; /* ทำให้ลิงค์อยู่ในรูปแบบของบล็อก */
-    background-color: #f7f7f7; /* สีพื้นหลัง */
+    background-color: #fff; /* สีพื้นหลัง */
     color: #333; /* สีข้อความ */
     padding: 5px; /* เพิ่ม padding เพื่อให้ปุ่มสูงขึ้น */
     height: 40px; /* กำหนดความสูงของปุ่ม */
@@ -61,13 +66,14 @@ body {
     color: white; /* สีตัวอักษรเมื่อกดปุ่ม */
 }
 
-
-/* ข้อมูลการติดต่อ Admin */
+/* Contact Admin */
 .contact-admin {
     display: flex;
     align-items: center;
-    margin-top: 0px; /* ไม่มีระยะห่างจากด้านบน */
-    margin-bottom: 0px; /* ไม่มีระยะห่างจากด้านล่าง ชิดกับ Footer */
+    padding: 10px 20px;
+    background-color: #fff;
+    margin-top: 100px; /* ยังคงมีระยะห่างจากส่วนด้านบน (FAQ section) */
+    margin-bottom: 0; /* ไม่มีระยะห่างจาก footer */
 }
 
 .message-icon {
@@ -85,8 +91,10 @@ body {
     margin: 0;
 }
 
-.faq-section {
-    margin-bottom: 0px; /* ลดระยะห่างจาก Footer */
+/* Footer */
+my-footer {
+    position: relative; /* หรือ absolute ถ้าต้องการให้ footer ชิดล่างเสมอ */
+    width: 100%;
+    min-height: 30vh; /* ความสูงของ footer อย่างน้อย 30% ของหน้าจอ */
+    bottom: 0;
 }
-
-

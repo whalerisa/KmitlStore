@@ -26,7 +26,9 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
 app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุกโฟลเดอร์ที่อยู่ในroot ให้เป็นstatic files
 
-
+app.get('/register', (req, res) => {
+    res.sendFile(__dirname + 'register.html');
+})
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
 const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd','Profile','Productdetails','ImageOfProducts',

@@ -37,6 +37,13 @@
         </button>
 
         <script>
+            function redirectToRegister() {
+                window.location.href = "/register.html"; 
+            }
+
+            function redirectToHomepage() {
+                window.location.href = "homepage.html"; 
+            }
             document.getElementById('login-form').addEventListener('submit', async function(event) {
                 event.preventDefault();
 
@@ -69,13 +76,7 @@
                 }
             });
 
-            function redirectToRegister() {
-                window.location.href = "register.html"; 
-            }
-
-            function redirectToHomepage() {
-                window.location.href = "homepage.html"; 
-            }
+            
         </script>
 
     </div>

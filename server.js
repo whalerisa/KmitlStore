@@ -17,6 +17,7 @@ const WomensClothing = require('./BackEnd/womenclothing');
 const Profile = require('./BackEnd/Profile');
 const ProductDetail = require('./BackEnd/productdetail');
 const My_Products = require('./BackEnd/my_products');
+const sales_history = require('./BackEnd/Sales-history');
 
 
 
@@ -26,13 +27,10 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
 app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุกโฟลเดอร์ที่อยู่ในroot ให้เป็นstatic files
 
-app.get('/register', (req, res) => {
-    res.sendFile(__dirname + 'register.html');
-})
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd','Profile','Productdetails','ImageOfProducts',
-    'My_Products'
+const staticFolders = ['Login','register','PostProduct','Home','Categories','Components','icons','BackEnd','Profile','Productdetails'
+    ,'ImageOfProducts','My_Products','History'
 ];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
@@ -67,6 +65,9 @@ WomensClothing(app)
 Profile(app);
 ProductDetail(app);
 My_Products(app);
+sales_history(app);
+
+
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

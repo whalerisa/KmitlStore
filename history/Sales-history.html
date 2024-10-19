@@ -50,7 +50,47 @@
 
     <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
+    <script>
+        const token = localStorage.getItem('token'); // ดึง token จาก localStorage
+        if (!token) {
+            console.log ('No token found');
+        }
 
+        async function fetchSalesHistory() {
+            try {
+                const token = localStorage.getItem('token'); // ดึง token จาก localStorage
+                const response = await fetch('/sales-history', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}` // ส่ง token ใน header
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const salesHistory = await response.json();
+    
+                // แสดงข้อมูลใน product-container
+                const purchaseHistory = document.querySelector('.purchase-history');
+                salesHistory.forEach(item => {
+                    const productContainer = document.createElement('product-container');
+                    productContainer.setAttribute('image', item.image);
+                    productContainer.setAttribute('name', item.product_name);
+                    productContainer.setAttribute('price', item.price);
+                    productContainer.setAttribute('description', item.description);
+                    productContainer.setAttribute('shop-name', item.shop_name);
+                    productContainer.setAttribute('shop-link', item.shop_link);
+                    purchaseHistory.appendChild(productContainer);
+                });
+            } catch (error) {
+                console.error('Error fetching sales history:', error);
+            }
+        }
+    
+        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้า
+        window.onload = fetchSalesHistory;
+    </script>
+    
 </body>
 
 </html>

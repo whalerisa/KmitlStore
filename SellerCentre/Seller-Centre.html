@@ -43,6 +43,32 @@
 
     <!-- Footer Web Component อยู่ด้านล่างสุด -->
     <my-footer></my-footer>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', loadSellerData);
 
+        function loadSellerData() {
+            const token = localStorage.getItem('token');
+            fetch('/api/seller', {
+                headers: {
+                    'Authorization': `Bearer ${token}` // ใช้ token ที่เก็บไว้
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Error fetching seller data:', data.error);
+                    return;
+                }
+
+                document.getElementById('toShip').textContent = data.toShip; // อัปเดตข้อมูล
+                document.getElementById('inTransit').textContent = data.inTransit; // อัปเดตข้อมูล
+                document.getElementById('completed').textContent = data.completed; // อัปเดตข้อมูล
+            })
+            .catch(error => console.error('Error fetching seller data:', error));
+        }
+
+    </script>
 </body>
+
 </html>

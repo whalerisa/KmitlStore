@@ -27,15 +27,16 @@ function authenticateToken(req, res, next) {
     jwt.verify(token, SECRET_KEY, (err, user) => {
         if (err) return res.status(403).json({ error: 'Invalid token' });
 
-        req.userId = user.userId; // ดึง userId จาก token แล้วเก็บใน request object
+        req.userId = user.id; // ดึง userId จาก token แล้วเก็บใน request object
         next();
     });
 }
 
 
 function My_Products(app){
-        // API สำหรับดึงข้อมูลสินค้าของผู้ใช้ที่ล็อกอิน
+    // API สำหรับดึงข้อมูลสินค้าของผู้ใช้ที่ล็อกอิน
     app.get('/api/products', authenticateToken, (req, res) => {
+        console.log('User ID:', req.userId); // ดูว่าได้ userId ถูกต้องหรือไม่
         const sql = 'SELECT id, name, price, status FROM products WHERE userId = ?';  // ดึงข้อมูลสินค้าโดยใช้ userId
         db.all(sql, [req.userId], (err, rows) => {
             if (err) {

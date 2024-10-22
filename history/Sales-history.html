@@ -18,78 +18,47 @@
 
     <div class="purchase-history">
         <h1>Sales history</h1>
-
-        <!-- ใช้ Web Component ของ product-container -->
-        <product-container 
-            image="../image/pleated-skirt-1.jpg" 
-            name="กระโปรงพลีท" 
-            price="160" 
-            description="- กระโปรงพลีท<br>- ฟรีไซด์<br>- ยาว 24<br>- ใส่แค่ครั้งเดียว" 
-            shop-name="น้ำ ขายของ"
-            shop-link="../Profile/Profile-shop.html">
-        </product-container>
-
-        <product-container 
-            image="../image/Malestudentpants-1.jpg" 
-            name="กางเกงนักศึกษาชาย" 
-            price="200" 
-            description="- กางเกงนักศึกษาชาย<br>- ไซต์ L<br>- ไม่มีตำหนิ<br>- นัดรับได้" 
-            shop-name="น้ำ ขายของ"
-            shop-link="../Profile/Profile-shop.html">
-        </product-container>
-
-        <product-container 
-            image="../image/Women-shirt1.jpg" 
-            name="เสื้อนักศึกษาหญิง" 
-            price="250" 
-            description="- อก32-ยาว34<br>- แขนสามเหลี่ยม<br>- สาบหลังตัววี<br>- สีขาวสว่าง<br>- เนื้อผ้าคอมทวิล<br>- ใส่ครั้งเดียว" 
-            shop-name="น้ำ ขายของ"
-            shop-link="../Profile/Profile-shop.html">
-        </product-container>
     </div>
 
     <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
     <script>
-        const token = localStorage.getItem('token'); // ดึง token จาก localStorage
-        if (!token) {
-            console.log ('No token found');
-        }
-
-        async function fetchSalesHistory() {
+        document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const token = localStorage.getItem('token'); // ดึง token จาก localStorage
-                const response = await fetch('/sales-history', {
+                const token = localStorage.getItem('token'); // ดึง Token จาก localStorage
+    
+                const response = await fetch('http://localhost:3000/sales-history', {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}` // ส่ง token ใน header
+                        'Authorization': token // แนบ Token ใน header
                     }
                 });
+    
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const salesHistory = await response.json();
     
-                // แสดงข้อมูลใน product-container
-                const purchaseHistory = document.querySelector('.purchase-history');
-                salesHistory.forEach(item => {
-                    const productContainer = document.createElement('product-container');
-                    productContainer.setAttribute('image', item.image);
-                    productContainer.setAttribute('name', item.product_name);
-                    productContainer.setAttribute('price', item.price);
-                    productContainer.setAttribute('description', item.description);
-                    productContainer.setAttribute('shop-name', item.shop_name);
-                    productContainer.setAttribute('shop-link', item.shop_link);
-                    purchaseHistory.appendChild(productContainer);
+                const products = await response.json();
+                const container = document.querySelector('.purchase-history');
+                
+                products.forEach(product => {
+                    const productElement = document.createElement('product-container');
+                    productElement.setAttribute('image', product.image);
+                    productElement.setAttribute('name', product.product_name);
+                    productElement.setAttribute('price', product.price);
+                    productElement.setAttribute('description', product.description);
+                    productElement.setAttribute('shop-name', product.shop_name);
+                    productElement.setAttribute('shop-link', '#'); // คุณสามารถเปลี่ยน link ให้เหมาะสมได้
+    
+                    container.appendChild(productElement);
                 });
             } catch (error) {
                 console.error('Error fetching sales history:', error);
             }
-        }
-    
-        // เรียกใช้ฟังก์ชันเมื่อโหลดหน้า
-        window.onload = fetchSalesHistory;
+        });
     </script>
+    
+    
     
 </body>
 

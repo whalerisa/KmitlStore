@@ -37,6 +37,13 @@
         </button>
 
         <script>
+            function redirectToRegister() {
+                window.location.href = "/register.html";  
+            }
+
+            function redirectToHomepage() {
+                window.location.href = "homepage.html"; 
+            }
             document.getElementById('login-form').addEventListener('submit', async function(event) {
                 event.preventDefault();
 
@@ -60,6 +67,7 @@
                         alert(result.message); // แจ้งผลการเข้าสู่ระบบ
                         // เปลี่ยนเส้นทางไปยังหน้าโปรไฟล์หรือตรงตามที่คุณต้องการ
                         window.location.href = "../profile/profile.html"; 
+                        
                     } else {
                         alert(result.message); // แจ้งข้อผิดพลาด
                     }
@@ -69,13 +77,7 @@
                 }
             });
 
-            function redirectToRegister() {
-                window.location.href = "register.html"; 
-            }
-
-            function redirectToHomepage() {
-                window.location.href = "homepage.html"; 
-            }
+            
         </script>
 
     </div>

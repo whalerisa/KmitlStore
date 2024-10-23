@@ -64,6 +64,7 @@
 
             // ฟังก์ชันสำหรับดึงข้อมูลสินค้า
             function loadProducts() {
+                console.log('Token:', localStorage.getItem('token')); // ตรวจสอบค่า token
                 fetch('/api/products', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`

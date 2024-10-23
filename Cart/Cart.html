@@ -111,5 +111,54 @@
 
     <my-footer></my-footer>
 </body>
+<script>
+    function addToCart(productId) {
+    const userId = localStorage.getItem('userId'); // ใช้ userId จากการเข้าสู่ระบบ
+
+    fetch('/cart/add-to-cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message); // แสดงผลตอบรับ
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+function loadCart() {
+    const userId = localStorage.getItem('userId');
+
+    fetch(`/cart?userId=${userId}`)
+    .then(response => response.json())
+    .then(data => {
+        const cartItems = data.cartItems;
+        const cartContainer = document.querySelector('.cart-items');
+
+        cartItems.forEach(item => {
+            const cartItem = `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <span>${item.name}</span>
+                    <span class="item-price">${item.price} ฿</span>
+                    <span>Quantity: ${item.quantity}</span>
+                </div>
+            `;
+            cartContainer.innerHTML += cartItem;
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadCart);
+
+</script>
+
 
 </html>

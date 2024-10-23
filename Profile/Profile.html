@@ -26,14 +26,14 @@
         <div class="profile-header">
             <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-picture">
             <h1>
-                RiSa2020
+                 Username
                 <a href="Profile-Edit.html" class="edit-icon">✏️</a> <!-- เพิ่มลิงค์ไปที่หน้า Edit Profile -->
             </h1>
         </div>
     </div>
 
     <div class="profile-info">
-        <p>Name: Yanothai</p>
+        <p>Name: Username</p>
         <p>Phone number: 0XX-XXX-XXXX</p>
         <p>Email: XXXXXXXXXXXX@gmail.com</p>
         <a href="../SellerCentre/Seller-Centre.html">
@@ -107,7 +107,6 @@
                     responseData.purchaseHistory.forEach(purchase => {
                         const li = document.createElement('li');
                         li.textContent = `${purchase.product_name}... `;
-                        li.innerHTML += `<span class="status">${purchase.status}</span>`;
                         purchaseHistorySection.appendChild(li);
                     });
                 }
@@ -122,7 +121,6 @@
                     responseData.salesHistory.forEach(sale => {
                         const li = document.createElement('li');
                         li.textContent = `${sale.product_name}... `;
-                        li.innerHTML += `<span class="status">${sale.status}</span>`;
                         salesHistorySection.appendChild(li);
                     });
                 }

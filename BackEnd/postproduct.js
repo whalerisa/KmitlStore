@@ -83,9 +83,9 @@ function postproduct(app) {
                     }
 
                     // เพิ่มประวัติการขาย
-                    const saleQuery = `INSERT INTO sales_history (user_id, product_name, status) VALUES (?, ?, ?)`;
-                    const saleStatus = "Listed"; // สถานะการขายเริ่มต้น
-                    db.run(saleQuery, [userId, name, saleStatus], function (err) {
+                    const saleQuery = `INSERT INTO sales_history (user_id, product_name, price, status, categories, detail, stock, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+                    const saleStatus = "Success"; // สถานะการขายเริ่มต้น
+                    db.run(saleQuery, [userId, name, price, status, categories, detail, stock, image_url], function (err) {
                         if (err) {
                             return res.status(500).json({ message: 'Error adding sale history' });
                         }

@@ -96,7 +96,67 @@ class Navbar extends HTMLElement {
                     color: #AA4109;
                 }
 
-                
+                /* สำหรับหน้าจอ Desktop (มากกว่า 1024px) */
+                .search-container input {
+                    width: 600px;
+                }
+                .left-section {
+                    display: flex;
+                    align-items: center;
+                }
+
+                /* สำหรับแท็บเล็ต (ระหว่าง 768px ถึง 1024px) */
+                @media (max-width: 1024px) and (min-width: 768px) {
+                    .search-container input {
+                        width: 400px; /* แถบค้นหาสั้นลง */
+                    }
+                    .nav-links a {
+                        margin-left: 5px; /* ลดระยะห่างของลิงก์ */
+                    }
+                }
+
+                /* สำหรับมือถือ (ความกว้างน้อยกว่า 768px) */
+                @media (max-width: 767px) {
+                    .search-container input {
+                        width: 250px; /* แถบค้นหาสั้นลง */
+                    }
+                    .left-section {
+                        display: none; /* ซ่อนปุ่ม back และโลโก้ */
+                    }
+                    .nav-links {
+                        justify-content: center; /* จัดลิงก์ให้อยู่ตรงกลาง */
+                    }
+                    .nav-links a {
+                        margin-left: 3px; /* ลดระยะห่างลงอีก */
+                    }
+                }
+
+                /* สำหรับหน้าจอขนาดเล็กมาก (น้อยกว่า 480px) */
+                @media (max-width: 480px) {
+                    .search-container input {
+                        width: 180px; /* แถบค้นหาสั้นลงอีก */
+                    }
+                    .nav-links img {
+                        width: 30px; /* ลดขนาดไอคอน */
+                        height: 30px;
+                    }
+                    .nav-links button {
+                        font-size: 12px; /* ลดขนาดตัวอักษร */
+                    }
+                    .nav-links a {
+                        margin-left: 1px; /* ลดระยะห่างลงอีก */
+                    }
+                }
+
+                /* สำหรับหน้าจอขนาดเล็กมากๆ (น้อยกว่า 360px) */
+                @media (max-width: 360px) {
+                    .search-container input {
+                        width: 100px; /* แถบค้นหาสั้นที่สุด */
+                    }
+                    .nav-links a {
+                        margin-left: 1px; /* ลดระยะห่างลงอีก */
+                    }
+                }
             </style>
 
             <header>

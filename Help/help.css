@@ -7,7 +7,7 @@
 }
 
 main {
-    flex: 1; /* ทำให้เนื้อหาส่วนกลางขยายได้ */
+    flex: 1; 
 }
 
 
@@ -16,54 +16,54 @@ main {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* จัดหัวข้อให้อยู่ตรงซ้ายแทน */
-    position: relative; /* ให้มีการจัดวางแบบ relative */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    align-items: flex-start; 
+    position: relative; 
+    margin-top: 100px;
 }
 
 .faq-title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 40px; /* ระยะห่างระหว่างหัวข้อกับปุ่ม */
-    margin-left: 340px; /* ขยับหัวข้อไปทางขวา */
+    margin-bottom: 40px; 
+    margin-left: 340px; 
 }
 
 /* ปุ่มแสดงปัญหาการใช้งาน */
 .faq-item {
     display: flex;
-    justify-content: center; /* จัดปุ่มให้อยู่ตรงกลาง */
-    width: 100%; /* ให้ปุ่มอยู่ตรงกลางของพื้นที่หน้าจอ */
-    margin-bottom: 5px; /* ระยะห่างระหว่างปุ่ม */
+    justify-content: center; 
+    width: 100%; 
+    margin-bottom: 5px; 
 }
 
 
 .faq-button {
-    display: inline-block; /* ทำให้ลิงค์อยู่ในรูปแบบของบล็อก */
-    background-color: #fff; /* สีพื้นหลัง */
-    color: #333; /* สีข้อความ */
-    padding: 5px; /* เพิ่ม padding เพื่อให้ปุ่มสูงขึ้น */
-    height: 40px; /* กำหนดความสูงของปุ่ม */
-    width: 55%; /* กำหนดความกว้างของปุ่ม */
-    border: 4px solid #E35205; /* เส้นขอบสีส้ม */
-    border-radius: 15px; /* ทำให้มุมมน */
-    text-align: left; /* จัดข้อความให้ชิดซ้าย */
-    font-weight: bold; /* ทำให้ข้อความหนา */
-    font-size: 16px; /* ปรับขนาดตัวอักษร */
-    cursor: pointer; /* เปลี่ยนรูปแบบเคอร์เซอร์ */
-    transition: background-color 0.3s, border-color 0.3s; /* เพิ่มการเปลี่ยนสี */
-    margin-bottom: 5px; /* ระยะห่างระหว่างปุ่ม */
-    text-decoration: none; /* ไม่ให้มีเส้นใต้ */
+    display: inline-block; 
+    background-color: #fff; 
+    color: #333; 
+    padding: 5px; 
+    height: 40px; 
+    width: 55%;
+    border: 4px solid #E35205; 
+    border-radius: 15px; 
+    text-align: left; 
+    font-weight: bold; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, border-color 0.3s; 
+    margin-bottom: 5px; 
+    text-decoration: none; 
 }
 
 .faq-button:hover {
-    background-color: #E35205; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
-    color: white; /* เปลี่ยนสีตัวอักษรเมื่อ hover */
-    border-color: #E35205; /* เส้นขอบยังคงเป็นสีส้ม */
+    background-color: #E35205; 
+    color: white; 
+    border-color: #E35205; 
 }
 
 .faq-button:active {
-    background-color: #cc4404; /* สีพื้นหลังเมื่อกดปุ่ม */
-    color: white; /* สีตัวอักษรเมื่อกดปุ่ม */
+    background-color: #cc4404; 
+    color: white; 
 }
 
 /* Contact Admin */
@@ -72,8 +72,8 @@ main {
     align-items: center;
     padding: 10px 20px;
     background-color: #fff;
-    margin-top: 100px; /* ยังคงมีระยะห่างจากส่วนด้านบน (FAQ section) */
-    margin-bottom: 0; /* ไม่มีระยะห่างจาก footer */
+    margin-top: 100px; 
+    margin-bottom: 0; 
 }
 
 .message-icon {
@@ -93,8 +93,8 @@ main {
 
 /* Footer */
 my-footer {
-    position: relative; /* หรือ absolute ถ้าต้องการให้ footer ชิดล่างเสมอ */
+    position: relative; 
     width: 100%;
-    min-height: 30vh; /* ความสูงของ footer อย่างน้อย 30% ของหน้าจอ */
+    min-height: 30vh; 
     bottom: 0;
 }

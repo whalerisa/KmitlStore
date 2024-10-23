@@ -34,10 +34,9 @@
             </div>
         
             <div class="item-container header">
-                <div>All Products</div>
-                <div>Total Payment</div>
+                <div>Products</div>
+                <div>Price</div>
                 <div>Status</div>
-                <div>Action</div>
             </div>
 
             <!-- ส่วนนี้จะสร้างรายการคำสั่งซื้อผ่าน JavaScript -->
@@ -53,19 +52,19 @@
     <script>
         const orders = {
             current: [
-                { name: 'เสื้อนักศึกษา', price: '160 ฿', status: 'Shipping', carryout:'Processing' }
+                { name: 'เสื้อนักศึกษา', price: '160 ฿', status: 'Shipping' }
             ],
             unpaid: [
-                { name: 'อุปกรณ์กีฬา', price: '500 ฿', status: 'Unpaid', carryout:'Processing' }
+                { name: 'อุปกรณ์กีฬา', price: '500 ฿', status: 'Unpaid' }
             ],
             toship: [
-                { name: 'เครื่องเขียน', price: '100 ฿', status: 'To Ship', carryout:'Processing'}
+                { name: 'เครื่องเขียน', price: '100 ฿', status: 'To Ship'}
             ],
             shipping: [
-                { name: 'เครื่องครัว', price: '300 ฿', status: 'Shipping', carryout:'Processing' }
+                { name: 'เครื่องครัว', price: '300 ฿', status: 'Shipping'}
             ],
             completed: [
-                { name: 'หนังสือเรียน', price: '200 ฿', status: 'Completed', carryout:'Processing'}
+                { name: 'หนังสือเรียน', price: '200 ฿', status: 'Completed'}
             ]
         };
 
@@ -81,7 +80,6 @@
                     <div class="highlight">${order.name}</div>
                     <div class="highlight">${order.price}</div>
                     <div class="status">${order.status}</div>
-                    <div class="highlight">${order.carryout}</div>
                 `;
                 container.appendChild(orderDiv);
             });

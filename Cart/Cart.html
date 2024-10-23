@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMITL Store - Order Form</title>
+    <title>KMITL Store - Cart</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../responsive/responsive.css">
     <link rel="stylesheet" href="Cart.css">
@@ -33,6 +33,7 @@
             // Save total and checkbox states to localStorage
             localStorage.setItem('cartTotal', total);
             localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates)); // Save as a JSON string
+            localStorage.setItem('orderTotal', total + ' ฿'); // Save total for address page
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -101,7 +102,7 @@
             </div>
 
             <div class="total-container">
-                <button class="total-price">0 ฿</button> <!-- เปลี่ยนเป็นปุ่ม -->
+                <button class="total-price">0 ฿</button> <!-- Display total price -->
                 <a href="../Address/Address.html">
                     <button class="checkout-button">Check Out</button>
                 </a>
@@ -112,53 +113,35 @@
     <my-footer></my-footer>
 </body>
 <script>
-    function addToCart(productId) {
-    const userId = localStorage.getItem('userId'); // ใช้ userId จากการเข้าสู่ระบบ
+    function loadCart() {
+        const userId = localStorage.getItem('userId');
 
-    fetch('/cart/add-to-cart', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ userId, productId })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.message); // แสดงผลตอบรับ
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-function loadCart() {
-    const userId = localStorage.getItem('userId');
+        fetch(`/cart?userId=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            const cartItems = data.cartItems;
+            const cartContainer = document.querySelector('.cart-items');
 
-    fetch(`/cart?userId=${userId}`)
-    .then(response => response.json())
-    .then(data => {
-        const cartItems = data.cartItems;
-        const cartContainer = document.querySelector('.cart-items');
-
-        cartItems.forEach(item => {
-            const cartItem = `
-                <div class="cart-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <span>${item.name}</span>
-                    <span class="item-price">${item.price} ฿</span>
-                    <span>Quantity: ${item.quantity}</span>
-                </div>
-            `;
-            cartContainer.innerHTML += cartItem;
+            cartItems.forEach(item => {
+                const cartItem = `
+                    <div class="cart-item">
+                        <input type="checkbox" id="${item.id}" class="item-checkbox">
+                        <label for="${item.id}" class="item-label" data-price="${item.price}">
+                            <img src="${item.image}" alt="${item.name}">
+                            ${item.name}...
+                            <span class="item-price">${item.price}</span> ฿
+                        </label>
+                    </div>
+                `;
+                cartContainer.innerHTML += cartItem;
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
+    }
 
-document.addEventListener('DOMContentLoaded', loadCart);
-
+    document.addEventListener('DOMContentLoaded', loadCart);
 </script>
-
 
 </html>

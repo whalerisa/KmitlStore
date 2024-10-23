@@ -8,46 +8,46 @@ body {
 
 /* ส่วนของเนื้อหา */
 .profile-edit-section {
-    max-width: 800px; /* ความกว้างสูงสุดของเนื้อหา */
-    margin-left: auto; /* จัดให้อยู่ตรงกลางแนวนอน */
-    margin-right: auto; /* จัดให้อยู่ตรงกลางแนวนอน */
-    padding-left: 10px; /* ระยะห่างจากขอบซ้าย */
-    padding-right: 550px; /* ระยะห่างจากขอบขวา */
-    color: #E35205; /* สีตัวอักษร */
-    font-size: 18px; /* ขนาดฟอนต์ */
-    line-height: 1.6; /* ระยะห่างระหว่างบรรทัด */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    max-width: 800px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    padding-left: 10px; 
+    padding-right: 550px; 
+    color: #E35205; 
+    font-size: 18px; 
+    line-height: 1.6; 
+    margin-top: 100px; 
 }
 
 /* หัวข้อ */
 .faq-title {
-    font-size: 28px; /* ขนาดฟอนต์ของหัวข้อ */
-    font-weight: bold; /* ตัวหนา */
-    margin-bottom: 20px; /* ระยะห่างระหว่างหัวข้อกับเนื้อหา */
-    color: #E35205; /* สีของหัวข้อ */
+    font-size: 28px; 
+    font-weight: bold; 
+    margin-bottom: 20px; 
+    color: #E35205; 
 }
 
 /* ส่วนของหมายเหตุ */
 .note-header {
-    font-size: 18px; /* ขนาดฟอนต์ของหัวข้อหมายเหตุ */
-    font-weight: bold; /* ตัวหนา */
-    color: #E35205; /* สีของหัวข้อหมายเหตุ */
-    margin-top: 20px; /* ระยะห่างจากเนื้อหาก่อนหน้า */
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #E35205; 
+    margin-top: 20px; 
 }
 
 .note {
-    font-size: 16px; /* ขนาดฟอนต์ของข้อความหมายเหตุ */
-    color: #E35205; /* สีของข้อความหมายเหตุ */
-    margin-top: 10px; /* ระยะห่างจากหัวข้อหมายเหตุ */
+    font-size: 16px; 
+    color: #E35205;
+    margin-top: 10px; 
 }
 
 /* จัดการกับรายการ (ol และ ul) */
 ol, ul {
-    padding-left: 40px; /* ขยับให้รายการห่างจากขอบซ้าย */
-    margin-bottom: 20px; /* ระยะห่างระหว่างเนื้อหาล่าง */
+    padding-left: 40px; 
+    margin-bottom: 20px; 
 }
 
 li {
-    margin-bottom: 10px; /* ระยะห่างระหว่างรายการ */
+    margin-bottom: 10px;
 }
 

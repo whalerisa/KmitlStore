@@ -4,67 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMITL Store - Order Form</title>
+    <title>KMITL Store - Shipping Address</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Address.css">
+    <link rel="stylesheet" href="address.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cartTotal = localStorage.getItem('cartTotal');
-            const totalBox = document.querySelector('.total-box p');
-    
-            if (cartTotal) {
-                totalBox.textContent = 'Total payment ' + cartTotal + ' ฿';
-            }
-        });
-    </script>
 </head>
 
 <body>
 
-    <!-- ใช้ Web Component ของ Navbar -->
     <my-navbar></my-navbar>
+    
+    <!-- ที่อยู่สำหรับจัดส่ง -->
+    <div class="input-box">
+        <label for="username">
+            <i class="fas fa-user"></i> Username
+        </label>
+        <input type="text" id="username" placeholder="Enter your name" required>
+    </div>
 
-    <section class="order-form-section">
-        <form>
+    <div class="input-box">
+        <label for="address">
+            <i class="fas fa-map-marker-alt"></i> Shipping Address
+        </label>
+        <textarea id="address" placeholder="Enter the shipping address..." required></textarea>
+    </div>
 
-            <!-- ที่อยู่สำหรับจัดส่ง -->
-            <div class="input-box">
-                <label for="address">
-                    <i class="fas fa-map-marker-alt"></i>Shipping Address.
-                </label>
-                <textarea id="address" placeholder="Enter the shipping address..." required></textarea>
-            </div>
+    <!-- รายละเอียดสินค้า -->
+    <div class="input-box">
+        <label for="product-details">
+            <i class="fas fa-shopping-bag"></i> Product details
+        </label>
+        <div id="product-details" class="product-box">
+            <p>กระโปรงพลีท</p>
+            <p>ฟรีไซต์</p>
+            <p>ยาว 24</p>
+            <p>ใส่แค่ครั้งเดียว</p>
+        </div>
+    </div>
 
-            <!-- รายละเอียดสินค้า -->
-            <div class="input-box">
-                <label for="product-details">
-                    <i class="fas fa-shopping-bag"></i> Product details
-                </label>
-                <div id="product-details" class="product-box">
-                    <p>กระโปรงพลีท</p>
-                    <p>ฟรีไซต์</p>
-                    <p>ยาว 24</p>
-                    <p>ใส่แค่ครั้งเดียว</p>
-                </div>
-            </div>
+    <!-- ราคาสินค้ารวม -->
+    <div class="total-box">
+        <p>Total payment: <span id="total-price">0 ฿</span></p>
+    </div>
 
-            <!-- ยอดชำระทั้งหมด -->
-            <div class="total-box">
-                <p>Total payment 160 ฿</p>
-            </div>
+    <!-- Submit Order -->
+    <div class="place-order">
+        <button class="place-order-button" onclick="saveOrderDetails()">Place Order</button>
+    </div>
 
-            <!-- ปุ่มสั่งซื้อ -->
-            <a href="../chat/chat.html">
-                <button type="button" class="place-order-button">Place Order</button>
-            </a>
-        </form>
-    </section>
+    <script>
+        // ดึงราคาจาก localStorage และแสดงผล
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderTotal = localStorage.getItem('orderTotal') || '0 ฿'; // รับราคาจาก localStorage
+            document.getElementById('total-price').textContent = orderTotal; // แสดงราคา
+        });
 
-    <!-- ใช้ Web Component ของ Footer -->
+        function saveOrderDetails() {
+            const username = document.getElementById('username').value;
+            const address = document.getElementById('address').value;
+            const productDetails = document.getElementById('product-details').innerText;
+            const totalPayment = document.getElementById('total-price').textContent; // ดึงราคาที่แสดง
+
+            // เก็บข้อมูลลง localStorage
+            localStorage.setItem('orderUsername', username);
+            localStorage.setItem('orderAddress', address);
+            localStorage.setItem('orderProductDetails', productDetails);
+            localStorage.setItem('orderTotalPayment', totalPayment);
+
+            // เปลี่ยนไปยังหน้าแชท
+            window.location.href = "../chat/chat.html";
+        }
+    </script>
+
     <my-footer></my-footer>
-
 </body>
 
 </html>

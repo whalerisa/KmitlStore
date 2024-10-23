@@ -142,11 +142,6 @@ h1 {
     color: #4CAF50; /* สีเขียวสำหรับสถานะสำเร็จ */
 }
 
-.transaction-section li:hover {
-    background-color: #AA4109; /* เปลี่ยนสีพื้นหลังเป็นส้มเมื่อ hover */
-    color: white; /* เปลี่ยนสีตัวอักษรเป็นสีขาวเมื่อ hover */
-}
-
 /* Footer */
 footer {
     background-color: #E35205;

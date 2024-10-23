@@ -9,10 +9,10 @@ body {
 /* Chat Wrapper */
 .chat-wrapper {
     display: flex;
-    justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
-    align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
-    flex: 1; /* ทำให้ใช้พื้นที่ที่เหลือ */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-top: 100px;
 }
 
 /* Chat Container */
@@ -24,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80vh; /* ความสูงของกล่องแชท */
+    height: 80vh;
 }
 
 /* Header section for chat */
@@ -66,6 +66,21 @@ body {
     background-color: #E35205;
     color: white;
     align-self: flex-end;
+}
+
+/* Order Card Styling */
+.order-card {
+    background-color: #ffffff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 14px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-card strong {
+    font-size: 16px;
+    color: #E35205;
 }
 
 /* Input section */

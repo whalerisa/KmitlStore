@@ -59,7 +59,7 @@ h1 {
 
 .item-container {
     display: flex;
-    justify-content: space-between;
+    align-items: center; /* จัดแนวให้ตรงกลาง */
     padding: 12px;
     border-bottom: 1px solid #ddd;
     border-radius: 5px;
@@ -71,6 +71,17 @@ h1 {
     flex-basis: 25%; 
     text-align: left;
     font-size: 14px;
+    margin-right: 60px; /* เพิ่มระยะห่างระหว่างคอลัมน์ */
+}
+
+.order-checkbox {
+    margin-right: 5px; /* ลดระยะห่างระหว่างเช็คบ็อกซ์กับชื่อสินค้า */
+    accent-color: #ff6600; /* สีของ checkbox */
+}
+
+/* เพิ่มระยะห่างระหว่างคอลัมน์ต่าง ๆ */
+.item-container.header {
+    font-weight: bold; /* ทำให้หัวข้อเด่น */
 }
 
 .item-container .highlight {

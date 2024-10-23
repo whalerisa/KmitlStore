@@ -4,47 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMITL Store - Order Form</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>KMITL Store - Chat</title>
     <link rel="stylesheet" href="chat.css">
-    <script src="../Components/Navbar.js" defer></script> 
+    <script src="../Components/Navbar.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ดึงข้อมูลจาก localStorage
+            const orderUsername = localStorage.getItem('orderUsername');
+            const orderAddress = localStorage.getItem('orderAddress');
+            const orderProductDetails = localStorage.getItem('orderProductDetails');
+            const orderTotalPayment = localStorage.getItem('orderTotalPayment');
+
+            // สร้างการ์ดฟอร์มการส่งสินค้า
+            const chatWindow = document.querySelector('.chat-window');
+
+            if (orderUsername && orderAddress && orderProductDetails && orderTotalPayment) {
+                chatWindow.innerHTML += `
+                    <div class="message received order-card">
+                        <strong>Order Summary</strong><br>
+                        <p><strong>Name:</strong> ${orderUsername}</p>
+                        <p><strong>Address:</strong> ${orderAddress}</p>
+                        <p><strong>Product Details:</strong> ${orderProductDetails}</p>
+                        <p><strong>Total Payment:</strong> ${orderTotalPayment}</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
 </head>
 
 <body>
 
-      <!-- ใช้ Web Component ของ Navbar -->
-      <my-navbar></my-navbar>
+    <!-- ใช้ Web Component ของ Navbar -->
+    <my-navbar></my-navbar>
 
-        <body>
-            <div class="chat-wrapper">
-                <div class="chat-container">
-                    <!-- Header for Chat Page -->
-                    <div class="chat-header">
-                        <h2>Chat with shop</h2>
-                    </div>
-
-                    <!-- Chat window to display messages -->
-                    <div class="chat-window">
-                        <!-- Chat bubbles for messages -->
-                        <div class="message received">
-                            สวัสดีครับ! ต้องการให้ส่งของแบบไหนครับ?
-                        </div>
-                        <div class="message sent">
-                            ส่งแบบนัดรับค่ะ
-                        </div>
-                        <div class="message received">
-                            ได้เลยครับ
-                        </div>
-                    </div>
-
-                    <!-- Input box to send a message -->
-                    <div class="chat-input">
-                        <input type="text" placeholder="Type a message..." id="messageInput">
-                        <button id="sendButton">send</button>
-                    </div>
-                </div>
+    <div class="chat-wrapper">
+        <div class="chat-container">
+            <!-- Header for Chat Page -->
+            <div class="chat-header">
+                <h2>Chat with shop</h2>
             </div>
 
-        </body>
+            <!-- Chat window to display messages -->
+            <div class="chat-window">
+                <!-- Order card will be dynamically added here -->
+            </div>
+
+            <!-- Input box to send a message -->
+            <div class="chat-input">
+                <input type="text" placeholder="Type a message..." id="messageInput">
+                <button id="sendButton">send</button>
+            </div>
+        </div>
+    </div>
+
+</body>
 
 </html>

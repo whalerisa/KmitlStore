@@ -8,21 +8,27 @@ body {
 
 /* Order Form Section */
 .order-form-section {
-    max-width: 800px; /* ขนาดสูงสุด */
-    margin: 20px auto; /* จัดให้อยู่ตรงกลาง */
-    padding: 20px; /* ขอบภายใน */
+    max-width: 600px;
+    margin: 150px auto;
+    padding: 20px;
     background-color: #f7f7f7;
     border-radius: 15px;
-    margin-top: 100px; /* ระยะห่างด้านบน */
+}
+
+/* Add margin to the first input box */
+.input-box:first-of-type {
+    margin-top: 100px; /* Adjust this value */
 }
 
 /* Input Box Styling */
 .input-box, .product-box, .total-box {
     background-color: #f5f5f5;
-    padding: 20px; /* ขอบภายใน */
-    margin-bottom: 20px; /* ระยะห่างระหว่างกล่อง */
-    border-radius: 15px; /* มุมกลม */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เงา */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    margin: 10px auto;
 }
 
 /* Label Styling */
@@ -30,43 +36,45 @@ label {
     display: block;
     margin-bottom: 10px;
     color: #E35205;
-    font-weight: 800; /* ตัวหนา */
+    font-weight: 800;
 }
 
 /* Textarea Styling */
 textarea {
-    width: 100%; /* กว้างเต็ม */
+    width: 100%;
     padding: 10px;
     border: none;
-    border-radius: 15px; /* มุมกลม */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* เงา */
-    font-size: 16px; /* ขนาดตัวอักษร */
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
 }
 
 /* Product Details Styling */
 .product-box p {
     margin: 0;
-    font-size: 16px; /* ขนาดตัวอักษร */
-    color: #333; /* สีตัวอักษร */
+    font-size: 16px;
+    color: #333;
 }
 
 /* Total Price Box */
 .total-box {
     background-color: #f5f5f5;
-    padding: 0px; /* ขอบภายใน */
-    margin-bottom: 20px; /* ระยะห่าง */
-    border-radius: 15px; /* มุมกลม */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เงา */
-    display: flex; /* ใช้ Flexbox สำหรับจัดเรียง */
-    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
-    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    padding: 5px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .total-box p {
-    font-size: 18px; /* ขนาดตัวอักษร */
-    color: #E35205; /* สีตัวอักษร */
-    font-weight: 800; /* ตัวหนา */
-    text-align: center; /* จัดให้ตัวอักษรอยู่กลาง */
+    font-size: 18px;
+    color: #E35205;
+    font-weight: 800;
+    text-align: center;
 }
 
 /* Place Order Button */
@@ -74,43 +82,46 @@ textarea {
     background-color: #f5f5f5;
     color: #E35205;
     border: none;
-    padding: 15px; /* ขอบภายใน */
-    border-radius: 15px; /* มุมกลม */
-    cursor: pointer; /* เปลี่ยนเคอร์เซอร์ */
-    width: 100%; /* กว้างเต็ม */
-    font-size: 24px; /* ขนาดตัวอักษร */
-    font-weight: 800; /* ตัวหนา */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* เงา */
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 900px;
+    font-size: 24px;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 20px auto;
+    text-align: center;
 }
 
 .place-order-button:hover {
-    background-color: #e2e2e1; /* สีเมื่อเลื่อนเมาส์ */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* เงาเมื่อเลื่อนเมาส์ */
+    background-color: #e2e2e1;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Icon Styling */
 label i {
-    color: #E35205; /* สีของไอคอน */
-    margin-right: 10px; /* ระยะห่างด้านขวาของไอคอน */
+    color: #E35205;
+    margin-right: 10px;
 }
 
 /* Responsive Styles */
 @media (max-width: 600px) {
     body {
-        padding: 10px; /* ลดการ padding สำหรับมือถือ */
+        padding: 10px;
     }
 
     .order-form-section {
-        padding: 15px; /* ลดการ padding สำหรับมือถือ */
+        padding: 15px;
     }
 
     .place-order-button {
-        width: 100%; /* ทำให้ปุ่มเต็มความกว้าง */
+        width: 100%;
     }
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
     .order-form-section {
-        padding: 20px; /* เพิ่มการ padding สำหรับแท็บเล็ต */
+        padding: 20px;
     }
 }

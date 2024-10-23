@@ -12,7 +12,7 @@ body {
     padding: 20px; /* ระยะห่างภายใน */
     background-color: #D9D9D9; /* พื้นหลังของกล่อง */ 
     border-radius: 15px; /* มุมมน */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */ 
     margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
 }
 

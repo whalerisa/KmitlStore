@@ -23,6 +23,7 @@ const Sales_History = require('./BackEnd/Sales-history');
 
 
 
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
@@ -30,8 +31,9 @@ app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุก
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
-const staticFolders = ['Login','Register','PostProduct','Home','Categories','Components','icons','BackEnd','Frontend','Productdetails'
-    ,'ImageOfProducts','My_Products','History'
+const staticFolders = ['Login','Register','PostProduct','Home','Categories'
+    ,'Components','icons','BackEnd','Frontend','Productdetails'
+    ,'ImageOfProducts','My_Products','History','Cart'
 ];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
@@ -67,6 +69,7 @@ Profile(app);
 ProductDetail(app);
 My_Products(app);
 Sales_History(app);
+
 
 
 

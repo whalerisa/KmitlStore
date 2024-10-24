@@ -44,8 +44,8 @@
                 </div>
 
                 <div class="buttons">
-                    <a href="../Cart/Cart.html" class="btn">Add to Cart</a>
-                    <a href="../Address/Address.html" class="btn">Buy Product</a>
+                    <button class="btn" onclick="addToCart()">Add to Cart</button>
+                    <button class="btn" onclick="buyProduct()">Buy Product</button>
                 </div>
             </div>
         </div>
@@ -63,10 +63,10 @@
                 id: params.get('id'),
             };
         }
-    
+
         let quantity = 0;
         let maxStock = 0; // ตัวแปรสำหรับเก็บจำนวน stock สูงสุด
-    
+
         function changeQuantity(change) {
             quantity += change;
             if (quantity < 0) quantity = 0;
@@ -74,7 +74,54 @@
 
             document.getElementById('quantity').innerText = quantity;
         }
-    
+
+        function addToCart() {
+            const { id } = getQueryParams(); // ดึง productId จาก URL
+            const quantity = parseInt(document.getElementById('quantity').innerText); // ดึงจำนวนที่เลือก
+
+            if (id && quantity > 0) {
+                const userId = localStorage.getItem('userId'); // สมมติว่ามีการเก็บ userId ใน localStorage
+
+                fetch('/add-to-cart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: userId,
+                        productId: id,
+                        quantity: quantity
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log(data);
+                    alert("สินค้าถูกเพิ่มลงในตะกร้าเรียบร้อยแล้ว!");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                alert("กรุณาเลือกจำนวนสินค้าก่อนเพิ่มลงตะกร้า");
+            }
+        }
+
+
+        function buyProduct() {
+            const { id } = getQueryParams(); // ดึง productId จาก URL
+            if (id) {
+                localStorage.setItem('selectedProductId', id); // เก็บ productId ใน localStorage
+                window.location.href = "../Address/Address.html"; // เปลี่ยนไปยังหน้า Address
+            } else {
+                console.error('Product ID is missing.');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const { id } = getQueryParams();
             console.log('Product ID:', id); // Debugging
@@ -100,9 +147,9 @@
                         console.error('Error fetching product details:', error);
                     });
             }
-    
+
             const recommendGrid = document.getElementById('recommend-grid');
-    
+
             async function fetchProducts() {
                 try {
                     const response = await fetch('/products');
@@ -110,19 +157,19 @@
                         throw new Error('Network response was not ok');
                     }
                     const products = await response.json();
-    
+
                     products.forEach(product => {
                         if (product.image_url && product.name && product.detail && product.price) {
                             const productLink = document.createElement('a');
                             productLink.href = `Product-details.html?id=${product.id}`;
                             productLink.classList.add('product-link');
-    
+
                             const recommendCard = document.createElement('product-card');
                             recommendCard.setAttribute('image', product.image_url);
                             recommendCard.setAttribute('name', product.name);
                             recommendCard.setAttribute('detail', product.detail);
                             recommendCard.setAttribute('price', product.price);
-    
+
                             productLink.appendChild(recommendCard);
                             recommendGrid.appendChild(productLink);
                         } else {
@@ -133,11 +180,10 @@
                     console.error('Error fetching products:', error);
                 }
             }
-    
+
             fetchProducts();
         });
     </script>
-    
 
     <my-footer></my-footer>
 

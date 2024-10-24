@@ -18,6 +18,8 @@ const Profile = require('./BackEnd/Profile');
 const ProductDetail = require('./BackEnd/productdetail');
 const My_Products = require('./BackEnd/my_products');
 const Sales_History = require('./BackEnd/Sales-history');
+const Cart = require('./BackEnd/Cart');
+const Address = require('./BackEnd/Adress');
 
 
 
@@ -69,7 +71,8 @@ Profile(app);
 ProductDetail(app);
 My_Products(app);
 Sales_History(app);
-
+Cart(app);
+Address(app);
 
 
 

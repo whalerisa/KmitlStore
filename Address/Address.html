@@ -14,7 +14,7 @@
 <body>
 
     <my-navbar></my-navbar>
-    
+
     <!-- ที่อยู่สำหรับจัดส่ง -->
     <div class="input-box">
         <label for="username">
@@ -35,12 +35,7 @@
         <label for="product-details">
             <i class="fas fa-shopping-bag"></i> Product details
         </label>
-        <div id="product-details" class="product-box">
-            <p>กระโปรงพลีท</p>
-            <p>ฟรีไซต์</p>
-            <p>ยาว 24</p>
-            <p>ใส่แค่ครั้งเดียว</p>
-        </div>
+        <div id="product-details" class="product-box"></div>
     </div>
 
     <!-- ราคาสินค้ารวม -->
@@ -54,17 +49,39 @@
     </div>
 
     <script>
-        // ดึงราคาจาก localStorage และแสดงผล
         document.addEventListener('DOMContentLoaded', () => {
-            const orderTotal = localStorage.getItem('orderTotal') || '0 ฿'; // รับราคาจาก localStorage
-            document.getElementById('total-price').textContent = orderTotal; // แสดงราคา
-        });
+        const productId = localStorage.getItem('selectedProductId');
+        console.log('Product ID:', productId);  // ตรวจสอบค่า productId ใน console
+        console.log('Product ID:', productId);  // แสดง productId ใน console เพื่อตรวจสอบ
+
+        fetch(`http://localhost:3000/product/${productId}`)
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(error => { throw new Error(error.error); });
+                }
+                return response.json();
+            })
+            .then(product => {
+                console.log('Product:', product);  // ตรวจสอบข้อมูลสินค้าที่ได้รับกลับมาจาก backend
+                const productDetails = `
+                    <p>${product.name}</p>
+                    <p>${product.detail}</p>
+                    <p>${product.price} ฿</p>
+                `;
+                document.getElementById('product-details').innerHTML = productDetails;
+                document.getElementById('total-price').textContent = `${product.price} ฿`;
+            })
+            .catch(error => {
+                console.error('Error fetching product details:', error);
+            });
+    });
+
 
         function saveOrderDetails() {
             const username = document.getElementById('username').value;
             const address = document.getElementById('address').value;
             const productDetails = document.getElementById('product-details').innerText;
-            const totalPayment = document.getElementById('total-price').textContent; // ดึงราคาที่แสดง
+            const totalPayment = document.getElementById('total-price').textContent;
 
             // เก็บข้อมูลลง localStorage
             localStorage.setItem('orderUsername', username);

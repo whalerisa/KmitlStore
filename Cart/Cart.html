@@ -36,6 +36,15 @@
             localStorage.setItem('orderTotal', total + ' ฿'); // Save total for address page
         }
 
+        function removeItem(itemId) {
+            // ลบสินค้าจาก DOM
+            const cartItem = document.getElementById(`cart-item-${itemId}`);
+            cartItem.remove();
+
+            // อัปเดตยอดรวมราคา
+            updateTotal();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const checkboxes = document.querySelectorAll('.item-checkbox');
             const savedTotal = localStorage.getItem('cartTotal');
@@ -62,42 +71,53 @@
 <body>
 
     <my-navbar></my-navbar>
-    
+
     <div class="store-container">
         <div class="cart-container">
             <h1>CART</h1>
             <div class="cart-items">
-                <div class="cart-item">
+                <!-- สินค้า 1 -->
+                <div class="cart-item" id="cart-item-1">
                     <input type="checkbox" id="item1" class="item-checkbox">
                     <label for="item1" class="item-label" data-price="160">
-                        <img src="../image/Women-shirt1.jpg" alt="Item 1">
-                        เสื้อนักศึกษาหญิง...
+                        <img src="../image/Women-shirt1.jpg" alt="Women's Shirt">
+                        Women's Shirt...
                         <span class="item-price">160</span> ฿
                     </label>
+                    <button class="delete-button" onclick="removeItem(1)">Delete</button>
                 </div>
-                <div class="cart-item">
+
+                <!-- สินค้า 2 -->
+                <div class="cart-item" id="cart-item-2">
                     <input type="checkbox" id="item2" class="item-checkbox">
                     <label for="item2" class="item-label" data-price="160">
-                        <img src="../image/Men-shirt1.jpg" alt="Item 2">
-                        เสื้อนักศึกษาชาย...
+                        <img src="../image/Men-shirt1.jpg" alt="Men's Shirt">
+                        Men's Shirt...
                         <span class="item-price">160</span> ฿
                     </label>
+                    <button class="delete-button" onclick="removeItem(2)">Delete</button>
                 </div>
-                <div class="cart-item">
+
+                <!-- สินค้า 3 -->
+                <div class="cart-item" id="cart-item-3">
                     <input type="checkbox" id="item3" class="item-checkbox">
                     <label for="item3" class="item-label" data-price="160">
-                        <img src="../image/Women-shirt2.jpg" alt="Item 3">
-                        เสื้อนักศึกษาหญิง...
+                        <img src="../image/Women-shirt2.jpg" alt="Women's Shirt">
+                        Women's Shirt...
                         <span class="item-price">160</span> ฿
                     </label>
+                    <button class="delete-button" onclick="removeItem(3)">Delete</button>
                 </div>
-                <div class="cart-item">
-                    <input type="checkbox" id="item4" class="item-checkbox">
-                    <label for="item4" class="item-label" data-price="160">
-                        <img src="../image/Men-shirt2.jpg" alt="Item 4">
-                        เสื้อนักศึกษาชาย...
+
+                <!-- สินค้า 4 -->
+                <div class="cart-item" id="cart-item-3">
+                    <input type="checkbox" id="item3" class="item-checkbox">
+                    <label for="item3" class="item-label" data-price="160">
+                        <img src="../image/Men-shirt2.jpg" alt="Women's Shirt">
+                        Women's Shirt...
                         <span class="item-price">160</span> ฿
                     </label>
+                    <button class="delete-button" onclick="removeItem(3)">Delete</button>
                 </div>
             </div>
 
@@ -112,36 +132,5 @@
 
     <my-footer></my-footer>
 </body>
-<script>
-    function loadCart() {
-        const userId = localStorage.getItem('userId');
-
-        fetch(`/cart?userId=${userId}`)
-        .then(response => response.json())
-        .then(data => {
-            const cartItems = data.cartItems;
-            const cartContainer = document.querySelector('.cart-items');
-
-            cartItems.forEach(item => {
-                const cartItem = `
-                    <div class="cart-item">
-                        <input type="checkbox" id="${item.id}" class="item-checkbox">
-                        <label for="${item.id}" class="item-label" data-price="${item.price}">
-                            <img src="${item.image}" alt="${item.name}">
-                            ${item.name}...
-                            <span class="item-price">${item.price}</span> ฿
-                        </label>
-                    </div>
-                `;
-                cartContainer.innerHTML += cartItem;
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', loadCart);
-</script>
 
 </html>

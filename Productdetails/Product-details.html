@@ -23,7 +23,7 @@
                 <div class="shop-info">
                     <img src="../icons/Profile.jpg" alt="Shop Owner">
                     <p id="shop-owner">น้ำ ขายของ</p>
-                    <a href="../Profile/Profile-shop.html">
+                    <a href="../Profile/Profile-shop.html?userId=<your_userId>">
                         <button class="view-shop">View Shop</button>
                     </a>
                 </div>
@@ -114,11 +114,13 @@
 
         function buyProduct() {
             const { id } = getQueryParams(); // ดึง productId จาก URL
-            if (id) {
+            const quantity = parseInt(document.getElementById('quantity').innerText); // ดึงจำนวนที่เลือก
+
+            if (id && quantity > 0) {
                 localStorage.setItem('selectedProductId', id); // เก็บ productId ใน localStorage
                 window.location.href = "../Address/Address.html"; // เปลี่ยนไปยังหน้า Address
             } else {
-                console.error('Product ID is missing.');
+                alert("กรุณาเลือกจำนวนสินค้าก่อนที่จะดำเนินการซื้อ");
             }
         }
 
@@ -183,6 +185,8 @@
 
             fetchProducts();
         });
+
+        
     </script>
 
     <my-footer></my-footer>

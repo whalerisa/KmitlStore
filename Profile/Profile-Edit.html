@@ -22,9 +22,11 @@
 
     <!-- Profile Section -->
     <div class="profile">
-        <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-pic">
-        <h2>RiSa2020</h2>
+        <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-pic" id="profilePicPreview">
+        <input type="file" id="profilePicInput" accept="image/*" onchange="previewProfilePic(event)">
+        <button onclick="uploadProfilePic()">Upload New Picture</button>
     </div>
+    
 
     <!-- Editable Information Section -->
     <div class="info-card">
@@ -66,5 +68,35 @@
     <my-footer></my-footer>
 
 </body>
+    <script>
+    
+    // แสดงตัวอย่างรูปภาพใหม่
+    function previewProfilePic(event) {
+        const preview = document.getElementById('profilePicPreview');
+        preview.src = URL.createObjectURL(event.target.files[0]);
+    }
 
+    // ฟังก์ชันอัปโหลดรูปประจำตัว
+    async function uploadProfilePic() {
+        const fileInput = document.getElementById('profilePicInput');
+        const formData = new FormData();
+        formData.append('profilePic', fileInput.files[0]);
+        formData.append('userId', 'USER_ID'); // แทนที่ USER_ID ด้วยค่าไอดีผู้ใช้จริง
+
+        try {
+            const response = await fetch('/profile/updateProfilePic', {
+                method: 'PUT',
+                body: formData
+            });
+            const data = await response.json();
+            alert(data.message || 'Profile picture updated successfully');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to update profile picture');
+        }
+    }
+    
+
+
+    </script>
 </html>

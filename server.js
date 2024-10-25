@@ -19,7 +19,9 @@ const ProductDetail = require('./BackEnd/productdetail');
 const My_Products = require('./BackEnd/my_products');
 const Sales_History = require('./BackEnd/Sales-history');
 const Cart = require('./BackEnd/Cart');
-const Address = require('./BackEnd/Adress');
+const Address = require('./BackEnd/Address');
+const ProFileEdit = require('./BackEnd/Profile-Edit');
+
 
 
 
@@ -35,7 +37,7 @@ app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุก
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
 const staticFolders = ['Login','Register','PostProduct','Home','Categories'
     ,'Components','icons','BackEnd','Frontend','Productdetails'
-    ,'ImageOfProducts','My_Products','History','Cart'
+    ,'ImageOfProducts','My_Products','History','Cart','My_order','Address'
 ];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
@@ -73,6 +75,8 @@ My_Products(app);
 Sales_History(app);
 Cart(app);
 Address(app);
+MyOrder(app);
+ProFileEdit(app);
 
 
 

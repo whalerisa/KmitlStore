@@ -28,8 +28,16 @@
                         <p><strong>Total Payment:</strong> ${orderTotalPayment}</p>
                     </div>
                 `;
+            } else {
+                // ถ้าไม่มีข้อมูลใด ๆ แสดงข้อความเตือน
+                chatWindow.innerHTML += `
+                    <div class="message received">
+                        <p>No order information found.</p>
+                    </div>
+                `;
             }
         });
+
     </script>
 </head>
 

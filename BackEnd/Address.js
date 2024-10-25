@@ -3,7 +3,7 @@ const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const authenticateToken = require('./path-to-authenticateToken'); // ระบุ path ที่ถูกต้อง
+
 
 const app = express();
 app.use(cors());
@@ -26,7 +26,7 @@ function Address(app) {
         });
     });
 
-    app.post('/order', authenticateToken, (req, res) => {
+    app.post('/order', (req, res) => {
         const { productId, username, address, totalPayment } = req.body;
 
         // ดึงข้อมูลสินค้าจากฐานข้อมูล

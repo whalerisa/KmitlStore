@@ -75,7 +75,7 @@ My_Products(app);
 Sales_History(app);
 Cart(app);
 Address(app);
-MyOrder(app);
+//MyOrder(app);
 ProFileEdit(app);
 
 

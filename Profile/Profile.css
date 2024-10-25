@@ -14,8 +14,8 @@ body {
 }
 
 .logout-icon .profile-picture {
-    width: 50px; /* ปรับขนาดไอคอนตามต้องการ */
-    height: 50px; /* ทำให้มีความสูงเท่ากัน */
+    width: 70px; /* ปรับขนาดไอคอนตามต้องการ */
+    height: 70px; /* ทำให้มีความสูงเท่ากัน */
     cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
     transition: transform 0.2s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
 }
@@ -30,34 +30,48 @@ body {
     padding: 20px;
     background-color: transparent; /* ทำให้พื้นหลังโปร่งใส */
     border-radius: 10px;
-    
 }
 
 .profile-header {
-    text-align: center;
+    text-align: center; /* Center align text and image */
     margin-bottom: 20px;
 }
 
 .profile-picture {
-    width: 100px;
-    height: 100px;
+    width: 200px; /* Adjust size as needed */
+    height: 200px;
+    border-radius: 50%; /* Make it circular */
+    margin-bottom: 10px; /* Space between image and username */
+    display: block; /* Ensure image is treated as a block element */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+}
+
+.profile-header .profile-picture {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
-h1 {
+.profile-header h1 {
+    display: inline-flex;
+    align-items: center;
     color: #E35205;
-    font-size: 24px;
+    font-size: 30px;
 }
 
 .edit-icon {
-    text-decoration: none; /* ลบเส้นใต้ */
+    display: inline-block;
+    text-decoration: none; /* ไม่มีเส้นใต้ */
     color: inherit; /* ใช้สีเดียวกับข้อความ */
-    margin-left: 5px; /* เพิ่มระยะห่างจากชื่อ */
+    margin-left: 8px; /* เพิ่มระยะห่างจากชื่อ */
+    font-size: 20px; /* ขนาดตัวอักษร */
 }
 
 .edit-icon:hover {
     color: #F05A1A; /* เปลี่ยนสีเมื่อ hover */
+    text-decoration: underline; /* เพิ่มเส้นใต้เมื่อ hover */
 }
 
 .profile-info {
@@ -71,10 +85,39 @@ h1 {
     max-width: 800px; /* ระบุความกว้างสูงสุด */
 }
 
+.seller-centre-button {
+    background-color: #E35205; /* สีพื้นหลังเป็นสีขาว */
+    color: white; /* สีข้อความ */
+    border: none; /* ไม่มีขอบ */
+    border-radius: 30px; /* ทำให้มุมโค้ง */
+    padding: 10px 20px; /* เพิ่มพื้นที่รอบๆ ปุ่ม */
+    font-size: 16px; /* ขนาดตัวอักษร */
+    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
+    transition: background-color 0.3s, color 0.3s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
+    margin-left: 350px;
+}
+
+.seller-centre-button:hover {
+    background-color: #AA4109; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+    color: white; /* เปลี่ยนสีข้อความเมื่อ hover */
+}
+
+.circle {
+    display: inline-flex; /* ใช้ inline-flex */
+    align-items: center; /* จัดให้เนื้อหากลางในแนวดิ่ง */
+    justify-content: center; /* จัดให้เนื้อหากลางในแนวนอน */
+    width: 30px; /* ขนาดวงกลม */
+    height: 30px; /* ขนาดวงกลม */
+    background-color: white; /* สีพื้นหลังของวงกลม */
+    border-radius: 50%; /* ทำให้เป็นวงกลม */
+    color: #E35205; /* สีข้อความ */
+    margin-right: 10px; /* ระยะห่างระหว่างวงกลมกับข้อความ */
+    font-size: 24px; /* ขนาดข้อความ */
+}
+
 .transaction-history {
     margin-top: 20px;
 }
-
 
 .transaction-history h2 {
     text-align: center;
@@ -159,4 +202,3 @@ footer {
     margin: 0;
     padding-right: 10px;
 }
-

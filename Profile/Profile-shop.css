@@ -14,8 +14,8 @@ body {
 }
 
 .logout-icon .profile-picture {
-    width: 50px; /* ปรับขนาดไอคอนตามต้องการ */
-    height: 50px; /* ทำให้มีความสูงเท่ากัน */
+    width: 70px; /* ปรับขนาดไอคอนตามต้องการ */
+    height: 70px; /* ทำให้มีความสูงเท่ากัน */
     cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
     transition: transform 0.2s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
 }
@@ -39,34 +39,16 @@ body {
 }
 
 .profile-picture {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
 h1 {
     color: #E35205;
-    font-size: 24px;
+    font-size: 30px;
 }
-
-
-
-.profile-info {
-    background-color: #E35205; /* สีส้ม */
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-    margin: 0 auto 20px; /* จัดกลางด้านซ้าย-ขวา และมีระยะห่างด้านล่าง */
-    width: 60%; /* ปรับความกว้างให้ลดลง */
-    max-width: 700px; /* ระบุความกว้างสูงสุด */
-}
-
-.transaction-history {
-    margin-top: 20px;
-}
-
 
 .transaction-history h2 {
     text-align: center;
@@ -74,7 +56,7 @@ h1 {
     background-color: #E35205; /* สีพื้นหลังหัวข้อ */
     padding: 10px;
     border-radius: 10px;
-    width: 40%; /* ปรับขนาดความกว้างของหัวข้อ */
+    width: 30%; /* ปรับขนาดความกว้างของหัวข้อ */
     margin: 0 auto; /* จัดให้อยู่ตรงกลาง */
     margin-top: 50px;  /* ปรับระยะห่างด้านบน */
     margin-bottom: 50px;  /* ปรับระยะห่างด้านล่าง */
@@ -103,7 +85,7 @@ h1 {
 .transaction-section h3 a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
 }
 

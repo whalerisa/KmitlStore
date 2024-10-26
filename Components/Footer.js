@@ -85,20 +85,21 @@ class Footer extends HTMLElement {
                 <div class="footer-links">
                     <h2>Customer Service</h2>
                     <ul>
-                        <li>Help Center</li>
-                        <li>How To Buy</li>
-                        <li>How To Sell</li>
-                        <li>Payment Methods</li>
-                        <li>Contact Us</li>
+                        
+                        <li>Phone Number:</li>
+                         <li>098-295-1712 or 080-064-8332</li>
+                        <li>Email: </li>
+                        <li>65050222@kmitl.ac.th or 65050810@kmitl.ac.th</li>
+                        <li>Service Hours: 8:00 AM - 10:00 PM</li>
                     </ul>
                 </div>
 
                 <div class="social-links">
                     <h2>Follow Us</h2>
                     <ul>
-                        <li><img src="../icons/ig-icon.png" alt="Instagram Icon"> Instagram</li>
-                        <li><img src="../icons/faceB-icon.png" alt="Facebook Icon"> Facebook</li>
-                        <li><img src="../icons/linee-icon.png" alt="Line Icon"> Line</li>
+                        <li><img src="../icons/ig-icon.png" alt="Instagram Icon "> Instagram: KMITL Store</li>
+                        <li><img src="../icons/faceB-icon.png" alt="Facebook Icon"> Facebook: KMITL Store </li>
+                        <li><img src="../icons/linee-icon.png" alt="Line Icon"> Line: KMITL Store</li>
                     </ul>
                 </div>
             </footer>

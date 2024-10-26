@@ -6,25 +6,19 @@ body {
 }
 
 .header {
-    
     padding: 10px;
     color: black;
     display: flex;
     align-items: center;
-    justify-content: center; /* จัดให้ข้อความอยู่กลาง */
+    justify-content: center;
 }
 
 .header img.back-arrow {
     width: 120px;
     height: 120px;
-    position: absolute; /* ทำให้ภาพย้ายไปอยู่ด้านซ้าย */
-    left: 20px; /* ระยะห่างจากซ้าย */
+    position: absolute;
+    left: 20px;
     cursor: pointer;
-}
-
-.header-title {
-    text-align: center; /* จัดให้อยู่ตรงกลาง */
-    flex-grow: 1; /* ขยายให้ครอบคลุมพื้นที่ */
 }
 
 .profile {
@@ -32,63 +26,106 @@ body {
     margin-top: 20px;
 }
 
+.profile-pic-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
 .profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
 
-h2 {
-    font-size: 22px;
+#username {
     margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    color: #E35205;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .info-card {
-    background-color: #F05A1A;
+    background-color: #E35205;
     color: white;
     margin: 30px auto;
     width: 80%;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    max-width: 800px; /* ระบุความกว้างสูงสุด */
 }
 
 .info-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
 }
 
 .info-item label {
     font-size: 18px;
-    flex-grow: 1;
+    flex-shrink: 0; /* ขนาดคงที่สำหรับ label */
+    margin-right: 10px; /* ช่องว่างระหว่าง label และ input */
 }
 
 .info-item input {
-    flex-grow: 2;
+    flex-grow: 1;
     padding: 5px;
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    margin-right: 10px; /* ช่องว่างระหว่าง input และปุ่ม Edit */
 }
 
 .info-item button {
-    background-color: white;
-    color: #F05A1A;
+    background-color: #E35205;
+    color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold; 
+}
+
+.info-item button:hover {
+    background-color: #AA4109; 
 }
 
 .info-item input:disabled {
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #E35205;
+    color: #ffffff;
 }
 
 .info-item input:enabled {
-    background-color: white;
-    color: black;
+    background-color: #AA4109;
+    color: rgb(255, 255, 255);
 }
 
+.save-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.save-button {
+    background-color: #E35205; /* พื้นหลังสีส้ม */
+    color: white; /* ตัวหนังสือสีขาว */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold; 
+    width: 80%; 
+    max-width: 300px;
+}
+
+.save-button:hover {
+    background-color: #AA4109; /* เปลี่ยนสีเมื่อวางเมาส์ */
+}

@@ -77,6 +77,17 @@ function Profile(app) {
     });
 }
 
+// ตรวจสอบ token และแสดงปุ่ม Edit ในหน้า HTML
+app.get('/profile', (req, res) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    // ตรวจสอบ token เพื่อกำหนดว่าจะให้แสดงปุ่ม Edit หรือไม่
+    const showEditButton = token ? true : false;
+
+    res.json({ showEditButton });
+});
+
 
 module.exports = Profile;
 

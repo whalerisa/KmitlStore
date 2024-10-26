@@ -70,7 +70,7 @@ body {
 }
 
 .edit-icon:hover {
-    color: #F05A1A; /* เปลี่ยนสีเมื่อ hover */
+    color: #AA4109; /* เปลี่ยนสีเมื่อ hover */
     text-decoration: underline; /* เพิ่มเส้นใต้เมื่อ hover */
 }
 

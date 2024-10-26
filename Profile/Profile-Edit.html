@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMITL Store - Order Form</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>KMITL Store - Edit Profile</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="Profile-Edit.css">
     <script src="../Components/Footer.js" defer></script>
 </head>
 
 <body>
-
     <!-- Header Section -->
     <div class="header">
         <button class="back-button">
@@ -22,81 +23,58 @@
 
     <!-- Profile Section -->
     <div class="profile">
-        <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-pic" id="profilePicPreview">
-        <input type="file" id="profilePicInput" accept="image/*" onchange="previewProfilePic(event)">
-        <button onclick="uploadProfilePic()">Upload New Picture</button>
+        <div class="profile-pic-container" onclick="document.getElementById('profilePicInput').click()">
+            <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-pic" id="profilePicPreview">
+            <input type="file" id="profilePicInput" accept="image/*" style="display: none;"
+                onchange="previewProfilePic(event)">
+        </div>
+        <p id="username">Yano</p>
     </div>
-    
 
     <!-- Editable Information Section -->
     <div class="info-card">
         <div class="info-item">
-            <label>Name:</label>
+            <label for="name">Name:</label>
             <input type="text" id="name" value="XXXXXX XXXXXXX" disabled>
             <button onclick="enableEdit('name')">Edit</button>
         </div>
         <div class="info-item">
-            <label>Phone number:</label>
+            <label for="phone">Phone number:</label>
             <input type="text" id="phone" value="OXX-XXX-XXXX" disabled>
             <button onclick="enableEdit('phone')">Edit</button>
         </div>
         <div class="info-item">
-            <label>Email:</label>
+            <label for="email">Email:</label>
             <input type="email" id="email" value="XXXXXXXXXX@gmail.com" disabled>
             <button onclick="enableEdit('email')">Edit</button>
         </div>
     </div>
 
-    <script>
-        // Function to enable and disable editing of profile fields
-        function enableEdit(fieldId) {
-            var inputField = document.getElementById(fieldId);
-            inputField.disabled = !inputField.disabled; // toggle enable/disable
+    <div class="save-button-container">
+        <button class="save-button" onclick="saveChanges()">Save Changes</button>
+    </div>
 
+    <script>
+        function enableEdit(fieldId) {
+            const inputField = document.getElementById(fieldId);
+            inputField.disabled = !inputField.disabled;
             if (!inputField.disabled) {
                 inputField.focus();
             }
         }
 
-        // Add event listener to the back button
-        document.querySelector('.back-button').addEventListener('click', () => {
-            history.back(); // Go back to the previous page
-        });
-    </script>
-
-    <!-- Use Web Component of Footer -->
-    <my-footer></my-footer>
-
-</body>
-    <script>
-    
-    // แสดงตัวอย่างรูปภาพใหม่
-    function previewProfilePic(event) {
-        const preview = document.getElementById('profilePicPreview');
-        preview.src = URL.createObjectURL(event.target.files[0]);
-    }
-
-    // ฟังก์ชันอัปโหลดรูปประจำตัว
-    async function uploadProfilePic() {
-        const fileInput = document.getElementById('profilePicInput');
-        const formData = new FormData();
-        formData.append('profilePic', fileInput.files[0]);
-        formData.append('userId', 'USER_ID'); // แทนที่ USER_ID ด้วยค่าไอดีผู้ใช้จริง
-
-        try {
-            const response = await fetch('/profile/updateProfilePic', {
-                method: 'PUT',
-                body: formData
-            });
-            const data = await response.json();
-            alert(data.message || 'Profile picture updated successfully');
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Failed to update profile picture');
+        function previewProfilePic(event) {
+            const preview = document.getElementById('profilePicPreview');
+            preview.src = URL.createObjectURL(event.target.files[0]);
         }
-    }
-    
 
-
+        function saveChanges() {
+            alert("Changes have been saved!"); // แสดงข้อความแจ้งเตือนเมื่อบันทึก
+            // สามารถเพิ่มฟังก์ชันสำหรับบันทึกการแก้ไขโปรไฟล์ได้ที่นี่
+        }
     </script>
+
+    <my-footer></my-footer>
+</body>
+
 </html>

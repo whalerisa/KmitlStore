@@ -5,24 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store - Order Form</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="Profile.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const token = localStorage.getItem('token');
-
-            if (token) {
-                // หากมี token แสดงปุ่ม Edit
-                document.querySelector('.edit-icon').style.display = 'inline'; 
-            } else {
-                // หากไม่มี token ซ่อนปุ่ม Edit
-                document.querySelector('.edit-icon').style.display = 'none'; 
-            }
-        });
-    </script>
 
 </head>
 
@@ -51,7 +39,7 @@
         <p>Phone number: 0XX-XXX-XXXX</p>
         <p>Email: XXXXXXXXXXXX@gmail.com</p>
     </div>
-    
+
     <a href="../SellerCentre/Seller-Centre.html">
         <button class="seller-centre-button">
             <span class="circle">+</span> Seller Centre
@@ -106,6 +94,13 @@
 
                 // ใส่ข้อมูลที่ดึงมาใน HTML
                 document.querySelector('.profile-header h1').textContent = responseData.user.username;
+                // เพิ่มลิงก์ Edit
+                const editLink = document.createElement('a');
+                editLink.href = 'Profile-Edit.html';
+                editLink.className = 'edit-icon';
+                editLink.textContent = 'Edit';
+
+                document.querySelector('.profile-header h1').appendChild(editLink);
                 document.querySelector('.profile-info p:nth-child(1)').textContent = `Name: ${responseData.user.username}`;
                 document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number: ${responseData.user.phone}`;
                 document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${responseData.user.email}`;

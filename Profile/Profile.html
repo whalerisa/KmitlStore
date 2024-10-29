@@ -26,7 +26,7 @@
 
     <div class="profile-container">
         <div class="profile-header">
-            <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-picture">
+            <img src="/ProfilePic/1730218688083-535093137.jpg" alt="Profile Picture" class="profile-picture" id="profile-picture">
             <h1>
                 Username
                 <a href="Profile-Edit.html" class="edit-icon">Edit</a>
@@ -104,6 +104,9 @@
                 document.querySelector('.profile-info p:nth-child(1)').textContent = `Name: ${responseData.user.username}`;
                 document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number: ${responseData.user.phone}`;
                 document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${responseData.user.email}`;
+                document.querySelector('#profile-picture').src = responseData.user.profile_pic ? `/ProfilePic/${responseData.user.profile_pic}` : '/ProfilePic/default.jpg';
+
+
 
                 // ประกาศตัวแปรก่อนใช้งาน
                 const purchaseHistorySection = document.querySelector('.transaction-history .transaction-section:nth-child(1) ul');

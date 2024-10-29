@@ -1,58 +1,57 @@
 const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
 const multer = require('multer');
 const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
+
 
 const app = express();
-const dbPath = path.resolve(__dirname, '../Data.db');
-const db = new sqlite3.Database(dbPath);
+const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uploads')); // Static folder for images
-
-// Configure multer for image upload
-const storage = multer.diskStorage({
+// กำหนดที่เก็บไฟล์โปรไฟล์
+const profilePicStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/profile_pics');
+        const dir = './ProfilePic';
+        // ตรวจสอบว่ามีโฟลเดอร์หรือไม่ ถ้าไม่มีให้สร้างใหม่
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+        cb(null, dir);
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + path.extname(file.originalname)); // ตั้งชื่อไฟล์
     }
 });
-const upload = multer({ storage: storage });
 
-function ProFileEdit(app){
-    // Update profile information
-app.put('/profile/updateProfile', (req, res) => {
-    const { userId, name, phone, email } = req.body;
-    const query = `UPDATE users SET name = ?, phone = ?, email = ? WHERE id = ?`;
+const upload = multer({ storage: profilePicStorage });
 
-    db.run(query, [name, phone, email, userId], function (err) {
-        if (err) {
-            return res.status(500).json({ error: "Failed to update profile." });
-        }
-        res.status(200).json({ message: "Profile updated successfully." });
-    });
+// สร้างการเชื่อมต่อกับฐานข้อมูล SQLite
+const db = new sqlite3.Database('Data.db', (err) => {
+    if (err) {
+        console.error(err.message);
+    } else {
+        console.log('Connected to the database.');
+    }
 });
 
-// Update profile picture
-app.put('/profile/updateProfilePic', upload.single('profilePic'), (req, res) => {
-    const { userId } = req.body;
-    const profilePic = req.file.filename; // multer saves file name in req.file
-    const query = `UPDATE users SET profile_pic = ? WHERE id = ?`;
-
-    db.run(query, [profilePic, userId], function (err) {
-        if (err) {
-            return res.status(500).json({ error: "Failed to update profile picture." });
-        }
-        res.status(200).json({ Promessage: "Profile picture updated successfully." });
+function ProfileEdit(app){
+    // Route สำหรับอัปเดตโปรไฟล์
+    app.post('/api/updateProfile', upload.single('profilePic'), (req, res) => {
+        const { userId, username, phone, email } = req.body;
+        const profilePicPath = req.file ? `ProfilePic/${req.file.filename}` : null; // รับ path รูปโปรไฟล์
+        // Update the user profile in the database
+        const sql = `UPDATE users SET username = ?, phone = ?, email = ?, profile_pic = ? WHERE id = ?`;
+        db.run(sql, [username, phone, email, profilePicPath, userId], function (err) {
+            if (err) {
+                console.error(err.message);
+                return res.status(500).send('Error updating profile');
+            }
+            res.json({ message: 'Profile updated successfully' });
+        });
     });
-});
-
-
+    
 }
-module.exports = ProFileEdit;
+module.exports = ProfileEdit;
 
 

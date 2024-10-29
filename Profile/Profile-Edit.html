@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,18 +23,16 @@
     <!-- Profile Section -->
     <div class="profile">
         <div class="profile-pic-container" onclick="document.getElementById('profilePicInput').click()">
-            <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-pic" id="profilePicPreview">
-            <input type="file" id="profilePicInput" accept="image/*" style="display: none;"
-                onchange="previewProfilePic(event)">
+            <img src="../icons/default.jpg" alt="Profile Picture" class="profile-pic" id="profilePicPreview">
+            <input type="file" id="profilePicInput" accept="image/*" style="display: none;" onchange="previewProfilePic(event)">
         </div>
-        <p id="username">Yano</p>
     </div>
 
     <!-- Editable Information Section -->
     <div class="info-card">
         <div class="info-item">
             <label for="name">Name:</label>
-            <input type="text" id="name" value="XXXXXX XXXXXXX" disabled>
+            <input type="text" id="name" value="XXXXXXXXXX" disabled>
             <button onclick="enableEdit('name')">Edit</button>
         </div>
         <div class="info-item">
@@ -55,6 +52,8 @@
     </div>
 
     <script>
+        let profilePicPath = ''; // Path ของรูปโปรไฟล์
+
         function enableEdit(fieldId) {
             const inputField = document.getElementById(fieldId);
             inputField.disabled = !inputField.disabled;
@@ -65,16 +64,51 @@
 
         function previewProfilePic(event) {
             const preview = document.getElementById('profilePicPreview');
-            preview.src = URL.createObjectURL(event.target.files[0]);
+            const file = event.target.files[0];
+            preview.src = URL.createObjectURL(file);
+            profilePicPath = file.name; // เก็บ path ของรูปโปรไฟล์
         }
 
         function saveChanges() {
-            alert("Changes have been saved!"); // แสดงข้อความแจ้งเตือนเมื่อบันทึก
-            // สามารถเพิ่มฟังก์ชันสำหรับบันทึกการแก้ไขโปรไฟล์ได้ที่นี่
+            const userId = localStorage.getItem('userId'); // ดึง userId จาก localStorage
+            const username = document.getElementById('name').value; // ดึง username
+            const phone = document.getElementById('phone').value; // ดึงเบอร์โทร
+            const email = document.getElementById('email').value; // ดึงอีเมล
+            const profilePicInput = document.getElementById('profilePicInput');
+
+            const formData = new FormData();
+            formData.append('userId', userId);
+            formData.append('username', username);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            if (profilePicInput.files[0]) {
+                formData.append('profilePic', profilePicInput.files[0]); // ถ้ามีไฟล์ให้แนบ
+            }
+
+            fetch('/api/updateProfile', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json(); // แปลงข้อมูลเป็น JSON
+            })
+            .then(data => {
+                console.log(data); // ตรวจสอบข้อมูลที่ได้รับ
+                alert(data.message); // แจ้งผู้ใช้
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
+
+
+
+
     </script>
 
     <my-footer></my-footer>
 </body>
-
 </html>

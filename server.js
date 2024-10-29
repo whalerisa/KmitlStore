@@ -20,7 +20,8 @@ const My_Products = require('./BackEnd/my_products');
 const Sales_History = require('./BackEnd/Sales-history');
 const Cart = require('./BackEnd/Cart');
 const Address = require('./BackEnd/Address');
-const ProFileEdit = require('./BackEnd/Profile-Edit');
+const ProfileShop = require('./BackEnd/Profile-shop');
+const ProfileEdit = require('./BackEnd/Profile-Edit');
 
 
 
@@ -32,12 +33,13 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: '10mb' })); // เพิ่มขนาดสูงสุดที่อนุญาต
 app.use(express.static(path.join(__dirname, '/'))); //Express ใช้ทุกโฟลเดอร์ที่อยู่ในroot ให้เป็นstatic files
+app.use('/ProfilePic', express.static(path.join(__dirname, 'ProfilePic')));
 
 
 // ตั้งค่าโฟลเดอร์ static สำหรับไฟล์ HTML, CSS และ JS
 const staticFolders = ['Login','Register','PostProduct','Home','Categories'
     ,'Components','icons','BackEnd','Frontend','Productdetails'
-    ,'ImageOfProducts','My_Products','History','Cart','My_order','Address'
+    ,'ImageOfProducts','My_Products','History','Cart','My_order','Address','ProfilePic'
 ];
 staticFolders.forEach(folder => {
     app.use(express.static(path.join(__dirname,folder)));
@@ -76,7 +78,8 @@ Sales_History(app);
 Cart(app);
 Address(app);
 //MyOrder(app);
-ProFileEdit(app);
+ProfileEdit(app);
+ProfileShop(app);
 
 
 

@@ -57,24 +57,38 @@
         const userId = params.get('userId'); // ดึง userId จาก URL
 
         if (userId) {
-            // คุณสามารถใช้ userId เพื่อดึงข้อมูลของผู้ขายจากฐานข้อมูล
-            fetch(`/api/users/${userId}`) // เปลี่ยน URL นี้ให้ตรงกับ API ของคุณ
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(user => {
-                    // แสดงข้อมูลที่ดึงมาใน HTML
-                    document.querySelector('.profile-header h1').innerText = user.username; // แสดงชื่อผู้ขาย
-                    document.querySelector('.profile-info p').innerText = `Name: ${user.name}`; // แสดงข้อมูลอื่นๆ ตามต้องการ
-                    // คุณสามารถเพิ่มข้อมูลเพิ่มเติมเกี่ยวกับผู้ขายได้ที่นี่
-                })
-                .catch(error => {
-                    console.error('Error fetching user details:', error);
+        console.log('userId:', userId); // ตรวจสอบค่า userId
+        console.log('product.userId:', product.userId); // ตรวจสอบค่าของ userId
+        fetch(`/api/shop/${userId}`) // ใช้ API เพื่อดึงข้อมูลผู้ขายและประวัติการขาย
+        
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const user = data.products[0]; // ดึงข้อมูลผู้ขายจาก products
+                const salesHistory = data.salesHistory; // ดึงประวัติการขาย
+
+                // แสดงข้อมูลผู้ขายใน HTML
+                document.querySelector('.profile-header h1').innerText = user.username; // ชื่อผู้ขาย
+
+                // แสดงประวัติการขาย
+                const transactionsList = document.querySelector('.transactions ul');
+                salesHistory.forEach(sale => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `${sale.product_name} <span class="status">${sale.status}</span>`;
+                    transactionsList.appendChild(li);
                 });
-        }
+            })
+            .catch(error => {
+                console.error('Error fetching user details:', error);
+            });
+    }
+
+
+
     });
 
         // ข้อมูลสินค้าที่แนะนำ

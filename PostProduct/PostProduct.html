@@ -103,7 +103,7 @@
                 const response = await fetch('http://localhost:3000/addProduct', {
                     method: 'POST',
                     headers: {
-                        'Authorization': token // ส่ง token ใน header
+                        'Authorization': `Bearer ${token}` // ส่ง token ใน header
                     },
                     body: formData // ใช้ FormData แทนการแปลงเป็น JSON
                 });

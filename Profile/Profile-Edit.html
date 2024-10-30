@@ -23,7 +23,7 @@
     <!-- Profile Section -->
     <div class="profile">
         <div class="profile-pic-container" onclick="document.getElementById('profilePicInput').click()">
-            <img src="../icons/default.jpg" alt="Profile Picture" class="profile-pic" id="profilePicPreview">
+            <img src="../ProfilePic/default.jpg" alt="Profile Picture" class="profile-pic" id="profilePicPreview">
             <input type="file" id="profilePicInput" accept="image/*" style="display: none;" onchange="previewProfilePic(event)">
         </div>
     </div>
@@ -98,14 +98,12 @@
             .then(data => {
                 console.log(data); // ตรวจสอบข้อมูลที่ได้รับ
                 alert(data.message); // แจ้งผู้ใช้
+                window.location.href = 'Profile.html'; // เปลี่ยนไปที่หน้า Profile
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         }
-
-
-
 
     </script>
 

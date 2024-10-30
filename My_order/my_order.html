@@ -23,9 +23,6 @@
             <h1>My Orders</h1>
             <div class="tabs">
                 <span class="tablink active" onclick="showTab(event, 'current')">All</span>
-                <span class="tablink" onclick="showTab(event, 'unpaid')">Unpaid</span>
-                <span class="tablink" onclick="showTab(event, 'toship')">To Ship</span>
-                <span class="tablink" onclick="showTab(event, 'shipping')">Shipping</span>
                 <span class="tablink" onclick="showTab(event, 'completed')">Completed</span>
             </div>
         
@@ -41,9 +38,6 @@
 
             <!-- ส่วนนี้จะสร้างรายการคำสั่งซื้อผ่าน JavaScript -->
             <div id="current" class="tabcontent" style="display: block;"></div>
-            <div id="unpaid" class="tabcontent" style="display: none;"></div>
-            <div id="toship" class="tabcontent" style="display: none;"></div>
-            <div id="shipping" class="tabcontent" style="display: none;"></div>
             <div id="completed" class="tabcontent" style="display: none;"></div>
 
         </div>
@@ -53,15 +47,6 @@
         const orders = {
             current: [
                 { name: 'เสื้อนักศึกษา', price: '160 ฿', status: 'Shipping' }
-            ],
-            unpaid: [
-                { name: 'อุปกรณ์กีฬา', price: '500 ฿', status: 'Unpaid' }
-            ],
-            toship: [
-                { name: 'เครื่องเขียน', price: '100 ฿', status: 'To Ship'}
-            ],
-            shipping: [
-                { name: 'เครื่องครัว', price: '300 ฿', status: 'Shipping'}
             ],
             completed: [
                 { name: 'หนังสือเรียน', price: '200 ฿', status: 'Completed'}

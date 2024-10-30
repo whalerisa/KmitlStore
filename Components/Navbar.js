@@ -196,8 +196,8 @@ class Navbar extends HTMLElement {
                         </button>
                     </a>
                     <a href="../profile/profile.html">
-                        <button>
-                            <img src="../icons/Profile.jpg" alt="Profile Icon">
+                        <button id="profileButton">
+                            <img src="../icons/profile-icon1.png" alt="Profile Icon">
                             Profile
                         </button>
                     </a>
@@ -252,6 +252,17 @@ class Navbar extends HTMLElement {
 
         cartButton.addEventListener('mouseout', () => {
             cartIcon.src = '../icons/cart-icon.png';
+        });
+
+        const profileButton = this.shadowRoot.querySelector('#profileButton'); 
+        const profileIcon = profileButton.querySelector('img'); 
+
+        profileButton.addEventListener('mouseover', () => {
+            profileIcon.src = '../icons/profile-icon2.png'; 
+        });
+
+        profileButton.addEventListener('mouseout', () => {
+            profileIcon.src = '../icons/profile-icon1.png'; 
         });
     }
 }

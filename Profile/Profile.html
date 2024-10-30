@@ -35,7 +35,7 @@
     </div>
 
     <div class="profile-info">
-        <p>Name: Username</p>
+        <p>Username: Username</p>
         <p>Phone number: 0XX-XXX-XXXX</p>
         <p>Email: XXXXXXXXXXXX@gmail.com</p>
     </div>
@@ -101,7 +101,7 @@
                 editLink.textContent = 'Edit';
 
                 document.querySelector('.profile-header h1').appendChild(editLink);
-                document.querySelector('.profile-info p:nth-child(1)').textContent = `Name: ${responseData.user.username}`;
+                document.querySelector('.profile-info p:nth-child(1)').textContent = `Username: ${responseData.user.username}`;
                 document.querySelector('.profile-info p:nth-child(2)').textContent = `Phone number: ${responseData.user.phone}`;
                 document.querySelector('.profile-info p:nth-child(3)').textContent = `Email: ${responseData.user.email}`;
                 document.querySelector('#profile-picture').src = responseData.user.profile_pic ? `/ProfilePic/${responseData.user.profile_pic}` : '/ProfilePic/default.jpg';

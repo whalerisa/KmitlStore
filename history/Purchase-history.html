@@ -4,53 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMITL Store - Order Form</title>
+    <title>KMITL Store - Purchase History</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="history.css">
     <script src="../Components/Navbar.js" defer></script>
-    <script src="../Components/product-container.js" defer></script> <!-- เรียกไฟล์ Web Component -->
+    <script src="../Components/product-container.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
 </head>
 
 <body>
-    <!-- ใช้ Web Component ของ Navbar -->
     <my-navbar></my-navbar>
 
     <div class="purchase-history">
         <h1>Purchase History</h1>
-
-        <!-- ใช้ Web Component ของ product-container -->
-        <product-container 
-            image="../image/pleated-skirt-1.jpg" 
-            name="กระโปรงพลีท" 
-            price="160" 
-            description="- กระโปรงพลีท<br>- ฟรีไซด์<br>- ยาว 24<br>- ใส่แค่ครั้งเดียว" 
-            shop-name="น้ำ ขายของ"
-            shop-link="../Profile/Profile-shop.html">
-        </product-container>
-
-        <product-container 
-            image="../image/Malestudentpants-1.jpg" 
-            name="กางเกงนักศึกษาชาย" 
-            price="200" 
-            description="- กางเกงนักศึกษาชาย<br>- ไซต์ L<br>- ไม่มีตำหนิ<br>- นัดรับได้" 
-            shop-name="น้ำ ขายของ"
-            shop-link="../Profile/Profile-shop.html">
-        </product-container>
-
-        <product-container 
-            image="../image/Women-shirt1.jpg" 
-            name="เสื้อนักศึกษาหญิง" 
-            price="250" 
-            description="- อก32-ยาว34<br>- แขนสามเหลี่ยม<br>- สาบหลังตัววี<br>- สีขาวสว่าง<br>- เนื้อผ้าคอมทวิล<br>- ใส่ครั้งเดียว" 
-            shop-name="น้ำ ขายของ"
-            shop-link="../Profile/Profile-shop.html">
-        </product-container>
     </div>
 
-    <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const token = localStorage.getItem('token'); // ดึง Token จาก localStorage
+                console.log("Token:", token); // ตรวจสอบ token ที่ดึงมา
+                const response = await fetch('http://localhost:3000/purchase-history', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}` // ส่ง Token แบบ Bearer
+                    }
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+    
+                const purchases = await response.json();
+                const container = document.querySelector('.purchase-history');
+                
+                purchases.forEach(purchase => {
+                    const productElement = document.createElement('product-container');
+                    productElement.setAttribute('image', purchase.image);
+                    productElement.setAttribute('name', purchase.product_name);
+                    productElement.setAttribute('price', purchase.price);
+                    productElement.setAttribute('description', purchase.description);
+                    productElement.setAttribute('shop-name', purchase.shop_name);
+                    productElement.setAttribute('shop-link', '#'); // ใส่ลิงก์ร้านค้าหากต้องการ
+
+                    container.appendChild(productElement);
+                });
+            } catch (error) {
+                console.error('Error fetching purchase history:', error);
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -53,23 +53,6 @@
             ]
         };
 
-        // ฟังก์ชันเพื่อแสดงคำสั่งซื้อในแต่ละแท็บ
-        function renderOrders(tabName) {
-            const container = document.getElementById(tabName);
-            container.innerHTML = '';  // ล้างข้อมูลเดิม
-            orders[tabName].forEach(order => {
-                const orderDiv = document.createElement('div');
-                orderDiv.classList.add('item-container');
-                orderDiv.innerHTML = `
-                    <input type="checkbox" class="order-checkbox">
-                    <div class="highlight">${order.name}</div>
-                    <div class="highlight">${order.price}</div>
-                    <div class="status">${order.status}</div>
-                `;
-                container.appendChild(orderDiv);
-            });
-        }
-
         // เรียกฟังก์ชันเพื่อแสดงคำสั่งซื้อในทุกแท็บ
         Object.keys(orders).forEach(renderOrders);
 
@@ -88,6 +71,131 @@
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.classList.add("active");
         }
+        function showTab(evt, tabName) {
+            // Hide all tab contents
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Remove the active class from all tabs
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab and add the active class to the clicked tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function showTab(evt, tabName) {
+            // ซ่อนแท็บทั้งหมด
+            var tabcontent = document.getElementsByClassName("tabcontent");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // รีเซ็ตแท็บทั้งหมดให้เป็น inactive
+            var tablinks = document.getElementsByClassName("tablink");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+                tablinks[i].className = tablinks[i].className.replace(" inactive", "inactive");
+            }
+
+            // แสดงแท็บที่เลือกและทำให้แท็บนั้น active
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className = evt.currentTarget.className.replace("inactive", "");
+            evt.currentTarget.className += " active";
+        }
+
+        async function fetchOrders() {
+        try {
+            const response = await fetch('http://localhost:3000/my-orders');
+            if (!response.ok) throw new Error('Failed to fetch orders');
+            
+            const orders = await response.json();
+            renderOrders('current', orders.filter(order => order.status !== 'Completed'));
+            renderOrders('completed', orders.filter(order => order.status === 'Completed'));
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+        }
+    }
+
+    async function fetchOrders() {
+        try {
+            const token = localStorage.getItem('token'); // ดึง JWT Token จาก localStorage
+            const response = await fetch('http://localhost:3000/my-orders', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (!response.ok) throw new Error('Failed to fetch orders');
+            
+            let orders = await response.json();
+
+            console.log("Orders data from API:", orders);
+
+            if (!Array.isArray(orders)) {
+                orders = [];  // ถ้าไม่ใช่อาร์เรย์ ตั้งให้เป็นอาร์เรย์เปล่า
+            }
+
+            // แสดงรายการทั้งหมดในแท็บ All และเฉพาะ Completed ในแท็บ Completed
+            renderOrders('current', orders); 
+            renderOrders('completed', orders.filter(order => order.status === 'Completed'));
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+        }
+    }
+
+    async function updateOrderStatus(orderId, newStatus) {
+        const token = localStorage.getItem('token'); // ดึง JWT Token จาก localStorage
+        try {
+            const response = await fetch(`http://localhost:3000/my-orders/${orderId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ status: newStatus })
+            });
+
+            if (!response.ok) throw new Error('Failed to update order status');
+
+            fetchOrders(); // เรียก fetchOrders เพื่อโหลดข้อมูลคำสั่งซื้อใหม่
+        } catch (error) {
+            console.error('Error updating order status:', error);
+        }
+    }
+    function renderOrders(tabName, orders) {
+        console.log("Orders in renderOrders:", orders); 
+        const container = document.getElementById(tabName);
+        container.innerHTML = '';  
+
+        if (!Array.isArray(orders)) {
+            console.error("Expected an array for orders but received:", orders);
+            return;
+        }
+
+        orders.forEach(order => {
+            const orderDiv = document.createElement('div');
+            orderDiv.classList.add('item-container');
+            orderDiv.innerHTML = `
+                <input type="checkbox" class="order-checkbox" ${order.status === 'Completed' ? 'checked' : ''} 
+                    onchange="updateOrderStatus(${order.id}, this.checked ? 'Completed' : 'In Progress')">
+                <div class="highlight">${order.name}</div>
+                <div class="highlight">${order.price}</div>
+                <div class="status">${order.status}</div>
+            `;
+            container.appendChild(orderDiv);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchOrders);
+
+    
     </script>
 
     <my-footer></my-footer>

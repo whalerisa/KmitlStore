@@ -76,30 +76,16 @@ function postproduct(app) {
           return res.status(500).json({ message: "Error adding product" });
         }
 
-        // เพิ่มประวัติการขาย
-        const saleQuery = `INSERT INTO sales_history (user_id, product_name, price, status, categories, detail, stock, image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-        const saleStatus = "Success"; // สถานะการขายเริ่มต้น
-        db.run(
-          saleQuery,
-          [userId, name, price, status, categories, detail, stock, image_url],
-          function (err) {
-            if (err) {
-              return res
-                .status(500)
-                .json({ message: "Error adding sale history" });
-            }
-
-            res.json({
-              message: "Product added successfully",
-              id: this.lastID,
-            });
-          }
-        );
+        res.json({
+          message: "Product added successfully",
+          id: this.lastID,
+        });
       }
     );
   });
 }
 module.exports = postproduct;
+
 
 // API ดึงข้อมูลสินค้าทั้งหมด
 app.get("/products", (req, res) => {

@@ -19,12 +19,14 @@ function Sales_History(app) {
   app.get("/sales-history", jwtMiddleware, (req, res) => {
     const userId = req.auth.id;
     const query = `
-            SELECT sales_history.product_name, sales_history.price, sales_history.detail AS description, 
-                   sales_history.image_url AS image, users.username AS shop_name
-            FROM sales_history
-            JOIN users ON sales_history.user_id = users.id
-            WHERE sales_history.user_id = ?  -- ดึงข้อมูลเฉพาะของผู้ใช้
-        `;
+      SELECT sales_history.product_name, sales_history.price, 
+             sales_history.detail AS description, 
+             sales_history.image_url AS image, 
+             users.username AS shop_name
+      FROM sales_history
+      JOIN users ON sales_history.user_id = users.id
+      WHERE sales_history.user_id = ? -- ดึงข้อมูลเฉพาะของผู้ขายที่ล็อกอิน
+    `;
 
     db.all(query, [userId], (err, rows) => {
       if (err) {
@@ -35,4 +37,5 @@ function Sales_History(app) {
     });
   });
 }
+
 module.exports = Sales_History;

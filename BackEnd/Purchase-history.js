@@ -5,31 +5,59 @@ const jwtMiddleware = require('./jwtMiddleware');
 
 const app = express();
 app.use(cors());
+app.use(express.json()); // รองรับ JSON body
 
 // เชื่อมต่อกับฐานข้อมูล SQLite
 const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
         console.error(err.message);
     }
-    console.log('Connected to the sales_history database.');
+    console.log('Connected to the database.');
 });
 
 function Purchase_History(app) {
-    // ตัวอย่างเส้นทางใน Backend
-app.post('/purchase-history', jwtMiddleware, async (req, res) => {
-    const { product_id, product_name, status } = req.body;
-    const userId = req.auth.id;
+    // เส้นทางสำหรับบันทึกประวัติการซื้อ
+    app.post('/purchase-history', jwtMiddleware, (req, res) => {
+        const { product_id, product_name, status } = req.body;
+        const userId = req.auth.id; // userId ที่มาจากผู้ซื้อที่ล็อกอิน
 
-    try {
-        await db.run(
-            'INSERT INTO purchase_history (product_id, product_name, status, user_id) VALUES (?, ?, ?, ?)',
-            [product_id, product_name, status, userId]
-        );
-        res.json({ message: 'Purchase history saved successfully' });
-    } catch (error) {
-        console.error('Error saving purchase history:', error);
-        res.status(500).json({ error: 'Failed to save purchase history' });
-    }
-});
+        const query = `
+            INSERT INTO purchase_history (product_id, product_name, status, user_id)
+            VALUES (?, ?, ?, ?)
+        `;
+
+        db.run(query, [product_id, product_name, status, userId], function(err) {
+            if (err) {
+                console.error('Error saving purchase history:', err.message);
+                return res.status(500).json({ error: 'Failed to save purchase history' });
+            }
+            res.json({ message: 'Purchase history saved successfully' });
+        });
+    });
+
+    // API สำหรับดึงข้อมูลประวัติการซื้อ
+    app.get('/purchase-history', jwtMiddleware, (req, res) => {
+        const userId = req.auth.id;
+        console.log("User ID:", userId); // ตรวจสอบ userId ที่ได้รับจาก jwtMiddleware
+
+        const query = `
+            SELECT purchase_history.product_name, purchase_history.status,
+                   products.image_url AS image, products.detail AS description, 
+                   products.price, users.username AS shop_name
+            FROM purchase_history
+            JOIN products ON purchase_history.product_id = products.id
+            JOIN users ON products.userId = users.id
+            WHERE purchase_history.user_id = ?;
+        `;
+
+        db.all(query, [userId], (err, rows) => {
+            if (err) {
+                console.error("Error fetching purchase history:", err);
+                return res.status(500).json({ error: "Failed to fetch purchase history" });
+            }
+            res.json(rows); // ส่งข้อมูลประวัติการซื้อกลับไป
+        });
+    });
 }
-module.exports = Sales_History;
+
+module.exports = Purchase_History;

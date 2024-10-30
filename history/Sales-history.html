@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMITL Store - Order Form</title>
+    <title>KMITL Store - Sales History</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="history.css">
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/product-container.js" defer></script> <!-- เรียกไฟล์ Web Component -->
     <script src="../Components/Footer.js" defer></script>
 </head>
-
 <body>
-    <!-- ใช้ Web Component ของ Navbar -->
     <my-navbar></my-navbar>
-
     <div class="purchase-history">
-        <h1>Sales history</h1>
+        <h1>Sales History</h1>
     </div>
-
-    <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             try {
@@ -30,7 +25,7 @@
                 const response = await fetch('http://localhost:3000/sales-history', {
                     method: 'GET',
                     headers: {
-                        'Authorization': token // แนบ Token ใน header
+                        'Authorization': `Bearer ${token}` // ส่ง Token แบบ Bearer
                     }
                 });
     
@@ -57,9 +52,5 @@
             }
         });
     </script>
-    
-    
-    
 </body>
-
 </html>

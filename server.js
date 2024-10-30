@@ -21,6 +21,7 @@ const Cart = require("./BackEnd/Cart");
 const Address = require("./BackEnd/Address");
 const ProfileShop = require("./BackEnd/Profile-shop");
 const ProfileEdit = require("./BackEnd/Profile-Edit");
+const MyOrder = require("./BackEnd/my_order");
 
 const app = express();
 app.use(cors());
@@ -89,7 +90,7 @@ My_Products(app);
 Sales_History(app);
 Cart(app);
 Address(app);
-//MyOrder(app);
+MyOrder(app);
 ProfileEdit(app);
 ProfileShop(app);
 

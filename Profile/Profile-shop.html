@@ -59,12 +59,9 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const params = new URLSearchParams(window.location.search);
-        const userId = params.get("userId"); // ดึง userId จาก URL
-
+        const userId = params.get("userId");
+    
         if (userId) {
-          console.log("userId:", userId); // ตรวจสอบค่า userId
-
-          // เรียก API /users เพื่อดึงข้อมูลของผู้ขาย
           fetch(`/api/shop/${userId}`)
             .then((response) => {
               if (!response.ok) {
@@ -73,26 +70,16 @@
               return response.json();
             })
             .then((data) => {
-              // แสดงข้อมูลผู้ขายใน HTML
               document.querySelector(".profile-header h1").innerText =
                 data.user.username || "ชื่อผู้ขายไม่ระบุ";
-
-              // ถ้า profile_pic มีค่า ให้ใช้รูปนั้น ถ้าไม่มีก็ใช้รูป default
-              const profilePicElement = document.querySelector(
-                ".profile-header img"
-              );
-
-              console.log(data.user.profile_pic);
-
+    
+              const profilePicElement = document.querySelector(".profile-header img");
               profilePicElement.src =
-                data.user.profile_pic == null
-                  ? "../icons/Profile.jpg"
-                  : data.user.profile_pic;
-
-              const salesHistoryList =
-                document.getElementById("sales-history-list");
-
-              // สร้าง <li> สำหรับแต่ละรายการใน salesHistory
+                data.user.profile_pic
+                  ? `/ProfilePic/${data.user.profile_pic}`
+                  : "../icons/Profile.jpg";
+    
+              const salesHistoryList = document.getElementById("sales-history-list");
               data.salesHistory.forEach((sale) => {
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `${sale.product_name} <span class="status">${sale.status}</span>`;
@@ -103,120 +90,41 @@
               console.error("Error fetching user details:", error);
             });
         }
+    
+        fetchProducts();
       });
-
-      // ข้อมูลสินค้าที่แนะนำ
-      const recommendedProducts = [
-        {
-          image: "../image/calculator1.jpg",
-          name: "เครื่องคิดเลข super-fx-plus",
-          detail: "ไม่มีตำหนิ<br>ใช้งานง่าย<br>รับประกันยังอยู่",
-          price: "1,060",
-        },
-        {
-          image: "../image/Women-shirt1.jpg",
-          name: "ปาเก๋า",
-          detail: "ไซส์ L<br>ใช้ครั้งเดียว<br>สีขาวสว่าง",
-          price: "200",
-        },
-        {
-          image: "../image/shoes1.jpg",
-          name: "ปาเก๋า",
-          detail: "ไซส์ 40<br>มีกล่องให้ครบ<br>มีตำหนินิดหน่อย",
-          price: "1,800",
-        },
-        {
-          image: "../image/bag1.jpg",
-          name: "ปาเก๋า",
-          detail: "ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
-          price: "300",
-        },
-        {
-          image: "../image/Laptop1.jpg",
-          name: "ปาเก๋า",
-          detail: "Ryzen 5 RAM 16<br>การ์ดจอแยก",
-          price: "15,150",
-        },
-        {
-          image: "../image/ipad1.jpg",
-          name: "ปาเก๋า",
-          detail: "ความจำ 254 GB<br>ประกัน 1 ปี",
-          price: "25,500",
-        },
-        {
-          image: "../image/Laptop2.jpg",
-          name: "ปาเก๋า",
-          detail: "AMD Ryzen 7<br>Memory 16GB",
-          price: "29,930",
-        },
-        {
-          image: "../image/shoes2.jpg",
-          name: "ปาเก๋า",
-          detail: "ไซต์ 39<br>ใส่แค่ครั้งเดียว",
-          price: "670",
-        },
-        {
-          image: "../image/workshop-shirt1.jpg",
-          detail: "ไซต์ M<br>ไม่มีตำหนิ",
-          price: "275",
-        },
-        {
-          image: "../image/workshop-shirt2.jpg",
-          name: "ปาเก๋า",
-          detail: "ไซต์ L<br>ไม่ใช่ของคณะขาย",
-          price: "280",
-        },
-        {
-          image: "../image/Men-shirt2.jpg",
-          name: "ปาเก๋า",
-          detail: "ไซต์ M<br>ไม่เคยใส่เลย",
-          price: "160",
-        },
-        {
-          image: "../image/Malestudentpants-1.jpg",
-          name: "ปาเก๋า",
-          detail: "เอว 35<br>ใส่แค่ครั้งเดียว",
-          price: "200",
-        },
-        {
-          image: "../image/Men-shirt1.jpg",
-          name: "ปาเก๋า",
-          detail: "ไซส์ M<br>สีขาวนวล, ไม่เปื้อนเลย",
-          price: "100",
-        },
-        {
-          image: "../image/Women-shirt2.jpg",
-          name: "ปาเก๋า",
-          detail: "ไซส์ L<br>ใช้ครั้งเดียว, แขนสามเหลี่ยม",
-          price: "160",
-        },
-        {
-          image: "../image/bag1.jpg",
-          name: "ปาเก๋า",
-          detail: "ยังไม่เคยใช้เลย<br>สีซีดกว่าในรูปนิดหน่อย",
-          price: "300",
-        },
-      ];
-
-      const productGrid = document.getElementById("product-grid");
-
-      // สร้างการ์ดสินค้าแนะนำ
-      recommendedProducts.forEach((product) => {
-        const productLink = document.createElement("a"); // สร้างลิงก์สำหรับการ์ด
-        productLink.href = `../Productdetails/Product-details.html?image=${encodeURIComponent(
-          product.image
-        )}&detail=${encodeURIComponent(product.detail)}&price=${product.price}`; // ส่งพารามิเตอร์
-        productLink.classList.add("product-link"); // เพิ่มคลาสสำหรับการจัดสไตล์
-
-        const productCard = document.createElement("product-card");
-        productCard.setAttribute("image", product.image);
-        productCard.setAttribute("name", product.name);
-        productCard.setAttribute("detail", product.detail); // เพิ่ม detail
-        productCard.setAttribute("price", product.price);
-        productLink.appendChild(productCard); // เพิ่มการ์ดลงในลิงก์
-        productGrid.appendChild(productLink); // เพิ่มลิงก์ในกริดสินค้า
-      });
+    
+      async function fetchProducts() {
+        try {
+          const response = await fetch('/recommentproducts');
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const products = await response.json();
+          const productGrid = document.getElementById("product-grid");
+    
+          products.forEach(product => {
+            const productLink = document.createElement("a");
+            productLink.href = `../Productdetails/Product-details.html?image=${encodeURIComponent(
+              product.image_url
+            )}&detail=${encodeURIComponent(product.detail)}&price=${product.price}`;
+            productLink.classList.add("product-link");
+    
+            const productCard = document.createElement("product-card");
+            productCard.setAttribute("image", product.image_url);
+            productCard.setAttribute("name", product.name);
+            productCard.setAttribute("detail", product.detail);
+            productCard.setAttribute("price", product.price);
+            
+            productLink.appendChild(productCard);
+            productGrid.appendChild(productLink);
+          });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
     </script>
+    
     <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
   </body>

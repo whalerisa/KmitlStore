@@ -77,24 +77,31 @@ body {
 .profile-info {
     background-color: #E35205; /* สีส้ม */
     color: white;
-    padding: 15px;
+    padding: 15px; /* ระยะห่างภายใน */
     border-radius: 10px;
     text-align: left;
     margin: 0 auto 20px; /* จัดกลางด้านซ้าย-ขวา และมีระยะห่างด้านล่าง */
-    width: 80%; /* ปรับความกว้างให้ลดลง */
+    width: 80%; /* ความกว้างของกล่องข้อความ */
     max-width: 800px; /* ระบุความกว้างสูงสุด */
 }
 
+.seller-centre-link {
+    display: block; /* ทำให้เป็น block element */
+    text-align: center; /* จัดกลางปุ่ม */
+    margin-top: 10px; /* ระยะห่างด้านบนจากกล่องข้อมูลโปรไฟล์ */
+}
+
 .seller-centre-button {
-    background-color: #E35205; /* สีพื้นหลังเป็นสีขาว */
+    background-color: #E35205; /* สีพื้นหลัง */
     color: white; /* สีข้อความ */
     border: none; /* ไม่มีขอบ */
-    border-radius: 30px; /* ทำให้มุมโค้ง */
+    border-radius: 30px; /* มุมโค้ง */
     padding: 10px 20px; /* เพิ่มพื้นที่รอบๆ ปุ่ม */
     font-size: 16px; /* ขนาดตัวอักษร */
     cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
-    transition: background-color 0.3s, color 0.3s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
-    margin-left: 350px;
+    transition: background-color 0.3s, color 0.3s; /* เปลี่ยนแปลงเมื่อ hover */
+    margin-left: calc(25%); /* ปรับให้เริ่มที่ตำแหน่งเดียวกันกับ .profile-info */
+    margin-top: 10px; /* เพิ่มระยะห่างระหว่างปุ่มและข้อความด้านบน */
 }
 
 .seller-centre-button:hover {

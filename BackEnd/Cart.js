@@ -50,6 +50,7 @@ function Cart(app) {
         const insertQuery = `INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)`;
         db.run(insertQuery, [userId, productId, quantity], (err) => {
           if (err) {
+            console.log(err)
             return res.status(500).json({ error: err.message });
           }
           res.json({ message: "Item added to cart successfully" });

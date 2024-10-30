@@ -32,17 +32,17 @@
     <div class="info-card">
         <div class="info-item">
             <label for="name">Name:</label>
-            <input type="text" id="name" value="XXXXXXXXXX" disabled>
+            <input type="text" id="name" value="" disabled>
             <button onclick="enableEdit('name')">Edit</button>
         </div>
         <div class="info-item">
             <label for="phone">Phone number:</label>
-            <input type="text" id="phone" value="OXX-XXX-XXXX" disabled>
+            <input type="text" id="phone" value="" disabled>
             <button onclick="enableEdit('phone')">Edit</button>
         </div>
         <div class="info-item">
             <label for="email">Email:</label>
-            <input type="email" id="email" value="XXXXXXXXXX@gmail.com" disabled>
+            <input type="email" id="email" value="" disabled>
             <button onclick="enableEdit('email')">Edit</button>
         </div>
     </div>
@@ -52,28 +52,54 @@
     </div>
 
     <script>
-        let profilePicPath = ''; // Path ของรูปโปรไฟล์
+        // ดึงข้อมูลผู้ใช้มาแสดงในฟอร์ม
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('http://localhost:3000/users', {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                const user = data.user;
+
+                // อัปเดตฟิลด์ต่าง ๆ ด้วยข้อมูลที่ได้รับ
+                document.getElementById('name').value = user.username;
+                document.getElementById('phone').value = user.phone;
+                document.getElementById('email').value = user.email;
+
+                // ถ้ามีรูปโปรไฟล์ให้แสดง
+                if (user.profile_pic) {
+                    document.getElementById('profilePicPreview').src = user.profile_pic;
+                }
+            })
+            .catch(error => console.error('Error fetching user data:', error));
+        });
+
+        let profilePicPath = '';
 
         function enableEdit(fieldId) {
             const inputField = document.getElementById(fieldId);
             inputField.disabled = !inputField.disabled;
-            if (!inputField.disabled) {
-                inputField.focus();
-            }
+            if (!inputField.disabled) inputField.focus();
         }
 
         function previewProfilePic(event) {
             const preview = document.getElementById('profilePicPreview');
             const file = event.target.files[0];
             preview.src = URL.createObjectURL(file);
-            profilePicPath = file.name; // เก็บ path ของรูปโปรไฟล์
+            profilePicPath = file.name;
         }
 
         function saveChanges() {
-            const userId = localStorage.getItem('userId'); // ดึง userId จาก localStorage
-            const username = document.getElementById('name').value; // ดึง username
-            const phone = document.getElementById('phone').value; // ดึงเบอร์โทร
-            const email = document.getElementById('email').value; // ดึงอีเมล
+            const userId = localStorage.getItem('userId');
+            const username = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
             const profilePicInput = document.getElementById('profilePicInput');
 
             const formData = new FormData();
@@ -82,29 +108,28 @@
             formData.append('phone', phone);
             formData.append('email', email);
             if (profilePicInput.files[0]) {
-                formData.append('profilePic', profilePicInput.files[0]); // ถ้ามีไฟล์ให้แนบ
+                formData.append('profilePic', profilePicInput.files[0]);
             }
 
             fetch('/api/updateProfile', {
                 method: 'POST',
                 body: formData,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json(); // แปลงข้อมูลเป็น JSON
+                if (!response.ok) throw new Error('Network response was not ok ' + response.statusText);
+                return response.json();
             })
             .then(data => {
-                console.log(data); // ตรวจสอบข้อมูลที่ได้รับ
-                alert(data.message); // แจ้งผู้ใช้
-                window.location.href = 'Profile.html'; // เปลี่ยนไปที่หน้า Profile
+                alert(data.message);
+                window.location.href = 'Profile.html';
             })
             .catch(error => {
                 console.error('Error:', error);
             });
         }
-
     </script>
 
     <my-footer></my-footer>

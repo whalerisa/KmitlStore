@@ -3,6 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
+const jwtMiddleware = require("./jwtMiddleware");
 
 
 const app = express();
@@ -37,9 +38,10 @@ const db = new sqlite3.Database('Data.db', (err) => {
 
 function ProfileEdit(app){
     // Route สำหรับอัปเดตโปรไฟล์
-    app.post('/api/updateProfile', upload.single('profilePic'), (req, res) => {
-        const { userId, username, phone, email } = req.body;
-        const profilePicPath = req.file ? `ProfilePic/${req.file.filename}` : null; // รับ path รูปโปรไฟล์
+    app.post('/api/updateProfile', jwtMiddleware, upload.single('profilePic'), (req, res) => {
+        const userId = req.auth.id;
+        const { username, phone, email } = req.body;
+        const profilePicPath = req.file ? `${req.file.filename}` : null; // รับ path รูปโปรไฟล์
         // Update the user profile in the database
         const sql = `UPDATE users SET username = ?, phone = ?, email = ?, profile_pic = ? WHERE id = ?`;
         db.run(sql, [username, phone, email, profilePicPath, userId], function (err) {

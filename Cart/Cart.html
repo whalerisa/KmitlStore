@@ -13,7 +13,6 @@
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
   </head>
-
   <body>
     <my-navbar></my-navbar>
 
@@ -26,9 +25,10 @@
 
         <div class="total-container">
           <button class="total-price">0 ฿</button>
-          <!-- Display total price -->
           <a href="../Address/Address.html">
-            <button class="checkout-button">Check Out</button>
+            <button class="checkout-button" onclick="saveSelectedItems()">
+              Check Out
+            </button>
           </a>
         </div>
       </div>
@@ -39,11 +39,35 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         loadCart();
-
-        // Restore saved total from localStorage, if available
         const savedTotal = localStorage.getItem("cartTotal") || 0;
         document.querySelector(".total-price").textContent = savedTotal + " ฿";
       });
+
+      function saveSelectedItems() {
+        const selectedItems = [];
+
+        document
+          .querySelectorAll(".item-checkbox:checked")
+          .forEach((checkbox) => {
+            const itemId = checkbox.id.replace("item", "");
+            const cartItem = document.getElementById(`cart-item-${itemId}`);
+            const itemQuantity = parseInt(
+              cartItem
+                .querySelector(".item-quantity")
+                .textContent.replace("x ", "")
+            );
+
+            selectedItems.push({
+              productId: itemId,
+              quantity: itemQuantity, // บันทึก quantity ด้วย
+            });
+          });
+
+        localStorage.setItem(
+          "selectedCartItems",
+          JSON.stringify(selectedItems)
+        );
+      }
 
       async function loadCart() {
         try {
@@ -66,26 +90,24 @@
             cartItem.id = `cart-item-${item.product_id}`;
 
             cartItem.innerHTML = `
-              <input type="checkbox" id="item${item.product_id}" class="item-checkbox">
-              <label for="item${item.product_id}" class="item-label" data-price="${item.price}">
-                  <img src="${item.image_url}" alt="${item.name}">
-                  ${item.name}
-                  <span class="item-price">${item.price}</span> ฿
-              </label>
-              <span class="item-quantity">x ${item.quantity}</span>
-              <button class="delete-button" onclick="removeItem(${item.product_id})">Delete</button>
+            <input type="checkbox" id="item${item.product_id}" class="item-checkbox">
+            <label for="item${item.product_id}" class="item-label" data-price="${item.price}">
+                <img src="${item.image_url}" alt="${item.name}">
+                ${item.name}
+                <span class="item-price">${item.price}</span> ฿
+            </label>
+            <span class="item-quantity">x ${item.quantity}</span>
+            <button class="delete-button" onclick="removeItem(${item.product_id})">Delete</button>
           `;
 
-            // Add checkbox listener for updating the total
             cartItem
               .querySelector(".item-checkbox")
               .addEventListener("change", updateTotal);
-
             cartContainer.appendChild(cartItem);
           });
 
-          restoreCheckboxStates(); // Restore checkbox states from localStorage
-          updateTotal(); // Initial total update
+          restoreCheckboxStates();
+          updateTotal();
         } catch (error) {
           console.error("Error loading cart:", error);
         }
@@ -97,14 +119,25 @@
 
         document.querySelectorAll(".item-checkbox").forEach((checkbox) => {
           const itemId = checkbox.id;
-          checkboxStates[itemId] = checkbox.checked; // Save checkbox state
+          checkboxStates[itemId] = checkbox.checked;
 
           if (checkbox.checked) {
+            const cartItem = document.getElementById(
+              `cart-item-${itemId.replace("item", "")}`
+            );
+
             const price = parseInt(
               checkbox.nextElementSibling.querySelector(".item-price")
                 .textContent
             );
-            total += price;
+
+            const quantity = parseInt(
+              cartItem
+                .querySelector(".item-quantity")
+                .textContent.replace("x ", "")
+            );
+
+            total += price * quantity;
           }
         });
 
@@ -115,28 +148,22 @@
 
       function removeItem(itemId) {
         const cartItem = document.getElementById(`cart-item-${itemId}`);
-
         if (cartItem) {
-          const productId = itemId; // Assuming itemId corresponds to productId
-
           fetch("http://127.0.0.1:3000/cart/remove", {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming token is stored in localStorage
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-            body: JSON.stringify({ productId: productId }),
+            body: JSON.stringify({ productId: itemId }),
           })
             .then((response) => {
-              if (!response.ok) {
+              if (!response.ok)
                 throw new Error("Failed to remove item from cart");
-              }
               return response.json();
             })
             .then((data) => {
-              console.log(data.message); // Log the success message
-
-              // Remove item from DOM and update total
+              console.log(data.message);
               cartItem.remove();
               updateTotal();
             })
@@ -149,7 +176,6 @@
       function restoreCheckboxStates() {
         const savedCheckboxStates =
           JSON.parse(localStorage.getItem("checkboxStates")) || {};
-
         document.querySelectorAll(".item-checkbox").forEach((checkbox) => {
           const itemId = checkbox.id;
           checkbox.checked = savedCheckboxStates[itemId] || false;

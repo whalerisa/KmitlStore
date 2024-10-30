@@ -1,7 +1,7 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
-const jwt = require('jsonwebtoken'); // นำเข้า library สำหรับ JWT
+const jwtMiddleware = require('./jwtMiddleware');
 
 const app = express();
 app.use(cors());
@@ -16,9 +16,9 @@ const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE, (err) => {
 
 function Purchase_History(app) {
     // ตัวอย่างเส้นทางใน Backend
-app.post('/purchase-history', authenticateToken, async (req, res) => {
+app.post('/purchase-history', jwtMiddleware, async (req, res) => {
     const { product_id, product_name, status } = req.body;
-    const userId = req.user.userId;  // ดึง userId จาก token ที่ยืนยันแล้ว
+    const userId = req.auth.id;
 
     try {
         await db.run(

@@ -1,5 +1,4 @@
 const express = require("express");
-const { expressjwt: jwt } = require("express-jwt");
 const sqlite3 = require("sqlite3").verbose();
 const bodyParser = require("body-parser");
 const cors = require("cors");

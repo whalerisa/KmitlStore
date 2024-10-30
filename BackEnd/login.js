@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const jwtMiddleware = require('./jwtMiddleware');
+require("dotenv").config();
 
 const app = express();
 app.use(cors());
@@ -35,7 +37,7 @@ function login(app){
             }
             if (row) {
                // สร้าง token
-               const token = jwt.sign({ id: row.id }, 'your_secret_key', { expiresIn: '1h' });
+               const token = jwt.sign({ id: row.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
                return res.json({ message: 'เข้าสู่ระบบสำเร็จ', token }); // ส่ง token กลับไป
             } else {
                 return res.status(401).json({ message: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง' });
@@ -46,18 +48,9 @@ function login(app){
 module.exports = login;  // ส่งออกฟังก์ชัน login
 
 // ในไฟล์ BackEnd/login.js หรือที่ที่คุณจัดการเกี่ยวกับการเข้าสู่ระบบ
-app.get('/checkLogin', (req, res) => {
-    const token = req.headers['authorization'];
-    if (!token) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
-    
-    jwt.verify(token, 'secret_key', (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: 'Unauthorized' });
-        }
-        res.status(200).json({ message: 'Authorized', userId: decoded.id });
-    });
+app.get('/checkLogin', jwtMiddleware, (req, res) => {
+    const userId = req.auth.id;
+    return res.status(200).json({ message: 'Authorized', userId: userId });
 });
 
 

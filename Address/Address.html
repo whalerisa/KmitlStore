@@ -1,120 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KMITL Store - Shipping Address</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="address.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="address.css" />
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
-</head>
-
-<body>
-
+  </head>
+  <body>
     <my-navbar></my-navbar>
 
-    <!-- ที่อยู่สำหรับจัดส่ง -->
     <div class="input-box">
-        <label for="username">
-            <i class="fas fa-user"></i> Name
-        </label>
-        <input type="text" id="username" placeholder="Enter your name" required>
+      <label for="username"><i class="fas fa-user"></i> Name</label>
+      <input type="text" id="username" placeholder="Enter your name" required />
     </div>
 
     <div class="input-box">
-        <label for="address">
-            <i class="fas fa-map-marker-alt"></i> Shipping Address
-        </label>
-        <textarea id="address" placeholder="Enter the shipping address..." required></textarea>
+      <label for="address"
+        ><i class="fas fa-map-marker-alt"></i> Shipping Address</label
+      >
+      <textarea
+        id="address"
+        placeholder="Enter the shipping address..."
+        required
+      ></textarea>
     </div>
 
-    <!-- รายละเอียดสินค้า -->
     <div class="input-box">
-        <label for="product-details">
-            <i class="fas fa-shopping-bag"></i> Product details
-        </label>
-        <div id="product-details" class="product-box"></div>
+      <label for="product-details"
+        ><i class="fas fa-shopping-bag"></i> Product details</label
+      >
+      <div id="product-details" class="product-box"></div>
     </div>
 
-    <!-- ราคาสินค้ารวม -->
     <div class="total-box">
-        <p>Total payment: <span id="total-price">0 ฿</span></p>
+      <p>Total payment: <span id="total-price">0 ฿</span></p>
     </div>
 
-    <!-- Submit Order -->
     <div class="place-order">
-        <button class="place-order-button" onclick="saveOrderDetails()">Place Order</button>
+      <button class="place-order-button" onclick="saveOrderDetails()">
+        Place Order
+      </button>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const productId = localStorage.getItem('selectedProductId');
-            console.log('Product ID:', productId);  // ตรวจสอบค่า productId ใน console
+      document.addEventListener("DOMContentLoaded", async () => {
+        const selectedItems =
+          JSON.parse(localStorage.getItem("selectedCartItems")) || [];
+        const productContainer = document.getElementById("product-details");
+        let total = 0;
+        console.log(selectedItems);
 
-            fetch(`http://localhost:3000/product/${productId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(error => { throw new Error(error.error); });
-                    }
-                    return response.json();
-                })
-                .then(product => {
-                    console.log('Product:', product);  // ตรวจสอบข้อมูลสินค้าที่ได้รับกลับมาจาก backend
-                    const productDetails = `
-                        <p>${product.name}</p>
-                        <p>${product.detail}</p>
-                        <p>${product.price} ฿</p>
-                    `;
-                    document.getElementById('product-details').innerHTML = productDetails;
-                    document.getElementById('total-price').textContent = `${product.price} ฿`;
-                })
-                .catch(error => {
-                    console.error('Error fetching product details:', error);
-                });
-        });
+        for (const { productId, quantity } of selectedItems) {
+          try {
+            const response = await fetch(
+              `http://127.0.0.1:3000/api/products/${productId}`
+            );
+            if (!response.ok)
+              throw new Error("Failed to fetch product details");
 
-        function saveOrderDetails() {
-            const username = document.getElementById('username').value;
-            const address = document.getElementById('address').value;
-            const productDetails = document.getElementById('product-details').innerText;
-            const totalPayment = document.getElementById('total-price').textContent;
-            const productId = localStorage.getItem('selectedProductId');
-
-            // บันทึกข้อมูลลง localStorage
-            localStorage.setItem('orderUsername', username);
-            localStorage.setItem('orderAddress', address);
-            localStorage.setItem('orderProductDetails', productDetails);
-            localStorage.setItem('orderTotalPayment', totalPayment);
-
-            // ส่งข้อมูลไปยัง backend เพื่อบันทึกคำสั่งซื้อ
-            fetch('http://localhost:3000/order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    productId: productId,
-                    username: username, // ชื่อที่กรอกในฟิลด์
-                    address: address,
-                    totalPayment: totalPayment
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Order placed successfully:', data);
-                // เปลี่ยนไปยังหน้าแชท
-                window.location.href = "../chat/chat.html";
-            })
-            .catch(error => {
-                console.error('Error placing order:', error);
-            });
+            const product = await response.json();
+            const productDetails = `
+            <p>${product.name}</p>
+            <p>${product.detail}</p>
+            <p>${product.price} ฿ x ${quantity}</p>
+          `;
+            productContainer.innerHTML += productDetails;
+            total += product.price * quantity;
+          } catch (error) {
+            console.error("Error fetching product:", error);
+          }
         }
 
+        document.getElementById("total-price").textContent = `${total} ฿`;
+      });
+
+      function saveOrderDetails() {
+        const username = document.getElementById("username").value;
+        const address = document.getElementById("address").value;
+        const totalPayment = document.getElementById("total-price").textContent;
+        const selectedItems =
+          JSON.parse(localStorage.getItem("selectedCartItems")) || [];
+
+        console.log(selectedItems)
+
+        if (!username || !address) {
+          alert("Please fill in all fields.");
+          return;
+        }
+
+        fetch("http://localhost:3000/order", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            items: selectedItems,
+            username: username,
+            address: address,
+            totalPayment: totalPayment,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Order placed successfully:", data);
+            localStorage.removeItem("selectedCartItems");
+            window.location.href = "../chat/chat.html";
+          })
+          .catch((error) => {
+            console.error("Error placing order:", error);
+          });
+      }
     </script>
 
     <my-footer></my-footer>
-</body>
-
+  </body>
 </html>

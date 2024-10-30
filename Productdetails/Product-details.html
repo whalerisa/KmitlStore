@@ -1,217 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KMITL Store - Product Details</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="Product-details.css">
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Product-details.css" />
     <script src="../Components/ProductCard.js" defer></script>
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <my-navbar></my-navbar>
 
     <div class="Productdetails">
-        <div class="product-container">
-            <div class="product-image-container">
-                <img id="product-image" src="/ImageOfProducts/1728572308338.JPG" alt="Product Image"
-                    class="product-image">
-                <div class="shop-info">
-                    <img src="../icons/Profile.jpg" alt="Shop Owner">
-                    <p id="shop-owner">น้ำ ขายของ</p>
-                    <a href="../Profile/Profile-shop.html?userId=${product.userId}">
-                        <button class="view-shop">View Shop</button>
-                    </a>
-                </div>
-            </div>
-            <div class="product-details">
-                <h2 id="product-title">Product Title</h2>
-                <p class="price" id="product-price">0 บาท</p>
-                <p id="product-description">Product description goes here.</p>
-
-                <div class="quantity">
-                    <p>Quantity</p>
-                    <div class="quantity-controls">
-                        <button id="decrease" class="circle-button" onclick="changeQuantity(-1)">-</button>
-                        <div class="quantity-display" id="quantity">0</div>
-                        <button id="increase" class="circle-button" onclick="changeQuantity(1)">+</button>
-                    </div>
-                    <p id="product-stock">1 pieces available</p>
-                </div>
-
-                <div class="buttons">
-                    <button class="btn" onclick="addToCart()">Add to Cart</button>
-                    <button class="btn" onclick="buyProduct()">Buy Product</button>
-                </div>
-            </div>
+      <div class="product-container">
+        <div class="product-image-container">
+          <img
+            id="product-image"
+            src="/ImageOfProducts/1728572308338.JPG"
+            alt="Product Image"
+            class="product-image"
+          />
+          <div class="shop-info">
+            <img src="../icons/Profile.jpg" alt="Shop Owner" />
+            <p id="shop-owner">น้ำ ขายของ</p>
+            <a id="view-shop-link" href="#">
+              <button class="view-shop">View Shop</button>
+            </a>
+          </div>
         </div>
+        <div class="product-details">
+          <h2 id="product-title">Product Title</h2>
+          <p class="price" id="product-price">0 บาท</p>
+          <p id="product-description">Product description goes here.</p>
+
+          <div class="quantity">
+            <p>Quantity</p>
+            <div class="quantity-controls">
+              <button
+                id="decrease"
+                class="circle-button"
+                onclick="changeQuantity(-1)"
+              >
+                -
+              </button>
+              <div class="quantity-display" id="quantity">0</div>
+              <button
+                id="increase"
+                class="circle-button"
+                onclick="changeQuantity(1)"
+              >
+                +
+              </button>
+            </div>
+            <p id="product-stock">1 pieces available</p>
+          </div>
+
+          <div class="buttons">
+            <button class="btn" onclick="addToCart()">Add to Cart</button>
+            <button class="btn" onclick="buyProduct()">Buy Product</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <section class="products">
-        <h2>YOU MAY ALSO LIKE</h2>
-        <div class="product-grid" id="recommend-grid"></div>
+      <h2>YOU MAY ALSO LIKE</h2>
+      <div class="product-grid" id="recommend-grid"></div>
     </section>
 
     <script>
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                id: params.get('id'),
-            };
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          id: params.get("id"),
+        };
+      }
+
+      let quantity = 0;
+      let maxStock = 0; // ตัวแปรสำหรับเก็บจำนวน stock สูงสุด
+
+      function changeQuantity(change) {
+        console.log("changeQuantity called with change:", change); // Debugging
+        console.log("Current quantity before change:", quantity);
+
+        quantity += change;
+        if (quantity < 0) quantity = 0;
+        if (quantity > maxStock) quantity = maxStock;
+
+        console.log("Updated quantity:", quantity); // Debugging
+        document.getElementById("quantity").innerText = quantity;
+      }
+
+      function addToCart() {
+        const { id } = getQueryParams(); // ดึง productId จาก URL
+        const quantity = parseInt(
+          document.getElementById("quantity").innerText
+        ); // ดึงจำนวนที่เลือก
+
+        if (id && quantity > 0) {
+          const token = localStorage.getItem("token");
+
+          fetch("/add-to-cart", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              productId: id,
+              quantity: quantity,
+            }),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.text();
+            })
+            .then((data) => {
+              console.log(data);
+              alert("สินค้าถูกเพิ่มลงในตะกร้าเรียบร้อยแล้ว!");
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        } else {
+          alert("กรุณาเลือกจำนวนสินค้าก่อนเพิ่มลงตะกร้า");
+        }
+      }
+
+      function buyProduct() {
+        const { id } = getQueryParams(); // ดึง productId จาก URL
+        const quantity = parseInt(
+          document.getElementById("quantity").innerText
+        ); // ดึงจำนวนที่เลือก
+
+        if (id && quantity > 0) {
+          localStorage.setItem("selectedProductId", id); // เก็บ productId ใน localStorage
+          window.location.href = "../Address/Address.html"; // เปลี่ยนไปยังหน้า Address
+        } else {
+          alert("กรุณาเลือกจำนวนสินค้าก่อนที่จะดำเนินการซื้อ");
+        }
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const { id } = getQueryParams();
+        console.log("Product ID:", id); // Debugging
+
+        if (id) {
+          fetch(`/api/products/${id}`)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((product) => {
+              // แสดงข้อมูลที่ดึงมาใน HTML
+              document.getElementById("product-image").src = product.image_url;
+              document.getElementById("product-title").innerText = product.name;
+              document.getElementById(
+                "product-price"
+              ).innerText = `${product.price} บาท`;
+              document.getElementById("product-description").innerText =
+                product.detail;
+              document.getElementById(
+                "product-stock"
+              ).innerText = `${product.stock} pieces available`;
+              document.getElementById("shop-owner").innerText =
+                product.username;
+
+              // ปรับค่าของ maxStock ให้ตรงกับสินค้าที่ดึงมา
+              maxStock = product.stock;
+              console.log("Max stock set to:", maxStock); // Debugging
+
+              // ตั้งค่า quantity ให้เป็น 1 อย่างน้อย
+              quantity = 1;
+              document.getElementById("quantity").innerText = quantity;
+
+              // ปุ่ม "View Shop" ให้มี userId
+
+              console.log(product);
+
+              const viewShopLink = document.getElementById("view-shop-link");
+              viewShopLink.href = `../Profile/Profile-shop.html?userId=${product.userId}`;
+            })
+            .catch((error) => {
+              console.error("Error fetching product details:", error);
+            });
         }
 
-        let quantity = 0;
-        let maxStock = 0; // ตัวแปรสำหรับเก็บจำนวน stock สูงสุด
+        const recommendGrid = document.getElementById("recommend-grid");
 
-        function changeQuantity(change) {
-            console.log("changeQuantity called with change:", change); // Debugging
-            console.log("Current quantity before change:", quantity);
+        async function fetchProducts() {
+          try {
+            const response = await fetch("/products");
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const products = await response.json();
 
-            quantity += change;
-            if (quantity < 0) quantity = 0;
-            if (quantity > maxStock) quantity = maxStock;
+            products.forEach((product) => {
+              if (
+                product.image_url &&
+                product.name &&
+                product.detail &&
+                product.price
+              ) {
+                const productLink = document.createElement("a");
+                productLink.href = `Product-details.html?id=${product.id}`;
+                productLink.classList.add("product-link");
 
-            console.log("Updated quantity:", quantity); // Debugging
-            document.getElementById('quantity').innerText = quantity;
+                const recommendCard = document.createElement("product-card");
+                recommendCard.setAttribute("image", product.image_url);
+                recommendCard.setAttribute("name", product.name);
+                recommendCard.setAttribute("detail", product.detail);
+                recommendCard.setAttribute("price", product.price);
+
+                productLink.appendChild(recommendCard);
+                recommendGrid.appendChild(productLink);
+              } else {
+                console.warn(`Product missing data:`, product);
+              }
+            });
+          } catch (error) {
+            console.error("Error fetching products:", error);
+          }
         }
 
-        function addToCart() {
-            const { id } = getQueryParams(); // ดึง productId จาก URL
-            const quantity = parseInt(document.getElementById('quantity').innerText); // ดึงจำนวนที่เลือก
-
-            if (id && quantity > 0) {
-                const token = localStorage.getItem('token');
-
-                fetch('/add-to-cart', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        productId: id,
-                        quantity: quantity
-                    })
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.text();
-                    })
-                    .then(data => {
-                        console.log(data);
-                        alert("สินค้าถูกเพิ่มลงในตะกร้าเรียบร้อยแล้ว!");
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            } else {
-                alert("กรุณาเลือกจำนวนสินค้าก่อนเพิ่มลงตะกร้า");
-            }
-        }
-
-
-        function buyProduct() {
-            const { id } = getQueryParams(); // ดึง productId จาก URL
-            const quantity = parseInt(document.getElementById('quantity').innerText); // ดึงจำนวนที่เลือก
-
-            if (id && quantity > 0) {
-                localStorage.setItem('selectedProductId', id); // เก็บ productId ใน localStorage
-                window.location.href = "../Address/Address.html"; // เปลี่ยนไปยังหน้า Address
-            } else {
-                alert("กรุณาเลือกจำนวนสินค้าก่อนที่จะดำเนินการซื้อ");
-            }
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const { id } = getQueryParams();
-            console.log('Product ID:', id); // Debugging
-
-            if (id) {
-                fetch(`/api/products/${id}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(product => {
-                        // แสดงข้อมูลที่ดึงมาใน HTML
-                        document.getElementById('product-image').src = product.image_url;
-                        document.getElementById('product-title').innerText = product.name;
-                        document.getElementById('product-price').innerText = `${product.price} บาท`;
-                        document.getElementById('product-description').innerText = product.detail;
-                        document.getElementById('product-stock').innerText = `${product.stock} pieces available`;
-                        document.getElementById('shop-owner').innerText = product.username;
-
-                        // ปรับค่าของ maxStock ให้ตรงกับสินค้าที่ดึงมา
-                        maxStock = product.stock;
-                        console.log("Max stock set to:", maxStock); // Debugging
-
-                        // ตั้งค่า quantity ให้เป็น 1 อย่างน้อย
-                        quantity = 1;
-                        document.getElementById('quantity').innerText = quantity;
-
-                        // ปุ่ม "View Shop" ให้มี userId
-                        const viewShopButton = document.querySelector('.view-shop');
-                        viewShopButton.addEventListener('click', function () {
-                            const productUserId = product.userId;
-                            window.location.href = `Profile-shop.html?userId=${productUserId}`;
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Error fetching product details:', error);
-                    });
-            }
-
-            const recommendGrid = document.getElementById('recommend-grid');
-
-            async function fetchProducts() {
-                try {
-                    const response = await fetch('/products');
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const products = await response.json();
-
-                    products.forEach(product => {
-                        if (product.image_url && product.name && product.detail && product.price) {
-                            const productLink = document.createElement('a');
-                            productLink.href = `Product-details.html?id=${product.id}`;
-                            productLink.classList.add('product-link');
-
-                            const recommendCard = document.createElement('product-card');
-                            recommendCard.setAttribute('image', product.image_url);
-                            recommendCard.setAttribute('name', product.name);
-                            recommendCard.setAttribute('detail', product.detail);
-                            recommendCard.setAttribute('price', product.price);
-
-                            productLink.appendChild(recommendCard);
-                            recommendGrid.appendChild(productLink);
-                        } else {
-                            console.warn(`Product missing data:`, product);
-                        }
-                    });
-                } catch (error) {
-                    console.error('Error fetching products:', error);
-                }
-            }
-
-            fetchProducts();
-        });
-
-
+        fetchProducts();
+      });
     </script>
 
     <my-footer></my-footer>
-
-</body>
-
+  </body>
 </html>

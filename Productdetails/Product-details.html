@@ -142,8 +142,7 @@
         ); // ดึงจำนวนที่เลือก
 
         if (id && quantity > 0) {
-          localStorage.setItem("selectedProductId", id); // เก็บ productId ใน localStorage
-          window.location.href = "../Address/Address.html"; // เปลี่ยนไปยังหน้า Address
+          window.location.href = `../Address/Address.html?productId=${id}&quantity=${quantity}`; // เปลี่ยนไปยังหน้า Address
         } else {
           alert("กรุณาเลือกจำนวนสินค้าก่อนที่จะดำเนินการซื้อ");
         }

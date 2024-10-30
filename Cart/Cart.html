@@ -25,10 +25,9 @@
 
         <div class="total-container">
           <button class="total-price">0 ฿</button>
-          <a href="../Address/Address.html">
-            <button class="checkout-button" onclick="saveSelectedItems()">
-              Check Out
-            </button>
+          <a id="checkout-link" href="#">
+            <button class="checkout-button" onclick="saveSelectedItems()">Check Out</button>
+          </a>
           </a>
         </div>
       </div>
@@ -39,34 +38,30 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         loadCart();
-        const savedTotal = localStorage.getItem("cartTotal") || 0;
         document.querySelector(".total-price").textContent = savedTotal + " ฿";
       });
 
       function saveSelectedItems() {
-        const selectedItems = [];
-
-        document
-          .querySelectorAll(".item-checkbox:checked")
-          .forEach((checkbox) => {
-            const itemId = checkbox.id.replace("item", "");
-            const cartItem = document.getElementById(`cart-item-${itemId}`);
-            const itemQuantity = parseInt(
-              cartItem
-                .querySelector(".item-quantity")
-                .textContent.replace("x ", "")
-            );
-
-            selectedItems.push({
-              productId: itemId,
-              quantity: itemQuantity,
-            });
-          });
-
-        localStorage.setItem(
-          "selectedCartItems",
-          JSON.stringify(selectedItems)
+        // ค้นหา item ที่ถูกเลือก
+        const selectedCheckbox = document.querySelector(
+          ".item-checkbox:checked"
         );
+
+        if (!selectedCheckbox) {
+          alert("กรุณาเลือกสินค้าก่อนกด Check Out");
+          return;
+        }
+
+        const selectedItemId = selectedCheckbox.id.replace("item", "");
+
+        // ดึง quantity จาก DOM ตามที่เลือก
+        const selectedQuantity = document
+          .getElementById(`cart-item-${selectedItemId}`)
+          .querySelector(".item-quantity")
+          .textContent.replace("x ", "");
+
+        // รีไดเรกต์ไปยัง Address.html พร้อมพารามิเตอร์ productId และ quantity
+        window.location.href = `../Address/Address.html?productId=${selectedItemId}&quantity=${selectedQuantity}`;
       }
 
       async function loadCart() {
@@ -102,8 +97,10 @@
 
             cartItem
               .querySelector(".item-checkbox")
-              .addEventListener("change", (e) => handleSingleSelect(e, item.product_id));
-              
+              .addEventListener("change", (e) =>
+                handleSingleSelect(e, item.product_id)
+              );
+
             cartContainer.appendChild(cartItem);
           });
 
@@ -152,8 +149,6 @@
         });
 
         document.querySelector(".total-price").textContent = total + " ฿";
-        localStorage.setItem("cartTotal", total);
-        localStorage.setItem("checkboxStates", JSON.stringify(checkboxStates));
       }
 
       function removeItem(itemId) {

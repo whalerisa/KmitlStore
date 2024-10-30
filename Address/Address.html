@@ -50,13 +50,12 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", async () => {
-        const selectedItems =
-          JSON.parse(localStorage.getItem("selectedCartItems")) || [];
-        const productContainer = document.getElementById("product-details");
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("productId");
+        const quantity = params.get("quantity") || 1;
         let total = 0;
-        console.log(selectedItems);
 
-        for (const { productId, quantity } of selectedItems) {
+        if (productId) {
           try {
             const response = await fetch(
               `http://127.0.0.1:3000/api/products/${productId}`
@@ -65,51 +64,66 @@
               throw new Error("Failed to fetch product details");
 
             const product = await response.json();
+            const productContainer = document.getElementById("product-details");
+
             const productDetails = `
-            <p>${product.name}</p>
-            <p>${product.detail}</p>
-            <p>${product.price} ฿ x ${quantity}</p>
-          `;
-            productContainer.innerHTML += productDetails;
+              <p>${product.name}</p>
+              <p>${product.detail}</p>
+              <p>${product.price} ฿ x ${quantity}</p>
+            `;
+            productContainer.innerHTML = productDetails;
             total += product.price * quantity;
+            document.getElementById("total-price").textContent = `${total} ฿`;
           } catch (error) {
             console.error("Error fetching product:", error);
           }
+        } else {
+          alert("No product selected. Redirecting to cart.");
+          window.location.href = "../Cart/Cart.html";
         }
-
-        document.getElementById("total-price").textContent = `${total} ฿`;
       });
 
       function saveOrderDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("productId");
+        const quantity = params.get("quantity") || 1;
+
         const username = document.getElementById("username").value;
         const address = document.getElementById("address").value;
-        const totalPayment = document.getElementById("total-price").textContent;
-        const selectedItems =
-          JSON.parse(localStorage.getItem("selectedCartItems")) || [];
-
-        console.log(selectedItems)
+        const productDetails =
+          document.getElementById("product-details").innerText;
+        const totalPaymentText =
+          document.getElementById("total-price").textContent;
+        const totalPayment = parseFloat(totalPaymentText.replace(" ฿", ""));
 
         if (!username || !address) {
           alert("Please fill in all fields.");
           return;
         }
 
+        // บันทึกข้อมูลลง localStorage
+        localStorage.setItem("orderUsername", username);
+        localStorage.setItem("orderAddress", address);
+        localStorage.setItem("orderProductDetails", productDetails);
+        localStorage.setItem("orderTotalPayment", totalPayment.toString());
+
         fetch("http://localhost:3000/order", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
-            items: selectedItems,
+            productId: productId,
             username: username,
             address: address,
             totalPayment: totalPayment,
+            quantity: quantity,
           }),
         })
           .then((response) => response.json())
           .then((data) => {
             console.log("Order placed successfully:", data);
-            localStorage.removeItem("selectedCartItems");
             window.location.href = "../chat/chat.html";
           })
           .catch((error) => {

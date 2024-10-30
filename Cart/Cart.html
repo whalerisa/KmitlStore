@@ -1,255 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KMITL Store - Cart</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../responsive/responsive.css">
-    <link rel="stylesheet" href="Cart.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../responsive/responsive.css" />
+    <link rel="stylesheet" href="Cart.css" />
     <script src="../Components/Navbar.js" defer></script>
     <script src="../Components/Footer.js" defer></script>
-    <script>
-        function updateTotal() {
-            const checkboxes = document.querySelectorAll('.item-checkbox');
-            let total = 0;
-            const checkboxStates = {};
+  </head>
 
-            checkboxes.forEach(checkbox => {
-                const itemId = checkbox.id;
-                checkboxStates[itemId] = checkbox.checked; // Save checkbox state
-
-                if (checkbox.checked) {
-                    const price = parseInt(checkbox.nextElementSibling.querySelector('.item-price').textContent);
-                    total += price;
-                }
-            });
-
-            // Update total price display
-            const totalButton = document.querySelector('.total-price');
-            totalButton.textContent = total + ' ฿';
-
-            // Save total and checkbox states to localStorage
-            localStorage.setItem('cartTotal', total);
-            localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates)); // Save as a JSON string
-            localStorage.setItem('orderTotal', total + ' ฿'); // Save total for address page
-        }
-
-        function removeItem(itemId) {
-            // ลบสินค้าจาก DOM
-            const cartItem = document.getElementById(`cart-item-${itemId}`);
-            cartItem.remove();
-
-            // อัปเดตยอดรวมราคา
-            updateTotal();
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxes = document.querySelectorAll('.item-checkbox');
-            const savedTotal = localStorage.getItem('cartTotal');
-            const savedCheckboxStates = JSON.parse(localStorage.getItem('checkboxStates')) || {};
-
-            // Restore checkbox states and recalculate the total
-            checkboxes.forEach(checkbox => {
-                const itemId = checkbox.id;
-
-                if (savedCheckboxStates[itemId]) {
-                    checkbox.checked = true; // Restore the checked state
-                }
-
-                checkbox.addEventListener('change', updateTotal); // Add event listener for changes
-            });
-
-            // Restore the total price
-            const totalButton = document.querySelector('.total-price');
-            totalButton.textContent = (savedTotal ? savedTotal : 0) + ' ฿';
-        });
-    </script>
-</head>
-
-<body>
-
+  <body>
     <my-navbar></my-navbar>
 
     <div class="store-container">
-        <div class="cart-container">
-            <h1>CART</h1>
-            <div class="cart-items">
-                <!-- สินค้า 1 -->
-                <div class="cart-item" id="cart-item-1">
-                    <input type="checkbox" id="item1" class="item-checkbox">
-                    <label for="item1" class="item-label" data-price="160">
-                        <img src="../image/Women-shirt1.jpg" alt="Women's Shirt">
-                        Women's Shirt...
-                        <span class="item-price">160</span> ฿
-                    </label>
-                    <button class="delete-button" onclick="removeItem(1)">Delete</button>
-                </div>
-
-                <!-- สินค้า 2 -->
-                <div class="cart-item" id="cart-item-2">
-                    <input type="checkbox" id="item2" class="item-checkbox">
-                    <label for="item2" class="item-label" data-price="160">
-                        <img src="../image/Men-shirt1.jpg" alt="Men's Shirt">
-                        Men's Shirt...
-                        <span class="item-price">160</span> ฿
-                    </label>
-                    <button class="delete-button" onclick="removeItem(2)">Delete</button>
-                </div>
-
-                <!-- สินค้า 3 -->
-                <div class="cart-item" id="cart-item-3">
-                    <input type="checkbox" id="item3" class="item-checkbox">
-                    <label for="item3" class="item-label" data-price="160">
-                        <img src="../image/Women-shirt2.jpg" alt="Women's Shirt">
-                        Women's Shirt...
-                        <span class="item-price">160</span> ฿
-                    </label>
-                    <button class="delete-button" onclick="removeItem(3)">Delete</button>
-                </div>
-
-                <!-- สินค้า 4 -->
-                <div class="cart-item" id="cart-item-3">
-                    <input type="checkbox" id="item3" class="item-checkbox">
-                    <label for="item3" class="item-label" data-price="160">
-                        <img src="../image/Men-shirt2.jpg" alt="Women's Shirt">
-                        Women's Shirt...
-                        <span class="item-price">160</span> ฿
-                    </label>
-                    <button class="delete-button" onclick="removeItem(3)">Delete</button>
-                </div>
-            </div>
-
-            <div class="total-container">
-                <button class="total-price">0 ฿</button> <!-- Display total price -->
-                <a href="../Address/Address.html">
-                    <button class="checkout-button">Check Out</button>
-                </a>
-            </div>
+      <div class="cart-container">
+        <h1>CART</h1>
+        <div class="cart-items">
+          <!-- สินค้าจะถูกแสดงที่นี่โดย loadCart() -->
         </div>
+
+        <div class="total-container">
+          <button class="total-price">0 ฿</button>
+          <!-- Display total price -->
+          <a href="../Address/Address.html">
+            <button class="checkout-button">Check Out</button>
+          </a>
+        </div>
+      </div>
     </div>
 
     <my-footer></my-footer>
-</body>
-<script>
-    // ฟังก์ชันเพิ่มสินค้าไปยังตะกร้า
-    function addToCart(productId) {
-        const userId = localStorage.getItem('userId');  // Assume user_id is saved in localStorage
-        const quantity = 1;  // จำนวนสินค้าเริ่มต้น
 
-        fetch('/add-to-cart', {
-            method: 'POST',
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadCart();
+
+        // Restore saved total from localStorage, if available
+        const savedTotal = localStorage.getItem("cartTotal") || 0;
+        document.querySelector(".total-price").textContent = savedTotal + " ฿";
+      });
+
+      async function loadCart() {
+        try {
+          const response = await fetch("http://127.0.0.1:3000/cart", {
+            method: "GET",
             headers: {
-                'Content-Type': 'application/json'
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-            body: JSON.stringify({
-                userId: userId,
-                productId: productId,
-                quantity: quantity
-            })
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            // อาจเพิ่มการแจ้งเตือนผู้ใช้ว่าการเพิ่มสินค้าเสร็จสมบูรณ์
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-    // ฟังก์ชันดึงข้อมูลสินค้าจาก cart และแสดงในหน้า
-    function loadCart() {
-        const userId = localStorage.getItem('userId');  // Assume user_id is saved in localStorage
+          });
 
-        if (!userId) {
-            console.error('User ID is not found.');
-            return; // หยุดการทำงานถ้าไม่พบ userId
+          if (!response.ok) throw new Error("Network response was not ok");
+
+          const cartItems = await response.json();
+          const cartContainer = document.querySelector(".cart-items");
+          cartContainer.innerHTML = ""; // Clear previous items
+
+          cartItems.forEach((item, index) => {
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+            cartItem.id = `cart-item-${item.product_id}`;
+
+            cartItem.innerHTML = `
+              <input type="checkbox" id="item${item.product_id}" class="item-checkbox">
+              <label for="item${item.product_id}" class="item-label" data-price="${item.price}">
+                  <img src="${item.image_url}" alt="${item.name}">
+                  ${item.name}
+                  <span class="item-price">${item.price}</span> ฿
+              </label>
+              <span class="item-quantity">x ${item.quantity}</span>
+              <button class="delete-button" onclick="removeItem(${item.product_id})">Delete</button>
+          `;
+
+            // Add checkbox listener for updating the total
+            cartItem
+              .querySelector(".item-checkbox")
+              .addEventListener("change", updateTotal);
+
+            cartContainer.appendChild(cartItem);
+          });
+
+          restoreCheckboxStates(); // Restore checkbox states from localStorage
+          updateTotal(); // Initial total update
+        } catch (error) {
+          console.error("Error loading cart:", error);
         }
+      }
 
-        fetch(`/cart/${userId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(cartItems => {
-                const cartContainer = document.querySelector('.cart-items');
-                
-                if (!cartContainer) {
-                    console.error('Cart container not found.');
-                    return; // หยุดการทำงานถ้าไม่พบ cartContainer
-                }
+      function updateTotal() {
+        let total = 0;
+        const checkboxStates = {};
 
-                cartContainer.innerHTML = '';  // Clear existing items
+        document.querySelectorAll(".item-checkbox").forEach((checkbox) => {
+          const itemId = checkbox.id;
+          checkboxStates[itemId] = checkbox.checked; // Save checkbox state
 
-                cartItems.forEach(item => {
-                    const cartItem = document.createElement('div');
-                    cartItem.classList.add('cart-item');
-                    cartItem.innerHTML = `
-                        <input type="checkbox" id="item${item.product_id}" class="item-checkbox">
-                        <label for="item${item.product_id}" class="item-label" data-price="${item.price}">
-                            <img src="${item.image}" alt="${item.name}">
-                            ${item.name}
-                            <span class="item-price">${item.price}</span> ฿
-                        </label>
-                        <span class="item-quantity">x ${item.quantity}</span>
-                        <button class="delete-button" onclick="removeItem(${item.product_id})">Delete</button>
-                    `;
-                    cartContainer.appendChild(cartItem); // Add the cart item to the container
-                });
-                updateTotal(); // อัปเดตยอดรวมเมื่อมีการโหลดสินค้า
-            })
-            .catch(error => {
-                console.error('Error loading cart:', error);
-            });
-    }
-
-    // เรียกฟังก์ชัน loadCart หลังจาก DOM โหลดเสร็จสมบูรณ์
-    document.addEventListener('DOMContentLoaded', loadCart);
-
-    function removeItem(productId) {
-    const cartItem = document.getElementById(`cart-item-${productId}`);
-    if (cartItem) {
-        cartItem.remove();
-        updateTotal(); // อัปเดตยอดรวมหลังจากลบสินค้า
-    }
-}
-
-function updateTotal() {
-    const checkboxes = document.querySelectorAll('.item-checkbox');
-    let total = 0;
-
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            const price = parseInt(checkbox.nextElementSibling.querySelector('.item-price').textContent);
+          if (checkbox.checked) {
+            const price = parseInt(
+              checkbox.nextElementSibling.querySelector(".item-price")
+                .textContent
+            );
             total += price;
+          }
+        });
+
+        document.querySelector(".total-price").textContent = total + " ฿";
+        localStorage.setItem("cartTotal", total);
+        localStorage.setItem("checkboxStates", JSON.stringify(checkboxStates));
+      }
+
+      function removeItem(itemId) {
+        const cartItem = document.getElementById(`cart-item-${itemId}`);
+
+        if (cartItem) {
+          const productId = itemId; // Assuming itemId corresponds to productId
+
+          fetch("http://127.0.0.1:3000/cart/remove", {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming token is stored in localStorage
+            },
+            body: JSON.stringify({ productId: productId }),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to remove item from cart");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data.message); // Log the success message
+
+              // Remove item from DOM and update total
+              cartItem.remove();
+              updateTotal();
+            })
+            .catch((error) => {
+              console.error("Error removing item:", error);
+            });
         }
-    });
+      }
 
-    // Update total price display
-    const totalButton = document.querySelector('.total-price');
-    totalButton.textContent = total + ' ฿';
-}
-async function fetchCartItems(userId) {
-    try {
-        const response = await fetch(`/api/cart/${userId}`);
-        const data = await response.json();
-        if (data.length > 0) {
-            // Render cart items
-        } else {
-            // Show empty cart message
-        }
-    } catch (error) {
-        console.error('Error fetching cart items:', error);
-    }
-}
+      function restoreCheckboxStates() {
+        const savedCheckboxStates =
+          JSON.parse(localStorage.getItem("checkboxStates")) || {};
 
-
-
-
-
-</script>
-
+        document.querySelectorAll(".item-checkbox").forEach((checkbox) => {
+          const itemId = checkbox.id;
+          checkbox.checked = savedCheckboxStates[itemId] || false;
+        });
+      }
+    </script>
+  </body>
 </html>

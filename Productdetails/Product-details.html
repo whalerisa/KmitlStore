@@ -87,15 +87,15 @@
             const quantity = parseInt(document.getElementById('quantity').innerText); // ดึงจำนวนที่เลือก
 
             if (id && quantity > 0) {
-                const userId = localStorage.getItem('userId'); // สมมติว่ามีการเก็บ userId ใน localStorage
+                const token = localStorage.getItem('token');
 
                 fetch('/add-to-cart', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
-                        userId: userId,
                         productId: id,
                         quantity: quantity
                     })

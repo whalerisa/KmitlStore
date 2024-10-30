@@ -59,7 +59,7 @@
 
             selectedItems.push({
               productId: itemId,
-              quantity: itemQuantity, // บันทึก quantity ด้วย
+              quantity: itemQuantity,
             });
           });
 
@@ -84,25 +84,26 @@
           const cartContainer = document.querySelector(".cart-items");
           cartContainer.innerHTML = ""; // Clear previous items
 
-          cartItems.forEach((item, index) => {
+          cartItems.forEach((item) => {
             const cartItem = document.createElement("div");
             cartItem.classList.add("cart-item");
             cartItem.id = `cart-item-${item.product_id}`;
 
             cartItem.innerHTML = `
-            <input type="checkbox" id="item${item.product_id}" class="item-checkbox">
-            <label for="item${item.product_id}" class="item-label" data-price="${item.price}">
-                <img src="${item.image_url}" alt="${item.name}">
-                ${item.name}
-                <span class="item-price">${item.price}</span> ฿
-            </label>
-            <span class="item-quantity">x ${item.quantity}</span>
-            <button class="delete-button" onclick="removeItem(${item.product_id})">Delete</button>
-          `;
+              <input type="checkbox" id="item${item.product_id}" class="item-checkbox">
+              <label for="item${item.product_id}" class="item-label" data-price="${item.price}">
+                  <img src="${item.image_url}" alt="${item.name}">
+                  ${item.name}
+                  <span class="item-price">${item.price}</span> ฿
+              </label>
+              <span class="item-quantity">x ${item.quantity}</span>
+              <button class="delete-button" onclick="removeItem(${item.product_id})">Delete</button>
+            `;
 
             cartItem
               .querySelector(".item-checkbox")
-              .addEventListener("change", updateTotal);
+              .addEventListener("change", (e) => handleSingleSelect(e, item.product_id));
+              
             cartContainer.appendChild(cartItem);
           });
 
@@ -111,6 +112,15 @@
         } catch (error) {
           console.error("Error loading cart:", error);
         }
+      }
+
+      function handleSingleSelect(event, selectedItemId) {
+        document.querySelectorAll(".item-checkbox").forEach((checkbox) => {
+          if (checkbox.id !== `item${selectedItemId}`) {
+            checkbox.checked = false;
+          }
+        });
+        updateTotal();
       }
 
       function updateTotal() {

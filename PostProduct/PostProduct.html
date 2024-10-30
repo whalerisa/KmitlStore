@@ -71,56 +71,61 @@
 
     <script>
         document.getElementById('product-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
+            event.preventDefault();
 
-    const name = document.getElementById('product-name').value;
-    const price = document.getElementById('price').value;
-    const status = 'available'; // ตัวอย่างสถานะ
-    const categories = document.getElementById('category').value;
-    const detail = document.getElementById('description').value;
-    const stock = document.getElementById('stock').value;
-    const imageFile = document.getElementById('image-input').files[0]; // ดึงไฟล์ภาพ
+            const name = document.getElementById('product-name').value;
+            const price = document.getElementById('price').value;
+            const status = 'available'; // ตัวอย่างสถานะ
+            const categories = document.getElementById('category').value;
+            const detail = document.getElementById('description').value;
+            const stock = document.getElementById('stock').value;
+            const imageFile = document.getElementById('image-input').files[0]; // ดึงไฟล์ภาพ
 
-    // สร้าง FormData สำหรับส่งข้อมูล
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('price', price);
-    formData.append('status', status);
-    formData.append('categories', categories);
-    formData.append('detail', detail);
-    formData.append('stock', stock);
-    formData.append('image', imageFile); // เพิ่มไฟล์ภาพลงใน FormData
+            // สร้าง FormData สำหรับส่งข้อมูล
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('price', price);
+            formData.append('status', status);
+            formData.append('categories', categories);
+            formData.append('detail', detail);
+            formData.append('stock', stock);
+            formData.append('image', imageFile); // เพิ่มไฟล์ภาพลงใน FormData
 
-    // ดึง token จาก localStorage
-    const token = localStorage.getItem('token');
+            // ดึง token จาก localStorage
+            const token = localStorage.getItem('token');
+            console.log('Token:', token);
+            
+            if (!token) {
+                alert('กรุณาล็อกอินก่อนที่จะเพิ่มสินค้า');
+                return; // หยุดการทำงานหากไม่มี token
+            }
+            try {
+                const response = await fetch('http://localhost:3000/addProduct', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': token // ส่ง token ใน header
+                    },
+                    body: formData // ใช้ FormData แทนการแปลงเป็น JSON
+                });
 
-    try {
-        const response = await fetch('http://localhost:3000/addProduct', {
-            method: 'POST',
-            headers: {
-                'Authorization': token // ส่ง token ใน header
-            },
-            body: formData // ใช้ FormData แทนการแปลงเป็น JSON
+                const result = await response.json();
+                if (response.ok) {
+                    alert('สินค้าเพิ่มสำเร็จ รหัสสินค้า: ' + result.id);
+                    // เปลี่ยนไปยังหน้า my_product หลังจากเพิ่มสินค้าสำเร็จ
+                    window.location.href = '../my_products.html';
+                } else {
+                    alert('เกิดข้อผิดพลาด: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');
+            }
         });
 
-        const result = await response.json();
-        if (response.ok) {
-            alert('สินค้าเพิ่มสำเร็จ รหัสสินค้า: ' + result.id);
-            // เปลี่ยนไปยังหน้า my_product หลังจากเพิ่มสินค้าสำเร็จ
-            window.location.href = '../my_products.html';
-        } else {
-            alert('เกิดข้อผิดพลาด: ' + result.message);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');
-    }
-});
-
-        function loadImage(event) {
-            const output = document.getElementById('preview');
-            output.src = URL.createObjectURL(event.target.files[0]);
-        }
+                function loadImage(event) {
+                    const output = document.getElementById('preview');
+                    output.src = URL.createObjectURL(event.target.files[0]);
+                }
     </script>
 
     <!-- Footer Web Component -->

@@ -103,10 +103,10 @@ function Address(app) {
 
             // บันทึกข้อมูลลงในตาราง purchase_history
             const purchaseHistoryQuery = `
-                        INSERT INTO purchase_history (product_name, status, user_id)
-                        VALUES (?, ?, ?)
+                        INSERT INTO purchase_history (product_id,product_name, status, user_id,quantity)
+                        VALUES (?, ?, ?, ?, ?)
                     `;
-            const purchaseHistoryParams = [product.name, "Purchased", userId];
+            const purchaseHistoryParams = [productId,product.name, "Purchased", userId,quantity];
 
             db.run(purchaseHistoryQuery, purchaseHistoryParams, function (err) {
               if (err) {

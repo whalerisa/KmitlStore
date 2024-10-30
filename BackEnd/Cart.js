@@ -63,11 +63,11 @@ function Cart(app) {
   app.get("/cart", jwtMiddleware, (req, res) => {
     const userId = req.auth.id; // ใช้ user id จาก token หลังจากตรวจสอบ JWT
     const query = `
-      SELECT cart.product_id, products.image_url, products.name, products.price, cart.quantity 
-      FROM cart 
-      JOIN products ON cart.product_id = products.id 
-      WHERE cart.user_id = ?
-    `;
+    SELECT cart.product_id, products.image_url, products.name, products.price, cart.quantity 
+    FROM cart 
+    JOIN products ON cart.product_id = products.id 
+    WHERE cart.user_id = ?
+  `;
 
     db.all(query, [userId], (err, rows) => {
       if (err) {

@@ -1,8 +1,8 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const app = express();
-const port = 3000;
-
+const cors = require('cors');
+app.use(cors());
 // สร้างการเชื่อมต่อกับฐานข้อมูล
 const db = new sqlite3.Database('./Data.db');
 

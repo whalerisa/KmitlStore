@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KMITL Store - Order Form</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
-    rel="stylesheet" />
+  <title>KMITL Store - Profile Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="Profile-shop.css" />
   <script src="../Components/Navbar.js" defer></script>
   <script src="../Components/ProductCard.js" defer></script>
@@ -15,7 +12,6 @@
 </head>
 
 <body>
-  <!-- ใช้ Web Component ของ Navbar -->
   <my-navbar></my-navbar>
 
   <div class="logout-icon">
@@ -27,11 +23,10 @@
   <div class="profile-container">
     <div class="profile-header">
       <img src="../icons/Profile.jpg" alt="Profile Picture" class="profile-picture" />
-      <h1>น้ำ ขายของ</h1>
+      <h1>Shop Name</h1>
     </div>
   </div>
 
-  <!-- Product Recommendation Section -->
   <section class="products">
     <h2 class="heading">Product stock</h2>
     <div class="product-grid" id="product-grid"></div>
@@ -44,82 +39,63 @@
 
       if (userId) {
         fetch(`/api/shop/${userId}`)
-          .then((response) => {
+          .then(response => {
             if (!response.ok) {
               throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
           })
-          .then((data) => {
-            document.querySelector(".profile-header h1").innerText =
-              data.user.username || "ชื่อผู้ขายไม่ระบุ";
+          .then(data => {
+            document.querySelector(".profile-header h1").innerText = data.user.username || "ชื่อผู้ขายไม่ระบุ";
 
             const profilePicElement = document.querySelector(".profile-header img");
-            profilePicElement.src =
-              data.user.profile_pic
-                ? `/ProfilePic/${data.user.profile_pic}`
-                : "../icons/Profile.jpg";
-
-            const salesHistoryList = document.getElementById("sales-history-list");
-            data.salesHistory.forEach((sale) => {
-              const listItem = document.createElement("li");
-              listItem.innerText = sale.product_name; // Display only the product name
-              salesHistoryList.appendChild(listItem);
-            });
+            profilePicElement.src = data.user.profile_pic ? `/ProfilePic/${data.user.profile_pic}` : "../icons/Profile.jpg";
           })
-          .catch((error) => {
-            console.error("Error fetching user details:", error);
-          });
+          .catch(error => console.error("Error fetching user details:", error));
       }
 
       fetchProducts();
     });
 
     async function fetchProducts() {
-  try {
-    // ดึง userId จาก URL
-    const params = new URLSearchParams(window.location.search);
-    const userId = params.get("userId");
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const userId = params.get("userId");
 
-    // ตรวจสอบว่า userId มีค่าหรือไม่
-    if (!userId) {
-      console.error("User ID is missing from the URL.");
-      return;
+        if (!userId) {
+          console.error("User ID is missing from the URL.");
+          return;
+        }
+
+        const response = await fetch(`/productstock/${userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const products = await response.json();
+        const productGrid = document.getElementById("product-grid");
+
+        products.forEach(product => {
+          const productLink = document.createElement("a");
+          productLink.href = `../Productdetails/Product-details.html?id=${product.id}`;
+
+          productLink.classList.add("product-link");
+
+          const productCard = document.createElement("product-card");
+          productCard.setAttribute("image", product.image_url);
+          productCard.setAttribute("name", product.name);
+          productCard.setAttribute("detail", product.detail);
+          productCard.setAttribute("price", product.price);
+
+          productLink.appendChild(productCard);
+          productGrid.appendChild(productLink);
+        });
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
     }
-
-    // เรียก API ด้วย userId
-    const response = await fetch(`/productstock/${userId}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const products = await response.json();
-    const productGrid = document.getElementById("product-grid");
-
-    products.forEach(product => {
-      const productLink = document.createElement("a");
-      productLink.href = `../Productdetails/Product-details.html?id=${product.id}`;
-
-      productLink.classList.add("product-link");
-
-      const productCard = document.createElement("product-card");
-      productCard.setAttribute("image", product.image_url);
-      productCard.setAttribute("name", product.name);
-      productCard.setAttribute("detail", product.detail);
-      productCard.setAttribute("price", product.price);
-
-      productLink.appendChild(productCard);
-      productGrid.appendChild(productLink);
-    });
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  }
-}
-
   </script>
 
-  <!-- Use Web Component of Footer -->
   <my-footer></my-footer>
 </body>
-
 </html>

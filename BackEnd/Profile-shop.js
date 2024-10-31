@@ -13,7 +13,7 @@ app.use('/ProfilePic', express.static(path.join(__dirname, 'ProfilePic')));
 const db = new sqlite3.Database('./Data.db');
 
 function ProfileShop(app) {
-    // API สำหรับดึงข้อมูลผู้ขายและประวัติการขาย
+    // API สำหรับดึงข้อมูลผู้ขาย
     app.get('/api/shop/:userId', (req, res) => {
         const userId = req.params.userId;
 
@@ -23,63 +23,39 @@ function ProfileShop(app) {
             FROM products p 
             JOIN users u ON p.userId = u.id 
             WHERE p.userId = ?`;
-        ;
-
-        // คำสั่ง SQL สำหรับดึงประวัติการขาย
-        const querySalesHistory = `
-            SELECT sh.*
-            FROM sales_history sh 
-            JOIN products p ON sh.product_id = p.id 
-            WHERE sh.user_id = ?`;
-        ;
-
-        // คำสั่ง SQL สำหรับดึงข้อมูลจากตาราง users
-        const queryUserInfo = `
-            SELECT username, profile_pic 
-            FROM users 
-            WHERE id = ?`;
-        ;
-
+        
         // ดึงข้อมูลสินค้า
         db.all(queryProduct, [userId], (err, products) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
             }
 
-            // ดึงข้อมูลประวัติการขาย
-            db.all(querySalesHistory, [userId], (err, salesHistory) => {
+            // ดึงข้อมูลจากตาราง users
+            const queryUserInfo = `SELECT username, profile_pic FROM users WHERE id = ?`;
+            db.get(queryUserInfo, [userId], (err, userInfo) => {
                 if (err) {
                     return res.status(500).json({ error: err.message });
                 }
 
-                // ดึงข้อมูลจากตาราง users
-                db.get(queryUserInfo, [userId], (err, userInfo) => {
-                    if (err) {
-                        return res.status(500).json({ error: err.message });
-                    }
-
-                    // ส่งข้อมูล products, salesHistory, และ userInfo กลับไป
-                    res.json({ products, salesHistory, user: userInfo });
-                });
+                // ส่งข้อมูล products และ userInfo กลับไป
+                res.json({ products, user: userInfo });
             });
         });
     });
 
     // API สำหรับดึงสินค้าของผู้ขาย
     app.get('/productstock/:userId', (req, res) => {
-        const userId = req.params.userId; // ดึง userId จากพารามิเตอร์ URL
-        const sql = "SELECT id, image_url, name, detail, price FROM products WHERE userId = ? AND stock > 0"; // กรองสินค้าตาม userId
+        const userId = req.params.userId; 
+        const sql = "SELECT id, image_url, name, detail, price FROM products WHERE userId = ? AND stock > 0"; 
 
         db.all(sql, [userId], (err, rows) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
             }
-
-            // ส่งข้อมูล products กลับไปในรูปแบบ JSON
             res.json(rows);
         });
     });
-
 }
 
-module.exports = ProfileShop; 
+module.exports = ProfileShop;
+ 

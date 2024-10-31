@@ -5,3 +5,41 @@ body {
     background-color: #f7f7f7;
 }
 
+.products {
+    position: relative; 
+    text-align: center; 
+    padding: 40px 20px; 
+    color: #2f2d2d;
+    margin-top: 100px; 
+}
+
+.heading {
+    background-color: #E35205; 
+    color: white;
+    padding: 10px 15px; 
+    font-size: 24px; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    border-radius: 15px; 
+    z-index: 10; 
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px;
+    margin-top: 120px; 
+}
+
+.product-link {
+    text-decoration: none; 
+    color: inherit; 
+}
+
+.product-link:hover {
+    
+    transform: scale(1.05); 
+    transition: transform 0.2s; 
+}

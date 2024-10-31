@@ -50,6 +50,14 @@ h1 {
     font-size: 30px;
 }
 
+.heading {
+    text-align: left;
+    margin-left: 20px; 
+    font-size: 28px; 
+    color: #2f2d2d; 
+    padding: 30px;
+}
+
 .transaction-history h2 {
     text-align: center;
     color: white;

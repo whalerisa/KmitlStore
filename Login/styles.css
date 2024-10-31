@@ -96,17 +96,10 @@ input {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
-    width: 100%; /* ทำให้ปุ่มกว้างเต็ม */
-}
-
-/* จัดการไอคอนในปุ่ม Social */
-.social-btn img {
-    margin-right: 10px;
-    width: 20px;
-    height: 20px;
+    width: 100%; 
 }
 
 /* ปุ่ม Social hover */

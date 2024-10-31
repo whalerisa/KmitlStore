@@ -1,29 +1,27 @@
 /* General Styles */
 body {
     display: flex;
-    flex-direction: column; /* จัด Navbar ให้อยู่บนสุด ส่วนที่เหลืออยู่ล่าง */
+    flex-direction: column; 
     margin: 0;
     font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
     background-color: #f0f0f0;
-    min-height: 100vh; /* ให้ body ขยายเต็มความสูงของหน้าเว็บ */
+    min-height: 100vh; 
 }
 
-/* Navbar */
+
 my-navbar {
-    flex: 0 0 auto; /* ให้ Navbar ไม่ยืดออก */
+    flex: 0 0 auto; 
 }
-
-
 
 /* Main Content */
 .main-content {
     padding: 20px;
     flex: 1;
-    background-color: #fff;  /* พื้นหลังเหมือนบาร์ */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* เพิ่มเงาเหมือนบาร์ */
-    max-width: 800px;  /* กำหนดความกว้างสูงสุดของเนื้อหา */
-    margin: 20px auto;  /* ทำให้แถบอยู่ตรงกลาง */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    background-color: #fff;  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+    max-width: 800px;  
+    margin: 20px auto;  
+    margin-top: 100px; 
 }
 
 h1 {
@@ -32,15 +30,15 @@ h1 {
 
 .task-cards {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; 
+    gap: 110px; 
     margin-top: 20px;
-    gap: 10px;  /* ระยะห่างระหว่างไอเท็ม */
 }
 
 .task-card {
     background-color: #fff;
-    padding: 20px;
-    width: 150px;
+    padding: 15px; 
+    width: 120px; 
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

@@ -15,7 +15,7 @@ const db = new sqlite3.Database('./Data.db');
 function WomensClothing(app) {
     app.get('/womensclothing', (req, res) => {
         const category = req.query.category || "Women's clothing"; // รับหมวดหมู่จาก query string หรือใช้ค่าเริ่มต้น
-        const sql = 'SELECT * FROM products WHERE categories = ?'; // SQL Query
+        const sql = 'SELECT * FROM products WHERE categories = ? AND stock > 0'; // SQL Query
 
         db.all(sql, [category], (err, rows) => { // ใช้พารามิเตอร์ที่กำหนด
             if (err) {

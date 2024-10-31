@@ -20,12 +20,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const token = localStorage.getItem('token'); // ดึง Token จาก localStorage
-    
+                const token = localStorage.getItem('token');
                 const response = await fetch('http://localhost:3000/sales-history', {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}` // ส่ง Token แบบ Bearer
+                        'Authorization': `Bearer ${token}`
                     }
                 });
     
@@ -43,8 +42,6 @@
                     productElement.setAttribute('price', product.price);
                     productElement.setAttribute('description', product.description);
                     productElement.setAttribute('shop-name', product.shop_name);
-                    productElement.setAttribute('shop-link', '#'); // คุณสามารถเปลี่ยน link ให้เหมาะสมได้
-    
                     container.appendChild(productElement);
                 });
             } catch (error) {
@@ -52,5 +49,6 @@
             }
         });
     </script>
+    
 </body>
 </html>

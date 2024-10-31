@@ -11,11 +11,10 @@ app.use(bodyParser.json());
 // เปิดฐานข้อมูล
 const db = new sqlite3.Database('./Data.db');
 
-// Route สำหรับดึงข้อมูลสินค้า
 function LeaseAgreement(app) {
     app.get('/lease-agreement', (req, res) => {
         const category = req.query.category || 'Lease Agreement'; // รับหมวดหมู่จาก query string หรือใช้ค่าเริ่มต้น
-        const sql = 'SELECT * FROM products WHERE categories = ?'; // SQL Query
+        const sql = 'SELECT * FROM products WHERE categories = ? AND stock > 0'; // เพิ่มเงื่อนไข stock > 0
 
         db.all(sql, [category], (err, rows) => { // ใช้พารามิเตอร์ที่กำหนด
             if (err) {
@@ -26,6 +25,5 @@ function LeaseAgreement(app) {
         });
     });
 }
-
 module.exports = LeaseAgreement;
  

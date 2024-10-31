@@ -24,6 +24,7 @@ const ProfileEdit = require("./BackEnd/Profile-Edit");
 const MyOrder = require("./BackEnd/my_order");
 const income = require("./BackEnd/income");
 const SellerCentre = require("./BackEnd/seller");
+const Purchase_History = require("./BackEnd/Purchase-history");
 
 const app = express();
 app.use(cors());
@@ -58,6 +59,7 @@ const staticFolders = [
   "ProfilePic",
   "income",
   "SellerCentre",
+  "Profile",
 ];
 staticFolders.forEach((folder) => {
   app.use(express.static(path.join(__dirname, folder)));
@@ -99,6 +101,7 @@ ProfileEdit(app);
 ProfileShop(app);
 income(app);
 SellerCentre(app);
+Purchase_History(app);
 
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;

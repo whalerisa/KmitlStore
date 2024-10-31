@@ -35,29 +35,39 @@ function Purchase_History(app) {
         });
     });
 
-    // API สำหรับดึงข้อมูลประวัติการซื้อ
     app.get('/purchase-history', jwtMiddleware, (req, res) => {
         const userId = req.auth.id;
         console.log("User ID:", userId); // ตรวจสอบ userId ที่ได้รับจาก jwtMiddleware
-
+    
         const query = `
-            SELECT purchase_history.product_name, purchase_history.status,
-                   products.image_url AS image, products.detail AS description, 
-                   products.price, users.username AS shop_name
-            FROM purchase_history
-            JOIN products ON purchase_history.product_id = products.id
-            JOIN users ON products.userId = users.id
-            WHERE purchase_history.user_id = ?;
+            SELECT 
+                purchase_history.product_name,
+                purchase_history.status,
+                purchase_history.quantity,
+                products.image_url AS image,
+                products.detail AS description, 
+                products.price,
+                users.username AS shop_name
+            FROM 
+                purchase_history
+            JOIN 
+                products ON purchase_history.product_id = products.id
+            JOIN 
+                users ON products.userId = users.id
+            WHERE 
+                purchase_history.user_id = ?;
         `;
-
+    
         db.all(query, [userId], (err, rows) => {
             if (err) {
                 console.error("Error fetching purchase history:", err);
                 return res.status(500).json({ error: "Failed to fetch purchase history" });
             }
+            console.log("Purchase history data:", rows); // ตรวจสอบข้อมูลที่ดึงมาได้
             res.json(rows); // ส่งข้อมูลประวัติการซื้อกลับไป
         });
     });
+    
 }
 
 module.exports = Purchase_History;

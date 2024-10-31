@@ -22,23 +22,23 @@ function ProfileShop(app) {
             SELECT p.*, u.username 
             FROM products p 
             JOIN users u ON p.userId = u.id 
-            WHERE p.userId = ?;
-        `;
+            WHERE p.userId = ?`;
+        ;
 
         // คำสั่ง SQL สำหรับดึงประวัติการขาย
         const querySalesHistory = `
             SELECT sh.*
             FROM sales_history sh 
             JOIN products p ON sh.product_id = p.id 
-            WHERE sh.user_id = ?;
-        `;
+            WHERE sh.user_id = ?`;
+        ;
 
         // คำสั่ง SQL สำหรับดึงข้อมูลจากตาราง users
         const queryUserInfo = `
             SELECT username, profile_pic 
             FROM users 
-            WHERE id = ?;
-        `;
+            WHERE id = ?`;
+        ;
 
         // ดึงข้อมูลสินค้า
         db.all(queryProduct, [userId], (err, products) => {
@@ -65,19 +65,21 @@ function ProfileShop(app) {
         });
     });
 
-    // API สำหรับดึงสินค้าที่แนะนำ
-    app.get('/recommentproducts', (req, res) => {
-        const sql = "SELECT id, image_url, name, detail, price FROM products";
-        
-        db.all(sql, [], (err, rows) => {
+    // API สำหรับดึงสินค้าของผู้ขาย
+    app.get('/productstock/:userId', (req, res) => {
+        const userId = req.params.userId; // ดึง userId จากพารามิเตอร์ URL
+        const sql = "SELECT id, image_url, name, detail, price FROM products WHERE userId = ?"; // กรองสินค้าตาม userId
+
+        db.all(sql, [userId], (err, rows) => {
             if (err) {
                 return res.status(500).json({ error: err.message });
             }
-    
+
             // ส่งข้อมูล products กลับไปในรูปแบบ JSON
             res.json(rows);
         });
     });
+
 }
 
-module.exports = ProfileShop;
+module.exports = ProfileShop; 

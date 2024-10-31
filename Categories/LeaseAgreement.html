@@ -14,10 +14,9 @@
 
 <body>
 
-    <!-- ใช้ Web Component ของ Navbar -->
+    
     <my-navbar></my-navbar>
 
-    <!-- Product Recommendation Section -->
     <section class="products">
         <h2 class="heading">Lease Agreement</h2>
         <div class="product-grid" id="product-grid"></div>
@@ -53,14 +52,13 @@
                     productCard.setAttribute('detail', product.detail);
                     productCard.setAttribute('price', product.price);
 
-                    productLink.appendChild(productCard); // Add card to link
-                    productGrid.appendChild(productLink); // Add link to grid
+                    productLink.appendChild(productCard); 
+                    productGrid.appendChild(productLink); 
                 });
             })
             .catch(error => console.error('Error fetching products:', error));
     </script>
 
-    <!-- Use Web Component of Footer -->
     <my-footer></my-footer>
 
 </body>

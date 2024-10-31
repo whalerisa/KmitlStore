@@ -18,8 +18,8 @@ h2, h3 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 1000px;
     margin: 20px auto;
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
-    transform: translateX(70px); /* ขยับไปทางขวา 20px */
+    margin-top: 100px;
+    transform: translateX(70px);
 }
 
 .summary-details {
@@ -28,24 +28,21 @@ h2, h3 {
     margin-top: 20px;
 }
 
-
-
 .detail {
     flex: 1;
     padding: 10px;
-    text-align: left; /* เปลี่ยนจาก center เป็น left */
+    text-align: left;
     border-right: 1px solid #ddd;
 }
 
 .detail h3, .detail p:last-child {
-    font-size: 1.2em; /* ขนาดตัวอักษรใหญ่ขึ้น */
-    font-weight: bold; /* ทำให้ตัวหนา */
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 .detail p {
-    font-size: 1.2em; /* ขยายขนาดตัวอักษรสำหรับข้อความทั่วไป */
+    font-size: 1.2em;
 }
-
 
 /* Details Section */
 .details-section {
@@ -54,7 +51,7 @@ h2, h3 {
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transform: translateX(70px); /* ขยับไปทางขวา 20px */
+    transform: translateX(70px);
     min-height: 500px;
 }
 
@@ -69,9 +66,13 @@ thead {
 }
 
 th, td {
-    padding: 12px;
+    padding: 15px 20px; /* Increased padding for better spacing */
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-weight: 600; 
 }
 
 .status-success {
@@ -80,5 +81,11 @@ th, td {
 
 tr:hover {
     background-color: #e0e0e0;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
+}
+
+
+th, td {
+    padding-left: 100px;
+    padding-right: 100px;
 }

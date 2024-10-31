@@ -25,7 +25,7 @@ const MyOrder = require("./BackEnd/my_order");
 const income = require("./BackEnd/income");
 const SellerCentre = require("./BackEnd/seller");
 const Purchase_History = require("./BackEnd/Purchase-history");
-const Search = require("./BackEnd/Search");
+const Navbar = require("./BackEnd/productSearch");
 
 const app = express();
 app.use(cors());
@@ -103,7 +103,6 @@ ProfileShop(app);
 income(app);
 SellerCentre(app);
 Purchase_History(app);
-Search(app);
 
 // เริ่มเซิร์ฟเวอร์
 const PORT = process.env.PORT || 3000;

@@ -159,7 +159,7 @@ class Navbar extends HTMLElement {
                 }
             </style>
 
-            <header>
+        <header>
                 <div class="left-section">
                     <button class="back-button" id="backButton">
                         <img src="../icons/back-icon.png" alt="Back Icon" id="backIcon">
@@ -170,7 +170,8 @@ class Navbar extends HTMLElement {
                 </div>
 
                 <div class="search-container">
-                    <input type="text" placeholder="Search...">
+                    <!-- เพิ่ม input สำหรับค้นหาสินค้า -->
+                    <input type="text" placeholder="Search products..." data-search>
                     <button class="search-icon">
                         <img src="../icons/search-icon.png" alt="Search Icon">
                     </button>
@@ -203,6 +204,15 @@ class Navbar extends HTMLElement {
                     </a>
                 </div>
             </header>
+
+            <!-- เพิ่ม Template และ Container สำหรับสินค้า -->
+            <template data-product-template>
+                <div class="product-card">
+                    <h3 data-name></h3>
+                    <p data-stock></p>
+                </div>
+            </template>
+            <div data-product-cards-container></div>
         `;
 
         // Event listeners สำหรับปุ่มต่างๆ

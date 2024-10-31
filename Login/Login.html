@@ -62,15 +62,23 @@
                     const result = await response.json();
 
                     if (response.ok) {
-                        // เก็บ token ที่ได้รับใน localStorage
-                        localStorage.setItem('token', result.token);
-                        alert(result.message); // แจ้งผลการเข้าสู่ระบบ
-                        // เปลี่ยนเส้นทางไปยังหน้าโปรไฟล์หรือตรงตามที่คุณต้องการ
-                        window.location.href = "../profile/profile.html"; 
-                        
-                    } else {
-                        alert(result.message); // แจ้งข้อผิดพลาด
-                    }
+                    // เก็บ token ที่ได้รับใน localStorage
+                    localStorage.setItem('token', result.token);
+
+                    // ลบข้อมูลคำสั่งซื้อที่ไม่ต้องการใน localStorage
+                    localStorage.removeItem('orderUsername');
+                    localStorage.removeItem('orderAddress');
+                    localStorage.removeItem('orderProductDetails');
+                    localStorage.removeItem('orderTotalPayment');
+
+                    alert(result.message); // แจ้งผลการเข้าสู่ระบบ
+
+                    // เปลี่ยนเส้นทางไปยังหน้าโปรไฟล์หรือตรงตามที่คุณต้องการ
+                    window.location.href = "../profile/profile.html"; 
+                } else {
+                    alert(result.message); // แจ้งข้อผิดพลาด
+                }
+
                 } catch (error) {
                     console.error('Error:', error);
                     alert('There was an error connecting to the server.');

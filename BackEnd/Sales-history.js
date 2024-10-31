@@ -22,20 +22,22 @@ function Sales_History(app) {
       SELECT sales_history.product_name, sales_history.price, 
              sales_history.detail AS description, 
              sales_history.image_url AS image, 
-             users.username AS shop_name
+             users.username AS shop_name,
+             users.id AS user_id -- ดึง user_id ของผู้ขาย
       FROM sales_history
       JOIN users ON sales_history.user_id = users.id
-      WHERE sales_history.user_id = ? -- ดึงข้อมูลเฉพาะของผู้ขายที่ล็อกอิน
+      WHERE sales_history.user_id = ? 
     `;
 
     db.all(query, [userId], (err, rows) => {
       if (err) {
-        console.error("SQL Error:", err); // แสดงข้อผิดพลาด
+        console.error("SQL Error:", err);
         return res.status(500).json({ error: "Error fetching sales history" });
       }
-      res.json(rows); // ส่งข้อมูลกลับ
+      res.json(rows); // ส่งข้อมูลกลับ รวมถึง user_id
     });
   });
 }
 
 module.exports = Sales_History;
+

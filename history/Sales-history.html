@@ -42,6 +42,7 @@
                     productElement.setAttribute('price', product.price);
                     productElement.setAttribute('description', product.description);
                     productElement.setAttribute('shop-name', product.shop_name);
+                    productElement.setAttribute('shop-link', `../Profile/Profile-shop.html?userId=${product.user_id}`); // ตั้งค่า shop-link เพื่อไปหน้า Profile Shop
                     container.appendChild(productElement);
                 });
             } catch (error) {
@@ -49,6 +50,7 @@
             }
         });
     </script>
+    
     
 </body>
 </html>

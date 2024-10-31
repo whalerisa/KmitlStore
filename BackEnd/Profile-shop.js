@@ -68,7 +68,7 @@ function ProfileShop(app) {
     // API สำหรับดึงสินค้าของผู้ขาย
     app.get('/productstock/:userId', (req, res) => {
         const userId = req.params.userId; // ดึง userId จากพารามิเตอร์ URL
-        const sql = "SELECT id, image_url, name, detail, price FROM products WHERE userId = ?"; // กรองสินค้าตาม userId
+        const sql = "SELECT id, image_url, name, detail, price FROM products WHERE userId = ? AND stock > 0"; // กรองสินค้าตาม userId
 
         db.all(sql, [userId], (err, rows) => {
             if (err) {

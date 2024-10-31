@@ -121,10 +121,11 @@ class ProductContainer extends HTMLElement {
         this.shadowRoot.querySelector('.product-image').src = this.getAttribute('image');
         this.shadowRoot.querySelector('.product-name').textContent = this.getAttribute('name');
         this.shadowRoot.querySelector('.price').textContent = `${this.getAttribute('price')} ฿`;
-        this.shadowRoot.querySelector('.description').innerHTML = description; // ใช้ innerHTML เพื่อแสดง <br>
+        this.shadowRoot.querySelector('.description').innerHTML = description;
         this.shadowRoot.querySelector('.shop-name').textContent = this.getAttribute('shop-name');
-        this.shadowRoot.querySelector('.shop-link').href = this.getAttribute('shop-link');
+        this.shadowRoot.querySelector('.shop-link').href = this.getAttribute('shop-link'); // ใช้ shop-link เพื่อเปลี่ยนไปหน้า Profile Shop
     }
+    
     
 }
 

@@ -25,11 +25,10 @@
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const token = localStorage.getItem('token'); // ดึง Token จาก localStorage
-                console.log("Token:", token); // ตรวจสอบ token ที่ดึงมา
                 const response = await fetch('http://localhost:3000/purchase-history', {
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${token}` // ส่ง Token แบบ Bearer
+                        'Authorization': `Bearer ${token}`
                     }
                 });
     
@@ -48,8 +47,8 @@
                     productElement.setAttribute('price', purchase.price);
                     productElement.setAttribute('description', purchase.description);
                     productElement.setAttribute('shop-name', purchase.shop_name);
-                    productElement.setAttribute('shop-link', '#'); // ใส่ลิงก์ร้านค้าหากต้องการ
-
+                    productElement.setAttribute('shop-link', `../Profile/Profile-shop.html?userId=${purchase.shop_id}`); // ใช้ shop_id เพื่อนำไปยังหน้า Profile Shop
+    
                     container.appendChild(productElement);
                 });
             } catch (error) {
@@ -57,6 +56,7 @@
             }
         });
     </script>
+    
 </body>
 
 </html>

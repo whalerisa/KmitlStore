@@ -1,38 +1,54 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwtMiddleware = require('./jwtMiddleware');
-const app = express();
 
+const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 const db = new sqlite3.Database('./Data.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
         console.error(err.message);
     }
-    console.log('Connected to the database my products.');
+    console.log('Connected to the database.');
 });
 
-function My_Products(app){
+function SellerCentre(app) {
     app.get('/api/seller', jwtMiddleware, (req, res) => {
-        const userId = req.auth.id;
-        const sql = `
+        const sellerId = req.auth.id;
+
+        const query = `
             SELECT 
-                (SELECT COUNT(*) FROM products WHERE status = 'To Ship' AND userId = ?) AS toShip,
-                (SELECT COUNT(*) FROM products WHERE status = 'In Transit' AND userId = ?) AS inTransit,
-                (SELECT COUNT(*) FROM products WHERE status = 'Completed' AND userId = ?) AS completed
+                status,
+                COUNT(*) AS count
+            FROM MyOrder
+            WHERE seller_id = ?
+            GROUP BY status
         `;
-        db.get(sql, [userId, userId, userId], (err, row) => {
+
+        db.all(query, [sellerId], (err, rows) => {
             if (err) {
-                console.error(err.message);
-                return res.status(500).json({ error: 'Internal server error' });
+                console.error("Error fetching seller data:", err);
+                return res.status(500).json({ error: "Failed to fetch seller data" });
             }
-            res.json(row); // ส่งข้อมูลสถานะกลับไป
+
+            const data = {
+                Inprogress: 0,
+                Completed: 0
+            };
+
+            rows.forEach(row => {
+                if (row.status === 'In Progress') { // ตรงกับข้อมูลในฐานข้อมูล
+                    data.Inprogress = row.count;
+                } else if (row.status === 'Completed') {
+                    data.Completed = row.count;
+                }
+            });
+
+            res.json(data);
         });
     });
-    
-
 }
-module.exports = My_Products;
+
+module.exports = SellerCentre;

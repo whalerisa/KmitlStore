@@ -274,6 +274,53 @@ class Navbar extends HTMLElement {
         profileButton.addEventListener('mouseout', () => {
             profileIcon.src = '../icons/profile-icon1.png'; 
         });
+        const searchButton = this.shadowRoot.querySelector('#searchButton');
+        const searchInput = this.shadowRoot.querySelector('[data-search]');
+
+        searchButton.addEventListener('click', () => this.handleSearch());
+        searchInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') this.handleSearch();
+        });
+    }
+
+    // ฟังก์ชันค้นหาสินค้า
+    async handleSearch() {
+        const query = this.shadowRoot.querySelector('[data-search]').value.toLowerCase();
+        if (!query) return;
+
+        try {
+            // ดึงข้อมูลสินค้าที่มี stock > 0 จาก API
+            const response = await fetch('search'); 
+            const products = await response.json();
+
+            // กรองสินค้าที่มีชื่อสอดคล้องกับคำค้นหาและมี stock > 0
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query) && product.stock > 0
+            );
+
+            // แสดงผลลัพธ์การค้นหา
+            this.displaySearchResults(filteredProducts);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    }
+
+    // แสดงผลลัพธ์การค้นหา
+    displaySearchResults(products) {
+        const productContainer = this.shadowRoot.querySelector('[data-product-cards-container]');
+        productContainer.innerHTML = ''; // ล้างข้อมูลก่อนหน้านี้
+
+        if (products.length === 0) {
+            productContainer.innerHTML = `<p>No products found</p>`;
+            return;
+        }
+
+        products.forEach(product => {
+            const productTemplate = this.shadowRoot.querySelector('[data-product-template]').content.cloneNode(true);
+            productTemplate.querySelector('[data-name]').textContent = product.name;
+            productTemplate.querySelector('[data-stock]').textContent = `In stock: ${product.stock}`;
+            productContainer.appendChild(productTemplate);
+        });
     }
 }
 

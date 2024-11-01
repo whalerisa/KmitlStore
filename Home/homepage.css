@@ -6,6 +6,21 @@ body {
     background-color: #f7f7f7;
 }
 
+h2 {
+    font-size: 2.5rem; 
+    color: black; 
+    margin: 28px 0; 
+    text-align: center; 
+    text-transform: uppercase; 
+}
+
+h3 {
+    font-size: 1.7rem; 
+    color: black; 
+    margin: 26px 0; 
+    text-align: center; 
+}
+
 /* Categories Section */
 .categories {
     text-align: center;

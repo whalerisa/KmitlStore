@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KMITL Store Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="login-container">
-        
+
         <h1 class="store-header">
             <img src="../icons/logo.png" alt="KMITL Store Logo" class="logo-icon">
             <span>KMITL<br>STORE</span>
@@ -37,13 +39,13 @@
 
         <script>
             function redirectToRegister() {
-                window.location.href = "/register.html";  
+                window.location.href = "/register.html";
             }
 
             function redirectToHomepage() {
-                window.location.href = "homepage.html"; 
+                window.location.href = "homepage.html";
             }
-            document.getElementById('login-form').addEventListener('submit', async function(event) {
+            document.getElementById('login-form').addEventListener('submit', async function (event) {
                 event.preventDefault();
 
                 const username = document.getElementById('username').value;
@@ -61,22 +63,21 @@
                     const result = await response.json();
 
                     if (response.ok) {
-                    // เก็บ token ที่ได้รับใน localStorage
-                    localStorage.setItem('token', result.token);
 
-                    // ลบข้อมูลคำสั่งซื้อที่ไม่ต้องการใน localStorage
-                    localStorage.removeItem('orderUsername');
-                    localStorage.removeItem('orderAddress');
-                    localStorage.removeItem('orderProductDetails');
-                    localStorage.removeItem('orderTotalPayment');
+                        localStorage.setItem('token', result.token);
 
-                    alert(result.message); // แจ้งผลการเข้าสู่ระบบ
 
-                    // เปลี่ยนเส้นทางไปยังหน้าโปรไฟล์หรือตรงตามที่คุณต้องการ
-                    window.location.href = "../profile/profile.html"; 
-                } else {
-                    alert(result.message); // แจ้งข้อผิดพลาด
-                }
+                        localStorage.removeItem('orderUsername');
+                        localStorage.removeItem('orderAddress');
+                        localStorage.removeItem('orderProductDetails');
+                        localStorage.removeItem('orderTotalPayment');
+
+                        alert(result.message);
+
+                        window.location.href = "../profile/profile.html";
+                    } else {
+                        alert(result.message);
+                    }
 
                 } catch (error) {
                     console.error('Error:', error);
@@ -84,11 +85,11 @@
                 }
             });
 
-            
+
         </script>
 
     </div>
-  
+
 </body>
 
 </html>

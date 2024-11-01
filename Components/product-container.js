@@ -14,17 +14,18 @@ class ProductContainer extends HTMLElement {
 
                 .product-container {
                     display: flex;
-                    justify-content: center;
+                    justify-content: flex-start; 
                     align-items: flex-start;
                     margin-bottom: 40px;
                     border-bottom: 1px solid #e0e0e0;
                     padding-bottom: 20px;
                     font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
+                    margin-left: 300px; 
                 }
 
                 .product-image {
                     width: 300px;
-                    height: auto;
+                    height: 300px;
                     object-fit: cover;
                 }
 

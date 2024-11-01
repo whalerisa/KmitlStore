@@ -17,7 +17,7 @@ const db = new sqlite3.Database('./Data.db', (err) => {
 });
 
 function MyOrder(app) {
-    // API สำหรับดึงข้อมูลคำสั่งซื้อทั้งหมดที่เกี่ยวข้องกับ seller_id ของผู้ขายที่ล็อกอินอยู่
+    // ดึงข้อมูลคำสั่งซื้อทั้งหมดที่เกี่ยวข้องกับ seller_id ของผู้ขายที่ล็อกอินอยู่
     app.get('/my-orders', jwtMiddleware, (req, res) => {
         const sellerId = req.auth.id; // ดึง seller_id ของผู้ขายที่ล็อกอินอยู่จาก jwtMiddleware
 
@@ -31,7 +31,7 @@ function MyOrder(app) {
         });
     });
 
-    // API สำหรับอัปเดตสถานะคำสั่งซื้อ
+    //อัปเดตสถานะคำสั่งซื้อ
     app.patch('/my-orders/:id', jwtMiddleware, (req, res) => {
         const orderId = req.params.id;
         const newStatus = req.body.status;

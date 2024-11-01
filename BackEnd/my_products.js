@@ -16,7 +16,7 @@ const db = new sqlite3.Database("./Data.db", sqlite3.OPEN_READWRITE, (err) => {
 });
 
 function My_Products(app) {
-  // API สำหรับดึงข้อมูลสินค้าของผู้ใช้ที่ล็อกอิน
+  // ดึงข้อมูลสินค้าของผู้ใช้ที่ล็อกอิน
   app.get("/api/products", jwtMiddleware, (req, res) => {
     const userId = req.auth.id;
     console.log("User ID:", userId); // ดูว่าได้ userId ถูกต้องหรือไม่
@@ -34,7 +34,7 @@ function My_Products(app) {
     });
   });
 
-  // API สำหรับลบสินค้าตาม productId จากทุกตารางที่เกี่ยวข้อง
+  // ลบสินค้าตาม productId จากทุกตารางที่เกี่ยวข้อง
   app.delete("/api/products/:id", jwtMiddleware, (req, res) => {
     const userId = req.auth.id;
     const productId = req.params.id;
@@ -45,7 +45,7 @@ function My_Products(app) {
     const deletePurchaseHistorySQL = "DELETE FROM purchase_history WHERE product_id = ? AND user_id = ?";
     const deleteCartSQL = "DELETE FROM cart WHERE product_id = ? AND user_id = ?";
 
-    // เริ่มต้นการลบในแต่ละตาราง
+    
     db.run(deleteProductSQL, [productId, userId], function (err) {
       if (err) {
         console.error("Error deleting from products:", err.message);

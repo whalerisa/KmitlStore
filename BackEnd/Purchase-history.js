@@ -46,7 +46,7 @@ function Purchase_History(app) {
                 console.error("Error fetching purchase history:", err);
                 return res.status(500).json({ error: "Failed to fetch purchase history" });
             }
-            res.json(rows); // ส่งข้อมูลประวัติการซื้อกลับไป
+            res.json(rows); 
         });
     });
 }

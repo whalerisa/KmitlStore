@@ -20,9 +20,9 @@ const db = new sqlite3.Database("./Data.db", sqlite3.OPEN_READWRITE, (err) => {
   }
 });
 
-// API Endpoint สำหรับดึงข้อมูลสินค้า
+// ดึงข้อมูลสินค้า
 function ProductDetail(app) {
-  // API สำหรับดึงข้อมูลสินค้าตาม ID
+  // ดึงข้อมูลสินค้าตาม ID
   app.get("/api/products/:id", (req, res) => {
     const { id } = req.params;
     console.log("Fetching product with ID:", id);
@@ -44,7 +44,7 @@ function ProductDetail(app) {
         res.status(404).json({ error: "Product not found" });
         return;
       }
-      res.json(row); // ส่งข้อมูลไปยัง frontend
+      res.json(row); 
     });
   });
 }

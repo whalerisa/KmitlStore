@@ -27,7 +27,7 @@ const profilePicStorage = multer.diskStorage({
 
 const upload = multer({ storage: profilePicStorage });
 
-// สร้างการเชื่อมต่อกับฐานข้อมูล SQLite
+
 const db = new sqlite3.Database('Data.db', (err) => {
     if (err) {
         console.error(err.message);
@@ -37,7 +37,7 @@ const db = new sqlite3.Database('Data.db', (err) => {
 });
 
 function ProfileEdit(app){
-    // Route สำหรับอัปเดตโปรไฟล์
+    // อัปเดตโปรไฟล์
     app.post('/api/updateProfile', jwtMiddleware, upload.single('profilePic'), (req, res) => {
         const userId = req.auth.id;
         const { username, phone, email } = req.body;

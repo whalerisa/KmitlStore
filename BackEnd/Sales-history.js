@@ -15,7 +15,7 @@ const db = new sqlite3.Database("./Data.db", sqlite3.OPEN_READWRITE, (err) => {
 });
 
 function Sales_History(app) {
-  // API ดึงข้อมูลจากตาราง sales_history
+  // ดึงข้อมูลจากตาราง sales_history
   app.get("/sales-history", jwtMiddleware, (req, res) => {
     const userId = req.auth.id;
     const query = `

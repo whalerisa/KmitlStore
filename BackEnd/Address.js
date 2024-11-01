@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const db = new sqlite3.Database("./Data.db");
 
 function Address(app) {
-  app.get("/product/:id", (req, res) => {
+  app.get("/product/:id", (req, res) => { //ดึงproductตามid
     const productId = req.params.id;
     db.get(
       "SELECT name, detail, price FROM products WHERE id = ?",
@@ -29,7 +29,7 @@ function Address(app) {
     );
   });
 
-  app.post("/order", jwtMiddleware, (req, res) => {
+  app.post("/order", jwtMiddleware, (req, res) => { //สร้างคำสั่งซื้อ ใช้jwtMiddleware ตรวจสอบผู้ใช้
     const buyerId = req.auth.id; // ผู้ซื้อที่ล็อกอิน
     const { productId, quantity } = req.body;
   
@@ -49,20 +49,20 @@ function Address(app) {
           return res.status(400).send({ error: "Insufficient stock for the requested quantity." });
         }
   
-        const orderQuery = `
+        const orderQuery = ` 
           INSERT INTO MyOrder (product_id, user_id, status, price, product_name, seller_id)
           VALUES (?, ?, ?, ?, ?, ?)
-        `;
+        `;//บันทึกคำสั่งซื้อในตาราง
         const orderParams = [
           productId,
           buyerId,
           "In Progress",
           product.price * quantity,
           product.name,
-          product.sellerId,  // เพิ่ม seller_id
+          product.sellerId,  
         ];
   
-        db.run(orderQuery, orderParams, function (err) {
+        db.run(orderQuery, orderParams, function (err) { //runคำสั่งsql
           if (err) {
             return res.status(500).send({ error: "Error saving order details." });
           }
@@ -112,7 +112,7 @@ function Address(app) {
                   return res.status(500).send({ error: "Error updating stock." });
                 }
   
-                db.get(
+                db.get( //จัดการตะกร้า
                   "SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?",
                   [buyerId, productId],
                   (err, cartItem) => {
@@ -128,13 +128,13 @@ function Address(app) {
                       });
                     }
   
-                    const remainingQuantity = cartItem.quantity - quantity;
+                    const remainingQuantity = cartItem.quantity - quantity; //จำนวนที่เหลือในตะกร้า
   
                     if (remainingQuantity > 0) {
                       const updateCartQuery = `
                         UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?
                       `;
-                      db.run(updateCartQuery, [remainingQuantity, buyerId, productId], function (err) {
+                      db.run(updateCartQuery, [remainingQuantity, buyerId, productId], function (err) { //updateตะกร้า
                         if (err) {
                           console.log(err);
                           return res.status(500).send({
@@ -150,7 +150,7 @@ function Address(app) {
                       const deleteCartQuery = `
                         DELETE FROM cart WHERE user_id = ? AND product_id = ?
                       `;
-                      db.run(deleteCartQuery, [buyerId, productId], function (err) {
+                      db.run(deleteCartQuery, [buyerId, productId], function (err) { //deleteสินค้าในตะกร้า
                         if (err) {
                           console.log(err);
                           return res.status(500).send({ error: "Error deleting cart item." });

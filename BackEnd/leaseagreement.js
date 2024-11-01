@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// เปิดฐานข้อมูล
+
 const db = new sqlite3.Database('./Data.db');
 
 function LeaseAgreement(app) {

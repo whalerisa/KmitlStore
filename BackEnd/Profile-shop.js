@@ -9,15 +9,15 @@ app.use(express.json());
 // เสิร์ฟไฟล์จากโฟลเดอร์ ProfilePic
 app.use('/ProfilePic', express.static(path.join(__dirname, 'ProfilePic')));
 
-// เชื่อมต่อกับฐานข้อมูล SQLite
+
 const db = new sqlite3.Database('./Data.db');
 
 function ProfileShop(app) {
-    // API สำหรับดึงข้อมูลผู้ขาย
+    // ดึงข้อมูลผู้ขาย
     app.get('/api/shop/:userId', (req, res) => {
         const userId = req.params.userId;
 
-        // คำสั่ง SQL สำหรับดึงข้อมูลผู้ขายจาก products พร้อมกับ username
+        // ดึงข้อมูลผู้ขายจาก products พร้อมกับ username
         const queryProduct = `
             SELECT p.*, u.username 
             FROM products p 
@@ -43,7 +43,7 @@ function ProfileShop(app) {
         });
     });
 
-    // API สำหรับดึงสินค้าของผู้ขาย
+    // ดึงสินค้าของผู้ขาย
     app.get('/productstock/:userId', (req, res) => {
         const userId = req.params.userId; 
         const sql = "SELECT id, image_url, name, detail, price FROM products WHERE userId = ? AND stock > 0"; 

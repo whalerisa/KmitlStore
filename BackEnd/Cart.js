@@ -25,7 +25,7 @@ function Cart(app) {
     const { productId, quantity } = req.body;
     const userId = req.auth.id;
 
-    // ตรวจสอบค่าใน body
+    // ตรวจสอบค่าproductID กับ quantity
     if (!productId || !quantity) {
       return res.status(400).json({ message: "Missing productId or quantity" });
     }
@@ -48,7 +48,7 @@ function Cart(app) {
       } else {
         // If item does not exist, insert a new entry
         const insertQuery = `INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)`;
-        db.run(insertQuery, [userId, productId, quantity], (err) => {
+        db.run(insertQuery, [userId, productId, quantity], (err) => { //เพิ่มสินค้าลงในตะกร้า
           if (err) {
             console.log(err)
             return res.status(500).json({ error: err.message });

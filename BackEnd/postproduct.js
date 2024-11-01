@@ -55,7 +55,7 @@ db.serialize(() => {
     )`);
 });
 
-// API สำหรับเพิ่มสินค้า พร้อมอัปโหลดรูปภาพ
+// เพิ่มสินค้า พร้อมอัปโหลดรูปภาพ
 function postproduct(app) {
   app.post("/addProduct", jwtMiddleware, upload.single("image"), (req, res) => {
     const userId = req.auth.id;

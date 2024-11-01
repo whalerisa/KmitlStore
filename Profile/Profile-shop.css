@@ -8,27 +8,27 @@ body {
 
 .logout-icon {
     display: flex;
-    justify-content: flex-end; /* ขยับไอคอนไปทางขวา */
-    padding: 0px 5px; /* เพิ่มพื้นที่รอบไอคอน */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    justify-content: flex-end; 
+    padding: 0px 5px; 
+    margin-top: 100px; 
 }
 
 .logout-icon .profile-picture {
-    width: 70px; /* ปรับขนาดไอคอนตามต้องการ */
-    height: 70px; /* ทำให้มีความสูงเท่ากัน */
-    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
-    transition: transform 0.2s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
+    width: 70px; 
+    height: 70px; 
+    cursor: pointer; 
+    transition: transform 0.2s; 
 }
 
 .logout-icon .profile-picture:hover {
-    transform: scale(1.1); /* ขยายไอคอนเมื่อ hover */
+    transform: scale(1.1); 
 }
 
 .profile-container {
     width: 400px;
     margin: 20px auto;
     padding: 0px;
-    background-color: transparent; /* ทำให้พื้นหลังโปร่งใส */
+    background-color: transparent; 
     border-radius: 10px;
     
 }
@@ -61,33 +61,33 @@ h1 {
 .transaction-history h2 {
     text-align: center;
     color: white;
-    background-color: #E35205; /* สีพื้นหลังหัวข้อ */
+    background-color: #E35205; 
     padding: 10px;
     border-radius: 10px;
-    width: 30%; /* ปรับขนาดความกว้างของหัวข้อ */
-    margin: 0 auto; /* จัดให้อยู่ตรงกลาง */
-    margin-top: 50px;  /* ปรับระยะห่างด้านบน */
-    margin-bottom: 50px;  /* ปรับระยะห่างด้านล่าง */
+    width: 30%; 
+    margin: 0 auto; 
+    margin-top: 50px;  
+    margin-bottom: 50px;  
 }
 
 .transactions {
     display: flex;
-    justify-content: center; /* จัดกึ่งกลาง */
-    gap: 60px; /* เพิ่มระยะห่างระหว่างกล่อง */
+    justify-content: center; 
+    gap: 60px; 
 }
 
 .transaction-section {
-    background-color: #E35205; /* สีพื้นหลังของกล่อง */
+    background-color: #E35205; 
     padding: 10px;
     border-radius: 10px;
     color: white;
-    width: 20%; /* ปรับขนาดความกว้าง */
+    width: 20%; 
 }
 
 .transaction-section h3 {
     text-align: center;
-    margin-top: 40px;  /* ปรับระยะห่างด้านบน */
-    margin-bottom: 30px;  /* ปรับระยะห่างด้านล่าง */
+    margin-top: 40px;  
+    margin-bottom: 30px;  
 }
 
 .transaction-section h3 a {
@@ -104,22 +104,20 @@ h1 {
 }
 
 .transaction-section li {
-    background-color: white; /* สีพื้นหลังของรายการ */
+    background-color: white; 
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    color: black; /* สีของตัวอักษรในรายการ */
+    color: black; 
 }
 
 .status {
     font-weight: bold;
-    color: #4CAF50; /* สีเขียวสำหรับสถานะสำเร็จ */
+    color: #4CAF50; 
 }
 
-
-/* Products Section */
 .products {
     text-align: center;
     padding: 20px;
@@ -128,17 +126,16 @@ h1 {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* กำหนดจำนวนคอลัมน์ */
+    grid-template-columns: repeat(5, 1fr); 
     gap: 20px;
 }
 
 .product-link {
-    text-decoration: none; /* ลบเส้นใต้ */
-    color: inherit; /* รักษาสีของข้อความใน product card */
+    text-decoration: none; 
+    color: inherit; 
 }
 
 .product-link:hover {
-    /* ถ้าต้องการ: เพิ่มเอฟเฟ็กต์เมื่อเลื่อนเมาส์ */
-    transform: scale(1.05); /* ขยายการ์ดเล็กน้อยเมื่อเลื่อนเมาส์ */
-    transition: transform 0.2s; /* การเปลี่ยนแปลงอย่างราบรื่น */
+    transform: scale(1.05); 
+    transition: transform 0.2s;
 }

@@ -4,14 +4,13 @@ class Footer extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
             <style>
-                /* ลิงก์ไปยังฟอนต์ Inter */
+                
                 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap');
 
-                /* ทำให้ตัว host ครอบคลุมเต็มความสูงของหน้าจอ */
                 :host {
                     display: flex;
                     flex-direction: column;
-                    min-height: 50vh; /* ความสูงของทั้งหน้าเพจต้องครอบคลุมทั้งหน้าจอ */
+                    min-height: 60vh; 
                     font-family: 'Inter', 'Kanit', 'Noto Sans Thai', sans-serif;
                 }
 
@@ -29,8 +28,8 @@ class Footer extends HTMLElement {
                     justify-content: space-between;
                     align-items: flex-start;
                     flex-wrap: wrap;
-                    width: 100%; /* กำหนดให้ footer กว้างเต็มจอ */
-                    box-sizing: border-box; /* ทำให้ padding รวมอยู่ในการคำนวณขนาด */
+                    width: 100%; 
+                    box-sizing: border-box; 
                 }
 
                 .footer-links, .social-links {
@@ -77,8 +76,8 @@ class Footer extends HTMLElement {
             </style>
 
             <div class="content">
-                <!-- ส่วนของเนื้อหาหลักในหน้านี้ -->
-                <slot></slot> <!-- ใช้ slot เพื่อใส่เนื้อหาจากภายนอก -->
+                
+                <slot></slot> 
             </div>
 
             <footer>

@@ -9,7 +9,7 @@ class ProductContainer extends HTMLElement {
         const template = document.createElement('template');
         template.innerHTML = `
             <style>
-                /* ลิงก์ไปยังฟอนต์ Inter */
+                
                 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&family=Inter:wght@400;600;800&display=swap');
 
                 .product-container {

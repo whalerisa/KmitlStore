@@ -11,7 +11,7 @@ h2, h3 {
     font-weight: bold;
 }
 
-/* Summary Section */
+
 .summary-section {
     background-color: #fff;
     padding: 20px;
@@ -44,7 +44,7 @@ h2, h3 {
     font-size: 1.2em;
 }
 
-/* Details Section */
+
 .details-section {
     max-width: 1000px;
     margin: 20px auto;
@@ -66,7 +66,7 @@ thead {
 }
 
 th, td {
-    padding: 15px 20px; /* Increased padding for better spacing */
+    padding: 15px 20px; 
     text-align: left;
     border-bottom: 1px solid #ddd;
 }

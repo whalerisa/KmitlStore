@@ -115,3 +115,24 @@ body {
 .chat-input button:hover {
     background-color: #c94003;
 }
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .order-form-section {
+        padding: 15px;
+    }
+
+    .place-order-button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .order-form-section {
+        padding: 20px;
+    }
+}

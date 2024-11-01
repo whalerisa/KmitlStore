@@ -43,3 +43,24 @@ body {
     transform: scale(1.05); 
     transition: transform 0.2s; 
 }
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .order-form-section {
+        padding: 15px;
+    }
+
+    .place-order-button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .order-form-section {
+        padding: 20px;
+    }
+}

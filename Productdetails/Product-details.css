@@ -24,30 +24,30 @@ h1 {
 
 .Productdetails {
     padding: 20px;
-    max-width: 1200px; /* กำหนดความกว้างสูงสุดของ container */
-    margin: 0 auto; /* จัดให้ container อยู่ตรงกลางแนวนอน */
-    background-color: #fff; /* เพื่อให้แน่ใจว่าสีพื้นหลังเป็นสีขาว */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเล็กน้อยเพื่อแยกออกจากพื้นหลัง */
-    border-radius: 10px; /* เพิ่มขอบมนเล็กน้อย */
-    display: flex; /* เพิ่ม display flex */
-    flex-direction: column; /* แนวตั้ง */
-    align-items: center; /* อยู่กลางแนวนอน */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    max-width: 1200px; 
+    margin: 0 auto; 
+    background-color: #fff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin-top: 100px; 
 }
 
 .product-container {
     display: flex;
-    justify-content: center; /* จัดให้สินค้าอยู่กลาง */
+    justify-content: center; 
     align-items: flex-start;
-    margin-bottom: 40px; /* ระยะห่างระหว่างแต่ละบล็อกสินค้า */
-    border-bottom: 1px solid #e0e0e0; /* เส้นแบ่งบางระหว่างแต่ละสินค้า */
+    margin-bottom: 40px; 
+    border-bottom: 1px solid #e0e0e0; 
     padding-bottom: 20px;
 }
 
 .product-image {
-    width: 300px; /* กำหนดความกว้างใหม่ */
-    height: auto; /* ให้ขนาดความสูงปรับตามความกว้างอัตโนมัติ */
-    object-fit: cover; /* ทำให้รูปไม่ผิดสัดส่วน */
+    width: 300px;
+    height: auto; 
+    object-fit: cover; 
 }
 
 .product-details {
@@ -95,7 +95,7 @@ h1 {
 }
 
 .product-details .orange-text {
-    color: #E35205; /* กำหนดสีส้ม */
+    color: #E35205;
 }
 
 .shop-info {
@@ -130,44 +130,43 @@ h1 {
     background-color: #D43D05;
 }
 
-/* Quantity Control Styling */
 .quantity {
     display: flex;
-    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    align-items: center;
 }
 
 .quantity-controls {
-    display: flex; /* ใช้ flexbox เพื่อจัดเรียง */
-    align-items: center; /* จัดให้อยู่แนวเดียวกัน */
-    background-color: #E35205; /* พื้นหลังสีส้ม */
-    border-radius: 35px; /* มุมมน */
-    padding: 5px; /* เพิ่ม padding เพื่อให้ดูดี */
+    display: flex; 
+    align-items: center; 
+    background-color: #E35205; 
+    border-radius: 35px; 
+    padding: 5px; 
 }
 
 .circle-button {
-    width: 25px; /* กำหนดความกว้าง */
-    height: 25px; /* กำหนดความสูง */
-    border-radius: 50%; /* ทำให้เป็นวงกลม */
-    background-color: white; /* สีพื้นหลังเป็นสีขาว */
-    color: #E35205; /* สีข้อความเป็นสีส้ม */
-    border: none; /* ไม่ให้มีเส้นขอบ */
-    font-size: 20px; /* ขนาดตัวอักษร */
-    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
-    display: flex; /* ใช้ flexbox */
-    align-items: center; /* จัดแนวกลางแนวตั้ง */
-    justify-content: center; /* จัดแนวกลางแนวนอน */
+    width: 25px; 
+    height: 25px; 
+    border-radius: 50%; 
+    background-color: white; 
+    color: #E35205; 
+    border: none; 
+    font-size: 20px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
 }
 
 .quantity-display {
-    color: #fff; /* เปลี่ยนสีข้อความให้เป็นสีส้ม */
-    padding: 7px 20px; /* ระยะห่างภายใน */
-    text-align: center; /* จัดข้อความให้อยู่กลาง */
+    color: #fff; 
+    padding: 7px 20px;
+    text-align: center; 
 }
 
 .buttons {
     display: flex;
     justify-content: space-between; 
-    gap: 30px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+    gap: 30px;
     margin-top: 10px;
 }
 
@@ -181,10 +180,9 @@ h1 {
 }
 
 .btn:hover {
-    background-color: #F05A1A; /* สีเมื่อ hover */
+    background-color: #F05A1A; 
 }
 
-/* Products Section */
 .products {
     text-align: center;
     padding: 30px;
@@ -193,21 +191,21 @@ h1 {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ปรับให้ยืดหยุ่นขึ้น */
-    gap: 20px; /* ระยะห่างระหว่างสินค้า */
-    justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
-    align-items: center; /* จัดให้อยู่ตรงกลางในแนวขวาง */
-    max-width: 950px; /* กำหนดความกว้างสูงสุด */
-    margin: 0 auto; /* จัดให้อยู่กลางแนวนอน */
-    padding: 30px; /* เพิ่ม padding เพื่อเว้นระยะ */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; 
+    justify-content: center; 
+    align-items: center; 
+    max-width: 950px; 
+    margin: 0 auto; 
+    padding: 30px; 
 }
 
 .product-link:hover {
-    transform: scale(1.05); /* ขยายการ์ดเล็กน้อยเมื่อเลื่อนเมาส์ */
-    transition: transform 0.2s; /* การเปลี่ยนแปลงอย่างราบรื่น */
+    transform: scale(1.05); 
+    transition: transform 0.2s; 
 }
 
 .product-grid a {
-    text-decoration: none; /* ลบขีดเส้นใต้ลิงก์ */
-    color: inherit; /* ให้สีของข้อความไม่เปลี่ยน */
+    text-decoration: none; 
+    color: inherit; 
 }

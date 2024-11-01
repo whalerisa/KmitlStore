@@ -10,7 +10,13 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>KMITL STORE</h1>
+
+        <h1 class="store-header">
+            <img src="../icons/logo.png" alt="KMITL Store Logo" class="logo-icon">
+            <span>KMITL<br>STORE</span>
+        </h1>
+
+
         <form id="register-form" method="POST">
             <label for="username">USER NAME</label>
             <input type="text" id="username" name="username" placeholder="Enter Username">
@@ -31,42 +37,41 @@
         document.getElementById('register-form').addEventListener('submit',async function(event) {
             event.preventDefault();
 
-            const username = document.getElementById('username').value //username
+            const username = document.getElementById('username').value 
             const email = document.getElementById('email').value
             const password = document.getElementById('password').value
             const phone = document.getElementById('phone').value
             
-            const usersData = {username,email,password,phone}//สร้างObjectที่จะส่งไปserver
+            const usersData = {username,email,password,phone}
 
              // ใช้ fetch เพื่อส่ง request แบบ POST ไปยังเซิร์ฟเวอร์
              try {
                 const response = await fetch('/register', {
                     method: 'POST',  // ใช้ POST method เพื่อส่งข้อมูล
                     headers: {
-                        'Content-Type': 'application/json'  // กำหนดว่า body จะเป็นข้อมูล JSON
+                        'Content-Type': 'application/json'  
                     },
-                    body: JSON.stringify(usersData)  // แปลง object usersData เป็น JSON ก่อนส่ง
+                    body: JSON.stringify(usersData)  
                 });
 
-                // รอให้ response กลับมาแล้วแปลงเป็น JSON
+                
                 const result = await response.json();
-                // ถ้าการส่งสำเร็จ (response.ok หมายถึง HTTP status code 2xx)
+                
                 if (response.ok) {
-                    redirectToLogin();  // เรียกใช้ฟังก์ชันเมื่อการลงทะเบียนสำเร็จ
-                    alert('ลงทะเบียนสำเร็จ: ' + result.id);  // แจ้งว่าลงทะเบียนสำเร็จ
+                    redirectToLogin();  
+                    alert('ลงทะเบียนสำเร็จ: ' + result.id);  
                 } else {
-                    alert('เกิดข้อผิดพลาด: ' + result.message);  // แจ้งข้อผิดพลาดที่เกิดจากเซิร์ฟเวอร์
+                    alert('เกิดข้อผิดพลาด: ' + result.message);  
                 }
             } catch (error) {
-                console.error('Error:', error);  // แสดง error ใน console ถ้าเกิดปัญหา
-                alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');  // แจ้งว่ามีปัญหาการเชื่อมต่อ
+                console.error('Error:', error);  
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์');  
             }
         });
 
-        // ฟังก์ชันสำหรับการแสดงตัวอย่างภาพที่ผู้ใช้เลือกในฟอร์ม
         function loadImage(event) {
-            const output = document.getElementById('preview');  // หา element สำหรับแสดงภาพตัวอย่าง
-            output.src = URL.createObjectURL(event.target.files[0]);  // แสดงไฟล์ที่ถูกเลือก (แปลงไฟล์ให้เป็น URL)
+            const output = document.getElementById('preview'); 
+            output.src = URL.createObjectURL(event.target.files[0]);  
         }
         function redirectToLogin(){
             window.location.href = "login.html";

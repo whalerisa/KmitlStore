@@ -8,43 +8,43 @@ body {
 
 .logout-icon {
     display: flex;
-    justify-content: flex-end; /* ขยับไอคอนไปทางขวา */
-    padding: 0px 5px; /* เพิ่มพื้นที่รอบไอคอน */
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
+    justify-content: flex-end; 
+    padding: 0px 5px; 
+    margin-top: 100px; 
 }
 
 .logout-icon .profile-picture {
-    width: 70px; /* ปรับขนาดไอคอนตามต้องการ */
-    height: 70px; /* ทำให้มีความสูงเท่ากัน */
-    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
-    transition: transform 0.2s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
+    width: 70px; 
+    height: 70px; 
+    cursor: pointer; 
+    transition: transform 0.2s; 
 }
 
 .logout-icon .profile-picture:hover {
-    transform: scale(1.1); /* ขยายไอคอนเมื่อ hover */
+    transform: scale(1.1); 
 }
 
 .profile-container {
     width: 400px;
     margin: 20px auto;
     padding: 20px;
-    background-color: transparent; /* ทำให้พื้นหลังโปร่งใส */
+    background-color: transparent; 
     border-radius: 10px;
 }
 
 .profile-header {
-    text-align: center; /* Center align text and image */
+    text-align: center; 
     margin-bottom: 20px;
 }
 
 .profile-picture {
-    width: 200px; /* Adjust size as needed */
+    width: 200px; 
     height: 200px;
-    border-radius: 50%; /* Make it circular */
-    margin-bottom: 10px; /* Space between image and username */
-    display: block; /* Ensure image is treated as a block element */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
+    border-radius: 50%; 
+    margin-bottom: 10px; 
+    display: block;
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 .profile-header .profile-picture {
@@ -63,63 +63,63 @@ body {
 
 .edit-icon {
     display: inline-block;
-    text-decoration: none; /* ไม่มีเส้นใต้ */
-    color: inherit; /* ใช้สีเดียวกับข้อความ */
-    margin-left: 8px; /* เพิ่มระยะห่างจากชื่อ */
-    font-size: 20px; /* ขนาดตัวอักษร */
+    text-decoration: none; 
+    color: inherit; 
+    margin-left: 8px; 
+    font-size: 20px; 
 }
 
 .edit-icon:hover {
-    color: #AA4109; /* เปลี่ยนสีเมื่อ hover */
-    text-decoration: underline; /* เพิ่มเส้นใต้เมื่อ hover */
+    color: #AA4109; 
+    text-decoration: underline; 
 }
 
 .profile-info {
-    background-color: #E35205; /* สีส้ม */
+    background-color: #E35205; 
     color: white;
-    padding: 15px; /* ระยะห่างภายใน */
+    padding: 15px; 
     border-radius: 10px;
     text-align: left;
-    margin: 0 auto 20px; /* จัดกลางด้านซ้าย-ขวา และมีระยะห่างด้านล่าง */
-    width: 80%; /* ความกว้างของกล่องข้อความ */
-    max-width: 800px; /* ระบุความกว้างสูงสุด */
+    margin: 0 auto 20px; 
+    width: 80%;
+    max-width: 800px;
 }
 
 .seller-centre-link {
-    display: block; /* ทำให้เป็น block element */
-    text-align: center; /* จัดกลางปุ่ม */
-    margin-top: 10px; /* ระยะห่างด้านบนจากกล่องข้อมูลโปรไฟล์ */
+    display: block; 
+    text-align: center; 
+    margin-top: 10px; 
 }
 
 .seller-centre-button {
-    background-color: #E35205; /* สีพื้นหลัง */
-    color: white; /* สีข้อความ */
-    border: none; /* ไม่มีขอบ */
-    border-radius: 30px; /* มุมโค้ง */
-    padding: 10px 20px; /* เพิ่มพื้นที่รอบๆ ปุ่ม */
-    font-size: 16px; /* ขนาดตัวอักษร */
-    cursor: pointer; /* เปลี่ยน cursor เมื่อ hover */
-    transition: background-color 0.3s, color 0.3s; /* เปลี่ยนแปลงเมื่อ hover */
-    margin-left: calc(25%); /* ปรับให้เริ่มที่ตำแหน่งเดียวกันกับ .profile-info */
-    margin-top: 10px; /* เพิ่มระยะห่างระหว่างปุ่มและข้อความด้านบน */
+    background-color: #E35205; 
+    color: white; 
+    border: none; 
+    border-radius: 30px; 
+    padding: 10px 20px;
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
+    margin-left: calc(25%); 
+    margin-top: 10px; 
 }
 
 .seller-centre-button:hover {
-    background-color: #AA4109; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
-    color: white; /* เปลี่ยนสีข้อความเมื่อ hover */
+    background-color: #AA4109; 
+    color: white; 
 }
 
 .circle {
-    display: inline-flex; /* ใช้ inline-flex */
-    align-items: center; /* จัดให้เนื้อหากลางในแนวดิ่ง */
-    justify-content: center; /* จัดให้เนื้อหากลางในแนวนอน */
-    width: 30px; /* ขนาดวงกลม */
-    height: 30px; /* ขนาดวงกลม */
-    background-color: white; /* สีพื้นหลังของวงกลม */
-    border-radius: 50%; /* ทำให้เป็นวงกลม */
-    color: #E35205; /* สีข้อความ */
-    margin-right: 10px; /* ระยะห่างระหว่างวงกลมกับข้อความ */
-    font-size: 24px; /* ขนาดข้อความ */
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 30px; 
+    height: 30px; 
+    background-color: white; 
+    border-radius: 50%; 
+    color: #E35205; 
+    margin-right: 10px; 
+    font-size: 24px; 
 }
 
 .transaction-history {
@@ -129,33 +129,33 @@ body {
 .transaction-history h2 {
     text-align: center;
     color: white;
-    background-color: #E35205; /* สีพื้นหลังหัวข้อ */
+    background-color: #E35205; 
     padding: 10px;
     border-radius: 10px;
-    width: 50%; /* ปรับขนาดความกว้างของหัวข้อ */
-    margin: 0 auto; /* จัดให้อยู่ตรงกลาง */
-    margin-top: 50px;  /* ปรับระยะห่างด้านบน */
-    margin-bottom: 50px;  /* ปรับระยะห่างด้านล่าง */
+    width: 50%; 
+    margin: 0 auto; 
+    margin-top: 50px;  
+    margin-bottom: 50px;  
 }
 
 .transactions {
     display: flex;
-    justify-content: center; /* จัดกึ่งกลาง */
-    gap: 60px; /* เพิ่มระยะห่างระหว่างกล่อง */
+    justify-content: center; 
+    gap: 60px; 
 }
 
 .transaction-section {
-    background-color: #E35205; /* สีพื้นหลังของกล่อง */
+    background-color: #E35205; 
     padding: 10px;
     border-radius: 10px;
     color: white;
-    width: 20%; /* ปรับขนาดความกว้าง */
+    width: 20%; 
 }
 
 .transaction-section h3 {
     text-align: center;
-    margin-top: 40px;  /* ปรับระยะห่างด้านบน */
-    margin-bottom: 30px;  /* ปรับระยะห่างด้านล่าง */
+    margin-top: 40px;  
+    margin-bottom: 30px;  
 }
 
 .transaction-section h3 a {
@@ -163,7 +163,7 @@ body {
     text-decoration: none;
     font-size: 28px;
     font-weight: bold;
-    transition: transform 0.2s ease, color 0.2s ease; /* เพิ่มการเปลี่ยนแปลงที่นี่ */
+    transition: transform 0.2s ease, color 0.2s ease; 
 }
 
 .transaction-section h3 a:hover {
@@ -178,21 +178,20 @@ body {
 }
 
 .transaction-section li {
-    background-color: white; /* สีพื้นหลังของรายการ */
+    background-color: white; 
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    color: black; /* สีของตัวอักษรในรายการ */
+    color: black; 
 }
 
 .status {
     font-weight: bold;
-    color: #4CAF50; /* สีเขียวสำหรับสถานะสำเร็จ */
+    color: #4CAF50; 
 }
 
-/* Footer */
 footer {
     background-color: #E35205;
     color: white;
@@ -201,7 +200,7 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-top: 110px; /* เพิ่มระยะห่างระหว่างส่วนตรงกลางกับ footer */
+    margin-top: 110px; 
 }
 
 .footer-links, .social-links {

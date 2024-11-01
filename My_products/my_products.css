@@ -11,15 +11,14 @@ h2, h3 {
     font-weight: bold;
 }
 
-/* Summary Section */
 .summary-section {
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 1000px;
     margin: 20px auto;
-    margin-top: 100px; /* เพิ่มระยะห่างจากด้านบน */
-    transform: translateX(70px); /* ขยับไปทางขวา 20px */
+    margin-top: 100px; 
+    transform: translateX(70px); 
 }
 
 .summary-details {
@@ -31,27 +30,27 @@ h2, h3 {
 .detail {
     flex: 1;
     padding: 10px;
-    text-align: left; /* เปลี่ยนจาก center เป็น left */
+    text-align: left; 
     border-right: 1px solid #ddd;
 }
 
 .detail h3, .detail p:last-child {
-    font-size: 1.2em; /* ขนาดตัวอักษรใหญ่ขึ้น */
-    font-weight: bold; /* ทำให้ตัวหนา */
+    font-size: 1.2em; 
+    font-weight: bold; 
 }
 
 .detail p {
-    font-size: 1.2em; /* ขยายขนาดตัวอักษรสำหรับข้อความทั่วไป */
+    font-size: 1.2em; 
 }
 
-/* Details Section */
+
 .details-section {
     max-width: 1000px;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transform: translateX(70px); /* ขยับไปทางขวา 20px */
+    transform: translateX(70px); 
     min-height: 500px;
 }
 
@@ -85,11 +84,11 @@ tr:hover {
     max-width: 900px;
     margin: 50px auto;
     background-color: white;
-    padding: 40px; /* เพิ่ม padding เพื่อขยายขนาด */
-    padding-bottom: 80px; /* เพิ่มพื้นที่ว่างด้านล่าง */
+    padding: 40px; 
+    padding-bottom: 80px; 
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 120px; /* เพิ่มระยะห่างจากด้านบน */
+    margin-top: 120px;
 }
 
 h1 {
@@ -106,85 +105,84 @@ h1 {
     padding: 10px 20px;
     cursor: pointer;
     margin-right: 20px;
-    color: #333; /* สีข้อความปกติ */
-    background-color: transparent; /* พื้นหลังโปร่งใส */
-    border: none; /* ไม่มีขอบ */
-    border-radius: 4px; /* มุมมน */
-    transition: background-color 0.3s ease, color 0.3s ease; /* ทำให้การเปลี่ยนแปลงเกิดขึ้นอย่าง smooth */
+    color: #333; 
+    background-color: transparent; 
+    border: none; 
+    border-radius: 4px; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .tablink:hover {
-    color: #ff6600; /* เปลี่ยนสีข้อความเมื่อเม้าชี้ */
-    background-color: #d1c2c2; /* เปลี่ยนสีพื้นหลังเมื่อเม้าชี้ */
+    color: #ff6600; 
+    background-color: #d1c2c2; 
 }
 
 .tablink:focus {
-    outline: none; /* ลบเส้นขอบที่เกิดขึ้นเมื่อคลิกหรือใช้คีย์บอร์ดเลือก */
-    color: #ff6600; /* เปลี่ยนสีข้อความเมื่อเลือก */
-    font-weight: bold; /* ทำให้ข้อความหนา */
+    outline: none; 
+    color: #ff6600; 
+    font-weight: bold; 
 }
 
 .tablink:active {
-    color: #ff6600; /* เปลี่ยนสีข้อความเมื่อคลิก */
+    color: #ff6600;
     font-weight: bold;
 }
 
 .tablink.inactive {
-    color: black; /* สีข้อความของแท็บที่ไม่ได้ active */
-    background-color: transparent; /* ทำให้พื้นหลังเป็นโปร่งใส */
+    color: black; 
+    background-color: transparent;
 }
 
 .item-container {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    align-items: center;
     padding: 12px;
     border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s ease; /* ทำให้การเปลี่ยนแปลงพื้นหลังเป็นแบบราบรื่น */
-    border-radius: 5px; /* มุมมน */
-    gap: 10px; /* เพิ่ม gap ระหว่างคอลัมน์ต่างๆ */
+    transition: background-color 0.3s ease; 
+    border-radius: 5px; 
+    gap: 10px; 
 }
 
 .item-container:hover {
-    background-color: #e0e0e0; /* เปลี่ยนสีพื้นหลังเมื่อเม้าชี้ */
+    background-color: #e0e0e0;
 }
 
 .item-container div {
-    flex-basis: 23%; /* ลด flex-basis เพื่อให้ปุ่ม Delete มีพื้นที่มากขึ้น */
+    flex-basis: 23%; 
     text-align: left;
 }
 
 .item-container div:last-child {
-    flex-basis: auto; /* ให้คอลัมน์ Delete ปรับขนาดตามเนื้อหา */
+    flex-basis: auto; 
 }
 
 .status {
-    color: #ff6600; /* กำหนดสีสำหรับสถานะทั่วไป */
+    color: #ff6600; 
 }
 
 .highlight {
-    color: #ff6600; /* กำหนดสีส้ม */
+    color: #ff6600; 
 }
 
 .delete-btn {
-    background-color: transparent; /* ทำให้ปุ่มไม่มีพื้นหลัง */
-    border: none; /* ไม่มีขอบ */
-    color: #888888; /* สีเทา */
+    background-color: transparent; 
+    border: none; 
+    color: #888888; 
     cursor: pointer;
-    text-align: right; /* ชิดขอบขวา */
-    padding: 0; /* ไม่มี padding */
-    margin-left: auto; /* ดันให้ปุ่มชิดขอบขวา */
+    text-align: right; 
+    padding: 0;
+    margin-left: auto; 
     transition: color 0.3s ease;
 }
 
 .delete-btn:hover {
-    color: #000000; /* เปลี่ยนสีเป็นดำเมื่อ hover */
+    color: #000000; 
 }
 
-/* Header Styles */
 .header-title {
-    font-weight: bold; /* Make text bold */
-    font-size: 0.9em; /* Increase font size */
-    flex-basis: 23%; /* Align with item containers */
-    text-align: left; /* Align text to the left */
+    font-weight: bold; 
+    font-size: 0.9em; 
+    flex-basis: 23%; 
+    text-align: left; 
 }

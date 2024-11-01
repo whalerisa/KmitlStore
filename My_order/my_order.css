@@ -54,34 +54,33 @@ h1 {
     border-bottom: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
-    font-weight: bold; /* ทำให้หัวข้อเด่น */
+    font-weight: bold; 
 }
 
 .item-container {
     display: flex;
-    align-items: center; /* จัดแนวให้ตรงกลาง */
+    align-items: center; 
     padding: 12px;
     border-bottom: 1px solid #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-/* ปรับ flex-basis ให้เท่ากัน */
 .item-container div {
     flex-basis: 25%; 
     text-align: left;
     font-size: 14px;
-    margin-right: 60px; /* เพิ่มระยะห่างระหว่างคอลัมน์ */
+    margin-right: 60px; 
 }
 
 .order-checkbox {
-    margin-right: 5px; /* ลดระยะห่างระหว่างเช็คบ็อกซ์กับชื่อสินค้า */
-    accent-color: #ff6600; /* สีของ checkbox */
+    margin-right: 5px;
+    accent-color: #ff6600; 
 }
 
-/* เพิ่มระยะห่างระหว่างคอลัมน์ต่าง ๆ */
+
 .item-container.header {
-    font-weight: bold; /* ทำให้หัวข้อเด่น */
+    font-weight: bold; 
 }
 
 .item-container .highlight {
@@ -108,5 +107,5 @@ h1 {
 
 .order-checkbox {
     margin-right: 10px;
-    accent-color: #ff6600; /* สีของ checkbox */
+    accent-color: #ff6600; 
 }

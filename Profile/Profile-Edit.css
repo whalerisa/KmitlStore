@@ -57,7 +57,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    max-width: 800px; /* ระบุความกว้างสูงสุด */
+    max-width: 800px; 
 }
 
 .info-item {
@@ -68,8 +68,8 @@ body {
 
 .info-item label {
     font-size: 18px;
-    flex-shrink: 0; /* ขนาดคงที่สำหรับ label */
-    margin-right: 10px; /* ช่องว่างระหว่าง label และ input */
+    flex-shrink: 0; 
+    margin-right: 10px; 
 }
 
 .info-item input {
@@ -78,7 +78,7 @@ body {
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    margin-right: 10px; /* ช่องว่างระหว่าง input และปุ่ม Edit */
+    margin-right: 10px; 
 }
 
 .info-item button {
@@ -113,8 +113,8 @@ body {
 }
 
 .save-button {
-    background-color: #E35205; /* พื้นหลังสีส้ม */
-    color: white; /* ตัวหนังสือสีขาว */
+    background-color: #E35205; 
+    color: white; 
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
@@ -127,5 +127,5 @@ body {
 }
 
 .save-button:hover {
-    background-color: #AA4109; /* เปลี่ยนสีเมื่อวางเมาส์ */
+    background-color: #AA4109; 
 }

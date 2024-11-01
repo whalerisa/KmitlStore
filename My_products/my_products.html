@@ -16,12 +16,11 @@
 
 <body>
 
-    <!-- ใช้ Web Component ของ Navbar -->
     <my-navbar></my-navbar>
 
-    <!-- Wrapper สำหรับ Sidebar, Main Content และ Right Sidebar -->
+
     <div class="content-wrapper">
-        <!-- Sidebar ซ้าย -->
+
         <my-sidebar></my-sidebar>
 
         <div class="container">
@@ -30,23 +29,23 @@
                 <span class="tablink active" onclick="showTab(event, 'current')">All</span>
             </div>
 
-            <!-- Current Data -->
+
             <div id="current" class="tabcontent" style="display: block;">
                 <div class="item-container header">
                     <div class="header-title">Product ID</div>
                     <div class="header-title">Product Name</div>
                     <div class="header-title">Total Payment</div>
                     <div class="header-title">Status</div>
-                    <div></div> <!-- คอลัมน์สำหรับปุ่ม Delete -->
+                    <div></div> 
                 </div>
                 <div id="product-list"></div>
             </div>
         </div>
 
-        <!-- ใช้ Web Component ของ Footer -->
+
         <my-footer></my-footer>
 
-        <!-- JavaScript Functions -->
+
         <script>
             // ฟังก์ชันสำหรับแสดงแท็บ
             function showTab(evt, tabName) {

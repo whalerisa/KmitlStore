@@ -66,6 +66,50 @@ function register(app) {
                     });
             }
         });
+        db.get(`SELECT * FROM users WHERE email = ?`, [email], (err, row) => {
+            if (err) {
+                console.error(err.message);
+                return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการตรวจสอบอีเมลล์ผู้ใช้' });
+            }
+
+            if (row) {
+                // หากมีข้อมูล username อยู่ในฐานข้อมูล
+                return res.status(400).json({ message: 'อีเมลล์นี้ถูกใช้งานแล้ว' });
+            } else {
+                // ถ้า username ไม่ซ้ำ ทำการบันทึกข้อมูล
+                db.run(`INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)`,
+                    [username, email, password, phone],
+                    function(err) {
+                        if (err) {
+                            console.log(err);
+                            return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการลงทะเบียน' });
+                        }
+                        res.send({ message: 'ลงทะเบียนสำเร็จ', id: this.lastID });
+                    });
+            }
+        });
+        db.get(`SELECT * FROM users WHERE phone = ?`, [email], (err, row) => {
+            if (err) {
+                console.error(err.message);
+                return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการตรวจสอบเบอร์โทรผู้ใช้' });
+            }
+
+            if (row) {
+                // หากมีข้อมูล username อยู่ในฐานข้อมูล
+                return res.status(400).json({ message: 'เบอร์นี้ถูกใช้งานแล้ว' });
+            } else {
+                // ถ้า username ไม่ซ้ำ ทำการบันทึกข้อมูล
+                db.run(`INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)`,
+                    [username, email, password, phone],
+                    function(err) {
+                        if (err) {
+                            console.log(err);
+                            return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการลงทะเบียน' });
+                        }
+                        res.send({ message: 'ลงทะเบียนสำเร็จ', id: this.lastID });
+                    });
+            }
+        });
     });
 }
 module.exports = register;  // ส่งออกฟังก์ชัน register

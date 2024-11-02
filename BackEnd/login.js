@@ -37,7 +37,7 @@ function login(app){
             }
             if (row) {
                // สร้าง token
-               const token = jwt.sign({ id: row.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+               const token = jwt.sign({ id: row.id }, process.env.JWT_SECRET, { expiresIn: '10h' });
                return res.json({ message: 'เข้าสู่ระบบสำเร็จ', token }); // ส่ง token กลับไป
             } else {
                 return res.status(401).json({ message: 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง' });

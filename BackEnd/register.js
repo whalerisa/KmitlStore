@@ -42,75 +42,46 @@ function register(app) {
         if (!username || !email || !password || !phone) {
             return res.status(400).send('ใส่ข้อมูลไม่ครบ');
         }
-
-        // ตรวจสอบว่า username ซ้ำกันหรือไม่
-        db.get(`SELECT * FROM users WHERE username = ?`, [username], (err, row) => {
-            if (err) {
-                console.error(err.message);
-                return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการตรวจสอบชื่อผู้ใช้' });
-            }
-
-            if (row) {
-                // หากมีข้อมูล username อยู่ในฐานข้อมูล
-                return res.status(400).json({ message: 'ชื่อผู้ใช้นี้ถูกใช้งานแล้ว' });
-            } else {
-                // ถ้า username ไม่ซ้ำ ทำการบันทึกข้อมูล
-                db.run(`INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)`,
-                    [username, email, password, phone],
-                    function(err) {
-                        if (err) {
-                            console.log(err);
-                            return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการลงทะเบียน' });
+    
+        // ตรวจสอบว่า username, email หรือ phone ซ้ำกันหรือไม่
+        db.get(
+            `SELECT * FROM users WHERE username = ? OR email = ? OR phone = ?`, 
+            [username, email, phone], 
+            (err, row) => {
+                if (err) {
+                    console.error(err.message);
+                    return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการตรวจสอบข้อมูล' });
+                }
+    
+                if (row) {
+                    // ตรวจสอบว่าข้อมูลไหนที่ซ้ำกันและส่งข้อความแจ้งเตือนที่เหมาะสม
+                    if (row.username === username) {
+                        return res.status(400).json({ message: 'ชื่อผู้ใช้นี้ถูกใช้งานแล้ว' });
+                    }
+                    if (row.email === email) {
+                        return res.status(400).json({ message: 'อีเมลล์นี้ถูกใช้งานแล้ว' });
+                    }
+                    if (row.phone === phone) {
+                        return res.status(400).json({ message: 'เบอร์นี้ถูกใช้งานแล้ว' });
+                    }
+                } else {
+                    // ถ้าไม่มีข้อมูลซ้ำ ทำการบันทึกข้อมูล
+                    db.run(
+                        `INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)`,
+                        [username, email, password, phone],
+                        function(err) {
+                            if (err) {
+                                console.log(err);
+                                return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการลงทะเบียน' });
+                            }
+                            res.send({ message: 'ลงทะเบียนสำเร็จ', id: this.lastID });
                         }
-                        res.send({ message: 'ลงทะเบียนสำเร็จ', id: this.lastID });
-                    });
+                    );
+                }
             }
-        });
-        db.get(`SELECT * FROM users WHERE email = ?`, [email], (err, row) => {
-            if (err) {
-                console.error(err.message);
-                return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการตรวจสอบอีเมลล์ผู้ใช้' });
-            }
-
-            if (row) {
-                // หากมีข้อมูล username อยู่ในฐานข้อมูล
-                return res.status(400).json({ message: 'อีเมลล์นี้ถูกใช้งานแล้ว' });
-            } else {
-                // ถ้า username ไม่ซ้ำ ทำการบันทึกข้อมูล
-                db.run(`INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)`,
-                    [username, email, password, phone],
-                    function(err) {
-                        if (err) {
-                            console.log(err);
-                            return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการลงทะเบียน' });
-                        }
-                        res.send({ message: 'ลงทะเบียนสำเร็จ', id: this.lastID });
-                    });
-            }
-        });
-        db.get(`SELECT * FROM users WHERE phone = ?`, [email], (err, row) => {
-            if (err) {
-                console.error(err.message);
-                return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการตรวจสอบเบอร์โทรผู้ใช้' });
-            }
-
-            if (row) {
-                // หากมีข้อมูล username อยู่ในฐานข้อมูล
-                return res.status(400).json({ message: 'เบอร์นี้ถูกใช้งานแล้ว' });
-            } else {
-                // ถ้า username ไม่ซ้ำ ทำการบันทึกข้อมูล
-                db.run(`INSERT INTO users (username, email, password, phone) VALUES (?, ?, ?, ?)`,
-                    [username, email, password, phone],
-                    function(err) {
-                        if (err) {
-                            console.log(err);
-                            return res.status(500).json({ message: 'เกิดข้อผิดพลาดในการลงทะเบียน' });
-                        }
-                        res.send({ message: 'ลงทะเบียนสำเร็จ', id: this.lastID });
-                    });
-            }
-        });
+        );
     });
+    
 }
 module.exports = register;  // ส่งออกฟังก์ชัน register
 
